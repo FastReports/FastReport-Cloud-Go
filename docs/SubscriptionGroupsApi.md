@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SubscriptionGroupsGetGroupList**](SubscriptionGroupsApi.md#SubscriptionGroupsGetGroupList) | **Get** /api/manage/v1/Subscriptions/{id}/groups | returns list of groups in the subscription
+[**SubscriptionGroupsGetGroupsList**](SubscriptionGroupsApi.md#SubscriptionGroupsGetGroupsList) | **Get** /api/manage/v1/Subscriptions/{subscriptionId}/groups | returns groups of the subscription or subscription user
 
 
 
-## SubscriptionGroupsGetGroupList
+## SubscriptionGroupsGetGroupsList
 
-> GroupsVM SubscriptionGroupsGetGroupList(ctx, id).Execute()
+> GroupsVM SubscriptionGroupsGetGroupsList(ctx, subscriptionId).UserId(userId).Execute()
 
-returns list of groups in the subscription
+returns groups of the subscription or subscription user
 
 ### Example
 
@@ -27,17 +27,18 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | subscripiton id
+    subscriptionId := "subscriptionId_example" // string | subscripiton id
+    userId := "userId_example" // string | user Id (optional) (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionGroupsApi.SubscriptionGroupsGetGroupList(context.Background(), id).Execute()
+    resp, r, err := api_client.SubscriptionGroupsApi.SubscriptionGroupsGetGroupsList(context.Background(), subscriptionId).UserId(userId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionGroupsApi.SubscriptionGroupsGetGroupList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionGroupsApi.SubscriptionGroupsGetGroupsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SubscriptionGroupsGetGroupList`: GroupsVM
-    fmt.Fprintf(os.Stdout, "Response from `SubscriptionGroupsApi.SubscriptionGroupsGetGroupList`: %v\n", resp)
+    // response from `SubscriptionGroupsGetGroupsList`: GroupsVM
+    fmt.Fprintf(os.Stdout, "Response from `SubscriptionGroupsApi.SubscriptionGroupsGetGroupsList`: %v\n", resp)
 }
 ```
 
@@ -47,16 +48,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | subscripiton id | 
+**subscriptionId** | **string** | subscripiton id | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSubscriptionGroupsGetGroupListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSubscriptionGroupsGetGroupsListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **userId** | **string** | user Id (optional) | 
 
 ### Return type
 

@@ -27,28 +27,33 @@ var (
 // SubscriptionGroupsApiService SubscriptionGroupsApi service
 type SubscriptionGroupsApiService service
 
-type ApiSubscriptionGroupsGetGroupListRequest struct {
+type ApiSubscriptionGroupsGetGroupsListRequest struct {
 	ctx _context.Context
 	ApiService *SubscriptionGroupsApiService
-	id string
+	subscriptionId string
+	userId *string
 }
 
+func (r ApiSubscriptionGroupsGetGroupsListRequest) UserId(userId string) ApiSubscriptionGroupsGetGroupsListRequest {
+	r.userId = &userId
+	return r
+}
 
-func (r ApiSubscriptionGroupsGetGroupListRequest) Execute() (GroupsVM, *_nethttp.Response, error) {
-	return r.ApiService.SubscriptionGroupsGetGroupListExecute(r)
+func (r ApiSubscriptionGroupsGetGroupsListRequest) Execute() (GroupsVM, *_nethttp.Response, error) {
+	return r.ApiService.SubscriptionGroupsGetGroupsListExecute(r)
 }
 
 /*
- * SubscriptionGroupsGetGroupList returns list of groups in the subscription
+ * SubscriptionGroupsGetGroupsList returns groups of the subscription or subscription user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id subscripiton id
- * @return ApiSubscriptionGroupsGetGroupListRequest
+ * @param subscriptionId subscripiton id
+ * @return ApiSubscriptionGroupsGetGroupsListRequest
  */
-func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupList(ctx _context.Context, id string) ApiSubscriptionGroupsGetGroupListRequest {
-	return ApiSubscriptionGroupsGetGroupListRequest{
+func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupsList(ctx _context.Context, subscriptionId string) ApiSubscriptionGroupsGetGroupsListRequest {
+	return ApiSubscriptionGroupsGetGroupsListRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		subscriptionId: subscriptionId,
 	}
 }
 
@@ -56,7 +61,7 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupList(ctx _conte
  * Execute executes the request
  * @return GroupsVM
  */
-func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupListExecute(r ApiSubscriptionGroupsGetGroupListRequest) (GroupsVM, *_nethttp.Response, error) {
+func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupsListExecute(r ApiSubscriptionGroupsGetGroupsListRequest) (GroupsVM, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -66,18 +71,21 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupListExecute(r A
 		localVarReturnValue  GroupsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionGroupsApiService.SubscriptionGroupsGetGroupList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionGroupsApiService.SubscriptionGroupsGetGroupsList")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/manage/v1/Subscriptions/{id}/groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/api/manage/v1/Subscriptions/{subscriptionId}/groups"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", _neturl.PathEscape(parameterToString(r.subscriptionId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.userId != nil {
+		localVarQueryParams.Add("userId", parameterToString(*r.userId, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
