@@ -1,4 +1,4 @@
-module github.com/FastReports/FastReport-Cloud-go
+module github.com/fastreports/gofrcloud
 
 go 1.13
 
