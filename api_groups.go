@@ -89,7 +89,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -247,7 +247,7 @@ func (a *GroupsApiService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupReques
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -397,7 +397,7 @@ func (a *GroupsApiService) GroupsGetGroupExecute(r ApiGroupsGetGroupRequest) (Gr
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -558,7 +558,7 @@ func (a *GroupsApiService) GroupsGetGroupListExecute(r ApiGroupsGetGroupListRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -706,7 +706,7 @@ func (a *GroupsApiService) GroupsGetPermissionsExecute(r ApiGroupsGetPermissions
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -862,7 +862,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1026,7 +1026,7 @@ func (a *GroupsApiService) GroupsUpdatePermissionsExecute(r ApiGroupsUpdatePermi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

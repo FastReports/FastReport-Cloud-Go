@@ -89,7 +89,7 @@ func (a *DataSourcesApiService) DataSourcesCreateDataSourceExecute(r ApiDataSour
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -248,7 +248,7 @@ func (a *DataSourcesApiService) DataSourcesDeleteDataSourceExecute(r ApiDataSour
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -396,7 +396,7 @@ func (a *DataSourcesApiService) DataSourcesFetchDataExecute(r ApiDataSourcesFetc
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -566,7 +566,7 @@ func (a *DataSourcesApiService) DataSourcesGetAvailableDataSourcesExecute(r ApiD
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -724,7 +724,7 @@ func (a *DataSourcesApiService) DataSourcesGetDataSourceExecute(r ApiDataSources
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -883,7 +883,7 @@ func (a *DataSourcesApiService) DataSourcesGetPermissionsExecute(r ApiDataSource
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1047,7 +1047,7 @@ func (a *DataSourcesApiService) DataSourcesRenameDataSourceExecute(r ApiDataSour
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1213,7 +1213,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateConnectionStringExecute(r ApiDa
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1377,7 +1377,7 @@ func (a *DataSourcesApiService) DataSourcesUpdatePermissionsExecute(r ApiDataSou
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1532,7 +1532,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateSubscriptionDataSourceExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

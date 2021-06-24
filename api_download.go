@@ -89,7 +89,7 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -247,7 +247,7 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -413,7 +413,7 @@ func (a *DownloadApiService) DownloadGetExportsExecute(r ApiDownloadGetExportsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -571,7 +571,7 @@ func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -729,7 +729,7 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -895,7 +895,7 @@ func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1053,7 +1053,7 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1219,7 +1219,7 @@ func (a *DownloadApiService) DownloadGetTemplatesExecute(r ApiDownloadGetTemplat
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// UserProfileUpdateVM struct for UserProfileUpdateVM
-type UserProfileUpdateVM struct {
+// UpdateUserProfileVM struct for UpdateUserProfileVM
+type UpdateUserProfileVM struct {
 	Name *string `json:"name,omitempty"`
 	Username *string `json:"username,omitempty"`
 	Email *string `json:"email,omitempty"`
@@ -23,25 +23,25 @@ type UserProfileUpdateVM struct {
 	PasswordNew2 *string `json:"passwordNew2,omitempty"`
 }
 
-// NewUserProfileUpdateVM instantiates a new UserProfileUpdateVM object
+// NewUpdateUserProfileVM instantiates a new UpdateUserProfileVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserProfileUpdateVM() *UserProfileUpdateVM {
-	this := UserProfileUpdateVM{}
+func NewUpdateUserProfileVM() *UpdateUserProfileVM {
+	this := UpdateUserProfileVM{}
 	return &this
 }
 
-// NewUserProfileUpdateVMWithDefaults instantiates a new UserProfileUpdateVM object
+// NewUpdateUserProfileVMWithDefaults instantiates a new UpdateUserProfileVM object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUserProfileUpdateVMWithDefaults() *UserProfileUpdateVM {
-	this := UserProfileUpdateVM{}
+func NewUpdateUserProfileVMWithDefaults() *UpdateUserProfileVM {
+	this := UpdateUserProfileVM{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UserProfileUpdateVM) GetName() string {
+func (o *UpdateUserProfileVM) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -51,7 +51,7 @@ func (o *UserProfileUpdateVM) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserProfileUpdateVM) GetNameOk() (*string, bool) {
+func (o *UpdateUserProfileVM) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *UserProfileUpdateVM) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *UserProfileUpdateVM) HasName() bool {
+func (o *UpdateUserProfileVM) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -68,12 +68,12 @@ func (o *UserProfileUpdateVM) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UserProfileUpdateVM) SetName(v string) {
+func (o *UpdateUserProfileVM) SetName(v string) {
 	o.Name = &v
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *UserProfileUpdateVM) GetUsername() string {
+func (o *UpdateUserProfileVM) GetUsername() string {
 	if o == nil || o.Username == nil {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *UserProfileUpdateVM) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserProfileUpdateVM) GetUsernameOk() (*string, bool) {
+func (o *UpdateUserProfileVM) GetUsernameOk() (*string, bool) {
 	if o == nil || o.Username == nil {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *UserProfileUpdateVM) GetUsernameOk() (*string, bool) {
 }
 
 // HasUsername returns a boolean if a field has been set.
-func (o *UserProfileUpdateVM) HasUsername() bool {
+func (o *UpdateUserProfileVM) HasUsername() bool {
 	if o != nil && o.Username != nil {
 		return true
 	}
@@ -100,12 +100,12 @@ func (o *UserProfileUpdateVM) HasUsername() bool {
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *UserProfileUpdateVM) SetUsername(v string) {
+func (o *UpdateUserProfileVM) SetUsername(v string) {
 	o.Username = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
-func (o *UserProfileUpdateVM) GetEmail() string {
+func (o *UpdateUserProfileVM) GetEmail() string {
 	if o == nil || o.Email == nil {
 		var ret string
 		return ret
@@ -115,7 +115,7 @@ func (o *UserProfileUpdateVM) GetEmail() string {
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserProfileUpdateVM) GetEmailOk() (*string, bool) {
+func (o *UpdateUserProfileVM) GetEmailOk() (*string, bool) {
 	if o == nil || o.Email == nil {
 		return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *UserProfileUpdateVM) GetEmailOk() (*string, bool) {
 }
 
 // HasEmail returns a boolean if a field has been set.
-func (o *UserProfileUpdateVM) HasEmail() bool {
+func (o *UpdateUserProfileVM) HasEmail() bool {
 	if o != nil && o.Email != nil {
 		return true
 	}
@@ -132,12 +132,12 @@ func (o *UserProfileUpdateVM) HasEmail() bool {
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
-func (o *UserProfileUpdateVM) SetEmail(v string) {
+func (o *UpdateUserProfileVM) SetEmail(v string) {
 	o.Email = &v
 }
 
 // GetPasswordNew returns the PasswordNew field value if set, zero value otherwise.
-func (o *UserProfileUpdateVM) GetPasswordNew() string {
+func (o *UpdateUserProfileVM) GetPasswordNew() string {
 	if o == nil || o.PasswordNew == nil {
 		var ret string
 		return ret
@@ -147,7 +147,7 @@ func (o *UserProfileUpdateVM) GetPasswordNew() string {
 
 // GetPasswordNewOk returns a tuple with the PasswordNew field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserProfileUpdateVM) GetPasswordNewOk() (*string, bool) {
+func (o *UpdateUserProfileVM) GetPasswordNewOk() (*string, bool) {
 	if o == nil || o.PasswordNew == nil {
 		return nil, false
 	}
@@ -155,7 +155,7 @@ func (o *UserProfileUpdateVM) GetPasswordNewOk() (*string, bool) {
 }
 
 // HasPasswordNew returns a boolean if a field has been set.
-func (o *UserProfileUpdateVM) HasPasswordNew() bool {
+func (o *UpdateUserProfileVM) HasPasswordNew() bool {
 	if o != nil && o.PasswordNew != nil {
 		return true
 	}
@@ -164,12 +164,12 @@ func (o *UserProfileUpdateVM) HasPasswordNew() bool {
 }
 
 // SetPasswordNew gets a reference to the given string and assigns it to the PasswordNew field.
-func (o *UserProfileUpdateVM) SetPasswordNew(v string) {
+func (o *UpdateUserProfileVM) SetPasswordNew(v string) {
 	o.PasswordNew = &v
 }
 
 // GetPasswordNew2 returns the PasswordNew2 field value if set, zero value otherwise.
-func (o *UserProfileUpdateVM) GetPasswordNew2() string {
+func (o *UpdateUserProfileVM) GetPasswordNew2() string {
 	if o == nil || o.PasswordNew2 == nil {
 		var ret string
 		return ret
@@ -179,7 +179,7 @@ func (o *UserProfileUpdateVM) GetPasswordNew2() string {
 
 // GetPasswordNew2Ok returns a tuple with the PasswordNew2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserProfileUpdateVM) GetPasswordNew2Ok() (*string, bool) {
+func (o *UpdateUserProfileVM) GetPasswordNew2Ok() (*string, bool) {
 	if o == nil || o.PasswordNew2 == nil {
 		return nil, false
 	}
@@ -187,7 +187,7 @@ func (o *UserProfileUpdateVM) GetPasswordNew2Ok() (*string, bool) {
 }
 
 // HasPasswordNew2 returns a boolean if a field has been set.
-func (o *UserProfileUpdateVM) HasPasswordNew2() bool {
+func (o *UpdateUserProfileVM) HasPasswordNew2() bool {
 	if o != nil && o.PasswordNew2 != nil {
 		return true
 	}
@@ -196,11 +196,11 @@ func (o *UserProfileUpdateVM) HasPasswordNew2() bool {
 }
 
 // SetPasswordNew2 gets a reference to the given string and assigns it to the PasswordNew2 field.
-func (o *UserProfileUpdateVM) SetPasswordNew2(v string) {
+func (o *UpdateUserProfileVM) SetPasswordNew2(v string) {
 	o.PasswordNew2 = &v
 }
 
-func (o UserProfileUpdateVM) MarshalJSON() ([]byte, error) {
+func (o UpdateUserProfileVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -220,38 +220,38 @@ func (o UserProfileUpdateVM) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableUserProfileUpdateVM struct {
-	value *UserProfileUpdateVM
+type NullableUpdateUserProfileVM struct {
+	value *UpdateUserProfileVM
 	isSet bool
 }
 
-func (v NullableUserProfileUpdateVM) Get() *UserProfileUpdateVM {
+func (v NullableUpdateUserProfileVM) Get() *UpdateUserProfileVM {
 	return v.value
 }
 
-func (v *NullableUserProfileUpdateVM) Set(val *UserProfileUpdateVM) {
+func (v *NullableUpdateUserProfileVM) Set(val *UpdateUserProfileVM) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUserProfileUpdateVM) IsSet() bool {
+func (v NullableUpdateUserProfileVM) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUserProfileUpdateVM) Unset() {
+func (v *NullableUpdateUserProfileVM) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUserProfileUpdateVM(val *UserProfileUpdateVM) *NullableUserProfileUpdateVM {
-	return &NullableUserProfileUpdateVM{value: val, isSet: true}
+func NewNullableUpdateUserProfileVM(val *UpdateUserProfileVM) *NullableUpdateUserProfileVM {
+	return &NullableUpdateUserProfileVM{value: val, isSet: true}
 }
 
-func (v NullableUserProfileUpdateVM) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateUserProfileVM) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUserProfileUpdateVM) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateUserProfileVM) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TemplateId** | Pointer to **string** |  | [optional] 
+**ReportInfo** | Pointer to [**ReportInfo**](ReportInfo.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Icon** | Pointer to **string** |  | [optional] 
@@ -53,6 +54,31 @@ SetTemplateId sets TemplateId field to given value.
 `func (o *ReportCreateVM) HasTemplateId() bool`
 
 HasTemplateId returns a boolean if a field has been set.
+
+### GetReportInfo
+
+`func (o *ReportCreateVM) GetReportInfo() ReportInfo`
+
+GetReportInfo returns the ReportInfo field if non-nil, zero value otherwise.
+
+### GetReportInfoOk
+
+`func (o *ReportCreateVM) GetReportInfoOk() (*ReportInfo, bool)`
+
+GetReportInfoOk returns a tuple with the ReportInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReportInfo
+
+`func (o *ReportCreateVM) SetReportInfo(v ReportInfo)`
+
+SetReportInfo sets ReportInfo field to given value.
+
+### HasReportInfo
+
+`func (o *ReportCreateVM) HasReportInfo() bool`
+
+HasReportInfo returns a boolean if a field has been set.
 
 ### GetName
 

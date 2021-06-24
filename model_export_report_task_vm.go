@@ -21,7 +21,7 @@ type ExportReportTaskVM struct {
 	Locale *string `json:"locale,omitempty"`
 	PagesCount *int32 `json:"pagesCount,omitempty"`
 	Format *string `json:"format,omitempty"`
-	ExportParameters *map[string]map[string]interface{} `json:"exportParameters,omitempty"`
+	ExportParameters *map[string]string `json:"exportParameters,omitempty"`
 }
 
 // NewExportReportTaskVM instantiates a new ExportReportTaskVM object
@@ -202,9 +202,9 @@ func (o *ExportReportTaskVM) SetFormat(v string) {
 }
 
 // GetExportParameters returns the ExportParameters field value if set, zero value otherwise.
-func (o *ExportReportTaskVM) GetExportParameters() map[string]map[string]interface{} {
+func (o *ExportReportTaskVM) GetExportParameters() map[string]string {
 	if o == nil || o.ExportParameters == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
 	return *o.ExportParameters
@@ -212,7 +212,7 @@ func (o *ExportReportTaskVM) GetExportParameters() map[string]map[string]interfa
 
 // GetExportParametersOk returns a tuple with the ExportParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportReportTaskVM) GetExportParametersOk() (*map[string]map[string]interface{}, bool) {
+func (o *ExportReportTaskVM) GetExportParametersOk() (*map[string]string, bool) {
 	if o == nil || o.ExportParameters == nil {
 		return nil, false
 	}
@@ -228,8 +228,8 @@ func (o *ExportReportTaskVM) HasExportParameters() bool {
 	return false
 }
 
-// SetExportParameters gets a reference to the given map[string]map[string]interface{} and assigns it to the ExportParameters field.
-func (o *ExportReportTaskVM) SetExportParameters(v map[string]map[string]interface{}) {
+// SetExportParameters gets a reference to the given map[string]string and assigns it to the ExportParameters field.
+func (o *ExportReportTaskVM) SetExportParameters(v map[string]string) {
 	o.ExportParameters = &v
 }
 

@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-    viewModel := *openapiclient.NewCreateDataSourceVM() // CreateDataSourceVM | create viewmodel (optional)
+    viewModel := *openapiclient.NewCreateDataSourceVM("ConnectionString_example", "SubscriptionId_example") // CreateDataSourceVM | create viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -410,7 +410,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -437,7 +437,7 @@ import (
 
 func main() {
     id := "id_example" // string | data source id
-    renameModel := *openapiclient.NewRenameDataSourceVM() // RenameDataSourceVM | rename viewmodel (optional)
+    renameModel := *openapiclient.NewRenameDataSourceVM("Name_example") // RenameDataSourceVM | rename viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -480,7 +480,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -507,7 +507,7 @@ import (
 
 func main() {
     id := "id_example" // string | data source id
-    updateModel := *openapiclient.NewUpdateDataSourceConnectionStringVM() // UpdateDataSourceConnectionStringVM | update viewmodel (optional)
+    updateModel := *openapiclient.NewUpdateDataSourceConnectionStringVM("ConnectionString_example") // UpdateDataSourceConnectionStringVM | update viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -550,7 +550,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -618,7 +618,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -645,7 +645,7 @@ import (
 
 func main() {
     id := "id_example" // string | data source id
-    updatesubscriptionModel := *openapiclient.NewUpdateDataSourceSubscriptionVM() // UpdateDataSourceSubscriptionVM | update subscription viewmodel (optional)
+    updatesubscriptionModel := *openapiclient.NewUpdateDataSourceSubscriptionVM("SubscriptionId_example") // UpdateDataSourceSubscriptionVM | update subscription viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -686,7 +686,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

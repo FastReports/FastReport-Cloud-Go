@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **Locale** | Pointer to **string** |  | [optional] 
 **PagesCount** | Pointer to **int32** |  | [optional] 
 **Format** | Pointer to **string** |  | [optional] 
-**ExportParameters** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
-**ReportParameters** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
+**ExportParameters** | Pointer to **map[string]string** |  | [optional] 
+**ReportParameters** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
 
@@ -158,20 +158,20 @@ HasFormat returns a boolean if a field has been set.
 
 ### GetExportParameters
 
-`func (o *ExportTemplateTaskVM) GetExportParameters() map[string]map[string]interface{}`
+`func (o *ExportTemplateTaskVM) GetExportParameters() map[string]string`
 
 GetExportParameters returns the ExportParameters field if non-nil, zero value otherwise.
 
 ### GetExportParametersOk
 
-`func (o *ExportTemplateTaskVM) GetExportParametersOk() (*map[string]map[string]interface{}, bool)`
+`func (o *ExportTemplateTaskVM) GetExportParametersOk() (*map[string]string, bool)`
 
 GetExportParametersOk returns a tuple with the ExportParameters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExportParameters
 
-`func (o *ExportTemplateTaskVM) SetExportParameters(v map[string]map[string]interface{})`
+`func (o *ExportTemplateTaskVM) SetExportParameters(v map[string]string)`
 
 SetExportParameters sets ExportParameters field to given value.
 
@@ -183,20 +183,20 @@ HasExportParameters returns a boolean if a field has been set.
 
 ### GetReportParameters
 
-`func (o *ExportTemplateTaskVM) GetReportParameters() map[string]map[string]interface{}`
+`func (o *ExportTemplateTaskVM) GetReportParameters() map[string]string`
 
 GetReportParameters returns the ReportParameters field if non-nil, zero value otherwise.
 
 ### GetReportParametersOk
 
-`func (o *ExportTemplateTaskVM) GetReportParametersOk() (*map[string]map[string]interface{}, bool)`
+`func (o *ExportTemplateTaskVM) GetReportParametersOk() (*map[string]string, bool)`
 
 GetReportParametersOk returns a tuple with the ReportParameters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReportParameters
 
-`func (o *ExportTemplateTaskVM) SetReportParameters(v map[string]map[string]interface{})`
+`func (o *ExportTemplateTaskVM) SetReportParameters(v map[string]string)`
 
 SetReportParameters sets ReportParameters field to given value.
 

@@ -89,7 +89,7 @@ func (a *ReportsApiService) ReportFolderAndFileGetCountExecute(r ApiReportFolder
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -254,7 +254,7 @@ func (a *ReportsApiService) ReportFolderAndFileGetFoldersAndFilesExecute(r ApiRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -408,7 +408,7 @@ func (a *ReportsApiService) ReportFoldersCopyFolderExecute(r ApiReportFoldersCop
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -573,7 +573,7 @@ func (a *ReportsApiService) ReportFoldersDeleteFolderExecute(r ApiReportFoldersD
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -723,7 +723,7 @@ func (a *ReportsApiService) ReportFoldersGetBreadcrumbsExecute(r ApiReportFolder
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -872,7 +872,7 @@ func (a *ReportsApiService) ReportFoldersGetFolderExecute(r ApiReportFoldersGetF
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1037,7 +1037,7 @@ func (a *ReportsApiService) ReportFoldersGetFoldersExecute(r ApiReportFoldersGet
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1186,7 +1186,7 @@ func (a *ReportsApiService) ReportFoldersGetFoldersCountExecute(r ApiReportFolde
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1334,7 +1334,7 @@ func (a *ReportsApiService) ReportFoldersGetPermissionsExecute(r ApiReportFolder
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1488,7 +1488,7 @@ func (a *ReportsApiService) ReportFoldersGetRootFolderExecute(r ApiReportFolders
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1613,7 +1613,7 @@ func (a *ReportsApiService) ReportFoldersMoveFolderExecute(r ApiReportFoldersMov
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1777,7 +1777,7 @@ func (a *ReportsApiService) ReportFoldersPostFolderExecute(r ApiReportFoldersPos
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1943,7 +1943,7 @@ func (a *ReportsApiService) ReportFoldersRenameFolderExecute(r ApiReportFoldersR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2109,7 +2109,7 @@ func (a *ReportsApiService) ReportFoldersUpdateIconExecute(r ApiReportFoldersUpd
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2272,7 +2272,7 @@ func (a *ReportsApiService) ReportFoldersUpdatePermissionsExecute(r ApiReportFol
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2430,7 +2430,7 @@ func (a *ReportsApiService) ReportFoldersUpdateTagsExecute(r ApiReportFoldersUpd
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2594,7 +2594,7 @@ func (a *ReportsApiService) ReportsCopyFileExecute(r ApiReportsCopyFileRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2752,7 +2752,7 @@ func (a *ReportsApiService) ReportsDeleteFileExecute(r ApiReportsDeleteFileReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2909,7 +2909,7 @@ func (a *ReportsApiService) ReportsExportExecute(r ApiReportsExportRequest) (Exp
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3070,7 +3070,7 @@ func (a *ReportsApiService) ReportsGetFileExecute(r ApiReportsGetFileRequest) (R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3220,7 +3220,7 @@ func (a *ReportsApiService) ReportsGetFilesCountExecute(r ApiReportsGetFilesCoun
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3386,7 +3386,7 @@ func (a *ReportsApiService) ReportsGetFilesListExecute(r ApiReportsGetFilesListR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3535,7 +3535,7 @@ func (a *ReportsApiService) ReportsGetPermissionsExecute(r ApiReportsGetPermissi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3688,7 +3688,7 @@ func (a *ReportsApiService) ReportsMoveFileExecute(r ApiReportsMoveFileRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3853,7 +3853,7 @@ func (a *ReportsApiService) ReportsRenameFileExecute(r ApiReportsRenameFileReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4020,7 +4020,7 @@ func (a *ReportsApiService) ReportsUpdateIconExecute(r ApiReportsUpdateIconReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4184,7 +4184,7 @@ func (a *ReportsApiService) ReportsUpdatePermissionsExecute(r ApiReportsUpdatePe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4342,7 +4342,7 @@ func (a *ReportsApiService) ReportsUpdateTagsExecute(r ApiReportsUpdateTagsReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4508,7 +4508,7 @@ func (a *ReportsApiService) ReportsUploadFileExecute(r ApiReportsUploadFileReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

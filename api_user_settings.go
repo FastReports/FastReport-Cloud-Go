@@ -16,7 +16,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -24,55 +23,51 @@ var (
 	_ _context.Context
 )
 
-// SubscriptionPlansApiService SubscriptionPlansApi service
-type SubscriptionPlansApiService service
+// UserSettingsApiService UserSettingsApi service
+type UserSettingsApiService service
 
-type ApiSubscriptionPlansGetSubscriptionPlanRequest struct {
+type ApiUserSettingsGetCurrentUserSettingsRequest struct {
 	ctx _context.Context
-	ApiService *SubscriptionPlansApiService
-	id string
+	ApiService *UserSettingsApiService
 }
 
 
-func (r ApiSubscriptionPlansGetSubscriptionPlanRequest) Execute() (SubscriptionPlanVM, *_nethttp.Response, error) {
-	return r.ApiService.SubscriptionPlansGetSubscriptionPlanExecute(r)
+func (r ApiUserSettingsGetCurrentUserSettingsRequest) Execute() (UserSettingsVM, *_nethttp.Response, error) {
+	return r.ApiService.UserSettingsGetCurrentUserSettingsExecute(r)
 }
 
 /*
- * SubscriptionPlansGetSubscriptionPlan Returns a subscription plan. Not all subscriptions can be issued for customer.
+ * UserSettingsGetCurrentUserSettings Return current user settings.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Identifier of subsctiption plan
- * @return ApiSubscriptionPlansGetSubscriptionPlanRequest
+ * @return ApiUserSettingsGetCurrentUserSettingsRequest
  */
-func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlan(ctx _context.Context, id string) ApiSubscriptionPlansGetSubscriptionPlanRequest {
-	return ApiSubscriptionPlansGetSubscriptionPlanRequest{
+func (a *UserSettingsApiService) UserSettingsGetCurrentUserSettings(ctx _context.Context) ApiUserSettingsGetCurrentUserSettingsRequest {
+	return ApiUserSettingsGetCurrentUserSettingsRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
 /*
  * Execute executes the request
- * @return SubscriptionPlanVM
+ * @return UserSettingsVM
  */
-func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlanExecute(r ApiSubscriptionPlansGetSubscriptionPlanRequest) (SubscriptionPlanVM, *_nethttp.Response, error) {
+func (a *UserSettingsApiService) UserSettingsGetCurrentUserSettingsExecute(r ApiUserSettingsGetCurrentUserSettingsRequest) (UserSettingsVM, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SubscriptionPlanVM
+		localVarReturnValue  UserSettingsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionPlansApiService.SubscriptionPlansGetSubscriptionPlan")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserSettingsApiService.UserSettingsGetCurrentUserSettings")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/manage/v1/SubscriptionPlans/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/api/manage/v1/UserSettings"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -131,16 +126,6 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlanExecut
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -149,7 +134,6 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlanExecut
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -166,34 +150,28 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlanExecut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSubscriptionPlansGetSubscriptionPlansRequest struct {
+type ApiUserSettingsUpdateMySettingsRequest struct {
 	ctx _context.Context
-	ApiService *SubscriptionPlansApiService
-	skip *int32
-	take *int32
+	ApiService *UserSettingsApiService
+	model *UpdateUserSettingsVM
 }
 
-func (r ApiSubscriptionPlansGetSubscriptionPlansRequest) Skip(skip int32) ApiSubscriptionPlansGetSubscriptionPlansRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiSubscriptionPlansGetSubscriptionPlansRequest) Take(take int32) ApiSubscriptionPlansGetSubscriptionPlansRequest {
-	r.take = &take
+func (r ApiUserSettingsUpdateMySettingsRequest) Model(model UpdateUserSettingsVM) ApiUserSettingsUpdateMySettingsRequest {
+	r.model = &model
 	return r
 }
 
-func (r ApiSubscriptionPlansGetSubscriptionPlansRequest) Execute() (SubscriptionPlansVM, *_nethttp.Response, error) {
-	return r.ApiService.SubscriptionPlansGetSubscriptionPlansExecute(r)
+func (r ApiUserSettingsUpdateMySettingsRequest) Execute() (UserSettingsVM, *_nethttp.Response, error) {
+	return r.ApiService.UserSettingsUpdateMySettingsExecute(r)
 }
 
 /*
- * SubscriptionPlansGetSubscriptionPlans Returns a list of active subscription plans that can be issued to the user.
- * If no active subscription plans, then the endpoint will return empty list
+ * UserSettingsUpdateMySettings Update settings of the current user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSubscriptionPlansGetSubscriptionPlansRequest
+ * @return ApiUserSettingsUpdateMySettingsRequest
  */
-func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlans(ctx _context.Context) ApiSubscriptionPlansGetSubscriptionPlansRequest {
-	return ApiSubscriptionPlansGetSubscriptionPlansRequest{
+func (a *UserSettingsApiService) UserSettingsUpdateMySettings(ctx _context.Context) ApiUserSettingsUpdateMySettingsRequest {
+	return ApiUserSettingsUpdateMySettingsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -201,37 +179,31 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlans(ctx 
 
 /*
  * Execute executes the request
- * @return SubscriptionPlansVM
+ * @return UserSettingsVM
  */
-func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlansExecute(r ApiSubscriptionPlansGetSubscriptionPlansRequest) (SubscriptionPlansVM, *_nethttp.Response, error) {
+func (a *UserSettingsApiService) UserSettingsUpdateMySettingsExecute(r ApiUserSettingsUpdateMySettingsRequest) (UserSettingsVM, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SubscriptionPlansVM
+		localVarReturnValue  UserSettingsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionPlansApiService.SubscriptionPlansGetSubscriptionPlans")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserSettingsApiService.UserSettingsUpdateMySettings")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/manage/v1/SubscriptionPlans"
+	localVarPath := localBasePath + "/api/manage/v1/UserSettings"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.skip != nil {
-		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
-	}
-	if r.take != nil {
-		localVarQueryParams.Add("take", parameterToString(*r.take, ""))
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -247,6 +219,8 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlansExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.model
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -284,6 +258,16 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlansExecu
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

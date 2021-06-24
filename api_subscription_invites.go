@@ -90,7 +90,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesAcceptInviteExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -181,7 +181,7 @@ func (r ApiSubscriptionInvitesCreateInviteRequest) CreateInviteVM(createInviteVM
 	return r
 }
 
-func (r ApiSubscriptionInvitesCreateInviteRequest) Execute() (SubscriptionVM, *_nethttp.Response, error) {
+func (r ApiSubscriptionInvitesCreateInviteRequest) Execute() (SubscriptionInviteVM, *_nethttp.Response, error) {
 	return r.ApiService.SubscriptionInvitesCreateInviteExecute(r)
 }
 
@@ -201,16 +201,16 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInvite(ctx _con
 
 /*
  * Execute executes the request
- * @return SubscriptionVM
+ * @return SubscriptionInviteVM
  */
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInviteExecute(r ApiSubscriptionInvitesCreateInviteRequest) (SubscriptionVM, *_nethttp.Response, error) {
+func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInviteExecute(r ApiSubscriptionInvitesCreateInviteRequest) (SubscriptionInviteVM, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  SubscriptionVM
+		localVarReturnValue  SubscriptionInviteVM
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesApiService.SubscriptionInvitesCreateInvite")
@@ -235,7 +235,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInviteExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -398,7 +398,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesDeleteInviteExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -548,7 +548,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesGetInvitesExecute(r A
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

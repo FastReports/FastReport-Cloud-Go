@@ -17,8 +17,8 @@ import (
 // CreateDataSourceVM struct for CreateDataSourceVM
 type CreateDataSourceVM struct {
 	Name *string `json:"name,omitempty"`
-	ConnectionString *string `json:"connectionString,omitempty"`
-	SubscriptionId *string `json:"subscriptionId,omitempty"`
+	ConnectionString string `json:"connectionString"`
+	SubscriptionId string `json:"subscriptionId"`
 	ConnectionType *string `json:"connectionType,omitempty"`
 }
 
@@ -26,8 +26,10 @@ type CreateDataSourceVM struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateDataSourceVM() *CreateDataSourceVM {
+func NewCreateDataSourceVM(connectionString string, subscriptionId string) *CreateDataSourceVM {
 	this := CreateDataSourceVM{}
+	this.ConnectionString = connectionString
+	this.SubscriptionId = subscriptionId
 	return &this
 }
 
@@ -71,68 +73,52 @@ func (o *CreateDataSourceVM) SetName(v string) {
 	o.Name = &v
 }
 
-// GetConnectionString returns the ConnectionString field value if set, zero value otherwise.
+// GetConnectionString returns the ConnectionString field value
 func (o *CreateDataSourceVM) GetConnectionString() string {
-	if o == nil || o.ConnectionString == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ConnectionString
+
+	return o.ConnectionString
 }
 
-// GetConnectionStringOk returns a tuple with the ConnectionString field value if set, nil otherwise
+// GetConnectionStringOk returns a tuple with the ConnectionString field value
 // and a boolean to check if the value has been set.
 func (o *CreateDataSourceVM) GetConnectionStringOk() (*string, bool) {
-	if o == nil || o.ConnectionString == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.ConnectionString, true
+	return &o.ConnectionString, true
 }
 
-// HasConnectionString returns a boolean if a field has been set.
-func (o *CreateDataSourceVM) HasConnectionString() bool {
-	if o != nil && o.ConnectionString != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionString gets a reference to the given string and assigns it to the ConnectionString field.
+// SetConnectionString sets field value
 func (o *CreateDataSourceVM) SetConnectionString(v string) {
-	o.ConnectionString = &v
+	o.ConnectionString = v
 }
 
-// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
+// GetSubscriptionId returns the SubscriptionId field value
 func (o *CreateDataSourceVM) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.SubscriptionId
+
+	return o.SubscriptionId
 }
 
-// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
+// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value
 // and a boolean to check if the value has been set.
 func (o *CreateDataSourceVM) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.SubscriptionId, true
+	return &o.SubscriptionId, true
 }
 
-// HasSubscriptionId returns a boolean if a field has been set.
-func (o *CreateDataSourceVM) HasSubscriptionId() bool {
-	if o != nil && o.SubscriptionId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+// SetSubscriptionId sets field value
 func (o *CreateDataSourceVM) SetSubscriptionId(v string) {
-	o.SubscriptionId = &v
+	o.SubscriptionId = v
 }
 
 // GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
@@ -172,10 +158,10 @@ func (o CreateDataSourceVM) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if o.ConnectionString != nil {
+	if true {
 		toSerialize["connectionString"] = o.ConnectionString
 	}
-	if o.SubscriptionId != nil {
+	if true {
 		toSerialize["subscriptionId"] = o.SubscriptionId
 	}
 	if o.ConnectionType != nil {

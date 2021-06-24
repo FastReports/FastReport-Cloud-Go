@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionInvitesCreateInvite
 
-> SubscriptionVM SubscriptionInvitesCreateInvite(ctx, subscriptionId).CreateInviteVM(createInviteVM).Execute()
+> SubscriptionInviteVM SubscriptionInvitesCreateInvite(ctx, subscriptionId).CreateInviteVM(createInviteVM).Execute()
 
 Create invite to subscription
 
@@ -109,7 +109,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionInvitesApi.SubscriptionInvitesCreateInvite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SubscriptionInvitesCreateInvite`: SubscriptionVM
+    // response from `SubscriptionInvitesCreateInvite`: SubscriptionInviteVM
     fmt.Fprintf(os.Stdout, "Response from `SubscriptionInvitesApi.SubscriptionInvitesCreateInvite`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionVM**](SubscriptionVM.md)
+[**SubscriptionInviteVM**](SubscriptionInviteVM.md)
 
 ### Authorization
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

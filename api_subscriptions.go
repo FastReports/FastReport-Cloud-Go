@@ -88,7 +88,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetDefaultPermissionsExecute(r Ap
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -246,7 +246,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetPermissionsExecute(r ApiSubscr
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -374,7 +374,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionExecute(r ApiSubsc
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -534,7 +534,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionsExecute(r ApiSubs
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -670,7 +670,7 @@ func (a *SubscriptionsApiService) SubscriptionsRenameSubscriptionExecute(r ApiSu
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -838,7 +838,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissionsExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1006,7 +1006,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateLocaleExecute(r ApiSubscrip
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1169,7 +1169,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdatePermissionsExecute(r ApiSub
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

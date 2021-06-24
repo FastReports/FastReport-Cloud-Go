@@ -16,9 +16,9 @@ import (
 
 // UpdateDefaultPermissionsVM struct for UpdateDefaultPermissionsVM
 type UpdateDefaultPermissionsVM struct {
-	FilePermissions *FilePermissions `json:"filePermissions,omitempty"`
-	GroupPermissions *GroupPermissions `json:"groupPermissions,omitempty"`
-	DataSourcePermissions *DataSourcePermissions `json:"dataSourcePermissions,omitempty"`
+	FilePermissions *UpdateFilePermissionsVM `json:"filePermissions,omitempty"`
+	GroupPermissions *UpdateGroupPermissionsVM `json:"groupPermissions,omitempty"`
+	DataSourcePermissions *UpdateDataSourcePermissionsVM `json:"dataSourcePermissions,omitempty"`
 }
 
 // NewUpdateDefaultPermissionsVM instantiates a new UpdateDefaultPermissionsVM object
@@ -39,9 +39,9 @@ func NewUpdateDefaultPermissionsVMWithDefaults() *UpdateDefaultPermissionsVM {
 }
 
 // GetFilePermissions returns the FilePermissions field value if set, zero value otherwise.
-func (o *UpdateDefaultPermissionsVM) GetFilePermissions() FilePermissions {
+func (o *UpdateDefaultPermissionsVM) GetFilePermissions() UpdateFilePermissionsVM {
 	if o == nil || o.FilePermissions == nil {
-		var ret FilePermissions
+		var ret UpdateFilePermissionsVM
 		return ret
 	}
 	return *o.FilePermissions
@@ -49,7 +49,7 @@ func (o *UpdateDefaultPermissionsVM) GetFilePermissions() FilePermissions {
 
 // GetFilePermissionsOk returns a tuple with the FilePermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDefaultPermissionsVM) GetFilePermissionsOk() (*FilePermissions, bool) {
+func (o *UpdateDefaultPermissionsVM) GetFilePermissionsOk() (*UpdateFilePermissionsVM, bool) {
 	if o == nil || o.FilePermissions == nil {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *UpdateDefaultPermissionsVM) HasFilePermissions() bool {
 	return false
 }
 
-// SetFilePermissions gets a reference to the given FilePermissions and assigns it to the FilePermissions field.
-func (o *UpdateDefaultPermissionsVM) SetFilePermissions(v FilePermissions) {
+// SetFilePermissions gets a reference to the given UpdateFilePermissionsVM and assigns it to the FilePermissions field.
+func (o *UpdateDefaultPermissionsVM) SetFilePermissions(v UpdateFilePermissionsVM) {
 	o.FilePermissions = &v
 }
 
 // GetGroupPermissions returns the GroupPermissions field value if set, zero value otherwise.
-func (o *UpdateDefaultPermissionsVM) GetGroupPermissions() GroupPermissions {
+func (o *UpdateDefaultPermissionsVM) GetGroupPermissions() UpdateGroupPermissionsVM {
 	if o == nil || o.GroupPermissions == nil {
-		var ret GroupPermissions
+		var ret UpdateGroupPermissionsVM
 		return ret
 	}
 	return *o.GroupPermissions
@@ -81,7 +81,7 @@ func (o *UpdateDefaultPermissionsVM) GetGroupPermissions() GroupPermissions {
 
 // GetGroupPermissionsOk returns a tuple with the GroupPermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDefaultPermissionsVM) GetGroupPermissionsOk() (*GroupPermissions, bool) {
+func (o *UpdateDefaultPermissionsVM) GetGroupPermissionsOk() (*UpdateGroupPermissionsVM, bool) {
 	if o == nil || o.GroupPermissions == nil {
 		return nil, false
 	}
@@ -97,15 +97,15 @@ func (o *UpdateDefaultPermissionsVM) HasGroupPermissions() bool {
 	return false
 }
 
-// SetGroupPermissions gets a reference to the given GroupPermissions and assigns it to the GroupPermissions field.
-func (o *UpdateDefaultPermissionsVM) SetGroupPermissions(v GroupPermissions) {
+// SetGroupPermissions gets a reference to the given UpdateGroupPermissionsVM and assigns it to the GroupPermissions field.
+func (o *UpdateDefaultPermissionsVM) SetGroupPermissions(v UpdateGroupPermissionsVM) {
 	o.GroupPermissions = &v
 }
 
 // GetDataSourcePermissions returns the DataSourcePermissions field value if set, zero value otherwise.
-func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissions() DataSourcePermissions {
+func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissions() UpdateDataSourcePermissionsVM {
 	if o == nil || o.DataSourcePermissions == nil {
-		var ret DataSourcePermissions
+		var ret UpdateDataSourcePermissionsVM
 		return ret
 	}
 	return *o.DataSourcePermissions
@@ -113,7 +113,7 @@ func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissions() DataSourcePermis
 
 // GetDataSourcePermissionsOk returns a tuple with the DataSourcePermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissionsOk() (*DataSourcePermissions, bool) {
+func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissionsOk() (*UpdateDataSourcePermissionsVM, bool) {
 	if o == nil || o.DataSourcePermissions == nil {
 		return nil, false
 	}
@@ -129,8 +129,8 @@ func (o *UpdateDefaultPermissionsVM) HasDataSourcePermissions() bool {
 	return false
 }
 
-// SetDataSourcePermissions gets a reference to the given DataSourcePermissions and assigns it to the DataSourcePermissions field.
-func (o *UpdateDefaultPermissionsVM) SetDataSourcePermissions(v DataSourcePermissions) {
+// SetDataSourcePermissions gets a reference to the given UpdateDataSourcePermissionsVM and assigns it to the DataSourcePermissions field.
+func (o *UpdateDefaultPermissionsVM) SetDataSourcePermissions(v UpdateDataSourcePermissionsVM) {
 	o.DataSourcePermissions = &v
 }
 

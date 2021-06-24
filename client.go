@@ -48,34 +48,6 @@ type APIClient struct {
 
 	// API Services
 
-	AdminApiKeysApi *AdminApiKeysApiService
-
-	AdminDataSourceApi *AdminDataSourceApiService
-
-	AdminExportsApi *AdminExportsApiService
-
-	AdminGroupsApi *AdminGroupsApiService
-
-	AdminHealthCheckApi *AdminHealthCheckApiService
-
-	AdminReportsApi *AdminReportsApiService
-
-	AdminSubscriptionAnalyticsApi *AdminSubscriptionAnalyticsApiService
-
-	AdminSubscriptionInvitesApi *AdminSubscriptionInvitesApiService
-
-	AdminSubscriptionPeriodApi *AdminSubscriptionPeriodApiService
-
-	AdminSubscriptionPlansApi *AdminSubscriptionPlansApiService
-
-	AdminSubscriptionProblemSolvingApi *AdminSubscriptionProblemSolvingApiService
-
-	AdminSubscriptionsApi *AdminSubscriptionsApiService
-
-	AdminTemplatesApi *AdminTemplatesApiService
-
-	AdminUsersApi *AdminUsersApiService
-
 	ApiKeysApi *ApiKeysApiService
 
 	DataSourcesApi *DataSourcesApiService
@@ -105,6 +77,8 @@ type APIClient struct {
 	TemplatesApi *TemplatesApiService
 
 	UserProfileApi *UserProfileApiService
+
+	UserSettingsApi *UserSettingsApiService
 }
 
 type service struct {
@@ -123,20 +97,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AdminApiKeysApi = (*AdminApiKeysApiService)(&c.common)
-	c.AdminDataSourceApi = (*AdminDataSourceApiService)(&c.common)
-	c.AdminExportsApi = (*AdminExportsApiService)(&c.common)
-	c.AdminGroupsApi = (*AdminGroupsApiService)(&c.common)
-	c.AdminHealthCheckApi = (*AdminHealthCheckApiService)(&c.common)
-	c.AdminReportsApi = (*AdminReportsApiService)(&c.common)
-	c.AdminSubscriptionAnalyticsApi = (*AdminSubscriptionAnalyticsApiService)(&c.common)
-	c.AdminSubscriptionInvitesApi = (*AdminSubscriptionInvitesApiService)(&c.common)
-	c.AdminSubscriptionPeriodApi = (*AdminSubscriptionPeriodApiService)(&c.common)
-	c.AdminSubscriptionPlansApi = (*AdminSubscriptionPlansApiService)(&c.common)
-	c.AdminSubscriptionProblemSolvingApi = (*AdminSubscriptionProblemSolvingApiService)(&c.common)
-	c.AdminSubscriptionsApi = (*AdminSubscriptionsApiService)(&c.common)
-	c.AdminTemplatesApi = (*AdminTemplatesApiService)(&c.common)
-	c.AdminUsersApi = (*AdminUsersApiService)(&c.common)
 	c.ApiKeysApi = (*ApiKeysApiService)(&c.common)
 	c.DataSourcesApi = (*DataSourcesApiService)(&c.common)
 	c.DownloadApi = (*DownloadApiService)(&c.common)
@@ -152,6 +112,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
 	c.TemplatesApi = (*TemplatesApiService)(&c.common)
 	c.UserProfileApi = (*UserProfileApiService)(&c.common)
+	c.UserSettingsApi = (*UserSettingsApiService)(&c.common)
 
 	return c
 }

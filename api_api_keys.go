@@ -91,7 +91,7 @@ func (a *ApiKeysApiService) ApiKeysCreateApiKeyExecute(r ApiApiKeysCreateApiKeyR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -137,6 +137,16 @@ func (a *ApiKeysApiService) ApiKeysCreateApiKeyExecute(r ApiApiKeysCreateApiKeyR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -223,7 +233,7 @@ func (a *ApiKeysApiService) ApiKeysDeleteApiKeyExecute(r ApiApiKeysDeleteApiKeyR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -278,6 +288,16 @@ func (a *ApiKeysApiService) ApiKeysDeleteApiKeyExecute(r ApiApiKeysDeleteApiKeyR
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -306,7 +326,7 @@ func (r ApiApiKeysGetApiKeysRequest) Execute() (ApiKeysVM, *_nethttp.Response, e
 
 /*
  * ApiKeysGetApiKeys Returns list with all api keys of current user
- * Always work, it should make only 200 response.
+ * Always work, it should make only 200 response (except if user is not authorized).
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiApiKeysGetApiKeysRequest
  */
@@ -352,7 +372,7 @@ func (a *ApiKeysApiService) ApiKeysGetApiKeysExecute(r ApiApiKeysGetApiKeysReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -394,6 +414,16 @@ func (a *ApiKeysApiService) ApiKeysGetApiKeysExecute(r ApiApiKeysGetApiKeysReque
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

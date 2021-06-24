@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -305,7 +305,7 @@ import (
 
 func main() {
     subscriptionId := "subscriptionId_example" // string | id
-    renameSubscriptionVM := *openapiclient.NewRenameSubscriptionVM() // RenameSubscriptionVM | rename VM
+    renameSubscriptionVM := *openapiclient.NewRenameSubscriptionVM("Name_example") // RenameSubscriptionVM | rename VM
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -348,7 +348,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -418,7 +418,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -488,7 +488,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -556,7 +556,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

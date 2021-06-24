@@ -16,15 +16,16 @@ import (
 
 // UpdateDataSourceConnectionStringVM struct for UpdateDataSourceConnectionStringVM
 type UpdateDataSourceConnectionStringVM struct {
-	ConnectionString *string `json:"connectionString,omitempty"`
+	ConnectionString string `json:"connectionString"`
 }
 
 // NewUpdateDataSourceConnectionStringVM instantiates a new UpdateDataSourceConnectionStringVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateDataSourceConnectionStringVM() *UpdateDataSourceConnectionStringVM {
+func NewUpdateDataSourceConnectionStringVM(connectionString string) *UpdateDataSourceConnectionStringVM {
 	this := UpdateDataSourceConnectionStringVM{}
+	this.ConnectionString = connectionString
 	return &this
 }
 
@@ -36,41 +37,33 @@ func NewUpdateDataSourceConnectionStringVMWithDefaults() *UpdateDataSourceConnec
 	return &this
 }
 
-// GetConnectionString returns the ConnectionString field value if set, zero value otherwise.
+// GetConnectionString returns the ConnectionString field value
 func (o *UpdateDataSourceConnectionStringVM) GetConnectionString() string {
-	if o == nil || o.ConnectionString == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ConnectionString
+
+	return o.ConnectionString
 }
 
-// GetConnectionStringOk returns a tuple with the ConnectionString field value if set, nil otherwise
+// GetConnectionStringOk returns a tuple with the ConnectionString field value
 // and a boolean to check if the value has been set.
 func (o *UpdateDataSourceConnectionStringVM) GetConnectionStringOk() (*string, bool) {
-	if o == nil || o.ConnectionString == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.ConnectionString, true
+	return &o.ConnectionString, true
 }
 
-// HasConnectionString returns a boolean if a field has been set.
-func (o *UpdateDataSourceConnectionStringVM) HasConnectionString() bool {
-	if o != nil && o.ConnectionString != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionString gets a reference to the given string and assigns it to the ConnectionString field.
+// SetConnectionString sets field value
 func (o *UpdateDataSourceConnectionStringVM) SetConnectionString(v string) {
-	o.ConnectionString = &v
+	o.ConnectionString = v
 }
 
 func (o UpdateDataSourceConnectionStringVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ConnectionString != nil {
+	if true {
 		toSerialize["connectionString"] = o.ConnectionString
 	}
 	return json.Marshal(toSerialize)

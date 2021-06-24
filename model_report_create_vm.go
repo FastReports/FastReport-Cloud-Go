@@ -17,6 +17,7 @@ import (
 // ReportCreateVM struct for ReportCreateVM
 type ReportCreateVM struct {
 	TemplateId *string `json:"templateId,omitempty"`
+	ReportInfo *ReportInfo `json:"reportInfo,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Tags *[]string `json:"tags,omitempty"`
 	Icon *string `json:"icon,omitempty"`
@@ -70,6 +71,38 @@ func (o *ReportCreateVM) HasTemplateId() bool {
 // SetTemplateId gets a reference to the given string and assigns it to the TemplateId field.
 func (o *ReportCreateVM) SetTemplateId(v string) {
 	o.TemplateId = &v
+}
+
+// GetReportInfo returns the ReportInfo field value if set, zero value otherwise.
+func (o *ReportCreateVM) GetReportInfo() ReportInfo {
+	if o == nil || o.ReportInfo == nil {
+		var ret ReportInfo
+		return ret
+	}
+	return *o.ReportInfo
+}
+
+// GetReportInfoOk returns a tuple with the ReportInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReportCreateVM) GetReportInfoOk() (*ReportInfo, bool) {
+	if o == nil || o.ReportInfo == nil {
+		return nil, false
+	}
+	return o.ReportInfo, true
+}
+
+// HasReportInfo returns a boolean if a field has been set.
+func (o *ReportCreateVM) HasReportInfo() bool {
+	if o != nil && o.ReportInfo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReportInfo gets a reference to the given ReportInfo and assigns it to the ReportInfo field.
+func (o *ReportCreateVM) SetReportInfo(v ReportInfo) {
+	o.ReportInfo = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -204,6 +237,9 @@ func (o ReportCreateVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.TemplateId != nil {
 		toSerialize["templateId"] = o.TemplateId
+	}
+	if o.ReportInfo != nil {
+		toSerialize["reportInfo"] = o.ReportInfo
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubscriptionId** | Pointer to **string** |  | [optional] 
+**SubscriptionId** | **string** |  | 
 
 ## Methods
 
 ### NewUpdateDataSourceSubscriptionVM
 
-`func NewUpdateDataSourceSubscriptionVM() *UpdateDataSourceSubscriptionVM`
+`func NewUpdateDataSourceSubscriptionVM(subscriptionId string, ) *UpdateDataSourceSubscriptionVM`
 
 NewUpdateDataSourceSubscriptionVM instantiates a new UpdateDataSourceSubscriptionVM object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetSubscriptionId sets SubscriptionId field to given value.
 
-### HasSubscriptionId
-
-`func (o *UpdateDataSourceSubscriptionVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Locale** | Pointer to **string** |  | [optional] 
 **PagesCount** | Pointer to **int32** |  | [optional] 
 **Format** | Pointer to **string** |  | [optional] 
-**ExportParameters** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
+**ExportParameters** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
 
@@ -157,20 +157,20 @@ HasFormat returns a boolean if a field has been set.
 
 ### GetExportParameters
 
-`func (o *ExportReportTaskVM) GetExportParameters() map[string]map[string]interface{}`
+`func (o *ExportReportTaskVM) GetExportParameters() map[string]string`
 
 GetExportParameters returns the ExportParameters field if non-nil, zero value otherwise.
 
 ### GetExportParametersOk
 
-`func (o *ExportReportTaskVM) GetExportParametersOk() (*map[string]map[string]interface{}, bool)`
+`func (o *ExportReportTaskVM) GetExportParametersOk() (*map[string]string, bool)`
 
 GetExportParametersOk returns a tuple with the ExportParameters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExportParameters
 
-`func (o *ExportReportTaskVM) SetExportParameters(v map[string]map[string]interface{})`
+`func (o *ExportReportTaskVM) SetExportParameters(v map[string]string)`
 
 SetExportParameters sets ExportParameters field to given value.
 

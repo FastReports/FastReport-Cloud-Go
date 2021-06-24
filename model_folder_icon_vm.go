@@ -16,15 +16,16 @@ import (
 
 // FolderIconVM struct for FolderIconVM
 type FolderIconVM struct {
-	Icon *string `json:"icon,omitempty"`
+	Icon string `json:"icon"`
 }
 
 // NewFolderIconVM instantiates a new FolderIconVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFolderIconVM() *FolderIconVM {
+func NewFolderIconVM(icon string) *FolderIconVM {
 	this := FolderIconVM{}
+	this.Icon = icon
 	return &this
 }
 
@@ -36,41 +37,33 @@ func NewFolderIconVMWithDefaults() *FolderIconVM {
 	return &this
 }
 
-// GetIcon returns the Icon field value if set, zero value otherwise.
+// GetIcon returns the Icon field value
 func (o *FolderIconVM) GetIcon() string {
-	if o == nil || o.Icon == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Icon
+
+	return o.Icon
 }
 
-// GetIconOk returns a tuple with the Icon field value if set, nil otherwise
+// GetIconOk returns a tuple with the Icon field value
 // and a boolean to check if the value has been set.
 func (o *FolderIconVM) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Icon, true
+	return &o.Icon, true
 }
 
-// HasIcon returns a boolean if a field has been set.
-func (o *FolderIconVM) HasIcon() bool {
-	if o != nil && o.Icon != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
+// SetIcon sets field value
 func (o *FolderIconVM) SetIcon(v string) {
-	o.Icon = &v
+	o.Icon = v
 }
 
 func (o FolderIconVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Icon != nil {
+	if true {
 		toSerialize["icon"] = o.Icon
 	}
 	return json.Marshal(toSerialize)

@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiUserProfileGetMyProfileReq
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -158,7 +158,7 @@ import (
 )
 
 func main() {
-    model := *openapiclient.NewUserProfileUpdateVM() // UserProfileUpdateVM |  (optional)
+    model := *openapiclient.NewUpdateUserProfileVM() // UpdateUserProfileVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -181,7 +181,7 @@ Other parameters are passed through a pointer to a apiUserProfileUpdateMyProfile
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**UserProfileUpdateVM**](UserProfileUpdateVM.md) |  | 
+ **model** | [**UpdateUserProfileVM**](UpdateUserProfileVM.md) |  | 
 
 ### Return type
 
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: text/plain, application/json, text/json
+- **Accept**: application/json, text/json, text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

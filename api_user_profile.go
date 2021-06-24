@@ -84,7 +84,7 @@ func (a *UserProfileApiService) UserProfileGetMyProfileExecute(r ApiUserProfileG
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -212,7 +212,7 @@ func (a *UserProfileApiService) UserProfileGetUserProfileExecute(r ApiUserProfil
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -282,10 +282,10 @@ func (a *UserProfileApiService) UserProfileGetUserProfileExecute(r ApiUserProfil
 type ApiUserProfileUpdateMyProfileRequest struct {
 	ctx _context.Context
 	ApiService *UserProfileApiService
-	model *UserProfileUpdateVM
+	model *UpdateUserProfileVM
 }
 
-func (r ApiUserProfileUpdateMyProfileRequest) Model(model UserProfileUpdateVM) ApiUserProfileUpdateMyProfileRequest {
+func (r ApiUserProfileUpdateMyProfileRequest) Model(model UpdateUserProfileVM) ApiUserProfileUpdateMyProfileRequest {
 	r.model = &model
 	return r
 }
@@ -340,7 +340,7 @@ func (a *UserProfileApiService) UserProfileUpdateMyProfileExecute(r ApiUserProfi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"text/plain", "application/json", "text/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

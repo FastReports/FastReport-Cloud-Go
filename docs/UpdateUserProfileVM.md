@@ -1,4 +1,4 @@
-# UserProfileUpdateVM
+# UpdateUserProfileVM
 
 ## Properties
 
@@ -12,145 +12,145 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUserProfileUpdateVM
+### NewUpdateUserProfileVM
 
-`func NewUserProfileUpdateVM() *UserProfileUpdateVM`
+`func NewUpdateUserProfileVM() *UpdateUserProfileVM`
 
-NewUserProfileUpdateVM instantiates a new UserProfileUpdateVM object
+NewUpdateUserProfileVM instantiates a new UpdateUserProfileVM object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUserProfileUpdateVMWithDefaults
+### NewUpdateUserProfileVMWithDefaults
 
-`func NewUserProfileUpdateVMWithDefaults() *UserProfileUpdateVM`
+`func NewUpdateUserProfileVMWithDefaults() *UpdateUserProfileVM`
 
-NewUserProfileUpdateVMWithDefaults instantiates a new UserProfileUpdateVM object
+NewUpdateUserProfileVMWithDefaults instantiates a new UpdateUserProfileVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *UserProfileUpdateVM) GetName() string`
+`func (o *UpdateUserProfileVM) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *UserProfileUpdateVM) GetNameOk() (*string, bool)`
+`func (o *UpdateUserProfileVM) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *UserProfileUpdateVM) SetName(v string)`
+`func (o *UpdateUserProfileVM) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *UserProfileUpdateVM) HasName() bool`
+`func (o *UpdateUserProfileVM) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetUsername
 
-`func (o *UserProfileUpdateVM) GetUsername() string`
+`func (o *UpdateUserProfileVM) GetUsername() string`
 
 GetUsername returns the Username field if non-nil, zero value otherwise.
 
 ### GetUsernameOk
 
-`func (o *UserProfileUpdateVM) GetUsernameOk() (*string, bool)`
+`func (o *UpdateUserProfileVM) GetUsernameOk() (*string, bool)`
 
 GetUsernameOk returns a tuple with the Username field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsername
 
-`func (o *UserProfileUpdateVM) SetUsername(v string)`
+`func (o *UpdateUserProfileVM) SetUsername(v string)`
 
 SetUsername sets Username field to given value.
 
 ### HasUsername
 
-`func (o *UserProfileUpdateVM) HasUsername() bool`
+`func (o *UpdateUserProfileVM) HasUsername() bool`
 
 HasUsername returns a boolean if a field has been set.
 
 ### GetEmail
 
-`func (o *UserProfileUpdateVM) GetEmail() string`
+`func (o *UpdateUserProfileVM) GetEmail() string`
 
 GetEmail returns the Email field if non-nil, zero value otherwise.
 
 ### GetEmailOk
 
-`func (o *UserProfileUpdateVM) GetEmailOk() (*string, bool)`
+`func (o *UpdateUserProfileVM) GetEmailOk() (*string, bool)`
 
 GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmail
 
-`func (o *UserProfileUpdateVM) SetEmail(v string)`
+`func (o *UpdateUserProfileVM) SetEmail(v string)`
 
 SetEmail sets Email field to given value.
 
 ### HasEmail
 
-`func (o *UserProfileUpdateVM) HasEmail() bool`
+`func (o *UpdateUserProfileVM) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
 
 ### GetPasswordNew
 
-`func (o *UserProfileUpdateVM) GetPasswordNew() string`
+`func (o *UpdateUserProfileVM) GetPasswordNew() string`
 
 GetPasswordNew returns the PasswordNew field if non-nil, zero value otherwise.
 
 ### GetPasswordNewOk
 
-`func (o *UserProfileUpdateVM) GetPasswordNewOk() (*string, bool)`
+`func (o *UpdateUserProfileVM) GetPasswordNewOk() (*string, bool)`
 
 GetPasswordNewOk returns a tuple with the PasswordNew field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPasswordNew
 
-`func (o *UserProfileUpdateVM) SetPasswordNew(v string)`
+`func (o *UpdateUserProfileVM) SetPasswordNew(v string)`
 
 SetPasswordNew sets PasswordNew field to given value.
 
 ### HasPasswordNew
 
-`func (o *UserProfileUpdateVM) HasPasswordNew() bool`
+`func (o *UpdateUserProfileVM) HasPasswordNew() bool`
 
 HasPasswordNew returns a boolean if a field has been set.
 
 ### GetPasswordNew2
 
-`func (o *UserProfileUpdateVM) GetPasswordNew2() string`
+`func (o *UpdateUserProfileVM) GetPasswordNew2() string`
 
 GetPasswordNew2 returns the PasswordNew2 field if non-nil, zero value otherwise.
 
 ### GetPasswordNew2Ok
 
-`func (o *UserProfileUpdateVM) GetPasswordNew2Ok() (*string, bool)`
+`func (o *UpdateUserProfileVM) GetPasswordNew2Ok() (*string, bool)`
 
 GetPasswordNew2Ok returns a tuple with the PasswordNew2 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPasswordNew2
 
-`func (o *UserProfileUpdateVM) SetPasswordNew2(v string)`
+`func (o *UpdateUserProfileVM) SetPasswordNew2(v string)`
 
 SetPasswordNew2 sets PasswordNew2 field to given value.
 
 ### HasPasswordNew2
 
-`func (o *UserProfileUpdateVM) HasPasswordNew2() bool`
+`func (o *UpdateUserProfileVM) HasPasswordNew2() bool`
 
 HasPasswordNew2 returns a boolean if a field has been set.
 

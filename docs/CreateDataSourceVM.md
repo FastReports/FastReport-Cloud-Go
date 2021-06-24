@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
-**ConnectionString** | Pointer to **string** |  | [optional] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
+**ConnectionString** | **string** |  | 
+**SubscriptionId** | **string** |  | 
 **ConnectionType** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCreateDataSourceVM
 
-`func NewCreateDataSourceVM() *CreateDataSourceVM`
+`func NewCreateDataSourceVM(connectionString string, subscriptionId string, ) *CreateDataSourceVM`
 
 NewCreateDataSourceVM instantiates a new CreateDataSourceVM object
 This constructor will assign default values to properties that have it defined,
@@ -72,11 +72,6 @@ and a boolean to check if the value has been set.
 
 SetConnectionString sets ConnectionString field to given value.
 
-### HasConnectionString
-
-`func (o *CreateDataSourceVM) HasConnectionString() bool`
-
-HasConnectionString returns a boolean if a field has been set.
 
 ### GetSubscriptionId
 
@@ -97,11 +92,6 @@ and a boolean to check if the value has been set.
 
 SetSubscriptionId sets SubscriptionId field to given value.
 
-### HasSubscriptionId
-
-`func (o *CreateDataSourceVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
 
 ### GetConnectionType
 

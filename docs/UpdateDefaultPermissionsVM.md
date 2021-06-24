@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FilePermissions** | Pointer to [**FilePermissions**](FilePermissions.md) |  | [optional] 
-**GroupPermissions** | Pointer to [**GroupPermissions**](GroupPermissions.md) |  | [optional] 
-**DataSourcePermissions** | Pointer to [**DataSourcePermissions**](DataSourcePermissions.md) |  | [optional] 
+**FilePermissions** | Pointer to [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | [optional] 
+**GroupPermissions** | Pointer to [**UpdateGroupPermissionsVM**](UpdateGroupPermissionsVM.md) |  | [optional] 
+**DataSourcePermissions** | Pointer to [**UpdateDataSourcePermissionsVM**](UpdateDataSourcePermissionsVM.md) |  | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFilePermissions
 
-`func (o *UpdateDefaultPermissionsVM) GetFilePermissions() FilePermissions`
+`func (o *UpdateDefaultPermissionsVM) GetFilePermissions() UpdateFilePermissionsVM`
 
 GetFilePermissions returns the FilePermissions field if non-nil, zero value otherwise.
 
 ### GetFilePermissionsOk
 
-`func (o *UpdateDefaultPermissionsVM) GetFilePermissionsOk() (*FilePermissions, bool)`
+`func (o *UpdateDefaultPermissionsVM) GetFilePermissionsOk() (*UpdateFilePermissionsVM, bool)`
 
 GetFilePermissionsOk returns a tuple with the FilePermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFilePermissions
 
-`func (o *UpdateDefaultPermissionsVM) SetFilePermissions(v FilePermissions)`
+`func (o *UpdateDefaultPermissionsVM) SetFilePermissions(v UpdateFilePermissionsVM)`
 
 SetFilePermissions sets FilePermissions field to given value.
 
@@ -54,20 +54,20 @@ HasFilePermissions returns a boolean if a field has been set.
 
 ### GetGroupPermissions
 
-`func (o *UpdateDefaultPermissionsVM) GetGroupPermissions() GroupPermissions`
+`func (o *UpdateDefaultPermissionsVM) GetGroupPermissions() UpdateGroupPermissionsVM`
 
 GetGroupPermissions returns the GroupPermissions field if non-nil, zero value otherwise.
 
 ### GetGroupPermissionsOk
 
-`func (o *UpdateDefaultPermissionsVM) GetGroupPermissionsOk() (*GroupPermissions, bool)`
+`func (o *UpdateDefaultPermissionsVM) GetGroupPermissionsOk() (*UpdateGroupPermissionsVM, bool)`
 
 GetGroupPermissionsOk returns a tuple with the GroupPermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupPermissions
 
-`func (o *UpdateDefaultPermissionsVM) SetGroupPermissions(v GroupPermissions)`
+`func (o *UpdateDefaultPermissionsVM) SetGroupPermissions(v UpdateGroupPermissionsVM)`
 
 SetGroupPermissions sets GroupPermissions field to given value.
 
@@ -79,20 +79,20 @@ HasGroupPermissions returns a boolean if a field has been set.
 
 ### GetDataSourcePermissions
 
-`func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissions() DataSourcePermissions`
+`func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissions() UpdateDataSourcePermissionsVM`
 
 GetDataSourcePermissions returns the DataSourcePermissions field if non-nil, zero value otherwise.
 
 ### GetDataSourcePermissionsOk
 
-`func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissionsOk() (*DataSourcePermissions, bool)`
+`func (o *UpdateDefaultPermissionsVM) GetDataSourcePermissionsOk() (*UpdateDataSourcePermissionsVM, bool)`
 
 GetDataSourcePermissionsOk returns a tuple with the DataSourcePermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDataSourcePermissions
 
-`func (o *UpdateDefaultPermissionsVM) SetDataSourcePermissions(v DataSourcePermissions)`
+`func (o *UpdateDefaultPermissionsVM) SetDataSourcePermissions(v UpdateDataSourcePermissionsVM)`
 
 SetDataSourcePermissions sets DataSourcePermissions field to given value.
 

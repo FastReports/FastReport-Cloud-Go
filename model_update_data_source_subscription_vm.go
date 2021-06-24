@@ -16,15 +16,16 @@ import (
 
 // UpdateDataSourceSubscriptionVM struct for UpdateDataSourceSubscriptionVM
 type UpdateDataSourceSubscriptionVM struct {
-	SubscriptionId *string `json:"subscriptionId,omitempty"`
+	SubscriptionId string `json:"subscriptionId"`
 }
 
 // NewUpdateDataSourceSubscriptionVM instantiates a new UpdateDataSourceSubscriptionVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateDataSourceSubscriptionVM() *UpdateDataSourceSubscriptionVM {
+func NewUpdateDataSourceSubscriptionVM(subscriptionId string) *UpdateDataSourceSubscriptionVM {
 	this := UpdateDataSourceSubscriptionVM{}
+	this.SubscriptionId = subscriptionId
 	return &this
 }
 
@@ -36,41 +37,33 @@ func NewUpdateDataSourceSubscriptionVMWithDefaults() *UpdateDataSourceSubscripti
 	return &this
 }
 
-// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
+// GetSubscriptionId returns the SubscriptionId field value
 func (o *UpdateDataSourceSubscriptionVM) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.SubscriptionId
+
+	return o.SubscriptionId
 }
 
-// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
+// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value
 // and a boolean to check if the value has been set.
 func (o *UpdateDataSourceSubscriptionVM) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.SubscriptionId, true
+	return &o.SubscriptionId, true
 }
 
-// HasSubscriptionId returns a boolean if a field has been set.
-func (o *UpdateDataSourceSubscriptionVM) HasSubscriptionId() bool {
-	if o != nil && o.SubscriptionId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+// SetSubscriptionId sets field value
 func (o *UpdateDataSourceSubscriptionVM) SetSubscriptionId(v string) {
-	o.SubscriptionId = &v
+	o.SubscriptionId = v
 }
 
 func (o UpdateDataSourceSubscriptionVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.SubscriptionId != nil {
+	if true {
 		toSerialize["subscriptionId"] = o.SubscriptionId
 	}
 	return json.Marshal(toSerialize)

@@ -21,8 +21,8 @@ type ExportTemplateTaskVM struct {
 	Locale *string `json:"locale,omitempty"`
 	PagesCount *int32 `json:"pagesCount,omitempty"`
 	Format *string `json:"format,omitempty"`
-	ExportParameters *map[string]map[string]interface{} `json:"exportParameters,omitempty"`
-	ReportParameters *map[string]map[string]interface{} `json:"reportParameters,omitempty"`
+	ExportParameters *map[string]string `json:"exportParameters,omitempty"`
+	ReportParameters *map[string]string `json:"reportParameters,omitempty"`
 }
 
 // NewExportTemplateTaskVM instantiates a new ExportTemplateTaskVM object
@@ -203,9 +203,9 @@ func (o *ExportTemplateTaskVM) SetFormat(v string) {
 }
 
 // GetExportParameters returns the ExportParameters field value if set, zero value otherwise.
-func (o *ExportTemplateTaskVM) GetExportParameters() map[string]map[string]interface{} {
+func (o *ExportTemplateTaskVM) GetExportParameters() map[string]string {
 	if o == nil || o.ExportParameters == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
 	return *o.ExportParameters
@@ -213,7 +213,7 @@ func (o *ExportTemplateTaskVM) GetExportParameters() map[string]map[string]inter
 
 // GetExportParametersOk returns a tuple with the ExportParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportTemplateTaskVM) GetExportParametersOk() (*map[string]map[string]interface{}, bool) {
+func (o *ExportTemplateTaskVM) GetExportParametersOk() (*map[string]string, bool) {
 	if o == nil || o.ExportParameters == nil {
 		return nil, false
 	}
@@ -229,15 +229,15 @@ func (o *ExportTemplateTaskVM) HasExportParameters() bool {
 	return false
 }
 
-// SetExportParameters gets a reference to the given map[string]map[string]interface{} and assigns it to the ExportParameters field.
-func (o *ExportTemplateTaskVM) SetExportParameters(v map[string]map[string]interface{}) {
+// SetExportParameters gets a reference to the given map[string]string and assigns it to the ExportParameters field.
+func (o *ExportTemplateTaskVM) SetExportParameters(v map[string]string) {
 	o.ExportParameters = &v
 }
 
 // GetReportParameters returns the ReportParameters field value if set, zero value otherwise.
-func (o *ExportTemplateTaskVM) GetReportParameters() map[string]map[string]interface{} {
+func (o *ExportTemplateTaskVM) GetReportParameters() map[string]string {
 	if o == nil || o.ReportParameters == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
 	return *o.ReportParameters
@@ -245,7 +245,7 @@ func (o *ExportTemplateTaskVM) GetReportParameters() map[string]map[string]inter
 
 // GetReportParametersOk returns a tuple with the ReportParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportTemplateTaskVM) GetReportParametersOk() (*map[string]map[string]interface{}, bool) {
+func (o *ExportTemplateTaskVM) GetReportParametersOk() (*map[string]string, bool) {
 	if o == nil || o.ReportParameters == nil {
 		return nil, false
 	}
@@ -261,8 +261,8 @@ func (o *ExportTemplateTaskVM) HasReportParameters() bool {
 	return false
 }
 
-// SetReportParameters gets a reference to the given map[string]map[string]interface{} and assigns it to the ReportParameters field.
-func (o *ExportTemplateTaskVM) SetReportParameters(v map[string]map[string]interface{}) {
+// SetReportParameters gets a reference to the given map[string]string and assigns it to the ReportParameters field.
+func (o *ExportTemplateTaskVM) SetReportParameters(v map[string]string) {
 	o.ReportParameters = &v
 }
 
