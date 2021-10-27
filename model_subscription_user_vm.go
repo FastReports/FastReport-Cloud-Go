@@ -16,8 +16,8 @@ import (
 
 // SubscriptionUserVM struct for SubscriptionUserVM
 type SubscriptionUserVM struct {
-	UserId *string `json:"userId,omitempty"`
-	Groups *[]GroupVM `json:"groups,omitempty"`
+	UserId NullableString `json:"userId,omitempty"`
+	Groups []GroupVM `json:"groups,omitempty"`
 }
 
 // NewSubscriptionUserVM instantiates a new SubscriptionUserVM object
@@ -37,54 +37,65 @@ func NewSubscriptionUserVMWithDefaults() *SubscriptionUserVM {
 	return &this
 }
 
-// GetUserId returns the UserId field value if set, zero value otherwise.
+// GetUserId returns the UserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionUserVM) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || o.UserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.UserId
+	return *o.UserId.Get()
 }
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionUserVM) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.UserId, true
+	return o.UserId.Get(), o.UserId.IsSet()
 }
 
 // HasUserId returns a boolean if a field has been set.
 func (o *SubscriptionUserVM) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && o.UserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUserId gets a reference to the given string and assigns it to the UserId field.
+// SetUserId gets a reference to the given NullableString and assigns it to the UserId field.
 func (o *SubscriptionUserVM) SetUserId(v string) {
-	o.UserId = &v
+	o.UserId.Set(&v)
+}
+// SetUserIdNil sets the value for UserId to be an explicit nil
+func (o *SubscriptionUserVM) SetUserIdNil() {
+	o.UserId.Set(nil)
 }
 
-// GetGroups returns the Groups field value if set, zero value otherwise.
+// UnsetUserId ensures that no value is present for UserId, not even an explicit nil
+func (o *SubscriptionUserVM) UnsetUserId() {
+	o.UserId.Unset()
+}
+
+// GetGroups returns the Groups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionUserVM) GetGroups() []GroupVM {
-	if o == nil || o.Groups == nil {
+	if o == nil  {
 		var ret []GroupVM
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionUserVM) GetGroupsOk() (*[]GroupVM, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -98,13 +109,13 @@ func (o *SubscriptionUserVM) HasGroups() bool {
 
 // SetGroups gets a reference to the given []GroupVM and assigns it to the Groups field.
 func (o *SubscriptionUserVM) SetGroups(v []GroupVM) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 func (o SubscriptionUserVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
+	if o.UserId.IsSet() {
+		toSerialize["userId"] = o.UserId.Get()
 	}
 	if o.Groups != nil {
 		toSerialize["groups"] = o.Groups

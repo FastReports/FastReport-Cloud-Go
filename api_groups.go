@@ -30,11 +30,11 @@ type GroupsApiService service
 type ApiGroupsCreateGroupRequest struct {
 	ctx _context.Context
 	ApiService *GroupsApiService
-	viewModel *CreateGroupVM
+	createGroupVM *CreateGroupVM
 }
 
-func (r ApiGroupsCreateGroupRequest) ViewModel(viewModel CreateGroupVM) ApiGroupsCreateGroupRequest {
-	r.viewModel = &viewModel
+func (r ApiGroupsCreateGroupRequest) CreateGroupVM(createGroupVM CreateGroupVM) ApiGroupsCreateGroupRequest {
+	r.createGroupVM = &createGroupVM
 	return r
 }
 
@@ -80,7 +80,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -89,7 +89,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -97,21 +97,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.viewModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.createGroupVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -144,7 +130,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -154,7 +140,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -247,26 +233,12 @@ func (a *GroupsApiService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupReques
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -300,7 +272,7 @@ func (a *GroupsApiService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupReques
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -310,7 +282,7 @@ func (a *GroupsApiService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupReques
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -397,26 +369,12 @@ func (a *GroupsApiService) GroupsGetGroupExecute(r ApiGroupsGetGroupRequest) (Gr
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -558,26 +516,12 @@ func (a *GroupsApiService) GroupsGetGroupListExecute(r ApiGroupsGetGroupListRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -706,26 +650,12 @@ func (a *GroupsApiService) GroupsGetPermissionsExecute(r ApiGroupsGetPermissions
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -797,11 +727,11 @@ type ApiGroupsRenameGroupRequest struct {
 	ctx _context.Context
 	ApiService *GroupsApiService
 	id string
-	viewModel *RenameGroupVM
+	renameGroupVM *RenameGroupVM
 }
 
-func (r ApiGroupsRenameGroupRequest) ViewModel(viewModel RenameGroupVM) ApiGroupsRenameGroupRequest {
-	r.viewModel = &viewModel
+func (r ApiGroupsRenameGroupRequest) RenameGroupVM(renameGroupVM RenameGroupVM) ApiGroupsRenameGroupRequest {
+	r.renameGroupVM = &renameGroupVM
 	return r
 }
 
@@ -848,12 +778,12 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.viewModel == nil {
-		return localVarReturnValue, nil, reportError("viewModel is required and must be specified")
+	if r.renameGroupVM == nil {
+		return localVarReturnValue, nil, reportError("renameGroupVM is required and must be specified")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -862,7 +792,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -870,21 +800,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.viewModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.renameGroupVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -917,7 +833,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -927,7 +843,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -966,11 +882,11 @@ type ApiGroupsUpdatePermissionsRequest struct {
 	ctx _context.Context
 	ApiService *GroupsApiService
 	id string
-	permissionsVM *UpdateGroupPermissionsVM
+	updateGroupPermissionsVM *UpdateGroupPermissionsVM
 }
 
-func (r ApiGroupsUpdatePermissionsRequest) PermissionsVM(permissionsVM UpdateGroupPermissionsVM) ApiGroupsUpdatePermissionsRequest {
-	r.permissionsVM = &permissionsVM
+func (r ApiGroupsUpdatePermissionsRequest) UpdateGroupPermissionsVM(updateGroupPermissionsVM UpdateGroupPermissionsVM) ApiGroupsUpdatePermissionsRequest {
+	r.updateGroupPermissionsVM = &updateGroupPermissionsVM
 	return r
 }
 
@@ -1017,7 +933,7 @@ func (a *GroupsApiService) GroupsUpdatePermissionsExecute(r ApiGroupsUpdatePermi
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1026,7 +942,7 @@ func (a *GroupsApiService) GroupsUpdatePermissionsExecute(r ApiGroupsUpdatePermi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1034,21 +950,7 @@ func (a *GroupsApiService) GroupsUpdatePermissionsExecute(r ApiGroupsUpdatePermi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.permissionsVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateGroupPermissionsVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err

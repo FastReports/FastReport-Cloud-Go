@@ -25,7 +25,7 @@ Method | HTTP request | Description
 [**TemplatesExport**](TemplatesApi.md#TemplatesExport) | **Post** /api/rp/v1/Templates/File/{id}/Export | Export specified report template to a specified format
 [**TemplatesGetFile**](TemplatesApi.md#TemplatesGetFile) | **Get** /api/rp/v1/Templates/File/{id} | Get specified file
 [**TemplatesGetFilesCount**](TemplatesApi.md#TemplatesGetFilesCount) | **Get** /api/rp/v1/Templates/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
-[**TemplatesGetFilesList**](TemplatesApi.md#TemplatesGetFilesList) | **Get** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder
+[**TemplatesGetFilesList**](TemplatesApi.md#TemplatesGetFilesList) | **Get** /api/rp/v1/Templates/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 [**TemplatesGetPermissions**](TemplatesApi.md#TemplatesGetPermissions) | **Get** /api/rp/v1/Templates/File/{id}/permissions | Get all file permissions
 [**TemplatesMoveFile**](TemplatesApi.md#TemplatesMoveFile) | **Post** /api/rp/v1/Templates/File/{id}/Move/{folderId} | Move file to a specified folder
 [**TemplatesPrepare**](TemplatesApi.md#TemplatesPrepare) | **Post** /api/rp/v1/Templates/File/{id}/Prepare | Prepare specified template to report
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ## TemplateFolderAndFileGetFoldersAndFiles
 
-> FilesVM TemplateFolderAndFileGetFoldersAndFiles(ctx, id).Skip(skip).Take(take).Execute()
+> FilesVM TemplateFolderAndFileGetFoldersAndFiles(ctx, id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).Execute()
 
 Get all folders and files from specified folder
 
@@ -131,10 +131,13 @@ func main() {
     id := "id_example" // string | folder id
     skip := int32(56) // int32 | number of folder and files, that have to be skipped (optional) (default to 0)
     take := int32(56) // int32 | number of folder and files, that have to be returned (optional) (default to 10)
+    orderBy := openapiclient.FileSorting("None") // FileSorting | indicates a field to sort by (optional)
+    desc := true // bool | indicates if sorting is descending (optional) (default to false)
+    searchPattern := "searchPattern_example" // string |  (optional) (default to "")
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplateFolderAndFileGetFoldersAndFiles(context.Background(), id).Skip(skip).Take(take).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplateFolderAndFileGetFoldersAndFiles(context.Background(), id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplateFolderAndFileGetFoldersAndFiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -162,6 +165,9 @@ Name | Type | Description  | Notes
 
  **skip** | **int32** | number of folder and files, that have to be skipped | [default to 0]
  **take** | **int32** | number of folder and files, that have to be returned | [default to 10]
+ **orderBy** | [**FileSorting**](FileSorting.md) | indicates a field to sort by | 
+ **desc** | **bool** | indicates if sorting is descending | [default to false]
+ **searchPattern** | **string** |  | [default to &quot;&quot;]
 
 ### Return type
 
@@ -174,7 +180,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -247,7 +253,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -317,7 +323,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -387,7 +393,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -457,7 +463,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -531,7 +537,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -601,7 +607,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -669,7 +675,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -735,7 +741,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -808,7 +814,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -817,7 +823,7 @@ Name | Type | Description  | Notes
 
 ## TemplateFoldersPostFolder
 
-> FileVM TemplateFoldersPostFolder(ctx, id).FolderVm(folderVm).Execute()
+> FileVM TemplateFoldersPostFolder(ctx, id).TemplateFolderCreateVM(templateFolderCreateVM).Execute()
 
 Create folder
 
@@ -837,11 +843,11 @@ import (
 
 func main() {
     id := "id_example" // string | Identifier of parent folder id
-    folderVm := *openapiclient.NewTemplateFolderCreateVM() // TemplateFolderCreateVM | create VM (optional)
+    templateFolderCreateVM := *openapiclient.NewTemplateFolderCreateVM() // TemplateFolderCreateVM | create VM (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplateFoldersPostFolder(context.Background(), id).FolderVm(folderVm).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplateFoldersPostFolder(context.Background(), id).TemplateFolderCreateVM(templateFolderCreateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplateFoldersPostFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -867,7 +873,7 @@ Other parameters are passed through a pointer to a apiTemplateFoldersPostFolderR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **folderVm** | [**TemplateFolderCreateVM**](TemplateFolderCreateVM.md) | create VM | 
+ **templateFolderCreateVM** | [**TemplateFolderCreateVM**](TemplateFolderCreateVM.md) | create VM | 
 
 ### Return type
 
@@ -879,8 +885,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -889,7 +895,7 @@ Name | Type | Description  | Notes
 
 ## TemplateFoldersRenameFolder
 
-> FileVM TemplateFoldersRenameFolder(ctx, id).NameModel(nameModel).Execute()
+> FileVM TemplateFoldersRenameFolder(ctx, id).FolderRenameVM(folderRenameVM).Execute()
 
 Rename a folder
 
@@ -909,11 +915,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    nameModel := *openapiclient.NewFolderRenameVM("Name_example") // FolderRenameVM |  (optional)
+    folderRenameVM := *openapiclient.NewFolderRenameVM("Name_example") // FolderRenameVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplateFoldersRenameFolder(context.Background(), id).NameModel(nameModel).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplateFoldersRenameFolder(context.Background(), id).FolderRenameVM(folderRenameVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplateFoldersRenameFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -939,7 +945,7 @@ Other parameters are passed through a pointer to a apiTemplateFoldersRenameFolde
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **nameModel** | [**FolderRenameVM**](FolderRenameVM.md) |  | 
+ **folderRenameVM** | [**FolderRenameVM**](FolderRenameVM.md) |  | 
 
 ### Return type
 
@@ -951,8 +957,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -961,7 +967,7 @@ Name | Type | Description  | Notes
 
 ## TemplateFoldersUpdateIcon
 
-> FileVM TemplateFoldersUpdateIcon(ctx, id).IconModel(iconModel).Execute()
+> FileVM TemplateFoldersUpdateIcon(ctx, id).FolderIconVM(folderIconVM).Execute()
 
 Update a folder's icon
 
@@ -981,11 +987,11 @@ import (
 
 func main() {
     id := "id_example" // string | Identifier of folder
-    iconModel := *openapiclient.NewFolderIconVM(string(123)) // FolderIconVM | Update icon model (optional)
+    folderIconVM := *openapiclient.NewFolderIconVM(string(123)) // FolderIconVM | Update icon model (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplateFoldersUpdateIcon(context.Background(), id).IconModel(iconModel).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplateFoldersUpdateIcon(context.Background(), id).FolderIconVM(folderIconVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplateFoldersUpdateIcon``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1011,7 +1017,7 @@ Other parameters are passed through a pointer to a apiTemplateFoldersUpdateIconR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **iconModel** | [**FolderIconVM**](FolderIconVM.md) | Update icon model | 
+ **folderIconVM** | [**FolderIconVM**](FolderIconVM.md) | Update icon model | 
 
 ### Return type
 
@@ -1023,8 +1029,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1033,7 +1039,7 @@ Name | Type | Description  | Notes
 
 ## TemplateFoldersUpdatePermissions
 
-> TemplateFoldersUpdatePermissions(ctx, id).PermissionsVM(permissionsVM).Execute()
+> TemplateFoldersUpdatePermissions(ctx, id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
 
 Update permissions
 
@@ -1051,11 +1057,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    permissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), int32(123)) // UpdateFilePermissionsVM |  (optional)
+    updateFilePermissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), openapiclient.FileAdministrate(0)) // UpdateFilePermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplateFoldersUpdatePermissions(context.Background(), id).PermissionsVM(permissionsVM).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplateFoldersUpdatePermissions(context.Background(), id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplateFoldersUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1079,7 +1085,7 @@ Other parameters are passed through a pointer to a apiTemplateFoldersUpdatePermi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | 
+ **updateFilePermissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | 
 
 ### Return type
 
@@ -1091,8 +1097,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1101,7 +1107,7 @@ Name | Type | Description  | Notes
 
 ## TemplateFoldersUpdateTags
 
-> FileVM TemplateFoldersUpdateTags(ctx, id).TagsModel(tagsModel).Execute()
+> FileVM TemplateFoldersUpdateTags(ctx, id).FolderTagsUpdateVM(folderTagsUpdateVM).Execute()
 
 Update tags
 
@@ -1121,11 +1127,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    tagsModel := *openapiclient.NewFolderTagsUpdateVM() // FolderTagsUpdateVM |  (optional)
+    folderTagsUpdateVM := *openapiclient.NewFolderTagsUpdateVM() // FolderTagsUpdateVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplateFoldersUpdateTags(context.Background(), id).TagsModel(tagsModel).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplateFoldersUpdateTags(context.Background(), id).FolderTagsUpdateVM(folderTagsUpdateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplateFoldersUpdateTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1151,7 +1157,7 @@ Other parameters are passed through a pointer to a apiTemplateFoldersUpdateTagsR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **tagsModel** | [**FolderTagsUpdateVM**](FolderTagsUpdateVM.md) |  | 
+ **folderTagsUpdateVM** | [**FolderTagsUpdateVM**](FolderTagsUpdateVM.md) |  | 
 
 ### Return type
 
@@ -1163,8 +1169,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1235,7 +1241,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1303,7 +1309,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1312,7 +1318,7 @@ Name | Type | Description  | Notes
 
 ## TemplatesExport
 
-> ExportVM TemplatesExport(ctx, id).ExportTask(exportTask).Execute()
+> ExportVM TemplatesExport(ctx, id).ExportTemplateVM(exportTemplateVM).Execute()
 
 Export specified report template to a specified format
 
@@ -1332,11 +1338,11 @@ import (
 
 func main() {
     id := "id_example" // string | report id
-    exportTask := *openapiclient.NewExportTemplateTaskVM() // ExportTemplateTaskVM | export parameters (string only) (optional)
+    exportTemplateVM := *openapiclient.NewExportTemplateVM() // ExportTemplateVM | export parameters (string only) (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesExport(context.Background(), id).ExportTask(exportTask).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplatesExport(context.Background(), id).ExportTemplateVM(exportTemplateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesExport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1362,7 +1368,7 @@ Other parameters are passed through a pointer to a apiTemplatesExportRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **exportTask** | [**ExportTemplateTaskVM**](ExportTemplateTaskVM.md) | export parameters (string only) | 
+ **exportTemplateVM** | [**ExportTemplateVM**](ExportTemplateVM.md) | export parameters (string only) | 
 
 ### Return type
 
@@ -1374,8 +1380,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1445,7 +1451,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1515,7 +1521,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1526,9 +1532,7 @@ Name | Type | Description  | Notes
 
 > TemplatesVM TemplatesGetFilesList(ctx, id).Skip(skip).Take(take).Execute()
 
-Get all files from specified folder
-
-
+Get all files from specified folder. <br />  User with Get Entity permission can access this method. <br />  The method will returns minimal infomration about the file: <br />  id, name, size, editedTime, createdTime, tags, status, statusReason.
 
 ### Example
 
@@ -1589,7 +1593,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1657,7 +1661,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1730,7 +1734,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1739,7 +1743,7 @@ Name | Type | Description  | Notes
 
 ## TemplatesPrepare
 
-> ReportVM TemplatesPrepare(ctx, id).PrepareTask(prepareTask).Execute()
+> ReportVM TemplatesPrepare(ctx, id).PrepareTemplateVM(prepareTemplateVM).Execute()
 
 Prepare specified template to report
 
@@ -1759,11 +1763,11 @@ import (
 
 func main() {
     id := "id_example" // string | template id
-    prepareTask := *openapiclient.NewPrepareTemplateTaskVM() // PrepareTemplateTaskVM | Template prepare view model (optional)
+    prepareTemplateVM := *openapiclient.NewPrepareTemplateVM() // PrepareTemplateVM | Template prepare view model (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesPrepare(context.Background(), id).PrepareTask(prepareTask).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplatesPrepare(context.Background(), id).PrepareTemplateVM(prepareTemplateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesPrepare``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1789,7 +1793,7 @@ Other parameters are passed through a pointer to a apiTemplatesPrepareRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **prepareTask** | [**PrepareTemplateTaskVM**](PrepareTemplateTaskVM.md) | Template prepare view model | 
+ **prepareTemplateVM** | [**PrepareTemplateVM**](PrepareTemplateVM.md) | Template prepare view model | 
 
 ### Return type
 
@@ -1801,8 +1805,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1811,7 +1815,7 @@ Name | Type | Description  | Notes
 
 ## TemplatesRenameFile
 
-> TemplateVM TemplatesRenameFile(ctx, id).NameModel(nameModel).Execute()
+> TemplateVM TemplatesRenameFile(ctx, id).FileRenameVM(fileRenameVM).Execute()
 
 Rename a file
 
@@ -1831,11 +1835,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    nameModel := *openapiclient.NewFileRenameVM() // FileRenameVM |  (optional)
+    fileRenameVM := *openapiclient.NewFileRenameVM() // FileRenameVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesRenameFile(context.Background(), id).NameModel(nameModel).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplatesRenameFile(context.Background(), id).FileRenameVM(fileRenameVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesRenameFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1861,7 +1865,7 @@ Other parameters are passed through a pointer to a apiTemplatesRenameFileRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **nameModel** | [**FileRenameVM**](FileRenameVM.md) |  | 
+ **fileRenameVM** | [**FileRenameVM**](FileRenameVM.md) |  | 
 
 ### Return type
 
@@ -1873,8 +1877,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1883,7 +1887,7 @@ Name | Type | Description  | Notes
 
 ## TemplatesUpdateIcon
 
-> TemplateVM TemplatesUpdateIcon(ctx, id).IconModel(iconModel).Execute()
+> TemplateVM TemplatesUpdateIcon(ctx, id).FileIconVM(fileIconVM).Execute()
 
 Update a files's icon
 
@@ -1903,11 +1907,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    iconModel := *openapiclient.NewFileIconVM() // FileIconVM |  (optional)
+    fileIconVM := *openapiclient.NewFileIconVM() // FileIconVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesUpdateIcon(context.Background(), id).IconModel(iconModel).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplatesUpdateIcon(context.Background(), id).FileIconVM(fileIconVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesUpdateIcon``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1933,7 +1937,7 @@ Other parameters are passed through a pointer to a apiTemplatesUpdateIconRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **iconModel** | [**FileIconVM**](FileIconVM.md) |  | 
+ **fileIconVM** | [**FileIconVM**](FileIconVM.md) |  | 
 
 ### Return type
 
@@ -1945,8 +1949,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1955,7 +1959,7 @@ Name | Type | Description  | Notes
 
 ## TemplatesUpdatePermissions
 
-> TemplatesUpdatePermissions(ctx, id).PermissionsVM(permissionsVM).Execute()
+> TemplatesUpdatePermissions(ctx, id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
 
 Update permissions
 
@@ -1973,11 +1977,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    permissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), int32(123)) // UpdateFilePermissionsVM |  (optional)
+    updateFilePermissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), openapiclient.FileAdministrate(0)) // UpdateFilePermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesUpdatePermissions(context.Background(), id).PermissionsVM(permissionsVM).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplatesUpdatePermissions(context.Background(), id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2001,7 +2005,7 @@ Other parameters are passed through a pointer to a apiTemplatesUpdatePermissions
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | 
+ **updateFilePermissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | 
 
 ### Return type
 
@@ -2013,8 +2017,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2023,7 +2027,7 @@ Name | Type | Description  | Notes
 
 ## TemplatesUpdateTags
 
-> TemplateVM TemplatesUpdateTags(ctx, id).TagsModel(tagsModel).Execute()
+> TemplateVM TemplatesUpdateTags(ctx, id).FileTagsUpdateVM(fileTagsUpdateVM).Execute()
 
 Update tags
 
@@ -2043,11 +2047,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    tagsModel := *openapiclient.NewFileTagsUpdateVM() // FileTagsUpdateVM |  (optional)
+    fileTagsUpdateVM := *openapiclient.NewFileTagsUpdateVM() // FileTagsUpdateVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesUpdateTags(context.Background(), id).TagsModel(tagsModel).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplatesUpdateTags(context.Background(), id).FileTagsUpdateVM(fileTagsUpdateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesUpdateTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2073,7 +2077,7 @@ Other parameters are passed through a pointer to a apiTemplatesUpdateTagsRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **tagsModel** | [**FileTagsUpdateVM**](FileTagsUpdateVM.md) |  | 
+ **fileTagsUpdateVM** | [**FileTagsUpdateVM**](FileTagsUpdateVM.md) |  | 
 
 ### Return type
 
@@ -2085,8 +2089,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2095,7 +2099,7 @@ Name | Type | Description  | Notes
 
 ## TemplatesUploadFile
 
-> TemplateVM TemplatesUploadFile(ctx, id).FileVM(fileVM).Execute()
+> TemplateVM TemplatesUploadFile(ctx, id).TemplateCreateVM(templateCreateVM).Execute()
 
 Upload a file to the specified folder  !
 
@@ -2115,11 +2119,11 @@ import (
 
 func main() {
     id := "id_example" // string | Identifier of folder
-    fileVM := *openapiclient.NewTemplateCreateVM() // TemplateCreateVM | file's view model (optional)
+    templateCreateVM := *openapiclient.NewTemplateCreateVM() // TemplateCreateVM | file's view model (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.TemplatesUploadFile(context.Background(), id).FileVM(fileVM).Execute()
+    resp, r, err := api_client.TemplatesApi.TemplatesUploadFile(context.Background(), id).TemplateCreateVM(templateCreateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.TemplatesUploadFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2145,7 +2149,7 @@ Other parameters are passed through a pointer to a apiTemplatesUploadFileRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **fileVM** | [**TemplateCreateVM**](TemplateCreateVM.md) | file&#39;s view model | 
+ **templateCreateVM** | [**TemplateCreateVM**](TemplateCreateVM.md) | file&#39;s view model | 
 
 ### Return type
 
@@ -2157,8 +2161,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

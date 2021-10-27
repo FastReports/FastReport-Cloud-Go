@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NewPermissions** | [**FilePermissions**](FilePermissions.md) |  | 
-**Administrate** | **int32** |  | 
+**Administrate** | [**FileAdministrate**](FileAdministrate.md) |  | 
 
 ## Methods
 
 ### NewUpdateFilePermissionsVM
 
-`func NewUpdateFilePermissionsVM(newPermissions FilePermissions, administrate int32, ) *UpdateFilePermissionsVM`
+`func NewUpdateFilePermissionsVM(newPermissions FilePermissions, administrate FileAdministrate, ) *UpdateFilePermissionsVM`
 
 NewUpdateFilePermissionsVM instantiates a new UpdateFilePermissionsVM object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetNewPermissions sets NewPermissions field to given value.
 
 ### GetAdministrate
 
-`func (o *UpdateFilePermissionsVM) GetAdministrate() int32`
+`func (o *UpdateFilePermissionsVM) GetAdministrate() FileAdministrate`
 
 GetAdministrate returns the Administrate field if non-nil, zero value otherwise.
 
 ### GetAdministrateOk
 
-`func (o *UpdateFilePermissionsVM) GetAdministrateOk() (*int32, bool)`
+`func (o *UpdateFilePermissionsVM) GetAdministrateOk() (*FileAdministrate, bool)`
 
 GetAdministrateOk returns a tuple with the Administrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdministrate
 
-`func (o *UpdateFilePermissionsVM) SetAdministrate(v int32)`
+`func (o *UpdateFilePermissionsVM) SetAdministrate(v FileAdministrate)`
 
 SetAdministrate sets Administrate field to given value.
 

@@ -19,10 +19,10 @@ import (
 type SubscriptionInviteVM struct {
 	Usages *int64 `json:"usages,omitempty"`
 	Durable *bool `json:"durable,omitempty"`
-	AccessToken *string `json:"accessToken,omitempty"`
+	AccessToken NullableString `json:"accessToken,omitempty"`
 	ExpiredDate *time.Time `json:"expiredDate,omitempty"`
-	AddedUsers *[]InvitedUser `json:"addedUsers,omitempty"`
-	CreatorUserId *string `json:"creatorUserId,omitempty"`
+	AddedUsers []InvitedUser `json:"addedUsers,omitempty"`
+	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
 }
 
 // NewSubscriptionInviteVM instantiates a new SubscriptionInviteVM object
@@ -106,36 +106,46 @@ func (o *SubscriptionInviteVM) SetDurable(v bool) {
 	o.Durable = &v
 }
 
-// GetAccessToken returns the AccessToken field value if set, zero value otherwise.
+// GetAccessToken returns the AccessToken field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionInviteVM) GetAccessToken() string {
-	if o == nil || o.AccessToken == nil {
+	if o == nil || o.AccessToken.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.AccessToken
+	return *o.AccessToken.Get()
 }
 
 // GetAccessTokenOk returns a tuple with the AccessToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionInviteVM) GetAccessTokenOk() (*string, bool) {
-	if o == nil || o.AccessToken == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.AccessToken, true
+	return o.AccessToken.Get(), o.AccessToken.IsSet()
 }
 
 // HasAccessToken returns a boolean if a field has been set.
 func (o *SubscriptionInviteVM) HasAccessToken() bool {
-	if o != nil && o.AccessToken != nil {
+	if o != nil && o.AccessToken.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAccessToken gets a reference to the given string and assigns it to the AccessToken field.
+// SetAccessToken gets a reference to the given NullableString and assigns it to the AccessToken field.
 func (o *SubscriptionInviteVM) SetAccessToken(v string) {
-	o.AccessToken = &v
+	o.AccessToken.Set(&v)
+}
+// SetAccessTokenNil sets the value for AccessToken to be an explicit nil
+func (o *SubscriptionInviteVM) SetAccessTokenNil() {
+	o.AccessToken.Set(nil)
+}
+
+// UnsetAccessToken ensures that no value is present for AccessToken, not even an explicit nil
+func (o *SubscriptionInviteVM) UnsetAccessToken() {
+	o.AccessToken.Unset()
 }
 
 // GetExpiredDate returns the ExpiredDate field value if set, zero value otherwise.
@@ -170,22 +180,23 @@ func (o *SubscriptionInviteVM) SetExpiredDate(v time.Time) {
 	o.ExpiredDate = &v
 }
 
-// GetAddedUsers returns the AddedUsers field value if set, zero value otherwise.
+// GetAddedUsers returns the AddedUsers field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionInviteVM) GetAddedUsers() []InvitedUser {
-	if o == nil || o.AddedUsers == nil {
+	if o == nil  {
 		var ret []InvitedUser
 		return ret
 	}
-	return *o.AddedUsers
+	return o.AddedUsers
 }
 
 // GetAddedUsersOk returns a tuple with the AddedUsers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionInviteVM) GetAddedUsersOk() (*[]InvitedUser, bool) {
 	if o == nil || o.AddedUsers == nil {
 		return nil, false
 	}
-	return o.AddedUsers, true
+	return &o.AddedUsers, true
 }
 
 // HasAddedUsers returns a boolean if a field has been set.
@@ -199,39 +210,49 @@ func (o *SubscriptionInviteVM) HasAddedUsers() bool {
 
 // SetAddedUsers gets a reference to the given []InvitedUser and assigns it to the AddedUsers field.
 func (o *SubscriptionInviteVM) SetAddedUsers(v []InvitedUser) {
-	o.AddedUsers = &v
+	o.AddedUsers = v
 }
 
-// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise.
+// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionInviteVM) GetCreatorUserId() string {
-	if o == nil || o.CreatorUserId == nil {
+	if o == nil || o.CreatorUserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.CreatorUserId
+	return *o.CreatorUserId.Get()
 }
 
 // GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionInviteVM) GetCreatorUserIdOk() (*string, bool) {
-	if o == nil || o.CreatorUserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CreatorUserId, true
+	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
 }
 
 // HasCreatorUserId returns a boolean if a field has been set.
 func (o *SubscriptionInviteVM) HasCreatorUserId() bool {
-	if o != nil && o.CreatorUserId != nil {
+	if o != nil && o.CreatorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatorUserId gets a reference to the given string and assigns it to the CreatorUserId field.
+// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
 func (o *SubscriptionInviteVM) SetCreatorUserId(v string) {
-	o.CreatorUserId = &v
+	o.CreatorUserId.Set(&v)
+}
+// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+func (o *SubscriptionInviteVM) SetCreatorUserIdNil() {
+	o.CreatorUserId.Set(nil)
+}
+
+// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+func (o *SubscriptionInviteVM) UnsetCreatorUserId() {
+	o.CreatorUserId.Unset()
 }
 
 func (o SubscriptionInviteVM) MarshalJSON() ([]byte, error) {
@@ -242,8 +263,8 @@ func (o SubscriptionInviteVM) MarshalJSON() ([]byte, error) {
 	if o.Durable != nil {
 		toSerialize["durable"] = o.Durable
 	}
-	if o.AccessToken != nil {
-		toSerialize["accessToken"] = o.AccessToken
+	if o.AccessToken.IsSet() {
+		toSerialize["accessToken"] = o.AccessToken.Get()
 	}
 	if o.ExpiredDate != nil {
 		toSerialize["expiredDate"] = o.ExpiredDate
@@ -251,8 +272,8 @@ func (o SubscriptionInviteVM) MarshalJSON() ([]byte, error) {
 	if o.AddedUsers != nil {
 		toSerialize["addedUsers"] = o.AddedUsers
 	}
-	if o.CreatorUserId != nil {
-		toSerialize["creatorUserId"] = o.CreatorUserId
+	if o.CreatorUserId.IsSet() {
+		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
 	}
 	return json.Marshal(toSerialize)
 }

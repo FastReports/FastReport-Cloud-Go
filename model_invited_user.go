@@ -17,7 +17,7 @@ import (
 
 // InvitedUser struct for InvitedUser
 type InvitedUser struct {
-	UserId *string `json:"userId,omitempty"`
+	UserId NullableString `json:"userId,omitempty"`
 	InvitedAt *time.Time `json:"invitedAt,omitempty"`
 }
 
@@ -38,36 +38,46 @@ func NewInvitedUserWithDefaults() *InvitedUser {
 	return &this
 }
 
-// GetUserId returns the UserId field value if set, zero value otherwise.
+// GetUserId returns the UserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *InvitedUser) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || o.UserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.UserId
+	return *o.UserId.Get()
 }
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *InvitedUser) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.UserId, true
+	return o.UserId.Get(), o.UserId.IsSet()
 }
 
 // HasUserId returns a boolean if a field has been set.
 func (o *InvitedUser) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && o.UserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUserId gets a reference to the given string and assigns it to the UserId field.
+// SetUserId gets a reference to the given NullableString and assigns it to the UserId field.
 func (o *InvitedUser) SetUserId(v string) {
-	o.UserId = &v
+	o.UserId.Set(&v)
+}
+// SetUserIdNil sets the value for UserId to be an explicit nil
+func (o *InvitedUser) SetUserIdNil() {
+	o.UserId.Set(nil)
+}
+
+// UnsetUserId ensures that no value is present for UserId, not even an explicit nil
+func (o *InvitedUser) UnsetUserId() {
+	o.UserId.Unset()
 }
 
 // GetInvitedAt returns the InvitedAt field value if set, zero value otherwise.
@@ -104,8 +114,8 @@ func (o *InvitedUser) SetInvitedAt(v time.Time) {
 
 func (o InvitedUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
+	if o.UserId.IsSet() {
+		toSerialize["userId"] = o.UserId.Get()
 	}
 	if o.InvitedAt != nil {
 		toSerialize["invitedAt"] = o.InvitedAt

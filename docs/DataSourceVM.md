@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**ConnectionType** | Pointer to **string** |  | [optional] 
-**ConnectionString** | Pointer to **string** |  | [optional] 
-**DataStructure** | Pointer to **string** |  | [optional] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
+**ConnectionType** | Pointer to [**DataSourceConnectionType**](DataSourceConnectionType.md) |  | [optional] 
+**ConnectionString** | Pointer to **NullableString** |  | [optional] 
+**DataStructure** | Pointer to **NullableString** |  | [optional] 
+**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **EditedTime** | Pointer to **time.Time** |  | [optional] 
-**EditorUserId** | Pointer to **string** |  | [optional] 
+**EditorUserId** | Pointer to **NullableString** |  | [optional] 
 **CreatedTime** | Pointer to **time.Time** |  | [optional] 
-**CreatorUserId** | Pointer to **string** |  | [optional] 
-**IsConnected** | Pointer to **bool** |  | [optional] 
+**CreatorUserId** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to [**DataSourceStatus**](DataSourceStatus.md) |  | [optional] 
 
 ## Methods
 
@@ -60,6 +60,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *DataSourceVM) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *DataSourceVM) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *DataSourceVM) GetName() string`
@@ -85,22 +95,32 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *DataSourceVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *DataSourceVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetConnectionType
 
-`func (o *DataSourceVM) GetConnectionType() string`
+`func (o *DataSourceVM) GetConnectionType() DataSourceConnectionType`
 
 GetConnectionType returns the ConnectionType field if non-nil, zero value otherwise.
 
 ### GetConnectionTypeOk
 
-`func (o *DataSourceVM) GetConnectionTypeOk() (*string, bool)`
+`func (o *DataSourceVM) GetConnectionTypeOk() (*DataSourceConnectionType, bool)`
 
 GetConnectionTypeOk returns a tuple with the ConnectionType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionType
 
-`func (o *DataSourceVM) SetConnectionType(v string)`
+`func (o *DataSourceVM) SetConnectionType(v DataSourceConnectionType)`
 
 SetConnectionType sets ConnectionType field to given value.
 
@@ -135,6 +155,16 @@ SetConnectionString sets ConnectionString field to given value.
 
 HasConnectionString returns a boolean if a field has been set.
 
+### SetConnectionStringNil
+
+`func (o *DataSourceVM) SetConnectionStringNil(b bool)`
+
+ SetConnectionStringNil sets the value for ConnectionString to be an explicit nil
+
+### UnsetConnectionString
+`func (o *DataSourceVM) UnsetConnectionString()`
+
+UnsetConnectionString ensures that no value is present for ConnectionString, not even an explicit nil
 ### GetDataStructure
 
 `func (o *DataSourceVM) GetDataStructure() string`
@@ -160,6 +190,16 @@ SetDataStructure sets DataStructure field to given value.
 
 HasDataStructure returns a boolean if a field has been set.
 
+### SetDataStructureNil
+
+`func (o *DataSourceVM) SetDataStructureNil(b bool)`
+
+ SetDataStructureNil sets the value for DataStructure to be an explicit nil
+
+### UnsetDataStructure
+`func (o *DataSourceVM) UnsetDataStructure()`
+
+UnsetDataStructure ensures that no value is present for DataStructure, not even an explicit nil
 ### GetSubscriptionId
 
 `func (o *DataSourceVM) GetSubscriptionId() string`
@@ -185,6 +225,16 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 HasSubscriptionId returns a boolean if a field has been set.
 
+### SetSubscriptionIdNil
+
+`func (o *DataSourceVM) SetSubscriptionIdNil(b bool)`
+
+ SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+
+### UnsetSubscriptionId
+`func (o *DataSourceVM) UnsetSubscriptionId()`
+
+UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
 ### GetEditedTime
 
 `func (o *DataSourceVM) GetEditedTime() time.Time`
@@ -235,6 +285,16 @@ SetEditorUserId sets EditorUserId field to given value.
 
 HasEditorUserId returns a boolean if a field has been set.
 
+### SetEditorUserIdNil
+
+`func (o *DataSourceVM) SetEditorUserIdNil(b bool)`
+
+ SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
+
+### UnsetEditorUserId
+`func (o *DataSourceVM) UnsetEditorUserId()`
+
+UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
 ### GetCreatedTime
 
 `func (o *DataSourceVM) GetCreatedTime() time.Time`
@@ -285,30 +345,40 @@ SetCreatorUserId sets CreatorUserId field to given value.
 
 HasCreatorUserId returns a boolean if a field has been set.
 
-### GetIsConnected
+### SetCreatorUserIdNil
 
-`func (o *DataSourceVM) GetIsConnected() bool`
+`func (o *DataSourceVM) SetCreatorUserIdNil(b bool)`
 
-GetIsConnected returns the IsConnected field if non-nil, zero value otherwise.
+ SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
 
-### GetIsConnectedOk
+### UnsetCreatorUserId
+`func (o *DataSourceVM) UnsetCreatorUserId()`
 
-`func (o *DataSourceVM) GetIsConnectedOk() (*bool, bool)`
+UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+### GetStatus
 
-GetIsConnectedOk returns a tuple with the IsConnected field if it's non-nil, zero value otherwise
+`func (o *DataSourceVM) GetStatus() DataSourceStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *DataSourceVM) GetStatusOk() (*DataSourceStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsConnected
+### SetStatus
 
-`func (o *DataSourceVM) SetIsConnected(v bool)`
+`func (o *DataSourceVM) SetStatus(v DataSourceStatus)`
 
-SetIsConnected sets IsConnected field to given value.
+SetStatus sets Status field to given value.
 
-### HasIsConnected
+### HasStatus
 
-`func (o *DataSourceVM) HasIsConnected() bool`
+`func (o *DataSourceVM) HasStatus() bool`
 
-HasIsConnected returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

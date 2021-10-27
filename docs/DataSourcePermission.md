@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Create** | Pointer to **int32** |  | [optional] 
-**Delete** | Pointer to **int32** |  | [optional] 
-**Execute** | Pointer to **int32** |  | [optional] 
-**Get** | Pointer to **int32** |  | [optional] 
-**Update** | Pointer to **int32** |  | [optional] 
-**Administrate** | Pointer to **int32** |  | [optional] 
+**Create** | Pointer to [**DataSourceCreate**](DataSourceCreate.md) |  | [optional] 
+**Delete** | Pointer to [**DataSourceDelete**](DataSourceDelete.md) |  | [optional] 
+**Execute** | Pointer to [**DataSourceExecute**](DataSourceExecute.md) |  | [optional] 
+**Get** | Pointer to [**DataSourceGet**](DataSourceGet.md) |  | [optional] 
+**Update** | Pointer to [**DataSourceUpdate**](DataSourceUpdate.md) |  | [optional] 
+**Administrate** | Pointer to [**DataSourceAdministrate**](DataSourceAdministrate.md) |  | [optional] 
 
 ## Methods
 
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCreate
 
-`func (o *DataSourcePermission) GetCreate() int32`
+`func (o *DataSourcePermission) GetCreate() DataSourceCreate`
 
 GetCreate returns the Create field if non-nil, zero value otherwise.
 
 ### GetCreateOk
 
-`func (o *DataSourcePermission) GetCreateOk() (*int32, bool)`
+`func (o *DataSourcePermission) GetCreateOk() (*DataSourceCreate, bool)`
 
 GetCreateOk returns a tuple with the Create field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreate
 
-`func (o *DataSourcePermission) SetCreate(v int32)`
+`func (o *DataSourcePermission) SetCreate(v DataSourceCreate)`
 
 SetCreate sets Create field to given value.
 
@@ -57,20 +57,20 @@ HasCreate returns a boolean if a field has been set.
 
 ### GetDelete
 
-`func (o *DataSourcePermission) GetDelete() int32`
+`func (o *DataSourcePermission) GetDelete() DataSourceDelete`
 
 GetDelete returns the Delete field if non-nil, zero value otherwise.
 
 ### GetDeleteOk
 
-`func (o *DataSourcePermission) GetDeleteOk() (*int32, bool)`
+`func (o *DataSourcePermission) GetDeleteOk() (*DataSourceDelete, bool)`
 
 GetDeleteOk returns a tuple with the Delete field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDelete
 
-`func (o *DataSourcePermission) SetDelete(v int32)`
+`func (o *DataSourcePermission) SetDelete(v DataSourceDelete)`
 
 SetDelete sets Delete field to given value.
 
@@ -82,20 +82,20 @@ HasDelete returns a boolean if a field has been set.
 
 ### GetExecute
 
-`func (o *DataSourcePermission) GetExecute() int32`
+`func (o *DataSourcePermission) GetExecute() DataSourceExecute`
 
 GetExecute returns the Execute field if non-nil, zero value otherwise.
 
 ### GetExecuteOk
 
-`func (o *DataSourcePermission) GetExecuteOk() (*int32, bool)`
+`func (o *DataSourcePermission) GetExecuteOk() (*DataSourceExecute, bool)`
 
 GetExecuteOk returns a tuple with the Execute field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExecute
 
-`func (o *DataSourcePermission) SetExecute(v int32)`
+`func (o *DataSourcePermission) SetExecute(v DataSourceExecute)`
 
 SetExecute sets Execute field to given value.
 
@@ -107,20 +107,20 @@ HasExecute returns a boolean if a field has been set.
 
 ### GetGet
 
-`func (o *DataSourcePermission) GetGet() int32`
+`func (o *DataSourcePermission) GetGet() DataSourceGet`
 
 GetGet returns the Get field if non-nil, zero value otherwise.
 
 ### GetGetOk
 
-`func (o *DataSourcePermission) GetGetOk() (*int32, bool)`
+`func (o *DataSourcePermission) GetGetOk() (*DataSourceGet, bool)`
 
 GetGetOk returns a tuple with the Get field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGet
 
-`func (o *DataSourcePermission) SetGet(v int32)`
+`func (o *DataSourcePermission) SetGet(v DataSourceGet)`
 
 SetGet sets Get field to given value.
 
@@ -132,20 +132,20 @@ HasGet returns a boolean if a field has been set.
 
 ### GetUpdate
 
-`func (o *DataSourcePermission) GetUpdate() int32`
+`func (o *DataSourcePermission) GetUpdate() DataSourceUpdate`
 
 GetUpdate returns the Update field if non-nil, zero value otherwise.
 
 ### GetUpdateOk
 
-`func (o *DataSourcePermission) GetUpdateOk() (*int32, bool)`
+`func (o *DataSourcePermission) GetUpdateOk() (*DataSourceUpdate, bool)`
 
 GetUpdateOk returns a tuple with the Update field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdate
 
-`func (o *DataSourcePermission) SetUpdate(v int32)`
+`func (o *DataSourcePermission) SetUpdate(v DataSourceUpdate)`
 
 SetUpdate sets Update field to given value.
 
@@ -157,20 +157,20 @@ HasUpdate returns a boolean if a field has been set.
 
 ### GetAdministrate
 
-`func (o *DataSourcePermission) GetAdministrate() int32`
+`func (o *DataSourcePermission) GetAdministrate() DataSourceAdministrate`
 
 GetAdministrate returns the Administrate field if non-nil, zero value otherwise.
 
 ### GetAdministrateOk
 
-`func (o *DataSourcePermission) GetAdministrateOk() (*int32, bool)`
+`func (o *DataSourcePermission) GetAdministrateOk() (*DataSourceAdministrate, bool)`
 
 GetAdministrateOk returns a tuple with the Administrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdministrate
 
-`func (o *DataSourcePermission) SetAdministrate(v int32)`
+`func (o *DataSourcePermission) SetAdministrate(v DataSourceAdministrate)`
 
 SetAdministrate sets Administrate field to given value.
 

@@ -16,7 +16,7 @@ import (
 
 // GroupUsersVM struct for GroupUsersVM
 type GroupUsersVM struct {
-	Users *[]GroupUserVM `json:"users,omitempty"`
+	Users []GroupUserVM `json:"users,omitempty"`
 	Count *int64 `json:"count,omitempty"`
 	Take *int32 `json:"take,omitempty"`
 	Skip *int32 `json:"skip,omitempty"`
@@ -39,22 +39,23 @@ func NewGroupUsersVMWithDefaults() *GroupUsersVM {
 	return &this
 }
 
-// GetUsers returns the Users field value if set, zero value otherwise.
+// GetUsers returns the Users field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GroupUsersVM) GetUsers() []GroupUserVM {
-	if o == nil || o.Users == nil {
+	if o == nil  {
 		var ret []GroupUserVM
 		return ret
 	}
-	return *o.Users
+	return o.Users
 }
 
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GroupUsersVM) GetUsersOk() (*[]GroupUserVM, bool) {
 	if o == nil || o.Users == nil {
 		return nil, false
 	}
-	return o.Users, true
+	return &o.Users, true
 }
 
 // HasUsers returns a boolean if a field has been set.
@@ -68,7 +69,7 @@ func (o *GroupUsersVM) HasUsers() bool {
 
 // SetUsers gets a reference to the given []GroupUserVM and assigns it to the Users field.
 func (o *GroupUsersVM) SetUsers(v []GroupUserVM) {
-	o.Users = &v
+	o.Users = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.

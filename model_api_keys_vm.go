@@ -16,7 +16,7 @@ import (
 
 // ApiKeysVM struct for ApiKeysVM
 type ApiKeysVM struct {
-	ApiKeys *[]ApiKeyVM `json:"apiKeys,omitempty"`
+	ApiKeys []ApiKeyVM `json:"apiKeys,omitempty"`
 	Count *int64 `json:"count,omitempty"`
 }
 
@@ -37,22 +37,23 @@ func NewApiKeysVMWithDefaults() *ApiKeysVM {
 	return &this
 }
 
-// GetApiKeys returns the ApiKeys field value if set, zero value otherwise.
+// GetApiKeys returns the ApiKeys field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApiKeysVM) GetApiKeys() []ApiKeyVM {
-	if o == nil || o.ApiKeys == nil {
+	if o == nil  {
 		var ret []ApiKeyVM
 		return ret
 	}
-	return *o.ApiKeys
+	return o.ApiKeys
 }
 
 // GetApiKeysOk returns a tuple with the ApiKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKeysVM) GetApiKeysOk() (*[]ApiKeyVM, bool) {
 	if o == nil || o.ApiKeys == nil {
 		return nil, false
 	}
-	return o.ApiKeys, true
+	return &o.ApiKeys, true
 }
 
 // HasApiKeys returns a boolean if a field has been set.
@@ -66,7 +67,7 @@ func (o *ApiKeysVM) HasApiKeys() bool {
 
 // SetApiKeys gets a reference to the given []ApiKeyVM and assigns it to the ApiKeys field.
 func (o *ApiKeysVM) SetApiKeys(v []ApiKeyVM) {
-	o.ApiKeys = &v
+	o.ApiKeys = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.

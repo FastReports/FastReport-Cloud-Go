@@ -50,6 +50,16 @@ SetBreadcrumbs sets Breadcrumbs field to given value.
 
 HasBreadcrumbs returns a boolean if a field has been set.
 
+### SetBreadcrumbsNil
+
+`func (o *BreadcrumbsVM) SetBreadcrumbsNil(b bool)`
+
+ SetBreadcrumbsNil sets the value for Breadcrumbs to be an explicit nil
+
+### UnsetBreadcrumbs
+`func (o *BreadcrumbsVM) UnsetBreadcrumbs()`
+
+UnsetBreadcrumbs ensures that no value is present for Breadcrumbs, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

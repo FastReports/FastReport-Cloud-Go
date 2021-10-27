@@ -16,7 +16,7 @@ import (
 
 // SubscriptionFolder struct for SubscriptionFolder
 type SubscriptionFolder struct {
-	FolderId *string `json:"folderId,omitempty"`
+	FolderId NullableString `json:"folderId,omitempty"`
 	BytesUsed *int64 `json:"bytesUsed,omitempty"`
 }
 
@@ -37,36 +37,46 @@ func NewSubscriptionFolderWithDefaults() *SubscriptionFolder {
 	return &this
 }
 
-// GetFolderId returns the FolderId field value if set, zero value otherwise.
+// GetFolderId returns the FolderId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionFolder) GetFolderId() string {
-	if o == nil || o.FolderId == nil {
+	if o == nil || o.FolderId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.FolderId
+	return *o.FolderId.Get()
 }
 
 // GetFolderIdOk returns a tuple with the FolderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionFolder) GetFolderIdOk() (*string, bool) {
-	if o == nil || o.FolderId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.FolderId, true
+	return o.FolderId.Get(), o.FolderId.IsSet()
 }
 
 // HasFolderId returns a boolean if a field has been set.
 func (o *SubscriptionFolder) HasFolderId() bool {
-	if o != nil && o.FolderId != nil {
+	if o != nil && o.FolderId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetFolderId gets a reference to the given string and assigns it to the FolderId field.
+// SetFolderId gets a reference to the given NullableString and assigns it to the FolderId field.
 func (o *SubscriptionFolder) SetFolderId(v string) {
-	o.FolderId = &v
+	o.FolderId.Set(&v)
+}
+// SetFolderIdNil sets the value for FolderId to be an explicit nil
+func (o *SubscriptionFolder) SetFolderIdNil() {
+	o.FolderId.Set(nil)
+}
+
+// UnsetFolderId ensures that no value is present for FolderId, not even an explicit nil
+func (o *SubscriptionFolder) UnsetFolderId() {
+	o.FolderId.Unset()
 }
 
 // GetBytesUsed returns the BytesUsed field value if set, zero value otherwise.
@@ -103,8 +113,8 @@ func (o *SubscriptionFolder) SetBytesUsed(v int64) {
 
 func (o SubscriptionFolder) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.FolderId != nil {
-		toSerialize["folderId"] = o.FolderId
+	if o.FolderId.IsSet() {
+		toSerialize["folderId"] = o.FolderId.Get()
 	}
 	if o.BytesUsed != nil {
 		toSerialize["bytesUsed"] = o.BytesUsed

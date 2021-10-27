@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserId** | Pointer to **string** |  | [optional] 
+**UserId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -50,6 +50,16 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
+### SetUserIdNil
+
+`func (o *GroupUserVM) SetUserIdNil(b bool)`
+
+ SetUserIdNil sets the value for UserId to be an explicit nil
+
+### UnsetUserId
+`func (o *GroupUserVM) UnsetUserId()`
+
+UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

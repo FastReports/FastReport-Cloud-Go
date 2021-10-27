@@ -30,11 +30,11 @@ type DataSourcesApiService service
 type ApiDataSourcesCreateDataSourceRequest struct {
 	ctx _context.Context
 	ApiService *DataSourcesApiService
-	viewModel *CreateDataSourceVM
+	createDataSourceVM *CreateDataSourceVM
 }
 
-func (r ApiDataSourcesCreateDataSourceRequest) ViewModel(viewModel CreateDataSourceVM) ApiDataSourcesCreateDataSourceRequest {
-	r.viewModel = &viewModel
+func (r ApiDataSourcesCreateDataSourceRequest) CreateDataSourceVM(createDataSourceVM CreateDataSourceVM) ApiDataSourcesCreateDataSourceRequest {
+	r.createDataSourceVM = &createDataSourceVM
 	return r
 }
 
@@ -80,7 +80,7 @@ func (a *DataSourcesApiService) DataSourcesCreateDataSourceExecute(r ApiDataSour
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -89,7 +89,7 @@ func (a *DataSourcesApiService) DataSourcesCreateDataSourceExecute(r ApiDataSour
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -97,21 +97,7 @@ func (a *DataSourcesApiService) DataSourcesCreateDataSourceExecute(r ApiDataSour
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.viewModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.createDataSourceVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -248,26 +234,12 @@ func (a *DataSourcesApiService) DataSourcesDeleteDataSourceExecute(r ApiDataSour
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -396,26 +368,12 @@ func (a *DataSourcesApiService) DataSourcesFetchDataExecute(r ApiDataSourcesFetc
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -491,6 +449,8 @@ type ApiDataSourcesGetAvailableDataSourcesRequest struct {
 	subscriptionId *string
 	skip *int32
 	take *int32
+	orderBy *DataSourceSorting
+	desc *bool
 }
 
 func (r ApiDataSourcesGetAvailableDataSourcesRequest) SubscriptionId(subscriptionId string) ApiDataSourcesGetAvailableDataSourcesRequest {
@@ -505,13 +465,21 @@ func (r ApiDataSourcesGetAvailableDataSourcesRequest) Take(take int32) ApiDataSo
 	r.take = &take
 	return r
 }
+func (r ApiDataSourcesGetAvailableDataSourcesRequest) OrderBy(orderBy DataSourceSorting) ApiDataSourcesGetAvailableDataSourcesRequest {
+	r.orderBy = &orderBy
+	return r
+}
+func (r ApiDataSourcesGetAvailableDataSourcesRequest) Desc(desc bool) ApiDataSourcesGetAvailableDataSourcesRequest {
+	r.desc = &desc
+	return r
+}
 
 func (r ApiDataSourcesGetAvailableDataSourcesRequest) Execute() (DataSourcesVM, *_nethttp.Response, error) {
 	return r.ApiService.DataSourcesGetAvailableDataSourcesExecute(r)
 }
 
 /*
- * DataSourcesGetAvailableDataSources Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+ * DataSourcesGetAvailableDataSources Returns all of the data sources, that current user have permission for in a subscription <br />  The method will return minimal infomration about the datasources: <br />  id, name, editedTime, status.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiDataSourcesGetAvailableDataSourcesRequest
  */
@@ -556,6 +524,12 @@ func (a *DataSourcesApiService) DataSourcesGetAvailableDataSourcesExecute(r ApiD
 	if r.take != nil {
 		localVarQueryParams.Add("take", parameterToString(*r.take, ""))
 	}
+	if r.orderBy != nil {
+		localVarQueryParams.Add("orderBy", parameterToString(*r.orderBy, ""))
+	}
+	if r.desc != nil {
+		localVarQueryParams.Add("desc", parameterToString(*r.desc, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -566,26 +540,12 @@ func (a *DataSourcesApiService) DataSourcesGetAvailableDataSourcesExecute(r ApiD
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -724,26 +684,12 @@ func (a *DataSourcesApiService) DataSourcesGetDataSourceExecute(r ApiDataSources
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -883,26 +829,12 @@ func (a *DataSourcesApiService) DataSourcesGetPermissionsExecute(r ApiDataSource
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -985,11 +917,11 @@ type ApiDataSourcesRenameDataSourceRequest struct {
 	ctx _context.Context
 	ApiService *DataSourcesApiService
 	id string
-	renameModel *RenameDataSourceVM
+	renameDataSourceVM *RenameDataSourceVM
 }
 
-func (r ApiDataSourcesRenameDataSourceRequest) RenameModel(renameModel RenameDataSourceVM) ApiDataSourcesRenameDataSourceRequest {
-	r.renameModel = &renameModel
+func (r ApiDataSourcesRenameDataSourceRequest) RenameDataSourceVM(renameDataSourceVM RenameDataSourceVM) ApiDataSourcesRenameDataSourceRequest {
+	r.renameDataSourceVM = &renameDataSourceVM
 	return r
 }
 
@@ -1038,7 +970,7 @@ func (a *DataSourcesApiService) DataSourcesRenameDataSourceExecute(r ApiDataSour
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1047,7 +979,7 @@ func (a *DataSourcesApiService) DataSourcesRenameDataSourceExecute(r ApiDataSour
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1055,21 +987,7 @@ func (a *DataSourcesApiService) DataSourcesRenameDataSourceExecute(r ApiDataSour
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.renameModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.renameDataSourceVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1151,11 +1069,11 @@ type ApiDataSourcesUpdateConnectionStringRequest struct {
 	ctx _context.Context
 	ApiService *DataSourcesApiService
 	id string
-	updateModel *UpdateDataSourceConnectionStringVM
+	updateDataSourceConnectionStringVM *UpdateDataSourceConnectionStringVM
 }
 
-func (r ApiDataSourcesUpdateConnectionStringRequest) UpdateModel(updateModel UpdateDataSourceConnectionStringVM) ApiDataSourcesUpdateConnectionStringRequest {
-	r.updateModel = &updateModel
+func (r ApiDataSourcesUpdateConnectionStringRequest) UpdateDataSourceConnectionStringVM(updateDataSourceConnectionStringVM UpdateDataSourceConnectionStringVM) ApiDataSourcesUpdateConnectionStringRequest {
+	r.updateDataSourceConnectionStringVM = &updateDataSourceConnectionStringVM
 	return r
 }
 
@@ -1204,7 +1122,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateConnectionStringExecute(r ApiDa
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1213,7 +1131,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateConnectionStringExecute(r ApiDa
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1221,21 +1139,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateConnectionStringExecute(r ApiDa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateDataSourceConnectionStringVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1317,11 +1221,11 @@ type ApiDataSourcesUpdatePermissionsRequest struct {
 	ctx _context.Context
 	ApiService *DataSourcesApiService
 	id string
-	permissionsVM *UpdateDataSourcePermissionsVM
+	updateDataSourcePermissionsVM *UpdateDataSourcePermissionsVM
 }
 
-func (r ApiDataSourcesUpdatePermissionsRequest) PermissionsVM(permissionsVM UpdateDataSourcePermissionsVM) ApiDataSourcesUpdatePermissionsRequest {
-	r.permissionsVM = &permissionsVM
+func (r ApiDataSourcesUpdatePermissionsRequest) UpdateDataSourcePermissionsVM(updateDataSourcePermissionsVM UpdateDataSourcePermissionsVM) ApiDataSourcesUpdatePermissionsRequest {
+	r.updateDataSourcePermissionsVM = &updateDataSourcePermissionsVM
 	return r
 }
 
@@ -1368,7 +1272,7 @@ func (a *DataSourcesApiService) DataSourcesUpdatePermissionsExecute(r ApiDataSou
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1377,7 +1281,7 @@ func (a *DataSourcesApiService) DataSourcesUpdatePermissionsExecute(r ApiDataSou
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1385,21 +1289,7 @@ func (a *DataSourcesApiService) DataSourcesUpdatePermissionsExecute(r ApiDataSou
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.permissionsVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateDataSourcePermissionsVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -1472,11 +1362,11 @@ type ApiDataSourcesUpdateSubscriptionDataSourceRequest struct {
 	ctx _context.Context
 	ApiService *DataSourcesApiService
 	id string
-	updatesubscriptionModel *UpdateDataSourceSubscriptionVM
+	updateDataSourceSubscriptionVM *UpdateDataSourceSubscriptionVM
 }
 
-func (r ApiDataSourcesUpdateSubscriptionDataSourceRequest) UpdatesubscriptionModel(updatesubscriptionModel UpdateDataSourceSubscriptionVM) ApiDataSourcesUpdateSubscriptionDataSourceRequest {
-	r.updatesubscriptionModel = &updatesubscriptionModel
+func (r ApiDataSourcesUpdateSubscriptionDataSourceRequest) UpdateDataSourceSubscriptionVM(updateDataSourceSubscriptionVM UpdateDataSourceSubscriptionVM) ApiDataSourcesUpdateSubscriptionDataSourceRequest {
+	r.updateDataSourceSubscriptionVM = &updateDataSourceSubscriptionVM
 	return r
 }
 
@@ -1523,7 +1413,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateSubscriptionDataSourceExecute(r
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1532,7 +1422,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateSubscriptionDataSourceExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1540,21 +1430,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateSubscriptionDataSourceExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updatesubscriptionModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateDataSourceSubscriptionVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err

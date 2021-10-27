@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
+**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -52,6 +52,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *GroupVM) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *GroupVM) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *GroupVM) GetName() string`
@@ -77,6 +87,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *GroupVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *GroupVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetSubscriptionId
 
 `func (o *GroupVM) GetSubscriptionId() string`
@@ -102,6 +122,16 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 HasSubscriptionId returns a boolean if a field has been set.
 
+### SetSubscriptionIdNil
+
+`func (o *GroupVM) SetSubscriptionIdNil(b bool)`
+
+ SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+
+### UnsetSubscriptionId
+`func (o *GroupVM) UnsetSubscriptionId()`
+
+UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

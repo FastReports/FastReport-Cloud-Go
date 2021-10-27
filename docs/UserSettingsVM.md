@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProfileVisibility** | Pointer to **int32** |  | [optional] 
-**DefaultSubscription** | Pointer to **string** |  | [optional] 
+**ProfileVisibility** | Pointer to [**ProfileVisibility**](ProfileVisibility.md) |  | [optional] 
+**DefaultSubscription** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetProfileVisibility
 
-`func (o *UserSettingsVM) GetProfileVisibility() int32`
+`func (o *UserSettingsVM) GetProfileVisibility() ProfileVisibility`
 
 GetProfileVisibility returns the ProfileVisibility field if non-nil, zero value otherwise.
 
 ### GetProfileVisibilityOk
 
-`func (o *UserSettingsVM) GetProfileVisibilityOk() (*int32, bool)`
+`func (o *UserSettingsVM) GetProfileVisibilityOk() (*ProfileVisibility, bool)`
 
 GetProfileVisibilityOk returns a tuple with the ProfileVisibility field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfileVisibility
 
-`func (o *UserSettingsVM) SetProfileVisibility(v int32)`
+`func (o *UserSettingsVM) SetProfileVisibility(v ProfileVisibility)`
 
 SetProfileVisibility sets ProfileVisibility field to given value.
 
@@ -76,6 +76,16 @@ SetDefaultSubscription sets DefaultSubscription field to given value.
 
 HasDefaultSubscription returns a boolean if a field has been set.
 
+### SetDefaultSubscriptionNil
+
+`func (o *UserSettingsVM) SetDefaultSubscriptionNil(b bool)`
+
+ SetDefaultSubscriptionNil sets the value for DefaultSubscription to be an explicit nil
+
+### UnsetDefaultSubscription
+`func (o *UserSettingsVM) UnsetDefaultSubscription()`
+
+UnsetDefaultSubscription ensures that no value is present for DefaultSubscription, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

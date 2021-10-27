@@ -89,26 +89,12 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -132,6 +118,16 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -153,16 +149,6 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -247,26 +233,12 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+	localVarHTTPHeaderAccepts := []string{"image/jpeg", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -290,6 +262,16 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -311,16 +293,6 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -413,26 +385,12 @@ func (a *DownloadApiService) DownloadGetExportsExecute(r ApiDownloadGetExportsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+	localVarHTTPHeaderAccepts := []string{"application/zip", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -571,26 +529,12 @@ func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -614,6 +558,16 @@ func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -635,16 +589,6 @@ func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -729,26 +673,12 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+	localVarHTTPHeaderAccepts := []string{"image/jpeg", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -772,6 +702,16 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -793,16 +733,6 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -895,26 +825,12 @@ func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+	localVarHTTPHeaderAccepts := []string{"application/zip", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -938,6 +854,16 @@ func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -959,16 +885,6 @@ func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1053,26 +969,12 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1096,6 +998,16 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1117,16 +1029,6 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1219,26 +1121,12 @@ func (a *DownloadApiService) DownloadGetTemplatesExecute(r ApiDownloadGetTemplat
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+	localVarHTTPHeaderAccepts := []string{"application/zip", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {

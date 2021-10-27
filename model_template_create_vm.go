@@ -16,10 +16,10 @@ import (
 
 // TemplateCreateVM struct for TemplateCreateVM
 type TemplateCreateVM struct {
-	Name *string `json:"name,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
-	Icon *string `json:"icon,omitempty"`
-	Content *string `json:"content,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	Icon NullableString `json:"icon,omitempty"`
+	Content NullableString `json:"content,omitempty"`
 }
 
 // NewTemplateCreateVM instantiates a new TemplateCreateVM object
@@ -39,54 +39,65 @@ func NewTemplateCreateVMWithDefaults() *TemplateCreateVM {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateCreateVM) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateCreateVM) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *TemplateCreateVM) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *TemplateCreateVM) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *TemplateCreateVM) SetNameNil() {
+	o.Name.Set(nil)
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *TemplateCreateVM) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateCreateVM) GetTags() []string {
-	if o == nil || o.Tags == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateCreateVM) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -100,86 +111,106 @@ func (o *TemplateCreateVM) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *TemplateCreateVM) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
-// GetIcon returns the Icon field value if set, zero value otherwise.
+// GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateCreateVM) GetIcon() string {
-	if o == nil || o.Icon == nil {
+	if o == nil || o.Icon.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Icon
+	return *o.Icon.Get()
 }
 
 // GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateCreateVM) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Icon, true
+	return o.Icon.Get(), o.Icon.IsSet()
 }
 
 // HasIcon returns a boolean if a field has been set.
 func (o *TemplateCreateVM) HasIcon() bool {
-	if o != nil && o.Icon != nil {
+	if o != nil && o.Icon.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
+// SetIcon gets a reference to the given NullableString and assigns it to the Icon field.
 func (o *TemplateCreateVM) SetIcon(v string) {
-	o.Icon = &v
+	o.Icon.Set(&v)
+}
+// SetIconNil sets the value for Icon to be an explicit nil
+func (o *TemplateCreateVM) SetIconNil() {
+	o.Icon.Set(nil)
 }
 
-// GetContent returns the Content field value if set, zero value otherwise.
+// UnsetIcon ensures that no value is present for Icon, not even an explicit nil
+func (o *TemplateCreateVM) UnsetIcon() {
+	o.Icon.Unset()
+}
+
+// GetContent returns the Content field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateCreateVM) GetContent() string {
-	if o == nil || o.Content == nil {
+	if o == nil || o.Content.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Content
+	return *o.Content.Get()
 }
 
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateCreateVM) GetContentOk() (*string, bool) {
-	if o == nil || o.Content == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Content, true
+	return o.Content.Get(), o.Content.IsSet()
 }
 
 // HasContent returns a boolean if a field has been set.
 func (o *TemplateCreateVM) HasContent() bool {
-	if o != nil && o.Content != nil {
+	if o != nil && o.Content.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetContent gets a reference to the given string and assigns it to the Content field.
+// SetContent gets a reference to the given NullableString and assigns it to the Content field.
 func (o *TemplateCreateVM) SetContent(v string) {
-	o.Content = &v
+	o.Content.Set(&v)
+}
+// SetContentNil sets the value for Content to be an explicit nil
+func (o *TemplateCreateVM) SetContentNil() {
+	o.Content.Set(nil)
+}
+
+// UnsetContent ensures that no value is present for Content, not even an explicit nil
+func (o *TemplateCreateVM) UnsetContent() {
+	o.Content.Unset()
 }
 
 func (o TemplateCreateVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if o.Icon != nil {
-		toSerialize["icon"] = o.Icon
+	if o.Icon.IsSet() {
+		toSerialize["icon"] = o.Icon.Get()
 	}
-	if o.Content != nil {
-		toSerialize["content"] = o.Content
+	if o.Content.IsSet() {
+		toSerialize["content"] = o.Content.Get()
 	}
 	return json.Marshal(toSerialize)
 }

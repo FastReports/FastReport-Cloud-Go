@@ -17,18 +17,18 @@ import (
 
 // ReportInfo struct for ReportInfo
 type ReportInfo struct {
-	Author *string `json:"author,omitempty"`
+	Author NullableString `json:"author,omitempty"`
 	Created *time.Time `json:"created,omitempty"`
-	CreatorVersion *string `json:"creatorVersion,omitempty"`
-	Description *string `json:"description,omitempty"`
+	CreatorVersion NullableString `json:"creatorVersion,omitempty"`
+	Description NullableString `json:"description,omitempty"`
 	Modified *time.Time `json:"modified,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Picture *string `json:"picture,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	Picture NullableString `json:"picture,omitempty"`
 	PreviewPictureRatio *float32 `json:"previewPictureRatio,omitempty"`
-	SaveMode *string `json:"saveMode,omitempty"`
+	SaveMode *SaveMode `json:"saveMode,omitempty"`
 	SavePreviewPicture *bool `json:"savePreviewPicture,omitempty"`
-	Tag *string `json:"tag,omitempty"`
-	Version *string `json:"version,omitempty"`
+	Tag NullableString `json:"tag,omitempty"`
+	Version NullableString `json:"version,omitempty"`
 }
 
 // NewReportInfo instantiates a new ReportInfo object
@@ -48,36 +48,46 @@ func NewReportInfoWithDefaults() *ReportInfo {
 	return &this
 }
 
-// GetAuthor returns the Author field value if set, zero value otherwise.
+// GetAuthor returns the Author field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReportInfo) GetAuthor() string {
-	if o == nil || o.Author == nil {
+	if o == nil || o.Author.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Author
+	return *o.Author.Get()
 }
 
 // GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReportInfo) GetAuthorOk() (*string, bool) {
-	if o == nil || o.Author == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Author, true
+	return o.Author.Get(), o.Author.IsSet()
 }
 
 // HasAuthor returns a boolean if a field has been set.
 func (o *ReportInfo) HasAuthor() bool {
-	if o != nil && o.Author != nil {
+	if o != nil && o.Author.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthor gets a reference to the given string and assigns it to the Author field.
+// SetAuthor gets a reference to the given NullableString and assigns it to the Author field.
 func (o *ReportInfo) SetAuthor(v string) {
-	o.Author = &v
+	o.Author.Set(&v)
+}
+// SetAuthorNil sets the value for Author to be an explicit nil
+func (o *ReportInfo) SetAuthorNil() {
+	o.Author.Set(nil)
+}
+
+// UnsetAuthor ensures that no value is present for Author, not even an explicit nil
+func (o *ReportInfo) UnsetAuthor() {
+	o.Author.Unset()
 }
 
 // GetCreated returns the Created field value if set, zero value otherwise.
@@ -112,68 +122,88 @@ func (o *ReportInfo) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
-// GetCreatorVersion returns the CreatorVersion field value if set, zero value otherwise.
+// GetCreatorVersion returns the CreatorVersion field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReportInfo) GetCreatorVersion() string {
-	if o == nil || o.CreatorVersion == nil {
+	if o == nil || o.CreatorVersion.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.CreatorVersion
+	return *o.CreatorVersion.Get()
 }
 
 // GetCreatorVersionOk returns a tuple with the CreatorVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReportInfo) GetCreatorVersionOk() (*string, bool) {
-	if o == nil || o.CreatorVersion == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CreatorVersion, true
+	return o.CreatorVersion.Get(), o.CreatorVersion.IsSet()
 }
 
 // HasCreatorVersion returns a boolean if a field has been set.
 func (o *ReportInfo) HasCreatorVersion() bool {
-	if o != nil && o.CreatorVersion != nil {
+	if o != nil && o.CreatorVersion.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatorVersion gets a reference to the given string and assigns it to the CreatorVersion field.
+// SetCreatorVersion gets a reference to the given NullableString and assigns it to the CreatorVersion field.
 func (o *ReportInfo) SetCreatorVersion(v string) {
-	o.CreatorVersion = &v
+	o.CreatorVersion.Set(&v)
+}
+// SetCreatorVersionNil sets the value for CreatorVersion to be an explicit nil
+func (o *ReportInfo) SetCreatorVersionNil() {
+	o.CreatorVersion.Set(nil)
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// UnsetCreatorVersion ensures that no value is present for CreatorVersion, not even an explicit nil
+func (o *ReportInfo) UnsetCreatorVersion() {
+	o.CreatorVersion.Unset()
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReportInfo) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || o.Description.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+	return *o.Description.Get()
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReportInfo) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Description, true
+	return o.Description.Get(), o.Description.IsSet()
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ReportInfo) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
 func (o *ReportInfo) SetDescription(v string) {
-	o.Description = &v
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *ReportInfo) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *ReportInfo) UnsetDescription() {
+	o.Description.Unset()
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
@@ -208,68 +238,88 @@ func (o *ReportInfo) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReportInfo) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReportInfo) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ReportInfo) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *ReportInfo) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *ReportInfo) SetNameNil() {
+	o.Name.Set(nil)
 }
 
-// GetPicture returns the Picture field value if set, zero value otherwise.
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *ReportInfo) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetPicture returns the Picture field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReportInfo) GetPicture() string {
-	if o == nil || o.Picture == nil {
+	if o == nil || o.Picture.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Picture
+	return *o.Picture.Get()
 }
 
 // GetPictureOk returns a tuple with the Picture field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReportInfo) GetPictureOk() (*string, bool) {
-	if o == nil || o.Picture == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Picture, true
+	return o.Picture.Get(), o.Picture.IsSet()
 }
 
 // HasPicture returns a boolean if a field has been set.
 func (o *ReportInfo) HasPicture() bool {
-	if o != nil && o.Picture != nil {
+	if o != nil && o.Picture.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPicture gets a reference to the given string and assigns it to the Picture field.
+// SetPicture gets a reference to the given NullableString and assigns it to the Picture field.
 func (o *ReportInfo) SetPicture(v string) {
-	o.Picture = &v
+	o.Picture.Set(&v)
+}
+// SetPictureNil sets the value for Picture to be an explicit nil
+func (o *ReportInfo) SetPictureNil() {
+	o.Picture.Set(nil)
+}
+
+// UnsetPicture ensures that no value is present for Picture, not even an explicit nil
+func (o *ReportInfo) UnsetPicture() {
+	o.Picture.Unset()
 }
 
 // GetPreviewPictureRatio returns the PreviewPictureRatio field value if set, zero value otherwise.
@@ -305,9 +355,9 @@ func (o *ReportInfo) SetPreviewPictureRatio(v float32) {
 }
 
 // GetSaveMode returns the SaveMode field value if set, zero value otherwise.
-func (o *ReportInfo) GetSaveMode() string {
+func (o *ReportInfo) GetSaveMode() SaveMode {
 	if o == nil || o.SaveMode == nil {
-		var ret string
+		var ret SaveMode
 		return ret
 	}
 	return *o.SaveMode
@@ -315,7 +365,7 @@ func (o *ReportInfo) GetSaveMode() string {
 
 // GetSaveModeOk returns a tuple with the SaveMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReportInfo) GetSaveModeOk() (*string, bool) {
+func (o *ReportInfo) GetSaveModeOk() (*SaveMode, bool) {
 	if o == nil || o.SaveMode == nil {
 		return nil, false
 	}
@@ -331,8 +381,8 @@ func (o *ReportInfo) HasSaveMode() bool {
 	return false
 }
 
-// SetSaveMode gets a reference to the given string and assigns it to the SaveMode field.
-func (o *ReportInfo) SetSaveMode(v string) {
+// SetSaveMode gets a reference to the given SaveMode and assigns it to the SaveMode field.
+func (o *ReportInfo) SetSaveMode(v SaveMode) {
 	o.SaveMode = &v
 }
 
@@ -368,92 +418,112 @@ func (o *ReportInfo) SetSavePreviewPicture(v bool) {
 	o.SavePreviewPicture = &v
 }
 
-// GetTag returns the Tag field value if set, zero value otherwise.
+// GetTag returns the Tag field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReportInfo) GetTag() string {
-	if o == nil || o.Tag == nil {
+	if o == nil || o.Tag.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Tag
+	return *o.Tag.Get()
 }
 
 // GetTagOk returns a tuple with the Tag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReportInfo) GetTagOk() (*string, bool) {
-	if o == nil || o.Tag == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Tag, true
+	return o.Tag.Get(), o.Tag.IsSet()
 }
 
 // HasTag returns a boolean if a field has been set.
 func (o *ReportInfo) HasTag() bool {
-	if o != nil && o.Tag != nil {
+	if o != nil && o.Tag.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTag gets a reference to the given string and assigns it to the Tag field.
+// SetTag gets a reference to the given NullableString and assigns it to the Tag field.
 func (o *ReportInfo) SetTag(v string) {
-	o.Tag = &v
+	o.Tag.Set(&v)
+}
+// SetTagNil sets the value for Tag to be an explicit nil
+func (o *ReportInfo) SetTagNil() {
+	o.Tag.Set(nil)
 }
 
-// GetVersion returns the Version field value if set, zero value otherwise.
+// UnsetTag ensures that no value is present for Tag, not even an explicit nil
+func (o *ReportInfo) UnsetTag() {
+	o.Tag.Unset()
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ReportInfo) GetVersion() string {
-	if o == nil || o.Version == nil {
+	if o == nil || o.Version.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Version
+	return *o.Version.Get()
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ReportInfo) GetVersionOk() (*string, bool) {
-	if o == nil || o.Version == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Version, true
+	return o.Version.Get(), o.Version.IsSet()
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *ReportInfo) HasVersion() bool {
-	if o != nil && o.Version != nil {
+	if o != nil && o.Version.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetVersion gets a reference to the given string and assigns it to the Version field.
+// SetVersion gets a reference to the given NullableString and assigns it to the Version field.
 func (o *ReportInfo) SetVersion(v string) {
-	o.Version = &v
+	o.Version.Set(&v)
+}
+// SetVersionNil sets the value for Version to be an explicit nil
+func (o *ReportInfo) SetVersionNil() {
+	o.Version.Set(nil)
+}
+
+// UnsetVersion ensures that no value is present for Version, not even an explicit nil
+func (o *ReportInfo) UnsetVersion() {
+	o.Version.Unset()
 }
 
 func (o ReportInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Author != nil {
-		toSerialize["author"] = o.Author
+	if o.Author.IsSet() {
+		toSerialize["author"] = o.Author.Get()
 	}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created
 	}
-	if o.CreatorVersion != nil {
-		toSerialize["creatorVersion"] = o.CreatorVersion
+	if o.CreatorVersion.IsSet() {
+		toSerialize["creatorVersion"] = o.CreatorVersion.Get()
 	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	if o.Modified != nil {
 		toSerialize["modified"] = o.Modified
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
-	if o.Picture != nil {
-		toSerialize["picture"] = o.Picture
+	if o.Picture.IsSet() {
+		toSerialize["picture"] = o.Picture.Get()
 	}
 	if o.PreviewPictureRatio != nil {
 		toSerialize["previewPictureRatio"] = o.PreviewPictureRatio
@@ -464,11 +534,11 @@ func (o ReportInfo) MarshalJSON() ([]byte, error) {
 	if o.SavePreviewPicture != nil {
 		toSerialize["savePreviewPicture"] = o.SavePreviewPicture
 	}
-	if o.Tag != nil {
-		toSerialize["tag"] = o.Tag
+	if o.Tag.IsSet() {
+		toSerialize["tag"] = o.Tag.Get()
 	}
-	if o.Version != nil {
-		toSerialize["version"] = o.Version
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
 	}
 	return json.Marshal(toSerialize)
 }

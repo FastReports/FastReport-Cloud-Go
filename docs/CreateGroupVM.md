@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
+**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -71,6 +71,16 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 HasSubscriptionId returns a boolean if a field has been set.
 
+### SetSubscriptionIdNil
+
+`func (o *CreateGroupVM) SetSubscriptionIdNil(b bool)`
+
+ SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+
+### UnsetSubscriptionId
+`func (o *CreateGroupVM) UnsetSubscriptionId()`
+
+UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

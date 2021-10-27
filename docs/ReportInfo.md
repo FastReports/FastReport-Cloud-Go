@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Author** | Pointer to **string** |  | [optional] 
+**Author** | Pointer to **NullableString** |  | [optional] 
 **Created** | Pointer to **time.Time** |  | [optional] 
-**CreatorVersion** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
+**CreatorVersion** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **NullableString** |  | [optional] 
 **Modified** | Pointer to **time.Time** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Picture** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
+**Picture** | Pointer to **NullableString** |  | [optional] 
 **PreviewPictureRatio** | Pointer to **float32** |  | [optional] 
-**SaveMode** | Pointer to **string** |  | [optional] 
+**SaveMode** | Pointer to [**SaveMode**](SaveMode.md) |  | [optional] 
 **SavePreviewPicture** | Pointer to **bool** |  | [optional] 
-**Tag** | Pointer to **string** |  | [optional] 
-**Version** | Pointer to **string** |  | [optional] 
+**Tag** | Pointer to **NullableString** |  | [optional] 
+**Version** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -61,6 +61,16 @@ SetAuthor sets Author field to given value.
 
 HasAuthor returns a boolean if a field has been set.
 
+### SetAuthorNil
+
+`func (o *ReportInfo) SetAuthorNil(b bool)`
+
+ SetAuthorNil sets the value for Author to be an explicit nil
+
+### UnsetAuthor
+`func (o *ReportInfo) UnsetAuthor()`
+
+UnsetAuthor ensures that no value is present for Author, not even an explicit nil
 ### GetCreated
 
 `func (o *ReportInfo) GetCreated() time.Time`
@@ -111,6 +121,16 @@ SetCreatorVersion sets CreatorVersion field to given value.
 
 HasCreatorVersion returns a boolean if a field has been set.
 
+### SetCreatorVersionNil
+
+`func (o *ReportInfo) SetCreatorVersionNil(b bool)`
+
+ SetCreatorVersionNil sets the value for CreatorVersion to be an explicit nil
+
+### UnsetCreatorVersion
+`func (o *ReportInfo) UnsetCreatorVersion()`
+
+UnsetCreatorVersion ensures that no value is present for CreatorVersion, not even an explicit nil
 ### GetDescription
 
 `func (o *ReportInfo) GetDescription() string`
@@ -136,6 +156,16 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### SetDescriptionNil
+
+`func (o *ReportInfo) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *ReportInfo) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetModified
 
 `func (o *ReportInfo) GetModified() time.Time`
@@ -186,6 +216,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *ReportInfo) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *ReportInfo) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPicture
 
 `func (o *ReportInfo) GetPicture() string`
@@ -211,6 +251,16 @@ SetPicture sets Picture field to given value.
 
 HasPicture returns a boolean if a field has been set.
 
+### SetPictureNil
+
+`func (o *ReportInfo) SetPictureNil(b bool)`
+
+ SetPictureNil sets the value for Picture to be an explicit nil
+
+### UnsetPicture
+`func (o *ReportInfo) UnsetPicture()`
+
+UnsetPicture ensures that no value is present for Picture, not even an explicit nil
 ### GetPreviewPictureRatio
 
 `func (o *ReportInfo) GetPreviewPictureRatio() float32`
@@ -238,20 +288,20 @@ HasPreviewPictureRatio returns a boolean if a field has been set.
 
 ### GetSaveMode
 
-`func (o *ReportInfo) GetSaveMode() string`
+`func (o *ReportInfo) GetSaveMode() SaveMode`
 
 GetSaveMode returns the SaveMode field if non-nil, zero value otherwise.
 
 ### GetSaveModeOk
 
-`func (o *ReportInfo) GetSaveModeOk() (*string, bool)`
+`func (o *ReportInfo) GetSaveModeOk() (*SaveMode, bool)`
 
 GetSaveModeOk returns a tuple with the SaveMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSaveMode
 
-`func (o *ReportInfo) SetSaveMode(v string)`
+`func (o *ReportInfo) SetSaveMode(v SaveMode)`
 
 SetSaveMode sets SaveMode field to given value.
 
@@ -311,6 +361,16 @@ SetTag sets Tag field to given value.
 
 HasTag returns a boolean if a field has been set.
 
+### SetTagNil
+
+`func (o *ReportInfo) SetTagNil(b bool)`
+
+ SetTagNil sets the value for Tag to be an explicit nil
+
+### UnsetTag
+`func (o *ReportInfo) UnsetTag()`
+
+UnsetTag ensures that no value is present for Tag, not even an explicit nil
 ### GetVersion
 
 `func (o *ReportInfo) GetVersion() string`
@@ -336,6 +396,16 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
+### SetVersionNil
+
+`func (o *ReportInfo) SetVersionNil(b bool)`
+
+ SetVersionNil sets the value for Version to be an explicit nil
+
+### UnsetVersion
+`func (o *ReportInfo) UnsetVersion()`
+
+UnsetVersion ensures that no value is present for Version, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

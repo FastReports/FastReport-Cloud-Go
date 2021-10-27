@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FileName** | Pointer to **string** |  | [optional] 
-**FolderId** | Pointer to **string** |  | [optional] 
-**Locale** | Pointer to **string** |  | [optional] 
-**PagesCount** | Pointer to **int32** |  | [optional] 
-**Format** | Pointer to **string** |  | [optional] 
 **ExportParameters** | Pointer to **map[string]string** |  | [optional] 
+**Format** | Pointer to [**ExportFormat**](ExportFormat.md) |  | [optional] 
+**PagesCount** | Pointer to **NullableInt32** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
+**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
+**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
 
 ## Methods
 
@@ -30,80 +30,65 @@ NewExportReportTaskVMWithDefaults instantiates a new ExportReportTaskVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetFileName
+### GetExportParameters
 
-`func (o *ExportReportTaskVM) GetFileName() string`
+`func (o *ExportReportTaskVM) GetExportParameters() map[string]string`
 
-GetFileName returns the FileName field if non-nil, zero value otherwise.
+GetExportParameters returns the ExportParameters field if non-nil, zero value otherwise.
 
-### GetFileNameOk
+### GetExportParametersOk
 
-`func (o *ExportReportTaskVM) GetFileNameOk() (*string, bool)`
+`func (o *ExportReportTaskVM) GetExportParametersOk() (*map[string]string, bool)`
 
-GetFileNameOk returns a tuple with the FileName field if it's non-nil, zero value otherwise
+GetExportParametersOk returns a tuple with the ExportParameters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFileName
+### SetExportParameters
 
-`func (o *ExportReportTaskVM) SetFileName(v string)`
+`func (o *ExportReportTaskVM) SetExportParameters(v map[string]string)`
 
-SetFileName sets FileName field to given value.
+SetExportParameters sets ExportParameters field to given value.
 
-### HasFileName
+### HasExportParameters
 
-`func (o *ExportReportTaskVM) HasFileName() bool`
+`func (o *ExportReportTaskVM) HasExportParameters() bool`
 
-HasFileName returns a boolean if a field has been set.
+HasExportParameters returns a boolean if a field has been set.
 
-### GetFolderId
+### SetExportParametersNil
 
-`func (o *ExportReportTaskVM) GetFolderId() string`
+`func (o *ExportReportTaskVM) SetExportParametersNil(b bool)`
 
-GetFolderId returns the FolderId field if non-nil, zero value otherwise.
+ SetExportParametersNil sets the value for ExportParameters to be an explicit nil
 
-### GetFolderIdOk
+### UnsetExportParameters
+`func (o *ExportReportTaskVM) UnsetExportParameters()`
 
-`func (o *ExportReportTaskVM) GetFolderIdOk() (*string, bool)`
+UnsetExportParameters ensures that no value is present for ExportParameters, not even an explicit nil
+### GetFormat
 
-GetFolderIdOk returns a tuple with the FolderId field if it's non-nil, zero value otherwise
+`func (o *ExportReportTaskVM) GetFormat() ExportFormat`
+
+GetFormat returns the Format field if non-nil, zero value otherwise.
+
+### GetFormatOk
+
+`func (o *ExportReportTaskVM) GetFormatOk() (*ExportFormat, bool)`
+
+GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFolderId
+### SetFormat
 
-`func (o *ExportReportTaskVM) SetFolderId(v string)`
+`func (o *ExportReportTaskVM) SetFormat(v ExportFormat)`
 
-SetFolderId sets FolderId field to given value.
+SetFormat sets Format field to given value.
 
-### HasFolderId
+### HasFormat
 
-`func (o *ExportReportTaskVM) HasFolderId() bool`
+`func (o *ExportReportTaskVM) HasFormat() bool`
 
-HasFolderId returns a boolean if a field has been set.
-
-### GetLocale
-
-`func (o *ExportReportTaskVM) GetLocale() string`
-
-GetLocale returns the Locale field if non-nil, zero value otherwise.
-
-### GetLocaleOk
-
-`func (o *ExportReportTaskVM) GetLocaleOk() (*string, bool)`
-
-GetLocaleOk returns a tuple with the Locale field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocale
-
-`func (o *ExportReportTaskVM) SetLocale(v string)`
-
-SetLocale sets Locale field to given value.
-
-### HasLocale
-
-`func (o *ExportReportTaskVM) HasLocale() bool`
-
-HasLocale returns a boolean if a field has been set.
+HasFormat returns a boolean if a field has been set.
 
 ### GetPagesCount
 
@@ -130,55 +115,110 @@ SetPagesCount sets PagesCount field to given value.
 
 HasPagesCount returns a boolean if a field has been set.
 
-### GetFormat
+### SetPagesCountNil
 
-`func (o *ExportReportTaskVM) GetFormat() string`
+`func (o *ExportReportTaskVM) SetPagesCountNil(b bool)`
 
-GetFormat returns the Format field if non-nil, zero value otherwise.
+ SetPagesCountNil sets the value for PagesCount to be an explicit nil
 
-### GetFormatOk
+### UnsetPagesCount
+`func (o *ExportReportTaskVM) UnsetPagesCount()`
 
-`func (o *ExportReportTaskVM) GetFormatOk() (*string, bool)`
+UnsetPagesCount ensures that no value is present for PagesCount, not even an explicit nil
+### GetName
 
-GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
+`func (o *ExportReportTaskVM) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ExportReportTaskVM) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFormat
+### SetName
 
-`func (o *ExportReportTaskVM) SetFormat(v string)`
+`func (o *ExportReportTaskVM) SetName(v string)`
 
-SetFormat sets Format field to given value.
+SetName sets Name field to given value.
 
-### HasFormat
+### HasName
 
-`func (o *ExportReportTaskVM) HasFormat() bool`
+`func (o *ExportReportTaskVM) HasName() bool`
 
-HasFormat returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### GetExportParameters
+### SetNameNil
 
-`func (o *ExportReportTaskVM) GetExportParameters() map[string]string`
+`func (o *ExportReportTaskVM) SetNameNil(b bool)`
 
-GetExportParameters returns the ExportParameters field if non-nil, zero value otherwise.
+ SetNameNil sets the value for Name to be an explicit nil
 
-### GetExportParametersOk
+### UnsetName
+`func (o *ExportReportTaskVM) UnsetName()`
 
-`func (o *ExportReportTaskVM) GetExportParametersOk() (*map[string]string, bool)`
+UnsetName ensures that no value is present for Name, not even an explicit nil
+### GetSubscriptionId
 
-GetExportParametersOk returns a tuple with the ExportParameters field if it's non-nil, zero value otherwise
+`func (o *ExportReportTaskVM) GetSubscriptionId() string`
+
+GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
+
+### GetSubscriptionIdOk
+
+`func (o *ExportReportTaskVM) GetSubscriptionIdOk() (*string, bool)`
+
+GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExportParameters
+### SetSubscriptionId
 
-`func (o *ExportReportTaskVM) SetExportParameters(v map[string]string)`
+`func (o *ExportReportTaskVM) SetSubscriptionId(v string)`
 
-SetExportParameters sets ExportParameters field to given value.
+SetSubscriptionId sets SubscriptionId field to given value.
 
-### HasExportParameters
+### HasSubscriptionId
 
-`func (o *ExportReportTaskVM) HasExportParameters() bool`
+`func (o *ExportReportTaskVM) HasSubscriptionId() bool`
 
-HasExportParameters returns a boolean if a field has been set.
+HasSubscriptionId returns a boolean if a field has been set.
+
+### SetSubscriptionIdNil
+
+`func (o *ExportReportTaskVM) SetSubscriptionIdNil(b bool)`
+
+ SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+
+### UnsetSubscriptionId
+`func (o *ExportReportTaskVM) UnsetSubscriptionId()`
+
+UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+### GetType
+
+`func (o *ExportReportTaskVM) GetType() TaskType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ExportReportTaskVM) GetTypeOk() (*TaskType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ExportReportTaskVM) SetType(v TaskType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *ExportReportTaskVM) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

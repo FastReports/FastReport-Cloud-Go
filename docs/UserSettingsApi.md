@@ -61,7 +61,7 @@ Other parameters are passed through a pointer to a apiUserSettingsGetCurrentUser
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -70,7 +70,7 @@ Other parameters are passed through a pointer to a apiUserSettingsGetCurrentUser
 
 ## UserSettingsUpdateMySettings
 
-> UserSettingsVM UserSettingsUpdateMySettings(ctx).Model(model).Execute()
+> UserSettingsVM UserSettingsUpdateMySettings(ctx).UpdateUserSettingsVM(updateUserSettingsVM).Execute()
 
 Update settings of the current user
 
@@ -87,11 +87,11 @@ import (
 )
 
 func main() {
-    model := *openapiclient.NewUpdateUserSettingsVM() // UpdateUserSettingsVM |  (optional)
+    updateUserSettingsVM := *openapiclient.NewUpdateUserSettingsVM() // UpdateUserSettingsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserSettingsApi.UserSettingsUpdateMySettings(context.Background()).Model(model).Execute()
+    resp, r, err := api_client.UserSettingsApi.UserSettingsUpdateMySettings(context.Background()).UpdateUserSettingsVM(updateUserSettingsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserSettingsApi.UserSettingsUpdateMySettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -112,7 +112,7 @@ Other parameters are passed through a pointer to a apiUserSettingsUpdateMySettin
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**UpdateUserSettingsVM**](UpdateUserSettingsVM.md) |  | 
+ **updateUserSettingsVM** | [**UpdateUserSettingsVM**](UpdateUserSettingsVM.md) |  | 
 
 ### Return type
 
@@ -124,8 +124,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

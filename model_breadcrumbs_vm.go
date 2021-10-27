@@ -16,7 +16,7 @@ import (
 
 // BreadcrumbsVM struct for BreadcrumbsVM
 type BreadcrumbsVM struct {
-	Breadcrumbs *[]BreadcrumbsModel `json:"breadcrumbs,omitempty"`
+	Breadcrumbs []BreadcrumbsModel `json:"breadcrumbs,omitempty"`
 }
 
 // NewBreadcrumbsVM instantiates a new BreadcrumbsVM object
@@ -36,22 +36,23 @@ func NewBreadcrumbsVMWithDefaults() *BreadcrumbsVM {
 	return &this
 }
 
-// GetBreadcrumbs returns the Breadcrumbs field value if set, zero value otherwise.
+// GetBreadcrumbs returns the Breadcrumbs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BreadcrumbsVM) GetBreadcrumbs() []BreadcrumbsModel {
-	if o == nil || o.Breadcrumbs == nil {
+	if o == nil  {
 		var ret []BreadcrumbsModel
 		return ret
 	}
-	return *o.Breadcrumbs
+	return o.Breadcrumbs
 }
 
 // GetBreadcrumbsOk returns a tuple with the Breadcrumbs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BreadcrumbsVM) GetBreadcrumbsOk() (*[]BreadcrumbsModel, bool) {
 	if o == nil || o.Breadcrumbs == nil {
 		return nil, false
 	}
-	return o.Breadcrumbs, true
+	return &o.Breadcrumbs, true
 }
 
 // HasBreadcrumbs returns a boolean if a field has been set.
@@ -65,7 +66,7 @@ func (o *BreadcrumbsVM) HasBreadcrumbs() bool {
 
 // SetBreadcrumbs gets a reference to the given []BreadcrumbsModel and assigns it to the Breadcrumbs field.
 func (o *BreadcrumbsVM) SetBreadcrumbs(v []BreadcrumbsModel) {
-	o.Breadcrumbs = &v
+	o.Breadcrumbs = v
 }
 
 func (o BreadcrumbsVM) MarshalJSON() ([]byte, error) {

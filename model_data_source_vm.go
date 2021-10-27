@@ -17,17 +17,17 @@ import (
 
 // DataSourceVM struct for DataSourceVM
 type DataSourceVM struct {
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	ConnectionType *string `json:"connectionType,omitempty"`
-	ConnectionString *string `json:"connectionString,omitempty"`
-	DataStructure *string `json:"dataStructure,omitempty"`
-	SubscriptionId *string `json:"subscriptionId,omitempty"`
+	Id NullableString `json:"id,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	ConnectionType *DataSourceConnectionType `json:"connectionType,omitempty"`
+	ConnectionString NullableString `json:"connectionString,omitempty"`
+	DataStructure NullableString `json:"dataStructure,omitempty"`
+	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
 	EditedTime *time.Time `json:"editedTime,omitempty"`
-	EditorUserId *string `json:"editorUserId,omitempty"`
+	EditorUserId NullableString `json:"editorUserId,omitempty"`
 	CreatedTime *time.Time `json:"createdTime,omitempty"`
-	CreatorUserId *string `json:"creatorUserId,omitempty"`
-	IsConnected *bool `json:"isConnected,omitempty"`
+	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
+	Status *DataSourceStatus `json:"status,omitempty"`
 }
 
 // NewDataSourceVM instantiates a new DataSourceVM object
@@ -47,74 +47,94 @@ func NewDataSourceVMWithDefaults() *DataSourceVM {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourceVM) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || o.Id.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Id.Get()
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourceVM) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Id.Get(), o.Id.IsSet()
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *DataSourceVM) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && o.Id.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId gets a reference to the given NullableString and assigns it to the Id field.
 func (o *DataSourceVM) SetId(v string) {
-	o.Id = &v
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *DataSourceVM) SetIdNil() {
+	o.Id.Set(nil)
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *DataSourceVM) UnsetId() {
+	o.Id.Unset()
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourceVM) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourceVM) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *DataSourceVM) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *DataSourceVM) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *DataSourceVM) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *DataSourceVM) UnsetName() {
+	o.Name.Unset()
 }
 
 // GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
-func (o *DataSourceVM) GetConnectionType() string {
+func (o *DataSourceVM) GetConnectionType() DataSourceConnectionType {
 	if o == nil || o.ConnectionType == nil {
-		var ret string
+		var ret DataSourceConnectionType
 		return ret
 	}
 	return *o.ConnectionType
@@ -122,7 +142,7 @@ func (o *DataSourceVM) GetConnectionType() string {
 
 // GetConnectionTypeOk returns a tuple with the ConnectionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourceVM) GetConnectionTypeOk() (*string, bool) {
+func (o *DataSourceVM) GetConnectionTypeOk() (*DataSourceConnectionType, bool) {
 	if o == nil || o.ConnectionType == nil {
 		return nil, false
 	}
@@ -138,105 +158,135 @@ func (o *DataSourceVM) HasConnectionType() bool {
 	return false
 }
 
-// SetConnectionType gets a reference to the given string and assigns it to the ConnectionType field.
-func (o *DataSourceVM) SetConnectionType(v string) {
+// SetConnectionType gets a reference to the given DataSourceConnectionType and assigns it to the ConnectionType field.
+func (o *DataSourceVM) SetConnectionType(v DataSourceConnectionType) {
 	o.ConnectionType = &v
 }
 
-// GetConnectionString returns the ConnectionString field value if set, zero value otherwise.
+// GetConnectionString returns the ConnectionString field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourceVM) GetConnectionString() string {
-	if o == nil || o.ConnectionString == nil {
+	if o == nil || o.ConnectionString.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.ConnectionString
+	return *o.ConnectionString.Get()
 }
 
 // GetConnectionStringOk returns a tuple with the ConnectionString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourceVM) GetConnectionStringOk() (*string, bool) {
-	if o == nil || o.ConnectionString == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.ConnectionString, true
+	return o.ConnectionString.Get(), o.ConnectionString.IsSet()
 }
 
 // HasConnectionString returns a boolean if a field has been set.
 func (o *DataSourceVM) HasConnectionString() bool {
-	if o != nil && o.ConnectionString != nil {
+	if o != nil && o.ConnectionString.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetConnectionString gets a reference to the given string and assigns it to the ConnectionString field.
+// SetConnectionString gets a reference to the given NullableString and assigns it to the ConnectionString field.
 func (o *DataSourceVM) SetConnectionString(v string) {
-	o.ConnectionString = &v
+	o.ConnectionString.Set(&v)
+}
+// SetConnectionStringNil sets the value for ConnectionString to be an explicit nil
+func (o *DataSourceVM) SetConnectionStringNil() {
+	o.ConnectionString.Set(nil)
 }
 
-// GetDataStructure returns the DataStructure field value if set, zero value otherwise.
+// UnsetConnectionString ensures that no value is present for ConnectionString, not even an explicit nil
+func (o *DataSourceVM) UnsetConnectionString() {
+	o.ConnectionString.Unset()
+}
+
+// GetDataStructure returns the DataStructure field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourceVM) GetDataStructure() string {
-	if o == nil || o.DataStructure == nil {
+	if o == nil || o.DataStructure.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.DataStructure
+	return *o.DataStructure.Get()
 }
 
 // GetDataStructureOk returns a tuple with the DataStructure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourceVM) GetDataStructureOk() (*string, bool) {
-	if o == nil || o.DataStructure == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.DataStructure, true
+	return o.DataStructure.Get(), o.DataStructure.IsSet()
 }
 
 // HasDataStructure returns a boolean if a field has been set.
 func (o *DataSourceVM) HasDataStructure() bool {
-	if o != nil && o.DataStructure != nil {
+	if o != nil && o.DataStructure.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDataStructure gets a reference to the given string and assigns it to the DataStructure field.
+// SetDataStructure gets a reference to the given NullableString and assigns it to the DataStructure field.
 func (o *DataSourceVM) SetDataStructure(v string) {
-	o.DataStructure = &v
+	o.DataStructure.Set(&v)
+}
+// SetDataStructureNil sets the value for DataStructure to be an explicit nil
+func (o *DataSourceVM) SetDataStructureNil() {
+	o.DataStructure.Set(nil)
 }
 
-// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
+// UnsetDataStructure ensures that no value is present for DataStructure, not even an explicit nil
+func (o *DataSourceVM) UnsetDataStructure() {
+	o.DataStructure.Unset()
+}
+
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourceVM) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil || o.SubscriptionId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.SubscriptionId
+	return *o.SubscriptionId.Get()
 }
 
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourceVM) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.SubscriptionId, true
+	return o.SubscriptionId.Get(), o.SubscriptionId.IsSet()
 }
 
 // HasSubscriptionId returns a boolean if a field has been set.
 func (o *DataSourceVM) HasSubscriptionId() bool {
-	if o != nil && o.SubscriptionId != nil {
+	if o != nil && o.SubscriptionId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+// SetSubscriptionId gets a reference to the given NullableString and assigns it to the SubscriptionId field.
 func (o *DataSourceVM) SetSubscriptionId(v string) {
-	o.SubscriptionId = &v
+	o.SubscriptionId.Set(&v)
+}
+// SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+func (o *DataSourceVM) SetSubscriptionIdNil() {
+	o.SubscriptionId.Set(nil)
+}
+
+// UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+func (o *DataSourceVM) UnsetSubscriptionId() {
+	o.SubscriptionId.Unset()
 }
 
 // GetEditedTime returns the EditedTime field value if set, zero value otherwise.
@@ -271,36 +321,46 @@ func (o *DataSourceVM) SetEditedTime(v time.Time) {
 	o.EditedTime = &v
 }
 
-// GetEditorUserId returns the EditorUserId field value if set, zero value otherwise.
+// GetEditorUserId returns the EditorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourceVM) GetEditorUserId() string {
-	if o == nil || o.EditorUserId == nil {
+	if o == nil || o.EditorUserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.EditorUserId
+	return *o.EditorUserId.Get()
 }
 
 // GetEditorUserIdOk returns a tuple with the EditorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourceVM) GetEditorUserIdOk() (*string, bool) {
-	if o == nil || o.EditorUserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.EditorUserId, true
+	return o.EditorUserId.Get(), o.EditorUserId.IsSet()
 }
 
 // HasEditorUserId returns a boolean if a field has been set.
 func (o *DataSourceVM) HasEditorUserId() bool {
-	if o != nil && o.EditorUserId != nil {
+	if o != nil && o.EditorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetEditorUserId gets a reference to the given string and assigns it to the EditorUserId field.
+// SetEditorUserId gets a reference to the given NullableString and assigns it to the EditorUserId field.
 func (o *DataSourceVM) SetEditorUserId(v string) {
-	o.EditorUserId = &v
+	o.EditorUserId.Set(&v)
+}
+// SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
+func (o *DataSourceVM) SetEditorUserIdNil() {
+	o.EditorUserId.Set(nil)
+}
+
+// UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
+func (o *DataSourceVM) UnsetEditorUserId() {
+	o.EditorUserId.Unset()
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise.
@@ -335,104 +395,114 @@ func (o *DataSourceVM) SetCreatedTime(v time.Time) {
 	o.CreatedTime = &v
 }
 
-// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise.
+// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourceVM) GetCreatorUserId() string {
-	if o == nil || o.CreatorUserId == nil {
+	if o == nil || o.CreatorUserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.CreatorUserId
+	return *o.CreatorUserId.Get()
 }
 
 // GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourceVM) GetCreatorUserIdOk() (*string, bool) {
-	if o == nil || o.CreatorUserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CreatorUserId, true
+	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
 }
 
 // HasCreatorUserId returns a boolean if a field has been set.
 func (o *DataSourceVM) HasCreatorUserId() bool {
-	if o != nil && o.CreatorUserId != nil {
+	if o != nil && o.CreatorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatorUserId gets a reference to the given string and assigns it to the CreatorUserId field.
+// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
 func (o *DataSourceVM) SetCreatorUserId(v string) {
-	o.CreatorUserId = &v
+	o.CreatorUserId.Set(&v)
+}
+// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+func (o *DataSourceVM) SetCreatorUserIdNil() {
+	o.CreatorUserId.Set(nil)
 }
 
-// GetIsConnected returns the IsConnected field value if set, zero value otherwise.
-func (o *DataSourceVM) GetIsConnected() bool {
-	if o == nil || o.IsConnected == nil {
-		var ret bool
+// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+func (o *DataSourceVM) UnsetCreatorUserId() {
+	o.CreatorUserId.Unset()
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *DataSourceVM) GetStatus() DataSourceStatus {
+	if o == nil || o.Status == nil {
+		var ret DataSourceStatus
 		return ret
 	}
-	return *o.IsConnected
+	return *o.Status
 }
 
-// GetIsConnectedOk returns a tuple with the IsConnected field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourceVM) GetIsConnectedOk() (*bool, bool) {
-	if o == nil || o.IsConnected == nil {
+func (o *DataSourceVM) GetStatusOk() (*DataSourceStatus, bool) {
+	if o == nil || o.Status == nil {
 		return nil, false
 	}
-	return o.IsConnected, true
+	return o.Status, true
 }
 
-// HasIsConnected returns a boolean if a field has been set.
-func (o *DataSourceVM) HasIsConnected() bool {
-	if o != nil && o.IsConnected != nil {
+// HasStatus returns a boolean if a field has been set.
+func (o *DataSourceVM) HasStatus() bool {
+	if o != nil && o.Status != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIsConnected gets a reference to the given bool and assigns it to the IsConnected field.
-func (o *DataSourceVM) SetIsConnected(v bool) {
-	o.IsConnected = &v
+// SetStatus gets a reference to the given DataSourceStatus and assigns it to the Status field.
+func (o *DataSourceVM) SetStatus(v DataSourceStatus) {
+	o.Status = &v
 }
 
 func (o DataSourceVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	if o.ConnectionType != nil {
 		toSerialize["connectionType"] = o.ConnectionType
 	}
-	if o.ConnectionString != nil {
-		toSerialize["connectionString"] = o.ConnectionString
+	if o.ConnectionString.IsSet() {
+		toSerialize["connectionString"] = o.ConnectionString.Get()
 	}
-	if o.DataStructure != nil {
-		toSerialize["dataStructure"] = o.DataStructure
+	if o.DataStructure.IsSet() {
+		toSerialize["dataStructure"] = o.DataStructure.Get()
 	}
-	if o.SubscriptionId != nil {
-		toSerialize["subscriptionId"] = o.SubscriptionId
+	if o.SubscriptionId.IsSet() {
+		toSerialize["subscriptionId"] = o.SubscriptionId.Get()
 	}
 	if o.EditedTime != nil {
 		toSerialize["editedTime"] = o.EditedTime
 	}
-	if o.EditorUserId != nil {
-		toSerialize["editorUserId"] = o.EditorUserId
+	if o.EditorUserId.IsSet() {
+		toSerialize["editorUserId"] = o.EditorUserId.Get()
 	}
 	if o.CreatedTime != nil {
 		toSerialize["createdTime"] = o.CreatedTime
 	}
-	if o.CreatorUserId != nil {
-		toSerialize["creatorUserId"] = o.CreatorUserId
+	if o.CreatorUserId.IsSet() {
+		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
 	}
-	if o.IsConnected != nil {
-		toSerialize["isConnected"] = o.IsConnected
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
 }

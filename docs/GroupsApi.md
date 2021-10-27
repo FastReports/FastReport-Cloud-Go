@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## GroupsCreateGroup
 
-> GroupVM GroupsCreateGroup(ctx).ViewModel(viewModel).Execute()
+> GroupVM GroupsCreateGroup(ctx).CreateGroupVM(createGroupVM).Execute()
 
 Create a new user group
 
@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    viewModel := *openapiclient.NewCreateGroupVM("Name_example") // CreateGroupVM | Model for creating (optional)
+    createGroupVM := *openapiclient.NewCreateGroupVM("Name_example") // CreateGroupVM | Model for creating (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.GroupsApi.GroupsCreateGroup(context.Background()).ViewModel(viewModel).Execute()
+    resp, r, err := api_client.GroupsApi.GroupsCreateGroup(context.Background()).CreateGroupVM(createGroupVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GroupsApi.GroupsCreateGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiGroupsCreateGroupRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **viewModel** | [**CreateGroupVM**](CreateGroupVM.md) | Model for creating | 
+ **createGroupVM** | [**CreateGroupVM**](CreateGroupVM.md) | Model for creating | 
 
 ### Return type
 
@@ -70,8 +70,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -348,7 +348,7 @@ Name | Type | Description  | Notes
 
 ## GroupsRenameGroup
 
-> GroupVM GroupsRenameGroup(ctx, id).ViewModel(viewModel).Execute()
+> GroupVM GroupsRenameGroup(ctx, id).RenameGroupVM(renameGroupVM).Execute()
 
 Rename group by identifier
 
@@ -366,11 +366,11 @@ import (
 
 func main() {
     id := "id_example" // string | Identifier of group
-    viewModel := *openapiclient.NewRenameGroupVM("Name_example") // RenameGroupVM | Model for renaming
+    renameGroupVM := *openapiclient.NewRenameGroupVM("Name_example") // RenameGroupVM | Model for renaming
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.GroupsApi.GroupsRenameGroup(context.Background(), id).ViewModel(viewModel).Execute()
+    resp, r, err := api_client.GroupsApi.GroupsRenameGroup(context.Background(), id).RenameGroupVM(renameGroupVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GroupsApi.GroupsRenameGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -396,7 +396,7 @@ Other parameters are passed through a pointer to a apiGroupsRenameGroupRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **viewModel** | [**RenameGroupVM**](RenameGroupVM.md) | Model for renaming | 
+ **renameGroupVM** | [**RenameGroupVM**](RenameGroupVM.md) | Model for renaming | 
 
 ### Return type
 
@@ -408,8 +408,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -418,7 +418,7 @@ Name | Type | Description  | Notes
 
 ## GroupsUpdatePermissions
 
-> GroupsUpdatePermissions(ctx, id).PermissionsVM(permissionsVM).Execute()
+> GroupsUpdatePermissions(ctx, id).UpdateGroupPermissionsVM(updateGroupPermissionsVM).Execute()
 
 Update permissions
 
@@ -436,11 +436,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    permissionsVM := *openapiclient.NewUpdateGroupPermissionsVM(*openapiclient.NewGroupPermissions(), int32(123)) // UpdateGroupPermissionsVM |  (optional)
+    updateGroupPermissionsVM := *openapiclient.NewUpdateGroupPermissionsVM(*openapiclient.NewGroupPermissions(), openapiclient.GroupAdministrate(0)) // UpdateGroupPermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.GroupsApi.GroupsUpdatePermissions(context.Background(), id).PermissionsVM(permissionsVM).Execute()
+    resp, r, err := api_client.GroupsApi.GroupsUpdatePermissions(context.Background(), id).UpdateGroupPermissionsVM(updateGroupPermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GroupsApi.GroupsUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -464,7 +464,7 @@ Other parameters are passed through a pointer to a apiGroupsUpdatePermissionsReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **permissionsVM** | [**UpdateGroupPermissionsVM**](UpdateGroupPermissionsVM.md) |  | 
+ **updateGroupPermissionsVM** | [**UpdateGroupPermissionsVM**](UpdateGroupPermissionsVM.md) |  | 
 
 ### Return type
 
@@ -476,8 +476,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

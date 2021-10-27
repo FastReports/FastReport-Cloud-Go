@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiUserProfileGetMyProfileReq
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ## UserProfileUpdateMyProfile
 
-> UserProfileUpdateMyProfile(ctx).Model(model).Execute()
+> UserProfileUpdateMyProfile(ctx).UpdateUserProfileVM(updateUserProfileVM).Execute()
 
 Update profile of the current user
 
@@ -158,11 +158,11 @@ import (
 )
 
 func main() {
-    model := *openapiclient.NewUpdateUserProfileVM() // UpdateUserProfileVM |  (optional)
+    updateUserProfileVM := *openapiclient.NewUpdateUserProfileVM() // UpdateUserProfileVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserProfileApi.UserProfileUpdateMyProfile(context.Background()).Model(model).Execute()
+    resp, r, err := api_client.UserProfileApi.UserProfileUpdateMyProfile(context.Background()).UpdateUserProfileVM(updateUserProfileVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserProfileApi.UserProfileUpdateMyProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -181,7 +181,7 @@ Other parameters are passed through a pointer to a apiUserProfileUpdateMyProfile
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**UpdateUserProfileVM**](UpdateUserProfileVM.md) |  | 
+ **updateUserProfileVM** | [**UpdateUserProfileVM**](UpdateUserProfileVM.md) |  | 
 
 ### Return type
 
@@ -193,8 +193,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

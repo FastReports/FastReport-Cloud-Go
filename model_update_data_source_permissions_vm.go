@@ -17,14 +17,14 @@ import (
 // UpdateDataSourcePermissionsVM struct for UpdateDataSourcePermissionsVM
 type UpdateDataSourcePermissionsVM struct {
 	NewPermissions DataSourcePermissions `json:"newPermissions"`
-	Administrate int32 `json:"administrate"`
+	Administrate DataSourceAdministrate `json:"administrate"`
 }
 
 // NewUpdateDataSourcePermissionsVM instantiates a new UpdateDataSourcePermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateDataSourcePermissionsVM(newPermissions DataSourcePermissions, administrate int32) *UpdateDataSourcePermissionsVM {
+func NewUpdateDataSourcePermissionsVM(newPermissions DataSourcePermissions, administrate DataSourceAdministrate) *UpdateDataSourcePermissionsVM {
 	this := UpdateDataSourcePermissionsVM{}
 	this.NewPermissions = newPermissions
 	this.Administrate = administrate
@@ -64,9 +64,9 @@ func (o *UpdateDataSourcePermissionsVM) SetNewPermissions(v DataSourcePermission
 }
 
 // GetAdministrate returns the Administrate field value
-func (o *UpdateDataSourcePermissionsVM) GetAdministrate() int32 {
+func (o *UpdateDataSourcePermissionsVM) GetAdministrate() DataSourceAdministrate {
 	if o == nil {
-		var ret int32
+		var ret DataSourceAdministrate
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *UpdateDataSourcePermissionsVM) GetAdministrate() int32 {
 
 // GetAdministrateOk returns a tuple with the Administrate field value
 // and a boolean to check if the value has been set.
-func (o *UpdateDataSourcePermissionsVM) GetAdministrateOk() (*int32, bool) {
+func (o *UpdateDataSourcePermissionsVM) GetAdministrateOk() (*DataSourceAdministrate, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -83,7 +83,7 @@ func (o *UpdateDataSourcePermissionsVM) GetAdministrateOk() (*int32, bool) {
 }
 
 // SetAdministrate sets field value
-func (o *UpdateDataSourcePermissionsVM) SetAdministrate(v int32) {
+func (o *UpdateDataSourcePermissionsVM) SetAdministrate(v DataSourceAdministrate) {
 	o.Administrate = v
 }
 

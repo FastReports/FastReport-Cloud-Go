@@ -16,12 +16,12 @@ import (
 
 // GroupPermission struct for GroupPermission
 type GroupPermission struct {
-	Create *int32 `json:"create,omitempty"`
-	Delete *int32 `json:"delete,omitempty"`
-	Execute *int32 `json:"execute,omitempty"`
-	Get *int32 `json:"get,omitempty"`
-	Update *int32 `json:"update,omitempty"`
-	Administrate *int32 `json:"administrate,omitempty"`
+	Create *GroupCreate `json:"create,omitempty"`
+	Delete *GroupDelete `json:"delete,omitempty"`
+	Execute *GroupExecute `json:"execute,omitempty"`
+	Get *GroupGet `json:"get,omitempty"`
+	Update *GroupUpdate `json:"update,omitempty"`
+	Administrate *GroupAdministrate `json:"administrate,omitempty"`
 }
 
 // NewGroupPermission instantiates a new GroupPermission object
@@ -42,9 +42,9 @@ func NewGroupPermissionWithDefaults() *GroupPermission {
 }
 
 // GetCreate returns the Create field value if set, zero value otherwise.
-func (o *GroupPermission) GetCreate() int32 {
+func (o *GroupPermission) GetCreate() GroupCreate {
 	if o == nil || o.Create == nil {
-		var ret int32
+		var ret GroupCreate
 		return ret
 	}
 	return *o.Create
@@ -52,7 +52,7 @@ func (o *GroupPermission) GetCreate() int32 {
 
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPermission) GetCreateOk() (*int32, bool) {
+func (o *GroupPermission) GetCreateOk() (*GroupCreate, bool) {
 	if o == nil || o.Create == nil {
 		return nil, false
 	}
@@ -68,15 +68,15 @@ func (o *GroupPermission) HasCreate() bool {
 	return false
 }
 
-// SetCreate gets a reference to the given int32 and assigns it to the Create field.
-func (o *GroupPermission) SetCreate(v int32) {
+// SetCreate gets a reference to the given GroupCreate and assigns it to the Create field.
+func (o *GroupPermission) SetCreate(v GroupCreate) {
 	o.Create = &v
 }
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
-func (o *GroupPermission) GetDelete() int32 {
+func (o *GroupPermission) GetDelete() GroupDelete {
 	if o == nil || o.Delete == nil {
-		var ret int32
+		var ret GroupDelete
 		return ret
 	}
 	return *o.Delete
@@ -84,7 +84,7 @@ func (o *GroupPermission) GetDelete() int32 {
 
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPermission) GetDeleteOk() (*int32, bool) {
+func (o *GroupPermission) GetDeleteOk() (*GroupDelete, bool) {
 	if o == nil || o.Delete == nil {
 		return nil, false
 	}
@@ -100,15 +100,15 @@ func (o *GroupPermission) HasDelete() bool {
 	return false
 }
 
-// SetDelete gets a reference to the given int32 and assigns it to the Delete field.
-func (o *GroupPermission) SetDelete(v int32) {
+// SetDelete gets a reference to the given GroupDelete and assigns it to the Delete field.
+func (o *GroupPermission) SetDelete(v GroupDelete) {
 	o.Delete = &v
 }
 
 // GetExecute returns the Execute field value if set, zero value otherwise.
-func (o *GroupPermission) GetExecute() int32 {
+func (o *GroupPermission) GetExecute() GroupExecute {
 	if o == nil || o.Execute == nil {
-		var ret int32
+		var ret GroupExecute
 		return ret
 	}
 	return *o.Execute
@@ -116,7 +116,7 @@ func (o *GroupPermission) GetExecute() int32 {
 
 // GetExecuteOk returns a tuple with the Execute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPermission) GetExecuteOk() (*int32, bool) {
+func (o *GroupPermission) GetExecuteOk() (*GroupExecute, bool) {
 	if o == nil || o.Execute == nil {
 		return nil, false
 	}
@@ -132,15 +132,15 @@ func (o *GroupPermission) HasExecute() bool {
 	return false
 }
 
-// SetExecute gets a reference to the given int32 and assigns it to the Execute field.
-func (o *GroupPermission) SetExecute(v int32) {
+// SetExecute gets a reference to the given GroupExecute and assigns it to the Execute field.
+func (o *GroupPermission) SetExecute(v GroupExecute) {
 	o.Execute = &v
 }
 
 // GetGet returns the Get field value if set, zero value otherwise.
-func (o *GroupPermission) GetGet() int32 {
+func (o *GroupPermission) GetGet() GroupGet {
 	if o == nil || o.Get == nil {
-		var ret int32
+		var ret GroupGet
 		return ret
 	}
 	return *o.Get
@@ -148,7 +148,7 @@ func (o *GroupPermission) GetGet() int32 {
 
 // GetGetOk returns a tuple with the Get field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPermission) GetGetOk() (*int32, bool) {
+func (o *GroupPermission) GetGetOk() (*GroupGet, bool) {
 	if o == nil || o.Get == nil {
 		return nil, false
 	}
@@ -164,15 +164,15 @@ func (o *GroupPermission) HasGet() bool {
 	return false
 }
 
-// SetGet gets a reference to the given int32 and assigns it to the Get field.
-func (o *GroupPermission) SetGet(v int32) {
+// SetGet gets a reference to the given GroupGet and assigns it to the Get field.
+func (o *GroupPermission) SetGet(v GroupGet) {
 	o.Get = &v
 }
 
 // GetUpdate returns the Update field value if set, zero value otherwise.
-func (o *GroupPermission) GetUpdate() int32 {
+func (o *GroupPermission) GetUpdate() GroupUpdate {
 	if o == nil || o.Update == nil {
-		var ret int32
+		var ret GroupUpdate
 		return ret
 	}
 	return *o.Update
@@ -180,7 +180,7 @@ func (o *GroupPermission) GetUpdate() int32 {
 
 // GetUpdateOk returns a tuple with the Update field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPermission) GetUpdateOk() (*int32, bool) {
+func (o *GroupPermission) GetUpdateOk() (*GroupUpdate, bool) {
 	if o == nil || o.Update == nil {
 		return nil, false
 	}
@@ -196,15 +196,15 @@ func (o *GroupPermission) HasUpdate() bool {
 	return false
 }
 
-// SetUpdate gets a reference to the given int32 and assigns it to the Update field.
-func (o *GroupPermission) SetUpdate(v int32) {
+// SetUpdate gets a reference to the given GroupUpdate and assigns it to the Update field.
+func (o *GroupPermission) SetUpdate(v GroupUpdate) {
 	o.Update = &v
 }
 
 // GetAdministrate returns the Administrate field value if set, zero value otherwise.
-func (o *GroupPermission) GetAdministrate() int32 {
+func (o *GroupPermission) GetAdministrate() GroupAdministrate {
 	if o == nil || o.Administrate == nil {
-		var ret int32
+		var ret GroupAdministrate
 		return ret
 	}
 	return *o.Administrate
@@ -212,7 +212,7 @@ func (o *GroupPermission) GetAdministrate() int32 {
 
 // GetAdministrateOk returns a tuple with the Administrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPermission) GetAdministrateOk() (*int32, bool) {
+func (o *GroupPermission) GetAdministrateOk() (*GroupAdministrate, bool) {
 	if o == nil || o.Administrate == nil {
 		return nil, false
 	}
@@ -228,8 +228,8 @@ func (o *GroupPermission) HasAdministrate() bool {
 	return false
 }
 
-// SetAdministrate gets a reference to the given int32 and assigns it to the Administrate field.
-func (o *GroupPermission) SetAdministrate(v int32) {
+// SetAdministrate gets a reference to the given GroupAdministrate and assigns it to the Administrate field.
+func (o *GroupPermission) SetAdministrate(v GroupAdministrate) {
 	o.Administrate = &v
 }
 

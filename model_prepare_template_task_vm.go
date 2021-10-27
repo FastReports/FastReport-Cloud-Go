@@ -16,11 +16,12 @@ import (
 
 // PrepareTemplateTaskVM struct for PrepareTemplateTaskVM
 type PrepareTemplateTaskVM struct {
-	Name *string `json:"name,omitempty"`
-	Locale *string `json:"locale,omitempty"`
-	ParentFolderId *string `json:"parentFolderId,omitempty"`
-	PagesCount *int32 `json:"pagesCount,omitempty"`
-	ReportParameters *map[string]string `json:"reportParameters,omitempty"`
+	Exports []ExportReportTaskVM `json:"exports,omitempty"`
+	PagesCount NullableInt32 `json:"pagesCount,omitempty"`
+	ReportParameters map[string]string `json:"reportParameters,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
+	Type *TaskType `json:"type,omitempty"`
 }
 
 // NewPrepareTemplateTaskVM instantiates a new PrepareTemplateTaskVM object
@@ -40,150 +41,98 @@ func NewPrepareTemplateTaskVMWithDefaults() *PrepareTemplateTaskVM {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PrepareTemplateTaskVM) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
+// GetExports returns the Exports field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrepareTemplateTaskVM) GetExports() []ExportReportTaskVM {
+	if o == nil  {
+		var ret []ExportReportTaskVM
 		return ret
 	}
-	return *o.Name
+	return o.Exports
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetExportsOk returns a tuple with the Exports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PrepareTemplateTaskVM) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrepareTemplateTaskVM) GetExportsOk() (*[]ExportReportTaskVM, bool) {
+	if o == nil || o.Exports == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Exports, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *PrepareTemplateTaskVM) HasName() bool {
-	if o != nil && o.Name != nil {
+// HasExports returns a boolean if a field has been set.
+func (o *PrepareTemplateTaskVM) HasExports() bool {
+	if o != nil && o.Exports != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PrepareTemplateTaskVM) SetName(v string) {
-	o.Name = &v
+// SetExports gets a reference to the given []ExportReportTaskVM and assigns it to the Exports field.
+func (o *PrepareTemplateTaskVM) SetExports(v []ExportReportTaskVM) {
+	o.Exports = v
 }
 
-// GetLocale returns the Locale field value if set, zero value otherwise.
-func (o *PrepareTemplateTaskVM) GetLocale() string {
-	if o == nil || o.Locale == nil {
-		var ret string
-		return ret
-	}
-	return *o.Locale
-}
-
-// GetLocaleOk returns a tuple with the Locale field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PrepareTemplateTaskVM) GetLocaleOk() (*string, bool) {
-	if o == nil || o.Locale == nil {
-		return nil, false
-	}
-	return o.Locale, true
-}
-
-// HasLocale returns a boolean if a field has been set.
-func (o *PrepareTemplateTaskVM) HasLocale() bool {
-	if o != nil && o.Locale != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLocale gets a reference to the given string and assigns it to the Locale field.
-func (o *PrepareTemplateTaskVM) SetLocale(v string) {
-	o.Locale = &v
-}
-
-// GetParentFolderId returns the ParentFolderId field value if set, zero value otherwise.
-func (o *PrepareTemplateTaskVM) GetParentFolderId() string {
-	if o == nil || o.ParentFolderId == nil {
-		var ret string
-		return ret
-	}
-	return *o.ParentFolderId
-}
-
-// GetParentFolderIdOk returns a tuple with the ParentFolderId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PrepareTemplateTaskVM) GetParentFolderIdOk() (*string, bool) {
-	if o == nil || o.ParentFolderId == nil {
-		return nil, false
-	}
-	return o.ParentFolderId, true
-}
-
-// HasParentFolderId returns a boolean if a field has been set.
-func (o *PrepareTemplateTaskVM) HasParentFolderId() bool {
-	if o != nil && o.ParentFolderId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetParentFolderId gets a reference to the given string and assigns it to the ParentFolderId field.
-func (o *PrepareTemplateTaskVM) SetParentFolderId(v string) {
-	o.ParentFolderId = &v
-}
-
-// GetPagesCount returns the PagesCount field value if set, zero value otherwise.
+// GetPagesCount returns the PagesCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PrepareTemplateTaskVM) GetPagesCount() int32 {
-	if o == nil || o.PagesCount == nil {
+	if o == nil || o.PagesCount.Get() == nil {
 		var ret int32
 		return ret
 	}
-	return *o.PagesCount
+	return *o.PagesCount.Get()
 }
 
 // GetPagesCountOk returns a tuple with the PagesCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PrepareTemplateTaskVM) GetPagesCountOk() (*int32, bool) {
-	if o == nil || o.PagesCount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.PagesCount, true
+	return o.PagesCount.Get(), o.PagesCount.IsSet()
 }
 
 // HasPagesCount returns a boolean if a field has been set.
 func (o *PrepareTemplateTaskVM) HasPagesCount() bool {
-	if o != nil && o.PagesCount != nil {
+	if o != nil && o.PagesCount.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPagesCount gets a reference to the given int32 and assigns it to the PagesCount field.
+// SetPagesCount gets a reference to the given NullableInt32 and assigns it to the PagesCount field.
 func (o *PrepareTemplateTaskVM) SetPagesCount(v int32) {
-	o.PagesCount = &v
+	o.PagesCount.Set(&v)
+}
+// SetPagesCountNil sets the value for PagesCount to be an explicit nil
+func (o *PrepareTemplateTaskVM) SetPagesCountNil() {
+	o.PagesCount.Set(nil)
 }
 
-// GetReportParameters returns the ReportParameters field value if set, zero value otherwise.
+// UnsetPagesCount ensures that no value is present for PagesCount, not even an explicit nil
+func (o *PrepareTemplateTaskVM) UnsetPagesCount() {
+	o.PagesCount.Unset()
+}
+
+// GetReportParameters returns the ReportParameters field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PrepareTemplateTaskVM) GetReportParameters() map[string]string {
-	if o == nil || o.ReportParameters == nil {
+	if o == nil  {
 		var ret map[string]string
 		return ret
 	}
-	return *o.ReportParameters
+	return o.ReportParameters
 }
 
 // GetReportParametersOk returns a tuple with the ReportParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *PrepareTemplateTaskVM) GetReportParametersOk() (*map[string]string, bool) {
 	if o == nil || o.ReportParameters == nil {
 		return nil, false
 	}
-	return o.ReportParameters, true
+	return &o.ReportParameters, true
 }
 
 // HasReportParameters returns a boolean if a field has been set.
@@ -197,25 +146,144 @@ func (o *PrepareTemplateTaskVM) HasReportParameters() bool {
 
 // SetReportParameters gets a reference to the given map[string]string and assigns it to the ReportParameters field.
 func (o *PrepareTemplateTaskVM) SetReportParameters(v map[string]string) {
-	o.ReportParameters = &v
+	o.ReportParameters = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrepareTemplateTaskVM) GetName() string {
+	if o == nil || o.Name.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrepareTemplateTaskVM) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PrepareTemplateTaskVM) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *PrepareTemplateTaskVM) SetName(v string) {
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *PrepareTemplateTaskVM) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *PrepareTemplateTaskVM) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrepareTemplateTaskVM) GetSubscriptionId() string {
+	if o == nil || o.SubscriptionId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SubscriptionId.Get()
+}
+
+// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrepareTemplateTaskVM) GetSubscriptionIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SubscriptionId.Get(), o.SubscriptionId.IsSet()
+}
+
+// HasSubscriptionId returns a boolean if a field has been set.
+func (o *PrepareTemplateTaskVM) HasSubscriptionId() bool {
+	if o != nil && o.SubscriptionId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionId gets a reference to the given NullableString and assigns it to the SubscriptionId field.
+func (o *PrepareTemplateTaskVM) SetSubscriptionId(v string) {
+	o.SubscriptionId.Set(&v)
+}
+// SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+func (o *PrepareTemplateTaskVM) SetSubscriptionIdNil() {
+	o.SubscriptionId.Set(nil)
+}
+
+// UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+func (o *PrepareTemplateTaskVM) UnsetSubscriptionId() {
+	o.SubscriptionId.Unset()
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *PrepareTemplateTaskVM) GetType() TaskType {
+	if o == nil || o.Type == nil {
+		var ret TaskType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrepareTemplateTaskVM) GetTypeOk() (*TaskType, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *PrepareTemplateTaskVM) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given TaskType and assigns it to the Type field.
+func (o *PrepareTemplateTaskVM) SetType(v TaskType) {
+	o.Type = &v
 }
 
 func (o PrepareTemplateTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Exports != nil {
+		toSerialize["exports"] = o.Exports
 	}
-	if o.Locale != nil {
-		toSerialize["locale"] = o.Locale
-	}
-	if o.ParentFolderId != nil {
-		toSerialize["parentFolderId"] = o.ParentFolderId
-	}
-	if o.PagesCount != nil {
-		toSerialize["pagesCount"] = o.PagesCount
+	if o.PagesCount.IsSet() {
+		toSerialize["pagesCount"] = o.PagesCount.Get()
 	}
 	if o.ReportParameters != nil {
 		toSerialize["reportParameters"] = o.ReportParameters
+	}
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
+	}
+	if o.SubscriptionId.IsSet() {
+		toSerialize["subscriptionId"] = o.SubscriptionId.Get()
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

@@ -16,12 +16,12 @@ import (
 
 // ExportReportTaskVM struct for ExportReportTaskVM
 type ExportReportTaskVM struct {
-	FileName *string `json:"fileName,omitempty"`
-	FolderId *string `json:"folderId,omitempty"`
-	Locale *string `json:"locale,omitempty"`
-	PagesCount *int32 `json:"pagesCount,omitempty"`
-	Format *string `json:"format,omitempty"`
-	ExportParameters *map[string]string `json:"exportParameters,omitempty"`
+	ExportParameters map[string]string `json:"exportParameters,omitempty"`
+	Format *ExportFormat `json:"format,omitempty"`
+	PagesCount NullableInt32 `json:"pagesCount,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
+	Type *TaskType `json:"type,omitempty"`
 }
 
 // NewExportReportTaskVM instantiates a new ExportReportTaskVM object
@@ -41,138 +41,43 @@ func NewExportReportTaskVMWithDefaults() *ExportReportTaskVM {
 	return &this
 }
 
-// GetFileName returns the FileName field value if set, zero value otherwise.
-func (o *ExportReportTaskVM) GetFileName() string {
-	if o == nil || o.FileName == nil {
-		var ret string
+// GetExportParameters returns the ExportParameters field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExportReportTaskVM) GetExportParameters() map[string]string {
+	if o == nil  {
+		var ret map[string]string
 		return ret
 	}
-	return *o.FileName
+	return o.ExportParameters
 }
 
-// GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
+// GetExportParametersOk returns a tuple with the ExportParameters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportReportTaskVM) GetFileNameOk() (*string, bool) {
-	if o == nil || o.FileName == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExportReportTaskVM) GetExportParametersOk() (*map[string]string, bool) {
+	if o == nil || o.ExportParameters == nil {
 		return nil, false
 	}
-	return o.FileName, true
+	return &o.ExportParameters, true
 }
 
-// HasFileName returns a boolean if a field has been set.
-func (o *ExportReportTaskVM) HasFileName() bool {
-	if o != nil && o.FileName != nil {
+// HasExportParameters returns a boolean if a field has been set.
+func (o *ExportReportTaskVM) HasExportParameters() bool {
+	if o != nil && o.ExportParameters != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetFileName gets a reference to the given string and assigns it to the FileName field.
-func (o *ExportReportTaskVM) SetFileName(v string) {
-	o.FileName = &v
-}
-
-// GetFolderId returns the FolderId field value if set, zero value otherwise.
-func (o *ExportReportTaskVM) GetFolderId() string {
-	if o == nil || o.FolderId == nil {
-		var ret string
-		return ret
-	}
-	return *o.FolderId
-}
-
-// GetFolderIdOk returns a tuple with the FolderId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExportReportTaskVM) GetFolderIdOk() (*string, bool) {
-	if o == nil || o.FolderId == nil {
-		return nil, false
-	}
-	return o.FolderId, true
-}
-
-// HasFolderId returns a boolean if a field has been set.
-func (o *ExportReportTaskVM) HasFolderId() bool {
-	if o != nil && o.FolderId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFolderId gets a reference to the given string and assigns it to the FolderId field.
-func (o *ExportReportTaskVM) SetFolderId(v string) {
-	o.FolderId = &v
-}
-
-// GetLocale returns the Locale field value if set, zero value otherwise.
-func (o *ExportReportTaskVM) GetLocale() string {
-	if o == nil || o.Locale == nil {
-		var ret string
-		return ret
-	}
-	return *o.Locale
-}
-
-// GetLocaleOk returns a tuple with the Locale field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExportReportTaskVM) GetLocaleOk() (*string, bool) {
-	if o == nil || o.Locale == nil {
-		return nil, false
-	}
-	return o.Locale, true
-}
-
-// HasLocale returns a boolean if a field has been set.
-func (o *ExportReportTaskVM) HasLocale() bool {
-	if o != nil && o.Locale != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLocale gets a reference to the given string and assigns it to the Locale field.
-func (o *ExportReportTaskVM) SetLocale(v string) {
-	o.Locale = &v
-}
-
-// GetPagesCount returns the PagesCount field value if set, zero value otherwise.
-func (o *ExportReportTaskVM) GetPagesCount() int32 {
-	if o == nil || o.PagesCount == nil {
-		var ret int32
-		return ret
-	}
-	return *o.PagesCount
-}
-
-// GetPagesCountOk returns a tuple with the PagesCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ExportReportTaskVM) GetPagesCountOk() (*int32, bool) {
-	if o == nil || o.PagesCount == nil {
-		return nil, false
-	}
-	return o.PagesCount, true
-}
-
-// HasPagesCount returns a boolean if a field has been set.
-func (o *ExportReportTaskVM) HasPagesCount() bool {
-	if o != nil && o.PagesCount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPagesCount gets a reference to the given int32 and assigns it to the PagesCount field.
-func (o *ExportReportTaskVM) SetPagesCount(v int32) {
-	o.PagesCount = &v
+// SetExportParameters gets a reference to the given map[string]string and assigns it to the ExportParameters field.
+func (o *ExportReportTaskVM) SetExportParameters(v map[string]string) {
+	o.ExportParameters = v
 }
 
 // GetFormat returns the Format field value if set, zero value otherwise.
-func (o *ExportReportTaskVM) GetFormat() string {
+func (o *ExportReportTaskVM) GetFormat() ExportFormat {
 	if o == nil || o.Format == nil {
-		var ret string
+		var ret ExportFormat
 		return ret
 	}
 	return *o.Format
@@ -180,7 +85,7 @@ func (o *ExportReportTaskVM) GetFormat() string {
 
 // GetFormatOk returns a tuple with the Format field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportReportTaskVM) GetFormatOk() (*string, bool) {
+func (o *ExportReportTaskVM) GetFormatOk() (*ExportFormat, bool) {
 	if o == nil || o.Format == nil {
 		return nil, false
 	}
@@ -196,62 +101,188 @@ func (o *ExportReportTaskVM) HasFormat() bool {
 	return false
 }
 
-// SetFormat gets a reference to the given string and assigns it to the Format field.
-func (o *ExportReportTaskVM) SetFormat(v string) {
+// SetFormat gets a reference to the given ExportFormat and assigns it to the Format field.
+func (o *ExportReportTaskVM) SetFormat(v ExportFormat) {
 	o.Format = &v
 }
 
-// GetExportParameters returns the ExportParameters field value if set, zero value otherwise.
-func (o *ExportReportTaskVM) GetExportParameters() map[string]string {
-	if o == nil || o.ExportParameters == nil {
-		var ret map[string]string
+// GetPagesCount returns the PagesCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExportReportTaskVM) GetPagesCount() int32 {
+	if o == nil || o.PagesCount.Get() == nil {
+		var ret int32
 		return ret
 	}
-	return *o.ExportParameters
+	return *o.PagesCount.Get()
 }
 
-// GetExportParametersOk returns a tuple with the ExportParameters field value if set, nil otherwise
+// GetPagesCountOk returns a tuple with the PagesCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExportReportTaskVM) GetExportParametersOk() (*map[string]string, bool) {
-	if o == nil || o.ExportParameters == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExportReportTaskVM) GetPagesCountOk() (*int32, bool) {
+	if o == nil  {
 		return nil, false
 	}
-	return o.ExportParameters, true
+	return o.PagesCount.Get(), o.PagesCount.IsSet()
 }
 
-// HasExportParameters returns a boolean if a field has been set.
-func (o *ExportReportTaskVM) HasExportParameters() bool {
-	if o != nil && o.ExportParameters != nil {
+// HasPagesCount returns a boolean if a field has been set.
+func (o *ExportReportTaskVM) HasPagesCount() bool {
+	if o != nil && o.PagesCount.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetExportParameters gets a reference to the given map[string]string and assigns it to the ExportParameters field.
-func (o *ExportReportTaskVM) SetExportParameters(v map[string]string) {
-	o.ExportParameters = &v
+// SetPagesCount gets a reference to the given NullableInt32 and assigns it to the PagesCount field.
+func (o *ExportReportTaskVM) SetPagesCount(v int32) {
+	o.PagesCount.Set(&v)
+}
+// SetPagesCountNil sets the value for PagesCount to be an explicit nil
+func (o *ExportReportTaskVM) SetPagesCountNil() {
+	o.PagesCount.Set(nil)
+}
+
+// UnsetPagesCount ensures that no value is present for PagesCount, not even an explicit nil
+func (o *ExportReportTaskVM) UnsetPagesCount() {
+	o.PagesCount.Unset()
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExportReportTaskVM) GetName() string {
+	if o == nil || o.Name.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExportReportTaskVM) GetNameOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *ExportReportTaskVM) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *ExportReportTaskVM) SetName(v string) {
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *ExportReportTaskVM) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *ExportReportTaskVM) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExportReportTaskVM) GetSubscriptionId() string {
+	if o == nil || o.SubscriptionId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.SubscriptionId.Get()
+}
+
+// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExportReportTaskVM) GetSubscriptionIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.SubscriptionId.Get(), o.SubscriptionId.IsSet()
+}
+
+// HasSubscriptionId returns a boolean if a field has been set.
+func (o *ExportReportTaskVM) HasSubscriptionId() bool {
+	if o != nil && o.SubscriptionId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionId gets a reference to the given NullableString and assigns it to the SubscriptionId field.
+func (o *ExportReportTaskVM) SetSubscriptionId(v string) {
+	o.SubscriptionId.Set(&v)
+}
+// SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+func (o *ExportReportTaskVM) SetSubscriptionIdNil() {
+	o.SubscriptionId.Set(nil)
+}
+
+// UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+func (o *ExportReportTaskVM) UnsetSubscriptionId() {
+	o.SubscriptionId.Unset()
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ExportReportTaskVM) GetType() TaskType {
+	if o == nil || o.Type == nil {
+		var ret TaskType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExportReportTaskVM) GetTypeOk() (*TaskType, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *ExportReportTaskVM) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given TaskType and assigns it to the Type field.
+func (o *ExportReportTaskVM) SetType(v TaskType) {
+	o.Type = &v
 }
 
 func (o ExportReportTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.FileName != nil {
-		toSerialize["fileName"] = o.FileName
-	}
-	if o.FolderId != nil {
-		toSerialize["folderId"] = o.FolderId
-	}
-	if o.Locale != nil {
-		toSerialize["locale"] = o.Locale
-	}
-	if o.PagesCount != nil {
-		toSerialize["pagesCount"] = o.PagesCount
+	if o.ExportParameters != nil {
+		toSerialize["exportParameters"] = o.ExportParameters
 	}
 	if o.Format != nil {
 		toSerialize["format"] = o.Format
 	}
-	if o.ExportParameters != nil {
-		toSerialize["exportParameters"] = o.ExportParameters
+	if o.PagesCount.IsSet() {
+		toSerialize["pagesCount"] = o.PagesCount.Get()
+	}
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
+	}
+	if o.SubscriptionId.IsSet() {
+		toSerialize["subscriptionId"] = o.SubscriptionId.Get()
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

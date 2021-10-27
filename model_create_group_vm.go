@@ -17,7 +17,7 @@ import (
 // CreateGroupVM struct for CreateGroupVM
 type CreateGroupVM struct {
 	Name string `json:"name"`
-	SubscriptionId *string `json:"subscriptionId,omitempty"`
+	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
 }
 
 // NewCreateGroupVM instantiates a new CreateGroupVM object
@@ -62,36 +62,46 @@ func (o *CreateGroupVM) SetName(v string) {
 	o.Name = v
 }
 
-// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateGroupVM) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil || o.SubscriptionId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.SubscriptionId
+	return *o.SubscriptionId.Get()
 }
 
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateGroupVM) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.SubscriptionId, true
+	return o.SubscriptionId.Get(), o.SubscriptionId.IsSet()
 }
 
 // HasSubscriptionId returns a boolean if a field has been set.
 func (o *CreateGroupVM) HasSubscriptionId() bool {
-	if o != nil && o.SubscriptionId != nil {
+	if o != nil && o.SubscriptionId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+// SetSubscriptionId gets a reference to the given NullableString and assigns it to the SubscriptionId field.
 func (o *CreateGroupVM) SetSubscriptionId(v string) {
-	o.SubscriptionId = &v
+	o.SubscriptionId.Set(&v)
+}
+// SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+func (o *CreateGroupVM) SetSubscriptionIdNil() {
+	o.SubscriptionId.Set(nil)
+}
+
+// UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+func (o *CreateGroupVM) UnsetSubscriptionId() {
+	o.SubscriptionId.Unset()
 }
 
 func (o CreateGroupVM) MarshalJSON() ([]byte, error) {
@@ -99,8 +109,8 @@ func (o CreateGroupVM) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.SubscriptionId != nil {
-		toSerialize["subscriptionId"] = o.SubscriptionId
+	if o.SubscriptionId.IsSet() {
+		toSerialize["subscriptionId"] = o.SubscriptionId.Get()
 	}
 	return json.Marshal(toSerialize)
 }

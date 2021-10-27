@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**DataSourcesCreateDataSource**](DataSourcesApi.md#DataSourcesCreateDataSource) | **Post** /api/data/v1/DataSources | Create new data source
 [**DataSourcesDeleteDataSource**](DataSourcesApi.md#DataSourcesDeleteDataSource) | **Delete** /api/data/v1/DataSources/{id} | Delete data source by id
 [**DataSourcesFetchData**](DataSourcesApi.md#DataSourcesFetchData) | **Get** /api/data/v1/DataSources/{id}/fetch | This should connect to a database and set data structure
-[**DataSourcesGetAvailableDataSources**](DataSourcesApi.md#DataSourcesGetAvailableDataSources) | **Get** /api/data/v1/DataSources | Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+[**DataSourcesGetAvailableDataSources**](DataSourcesApi.md#DataSourcesGetAvailableDataSources) | **Get** /api/data/v1/DataSources | Returns all of the data sources, that current user have permission for in a subscription &lt;br /&gt;  The method will return minimal infomration about the datasources: &lt;br /&gt;  id, name, editedTime, status.
 [**DataSourcesGetDataSource**](DataSourcesApi.md#DataSourcesGetDataSource) | **Get** /api/data/v1/DataSources/{id} | Get data source by id
 [**DataSourcesGetPermissions**](DataSourcesApi.md#DataSourcesGetPermissions) | **Get** /api/data/v1/DataSources/{id}/permissions | Get all Data source permissions
 [**DataSourcesRenameDataSource**](DataSourcesApi.md#DataSourcesRenameDataSource) | **Put** /api/data/v1/DataSources/{id}/rename | Rename data source by id
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## DataSourcesCreateDataSource
 
-> DataSourceVM DataSourcesCreateDataSource(ctx).ViewModel(viewModel).Execute()
+> DataSourceVM DataSourcesCreateDataSource(ctx).CreateDataSourceVM(createDataSourceVM).Execute()
 
 Create new data source
 
@@ -36,11 +36,11 @@ import (
 )
 
 func main() {
-    viewModel := *openapiclient.NewCreateDataSourceVM("ConnectionString_example", "SubscriptionId_example") // CreateDataSourceVM | create viewmodel (optional)
+    createDataSourceVM := *openapiclient.NewCreateDataSourceVM("ConnectionString_example", "SubscriptionId_example") // CreateDataSourceVM | create viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesCreateDataSource(context.Background()).ViewModel(viewModel).Execute()
+    resp, r, err := api_client.DataSourcesApi.DataSourcesCreateDataSource(context.Background()).CreateDataSourceVM(createDataSourceVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesCreateDataSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,7 +61,7 @@ Other parameters are passed through a pointer to a apiDataSourcesCreateDataSourc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **viewModel** | [**CreateDataSourceVM**](CreateDataSourceVM.md) | create viewmodel | 
+ **createDataSourceVM** | [**CreateDataSourceVM**](CreateDataSourceVM.md) | create viewmodel | 
 
 ### Return type
 
@@ -73,8 +73,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -215,9 +215,9 @@ Name | Type | Description  | Notes
 
 ## DataSourcesGetAvailableDataSources
 
-> DataSourcesVM DataSourcesGetAvailableDataSources(ctx).SubscriptionId(subscriptionId).Skip(skip).Take(take).Execute()
+> DataSourcesVM DataSourcesGetAvailableDataSources(ctx).SubscriptionId(subscriptionId).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).Execute()
 
-Returns all of the data sources, that current user have permission for in a subscription  if subscription id is null, returns all data sources, that current user have permission for
+Returns all of the data sources, that current user have permission for in a subscription <br />  The method will return minimal infomration about the datasources: <br />  id, name, editedTime, status.
 
 ### Example
 
@@ -235,10 +235,12 @@ func main() {
     subscriptionId := "subscriptionId_example" // string | subscription id (optional)
     skip := int32(56) // int32 | how many data sources will be skipped (optional) (default to 0)
     take := int32(56) // int32 | how many data sources will be taken (optional) (default to 10)
+    orderBy := openapiclient.DataSourceSorting("None") // DataSourceSorting | field to order by (optional)
+    desc := true // bool | descending sort (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesGetAvailableDataSources(context.Background()).SubscriptionId(subscriptionId).Skip(skip).Take(take).Execute()
+    resp, r, err := api_client.DataSourcesApi.DataSourcesGetAvailableDataSources(context.Background()).SubscriptionId(subscriptionId).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesGetAvailableDataSources``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,6 +264,8 @@ Name | Type | Description  | Notes
  **subscriptionId** | **string** | subscription id | 
  **skip** | **int32** | how many data sources will be skipped | [default to 0]
  **take** | **int32** | how many data sources will be taken | [default to 10]
+ **orderBy** | [**DataSourceSorting**](DataSourceSorting.md) | field to order by | 
+ **desc** | **bool** | descending sort | [default to false]
 
 ### Return type
 
@@ -274,7 +278,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -342,7 +346,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -410,7 +414,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -419,7 +423,7 @@ Name | Type | Description  | Notes
 
 ## DataSourcesRenameDataSource
 
-> DataSourceVM DataSourcesRenameDataSource(ctx, id).RenameModel(renameModel).Execute()
+> DataSourceVM DataSourcesRenameDataSource(ctx, id).RenameDataSourceVM(renameDataSourceVM).Execute()
 
 Rename data source by id
 
@@ -437,11 +441,11 @@ import (
 
 func main() {
     id := "id_example" // string | data source id
-    renameModel := *openapiclient.NewRenameDataSourceVM("Name_example") // RenameDataSourceVM | rename viewmodel (optional)
+    renameDataSourceVM := *openapiclient.NewRenameDataSourceVM("Name_example") // RenameDataSourceVM | rename viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesRenameDataSource(context.Background(), id).RenameModel(renameModel).Execute()
+    resp, r, err := api_client.DataSourcesApi.DataSourcesRenameDataSource(context.Background(), id).RenameDataSourceVM(renameDataSourceVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesRenameDataSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -467,7 +471,7 @@ Other parameters are passed through a pointer to a apiDataSourcesRenameDataSourc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **renameModel** | [**RenameDataSourceVM**](RenameDataSourceVM.md) | rename viewmodel | 
+ **renameDataSourceVM** | [**RenameDataSourceVM**](RenameDataSourceVM.md) | rename viewmodel | 
 
 ### Return type
 
@@ -479,8 +483,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -489,7 +493,7 @@ Name | Type | Description  | Notes
 
 ## DataSourcesUpdateConnectionString
 
-> DataSourceVM DataSourcesUpdateConnectionString(ctx, id).UpdateModel(updateModel).Execute()
+> DataSourceVM DataSourcesUpdateConnectionString(ctx, id).UpdateDataSourceConnectionStringVM(updateDataSourceConnectionStringVM).Execute()
 
 Update data source's connection string by id
 
@@ -507,11 +511,11 @@ import (
 
 func main() {
     id := "id_example" // string | data source id
-    updateModel := *openapiclient.NewUpdateDataSourceConnectionStringVM("ConnectionString_example") // UpdateDataSourceConnectionStringVM | update viewmodel (optional)
+    updateDataSourceConnectionStringVM := *openapiclient.NewUpdateDataSourceConnectionStringVM("ConnectionString_example") // UpdateDataSourceConnectionStringVM | update viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdateConnectionString(context.Background(), id).UpdateModel(updateModel).Execute()
+    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdateConnectionString(context.Background(), id).UpdateDataSourceConnectionStringVM(updateDataSourceConnectionStringVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesUpdateConnectionString``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -537,7 +541,7 @@ Other parameters are passed through a pointer to a apiDataSourcesUpdateConnectio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateModel** | [**UpdateDataSourceConnectionStringVM**](UpdateDataSourceConnectionStringVM.md) | update viewmodel | 
+ **updateDataSourceConnectionStringVM** | [**UpdateDataSourceConnectionStringVM**](UpdateDataSourceConnectionStringVM.md) | update viewmodel | 
 
 ### Return type
 
@@ -549,8 +553,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -559,7 +563,7 @@ Name | Type | Description  | Notes
 
 ## DataSourcesUpdatePermissions
 
-> DataSourcesUpdatePermissions(ctx, id).PermissionsVM(permissionsVM).Execute()
+> DataSourcesUpdatePermissions(ctx, id).UpdateDataSourcePermissionsVM(updateDataSourcePermissionsVM).Execute()
 
 Update permissions
 
@@ -577,11 +581,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    permissionsVM := *openapiclient.NewUpdateDataSourcePermissionsVM(*openapiclient.NewDataSourcePermissions(), int32(123)) // UpdateDataSourcePermissionsVM |  (optional)
+    updateDataSourcePermissionsVM := *openapiclient.NewUpdateDataSourcePermissionsVM(*openapiclient.NewDataSourcePermissions(), openapiclient.DataSourceAdministrate(0)) // UpdateDataSourcePermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdatePermissions(context.Background(), id).PermissionsVM(permissionsVM).Execute()
+    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdatePermissions(context.Background(), id).UpdateDataSourcePermissionsVM(updateDataSourcePermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -605,7 +609,7 @@ Other parameters are passed through a pointer to a apiDataSourcesUpdatePermissio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **permissionsVM** | [**UpdateDataSourcePermissionsVM**](UpdateDataSourcePermissionsVM.md) |  | 
+ **updateDataSourcePermissionsVM** | [**UpdateDataSourcePermissionsVM**](UpdateDataSourcePermissionsVM.md) |  | 
 
 ### Return type
 
@@ -617,8 +621,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -627,7 +631,7 @@ Name | Type | Description  | Notes
 
 ## DataSourcesUpdateSubscriptionDataSource
 
-> DataSourcesUpdateSubscriptionDataSource(ctx, id).UpdatesubscriptionModel(updatesubscriptionModel).Execute()
+> DataSourcesUpdateSubscriptionDataSource(ctx, id).UpdateDataSourceSubscriptionVM(updateDataSourceSubscriptionVM).Execute()
 
 Update data source's subscription
 
@@ -645,11 +649,11 @@ import (
 
 func main() {
     id := "id_example" // string | data source id
-    updatesubscriptionModel := *openapiclient.NewUpdateDataSourceSubscriptionVM("SubscriptionId_example") // UpdateDataSourceSubscriptionVM | update subscription viewmodel (optional)
+    updateDataSourceSubscriptionVM := *openapiclient.NewUpdateDataSourceSubscriptionVM("SubscriptionId_example") // UpdateDataSourceSubscriptionVM | update subscription viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdateSubscriptionDataSource(context.Background(), id).UpdatesubscriptionModel(updatesubscriptionModel).Execute()
+    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdateSubscriptionDataSource(context.Background(), id).UpdateDataSourceSubscriptionVM(updateDataSourceSubscriptionVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesUpdateSubscriptionDataSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -673,7 +677,7 @@ Other parameters are passed through a pointer to a apiDataSourcesUpdateSubscript
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updatesubscriptionModel** | [**UpdateDataSourceSubscriptionVM**](UpdateDataSourceSubscriptionVM.md) | update subscription viewmodel | 
+ **updateDataSourceSubscriptionVM** | [**UpdateDataSourceSubscriptionVM**](UpdateDataSourceSubscriptionVM.md) | update subscription viewmodel | 
 
 ### Return type
 
@@ -685,8 +689,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

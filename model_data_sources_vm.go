@@ -16,7 +16,7 @@ import (
 
 // DataSourcesVM struct for DataSourcesVM
 type DataSourcesVM struct {
-	DataSources *[]DataSourceVM `json:"dataSources,omitempty"`
+	DataSources []DataSourceVM `json:"dataSources,omitempty"`
 	Count *int64 `json:"count,omitempty"`
 	Skip *int32 `json:"skip,omitempty"`
 	Take *int32 `json:"take,omitempty"`
@@ -39,22 +39,23 @@ func NewDataSourcesVMWithDefaults() *DataSourcesVM {
 	return &this
 }
 
-// GetDataSources returns the DataSources field value if set, zero value otherwise.
+// GetDataSources returns the DataSources field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourcesVM) GetDataSources() []DataSourceVM {
-	if o == nil || o.DataSources == nil {
+	if o == nil  {
 		var ret []DataSourceVM
 		return ret
 	}
-	return *o.DataSources
+	return o.DataSources
 }
 
 // GetDataSourcesOk returns a tuple with the DataSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourcesVM) GetDataSourcesOk() (*[]DataSourceVM, bool) {
 	if o == nil || o.DataSources == nil {
 		return nil, false
 	}
-	return o.DataSources, true
+	return &o.DataSources, true
 }
 
 // HasDataSources returns a boolean if a field has been set.
@@ -68,7 +69,7 @@ func (o *DataSourcesVM) HasDataSources() bool {
 
 // SetDataSources gets a reference to the given []DataSourceVM and assigns it to the DataSources field.
 func (o *DataSourcesVM) SetDataSources(v []DataSourceVM) {
-	o.DataSources = &v
+	o.DataSources = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.

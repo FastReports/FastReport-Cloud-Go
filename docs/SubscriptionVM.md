@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Locale** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
+**Locale** | Pointer to **NullableString** |  | [optional] 
 **Current** | Pointer to [**SubscriptionPeriodVM**](SubscriptionPeriodVM.md) |  | [optional] 
 **Old** | Pointer to [**[]SubscriptionPeriodVM**](SubscriptionPeriodVM.md) |  | [optional] 
 **TemplatesFolder** | Pointer to [**SubscriptionFolder**](SubscriptionFolder.md) |  | [optional] 
@@ -57,6 +57,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *SubscriptionVM) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *SubscriptionVM) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *SubscriptionVM) GetName() string`
@@ -82,6 +92,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *SubscriptionVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *SubscriptionVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetLocale
 
 `func (o *SubscriptionVM) GetLocale() string`
@@ -107,6 +127,16 @@ SetLocale sets Locale field to given value.
 
 HasLocale returns a boolean if a field has been set.
 
+### SetLocaleNil
+
+`func (o *SubscriptionVM) SetLocaleNil(b bool)`
+
+ SetLocaleNil sets the value for Locale to be an explicit nil
+
+### UnsetLocale
+`func (o *SubscriptionVM) UnsetLocale()`
+
+UnsetLocale ensures that no value is present for Locale, not even an explicit nil
 ### GetCurrent
 
 `func (o *SubscriptionVM) GetCurrent() SubscriptionPeriodVM`
@@ -157,6 +187,16 @@ SetOld sets Old field to given value.
 
 HasOld returns a boolean if a field has been set.
 
+### SetOldNil
+
+`func (o *SubscriptionVM) SetOldNil(b bool)`
+
+ SetOldNil sets the value for Old to be an explicit nil
+
+### UnsetOld
+`func (o *SubscriptionVM) UnsetOld()`
+
+UnsetOld ensures that no value is present for Old, not even an explicit nil
 ### GetTemplatesFolder
 
 `func (o *SubscriptionVM) GetTemplatesFolder() SubscriptionFolder`

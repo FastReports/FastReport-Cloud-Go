@@ -29,11 +29,11 @@ type ApiKeysApiService service
 type ApiApiKeysCreateApiKeyRequest struct {
 	ctx _context.Context
 	ApiService *ApiKeysApiService
-	model *CreateApiKeyVM
+	createApiKeyVM *CreateApiKeyVM
 }
 
-func (r ApiApiKeysCreateApiKeyRequest) Model(model CreateApiKeyVM) ApiApiKeysCreateApiKeyRequest {
-	r.model = &model
+func (r ApiApiKeysCreateApiKeyRequest) CreateApiKeyVM(createApiKeyVM CreateApiKeyVM) ApiApiKeysCreateApiKeyRequest {
+	r.createApiKeyVM = &createApiKeyVM
 	return r
 }
 
@@ -77,12 +77,12 @@ func (a *ApiKeysApiService) ApiKeysCreateApiKeyExecute(r ApiApiKeysCreateApiKeyR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.model == nil {
-		return localVarReturnValue, nil, reportError("model is required and must be specified")
+	if r.createApiKeyVM == nil {
+		return localVarReturnValue, nil, reportError("createApiKeyVM is required and must be specified")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -91,7 +91,7 @@ func (a *ApiKeysApiService) ApiKeysCreateApiKeyExecute(r ApiApiKeysCreateApiKeyR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -99,21 +99,7 @@ func (a *ApiKeysApiService) ApiKeysCreateApiKeyExecute(r ApiApiKeysCreateApiKeyR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.model
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.createApiKeyVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -173,11 +159,11 @@ func (a *ApiKeysApiService) ApiKeysCreateApiKeyExecute(r ApiApiKeysCreateApiKeyR
 type ApiApiKeysDeleteApiKeyRequest struct {
 	ctx _context.Context
 	ApiService *ApiKeysApiService
-	model *DeleteApiKeyVM
+	deleteApiKeyVM *DeleteApiKeyVM
 }
 
-func (r ApiApiKeysDeleteApiKeyRequest) Model(model DeleteApiKeyVM) ApiApiKeysDeleteApiKeyRequest {
-	r.model = &model
+func (r ApiApiKeysDeleteApiKeyRequest) DeleteApiKeyVM(deleteApiKeyVM DeleteApiKeyVM) ApiApiKeysDeleteApiKeyRequest {
+	r.deleteApiKeyVM = &deleteApiKeyVM
 	return r
 }
 
@@ -219,12 +205,12 @@ func (a *ApiKeysApiService) ApiKeysDeleteApiKeyExecute(r ApiApiKeysDeleteApiKeyR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.model == nil {
-		return nil, reportError("model is required and must be specified")
+	if r.deleteApiKeyVM == nil {
+		return nil, reportError("deleteApiKeyVM is required and must be specified")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -233,7 +219,7 @@ func (a *ApiKeysApiService) ApiKeysDeleteApiKeyExecute(r ApiApiKeysDeleteApiKeyR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -241,21 +227,7 @@ func (a *ApiKeysApiService) ApiKeysDeleteApiKeyExecute(r ApiApiKeysDeleteApiKeyR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.model
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.deleteApiKeyVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -372,26 +344,12 @@ func (a *ApiKeysApiService) ApiKeysGetApiKeysExecute(r ApiApiKeysGetApiKeysReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {

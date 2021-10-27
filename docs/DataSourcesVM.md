@@ -53,6 +53,16 @@ SetDataSources sets DataSources field to given value.
 
 HasDataSources returns a boolean if a field has been set.
 
+### SetDataSourcesNil
+
+`func (o *DataSourcesVM) SetDataSourcesNil(b bool)`
+
+ SetDataSourcesNil sets the value for DataSources to be an explicit nil
+
+### UnsetDataSources
+`func (o *DataSourcesVM) UnsetDataSources()`
+
+UnsetDataSources ensures that no value is present for DataSources, not even an explicit nil
 ### GetCount
 
 `func (o *DataSourcesVM) GetCount() int64`

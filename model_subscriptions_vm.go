@@ -16,7 +16,7 @@ import (
 
 // SubscriptionsVM struct for SubscriptionsVM
 type SubscriptionsVM struct {
-	Subscriptions *[]SubscriptionVM `json:"subscriptions,omitempty"`
+	Subscriptions []SubscriptionVM `json:"subscriptions,omitempty"`
 	Count *int64 `json:"count,omitempty"`
 	Skip *int32 `json:"skip,omitempty"`
 	Take *int32 `json:"take,omitempty"`
@@ -39,22 +39,23 @@ func NewSubscriptionsVMWithDefaults() *SubscriptionsVM {
 	return &this
 }
 
-// GetSubscriptions returns the Subscriptions field value if set, zero value otherwise.
+// GetSubscriptions returns the Subscriptions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionsVM) GetSubscriptions() []SubscriptionVM {
-	if o == nil || o.Subscriptions == nil {
+	if o == nil  {
 		var ret []SubscriptionVM
 		return ret
 	}
-	return *o.Subscriptions
+	return o.Subscriptions
 }
 
 // GetSubscriptionsOk returns a tuple with the Subscriptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionsVM) GetSubscriptionsOk() (*[]SubscriptionVM, bool) {
 	if o == nil || o.Subscriptions == nil {
 		return nil, false
 	}
-	return o.Subscriptions, true
+	return &o.Subscriptions, true
 }
 
 // HasSubscriptions returns a boolean if a field has been set.
@@ -68,7 +69,7 @@ func (o *SubscriptionsVM) HasSubscriptions() bool {
 
 // SetSubscriptions gets a reference to the given []SubscriptionVM and assigns it to the Subscriptions field.
 func (o *SubscriptionsVM) SetSubscriptions(v []SubscriptionVM) {
-	o.Subscriptions = &v
+	o.Subscriptions = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.

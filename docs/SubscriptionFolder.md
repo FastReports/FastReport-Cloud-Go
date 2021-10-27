@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FolderId** | Pointer to **string** |  | [optional] 
+**FolderId** | Pointer to **NullableString** |  | [optional] 
 **BytesUsed** | Pointer to **int64** |  | [optional] 
 
 ## Methods
@@ -51,6 +51,16 @@ SetFolderId sets FolderId field to given value.
 
 HasFolderId returns a boolean if a field has been set.
 
+### SetFolderIdNil
+
+`func (o *SubscriptionFolder) SetFolderIdNil(b bool)`
+
+ SetFolderIdNil sets the value for FolderId to be an explicit nil
+
+### UnsetFolderId
+`func (o *SubscriptionFolder) UnsetFolderId()`
+
+UnsetFolderId ensures that no value is present for FolderId, not even an explicit nil
 ### GetBytesUsed
 
 `func (o *SubscriptionFolder) GetBytesUsed() int64`

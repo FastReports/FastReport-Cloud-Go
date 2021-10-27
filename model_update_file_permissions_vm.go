@@ -17,14 +17,14 @@ import (
 // UpdateFilePermissionsVM struct for UpdateFilePermissionsVM
 type UpdateFilePermissionsVM struct {
 	NewPermissions FilePermissions `json:"newPermissions"`
-	Administrate int32 `json:"administrate"`
+	Administrate FileAdministrate `json:"administrate"`
 }
 
 // NewUpdateFilePermissionsVM instantiates a new UpdateFilePermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateFilePermissionsVM(newPermissions FilePermissions, administrate int32) *UpdateFilePermissionsVM {
+func NewUpdateFilePermissionsVM(newPermissions FilePermissions, administrate FileAdministrate) *UpdateFilePermissionsVM {
 	this := UpdateFilePermissionsVM{}
 	this.NewPermissions = newPermissions
 	this.Administrate = administrate
@@ -64,9 +64,9 @@ func (o *UpdateFilePermissionsVM) SetNewPermissions(v FilePermissions) {
 }
 
 // GetAdministrate returns the Administrate field value
-func (o *UpdateFilePermissionsVM) GetAdministrate() int32 {
+func (o *UpdateFilePermissionsVM) GetAdministrate() FileAdministrate {
 	if o == nil {
-		var ret int32
+		var ret FileAdministrate
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *UpdateFilePermissionsVM) GetAdministrate() int32 {
 
 // GetAdministrateOk returns a tuple with the Administrate field value
 // and a boolean to check if the value has been set.
-func (o *UpdateFilePermissionsVM) GetAdministrateOk() (*int32, bool) {
+func (o *UpdateFilePermissionsVM) GetAdministrateOk() (*FileAdministrate, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -83,7 +83,7 @@ func (o *UpdateFilePermissionsVM) GetAdministrateOk() (*int32, bool) {
 }
 
 // SetAdministrate sets field value
-func (o *UpdateFilePermissionsVM) SetAdministrate(v int32) {
+func (o *UpdateFilePermissionsVM) SetAdministrate(v FileAdministrate) {
 	o.Administrate = v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OwnerId** | Pointer to **string** |  | [optional] 
+**OwnerId** | Pointer to **NullableString** |  | [optional] 
 **Owner** | Pointer to [**GroupPermission**](GroupPermission.md) |  | [optional] 
 **Groups** | Pointer to [**map[string]GroupPermission**](GroupPermission.md) |  | [optional] 
 **Other** | Pointer to [**GroupPermission**](GroupPermission.md) |  | [optional] 
@@ -54,6 +54,16 @@ SetOwnerId sets OwnerId field to given value.
 
 HasOwnerId returns a boolean if a field has been set.
 
+### SetOwnerIdNil
+
+`func (o *GroupPermissions) SetOwnerIdNil(b bool)`
+
+ SetOwnerIdNil sets the value for OwnerId to be an explicit nil
+
+### UnsetOwnerId
+`func (o *GroupPermissions) UnsetOwnerId()`
+
+UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
 ### GetOwner
 
 `func (o *GroupPermissions) GetOwner() GroupPermission`
@@ -104,6 +114,16 @@ SetGroups sets Groups field to given value.
 
 HasGroups returns a boolean if a field has been set.
 
+### SetGroupsNil
+
+`func (o *GroupPermissions) SetGroupsNil(b bool)`
+
+ SetGroupsNil sets the value for Groups to be an explicit nil
+
+### UnsetGroups
+`func (o *GroupPermissions) UnsetGroups()`
+
+UnsetGroups ensures that no value is present for Groups, not even an explicit nil
 ### GetOther
 
 `func (o *GroupPermissions) GetOther() GroupPermission`

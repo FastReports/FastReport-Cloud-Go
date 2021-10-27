@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NewPermissions** | [**SubscriptionPermissions**](SubscriptionPermissions.md) |  | 
-**Administrate** | **int32** |  | 
+**Administrate** | [**SubscriptionAdministrate**](SubscriptionAdministrate.md) |  | 
 
 ## Methods
 
 ### NewUpdateSubscriptionPermissionsVM
 
-`func NewUpdateSubscriptionPermissionsVM(newPermissions SubscriptionPermissions, administrate int32, ) *UpdateSubscriptionPermissionsVM`
+`func NewUpdateSubscriptionPermissionsVM(newPermissions SubscriptionPermissions, administrate SubscriptionAdministrate, ) *UpdateSubscriptionPermissionsVM`
 
 NewUpdateSubscriptionPermissionsVM instantiates a new UpdateSubscriptionPermissionsVM object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetNewPermissions sets NewPermissions field to given value.
 
 ### GetAdministrate
 
-`func (o *UpdateSubscriptionPermissionsVM) GetAdministrate() int32`
+`func (o *UpdateSubscriptionPermissionsVM) GetAdministrate() SubscriptionAdministrate`
 
 GetAdministrate returns the Administrate field if non-nil, zero value otherwise.
 
 ### GetAdministrateOk
 
-`func (o *UpdateSubscriptionPermissionsVM) GetAdministrateOk() (*int32, bool)`
+`func (o *UpdateSubscriptionPermissionsVM) GetAdministrateOk() (*SubscriptionAdministrate, bool)`
 
 GetAdministrateOk returns a tuple with the Administrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdministrate
 
-`func (o *UpdateSubscriptionPermissionsVM) SetAdministrate(v int32)`
+`func (o *UpdateSubscriptionPermissionsVM) SetAdministrate(v SubscriptionAdministrate)`
 
 SetAdministrate sets Administrate field to given value.
 

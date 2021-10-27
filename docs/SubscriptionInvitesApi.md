@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionInvitesCreateInvite
 
-> SubscriptionInviteVM SubscriptionInvitesCreateInvite(ctx, subscriptionId).CreateInviteVM(createInviteVM).Execute()
+> SubscriptionInviteVM SubscriptionInvitesCreateInvite(ctx, subscriptionId).CreateSubscriptionInviteVM(createSubscriptionInviteVM).Execute()
 
 Create invite to subscription
 
@@ -100,11 +100,11 @@ import (
 
 func main() {
     subscriptionId := "subscriptionId_example" // string | id
-    createInviteVM := *openapiclient.NewCreateSubscriptionInviteVM() // CreateSubscriptionInviteVM | create VM (optional)
+    createSubscriptionInviteVM := *openapiclient.NewCreateSubscriptionInviteVM() // CreateSubscriptionInviteVM | create VM (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionInvitesApi.SubscriptionInvitesCreateInvite(context.Background(), subscriptionId).CreateInviteVM(createInviteVM).Execute()
+    resp, r, err := api_client.SubscriptionInvitesApi.SubscriptionInvitesCreateInvite(context.Background(), subscriptionId).CreateSubscriptionInviteVM(createSubscriptionInviteVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionInvitesApi.SubscriptionInvitesCreateInvite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,7 +130,7 @@ Other parameters are passed through a pointer to a apiSubscriptionInvitesCreateI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createInviteVM** | [**CreateSubscriptionInviteVM**](CreateSubscriptionInviteVM.md) | create VM | 
+ **createSubscriptionInviteVM** | [**CreateSubscriptionInviteVM**](CreateSubscriptionInviteVM.md) | create VM | 
 
 ### Return type
 
@@ -142,8 +142,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

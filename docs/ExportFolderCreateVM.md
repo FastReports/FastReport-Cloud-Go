@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Icon** | Pointer to **string** |  | [optional] 
+**Icon** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -52,6 +52,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *ExportFolderCreateVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *ExportFolderCreateVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetTags
 
 `func (o *ExportFolderCreateVM) GetTags() []string`
@@ -77,6 +87,16 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
+### SetTagsNil
+
+`func (o *ExportFolderCreateVM) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *ExportFolderCreateVM) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
 ### GetIcon
 
 `func (o *ExportFolderCreateVM) GetIcon() string`
@@ -102,6 +122,16 @@ SetIcon sets Icon field to given value.
 
 HasIcon returns a boolean if a field has been set.
 
+### SetIconNil
+
+`func (o *ExportFolderCreateVM) SetIconNil(b bool)`
+
+ SetIconNil sets the value for Icon to be an explicit nil
+
+### UnsetIcon
+`func (o *ExportFolderCreateVM) UnsetIcon()`
+
+UnsetIcon ensures that no value is present for Icon, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

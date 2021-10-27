@@ -16,7 +16,7 @@ import (
 
 // GroupUserVM struct for GroupUserVM
 type GroupUserVM struct {
-	UserId *string `json:"userId,omitempty"`
+	UserId NullableString `json:"userId,omitempty"`
 }
 
 // NewGroupUserVM instantiates a new GroupUserVM object
@@ -36,42 +36,52 @@ func NewGroupUserVMWithDefaults() *GroupUserVM {
 	return &this
 }
 
-// GetUserId returns the UserId field value if set, zero value otherwise.
+// GetUserId returns the UserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GroupUserVM) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || o.UserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.UserId
+	return *o.UserId.Get()
 }
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GroupUserVM) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.UserId, true
+	return o.UserId.Get(), o.UserId.IsSet()
 }
 
 // HasUserId returns a boolean if a field has been set.
 func (o *GroupUserVM) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && o.UserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUserId gets a reference to the given string and assigns it to the UserId field.
+// SetUserId gets a reference to the given NullableString and assigns it to the UserId field.
 func (o *GroupUserVM) SetUserId(v string) {
-	o.UserId = &v
+	o.UserId.Set(&v)
+}
+// SetUserIdNil sets the value for UserId to be an explicit nil
+func (o *GroupUserVM) SetUserIdNil() {
+	o.UserId.Set(nil)
+}
+
+// UnsetUserId ensures that no value is present for UserId, not even an explicit nil
+func (o *GroupUserVM) UnsetUserId() {
+	o.UserId.Unset()
 }
 
 func (o GroupUserVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
+	if o.UserId.IsSet() {
+		toSerialize["userId"] = o.UserId.Get()
 	}
 	return json.Marshal(toSerialize)
 }

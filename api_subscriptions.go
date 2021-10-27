@@ -88,26 +88,12 @@ func (a *SubscriptionsApiService) SubscriptionsGetDefaultPermissionsExecute(r Ap
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -185,6 +171,111 @@ func (a *SubscriptionsApiService) SubscriptionsGetDefaultPermissionsExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiSubscriptionsGetMyPermissionsRequest struct {
+	ctx _context.Context
+	ApiService *SubscriptionsApiService
+	subId string
+}
+
+
+func (r ApiSubscriptionsGetMyPermissionsRequest) Execute() (MyPermissionsVM, *_nethttp.Response, error) {
+	return r.ApiService.SubscriptionsGetMyPermissionsExecute(r)
+}
+
+/*
+ * SubscriptionsGetMyPermissions Get user's permissions for a subscription by id
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param subId subscription id
+ * @return ApiSubscriptionsGetMyPermissionsRequest
+ */
+func (a *SubscriptionsApiService) SubscriptionsGetMyPermissions(ctx _context.Context, subId string) ApiSubscriptionsGetMyPermissionsRequest {
+	return ApiSubscriptionsGetMyPermissionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		subId: subId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return MyPermissionsVM
+ */
+func (a *SubscriptionsApiService) SubscriptionsGetMyPermissionsExecute(r ApiSubscriptionsGetMyPermissionsRequest) (MyPermissionsVM, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  MyPermissionsVM
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsGetMyPermissions")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/manage/v1/Subscriptions/{subId}/mypermissions"
+	localVarPath = strings.Replace(localVarPath, "{"+"subId"+"}", _neturl.PathEscape(parameterToString(r.subId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSubscriptionsGetPermissionsRequest struct {
 	ctx _context.Context
 	ApiService *SubscriptionsApiService
@@ -246,26 +337,12 @@ func (a *SubscriptionsApiService) SubscriptionsGetPermissionsExecute(r ApiSubscr
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -374,26 +451,12 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionExecute(r ApiSubsc
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -534,26 +597,12 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionsExecute(r ApiSubs
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -661,7 +710,7 @@ func (a *SubscriptionsApiService) SubscriptionsRenameSubscriptionExecute(r ApiSu
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -670,7 +719,7 @@ func (a *SubscriptionsApiService) SubscriptionsRenameSubscriptionExecute(r ApiSu
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -679,20 +728,6 @@ func (a *SubscriptionsApiService) SubscriptionsRenameSubscriptionExecute(r ApiSu
 	}
 	// body params
 	localVarPostBody = r.renameSubscriptionVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -773,11 +808,11 @@ type ApiSubscriptionsUpdateDefaultPermissionsRequest struct {
 	ctx _context.Context
 	ApiService *SubscriptionsApiService
 	subscriptionId string
-	permissionsVM *UpdateDefaultPermissionsVM
+	updateDefaultPermissionsVM *UpdateDefaultPermissionsVM
 }
 
-func (r ApiSubscriptionsUpdateDefaultPermissionsRequest) PermissionsVM(permissionsVM UpdateDefaultPermissionsVM) ApiSubscriptionsUpdateDefaultPermissionsRequest {
-	r.permissionsVM = &permissionsVM
+func (r ApiSubscriptionsUpdateDefaultPermissionsRequest) UpdateDefaultPermissionsVM(updateDefaultPermissionsVM UpdateDefaultPermissionsVM) ApiSubscriptionsUpdateDefaultPermissionsRequest {
+	r.updateDefaultPermissionsVM = &updateDefaultPermissionsVM
 	return r
 }
 
@@ -824,12 +859,12 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissionsExecute(r
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.permissionsVM == nil {
-		return localVarReturnValue, nil, reportError("permissionsVM is required and must be specified")
+	if r.updateDefaultPermissionsVM == nil {
+		return localVarReturnValue, nil, reportError("updateDefaultPermissionsVM is required and must be specified")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -838,7 +873,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissionsExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -846,21 +881,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissionsExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.permissionsVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateDefaultPermissionsVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -941,11 +962,11 @@ type ApiSubscriptionsUpdateLocaleRequest struct {
 	ctx _context.Context
 	ApiService *SubscriptionsApiService
 	subscriptionId string
-	updateModel *UpdateSubscriptionLocaleVM
+	updateSubscriptionLocaleVM *UpdateSubscriptionLocaleVM
 }
 
-func (r ApiSubscriptionsUpdateLocaleRequest) UpdateModel(updateModel UpdateSubscriptionLocaleVM) ApiSubscriptionsUpdateLocaleRequest {
-	r.updateModel = &updateModel
+func (r ApiSubscriptionsUpdateLocaleRequest) UpdateSubscriptionLocaleVM(updateSubscriptionLocaleVM UpdateSubscriptionLocaleVM) ApiSubscriptionsUpdateLocaleRequest {
+	r.updateSubscriptionLocaleVM = &updateSubscriptionLocaleVM
 	return r
 }
 
@@ -992,12 +1013,12 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateLocaleExecute(r ApiSubscrip
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.updateModel == nil {
-		return localVarReturnValue, nil, reportError("updateModel is required and must be specified")
+	if r.updateSubscriptionLocaleVM == nil {
+		return localVarReturnValue, nil, reportError("updateSubscriptionLocaleVM is required and must be specified")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1006,7 +1027,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateLocaleExecute(r ApiSubscrip
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1014,21 +1035,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateLocaleExecute(r ApiSubscrip
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateSubscriptionLocaleVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1109,11 +1116,11 @@ type ApiSubscriptionsUpdatePermissionsRequest struct {
 	ctx _context.Context
 	ApiService *SubscriptionsApiService
 	id string
-	permissionsVM *UpdateSubscriptionPermissionsVM
+	updateSubscriptionPermissionsVM *UpdateSubscriptionPermissionsVM
 }
 
-func (r ApiSubscriptionsUpdatePermissionsRequest) PermissionsVM(permissionsVM UpdateSubscriptionPermissionsVM) ApiSubscriptionsUpdatePermissionsRequest {
-	r.permissionsVM = &permissionsVM
+func (r ApiSubscriptionsUpdatePermissionsRequest) UpdateSubscriptionPermissionsVM(updateSubscriptionPermissionsVM UpdateSubscriptionPermissionsVM) ApiSubscriptionsUpdatePermissionsRequest {
+	r.updateSubscriptionPermissionsVM = &updateSubscriptionPermissionsVM
 	return r
 }
 
@@ -1160,7 +1167,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdatePermissionsExecute(r ApiSub
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1169,7 +1176,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdatePermissionsExecute(r ApiSub
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1177,21 +1184,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdatePermissionsExecute(r ApiSub
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.permissionsVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateSubscriptionPermissionsVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err

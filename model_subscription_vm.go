@@ -16,11 +16,11 @@ import (
 
 // SubscriptionVM struct for SubscriptionVM
 type SubscriptionVM struct {
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Locale *string `json:"locale,omitempty"`
+	Id NullableString `json:"id,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	Locale NullableString `json:"locale,omitempty"`
 	Current *SubscriptionPeriodVM `json:"current,omitempty"`
-	Old *[]SubscriptionPeriodVM `json:"old,omitempty"`
+	Old []SubscriptionPeriodVM `json:"old,omitempty"`
 	TemplatesFolder *SubscriptionFolder `json:"templatesFolder,omitempty"`
 	ReportsFolder *SubscriptionFolder `json:"reportsFolder,omitempty"`
 	ExportsFolder *SubscriptionFolder `json:"exportsFolder,omitempty"`
@@ -43,100 +43,130 @@ func NewSubscriptionVMWithDefaults() *SubscriptionVM {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionVM) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || o.Id.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Id.Get()
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionVM) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Id.Get(), o.Id.IsSet()
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *SubscriptionVM) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && o.Id.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId gets a reference to the given NullableString and assigns it to the Id field.
 func (o *SubscriptionVM) SetId(v string) {
-	o.Id = &v
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *SubscriptionVM) SetIdNil() {
+	o.Id.Set(nil)
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *SubscriptionVM) UnsetId() {
+	o.Id.Unset()
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionVM) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionVM) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SubscriptionVM) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *SubscriptionVM) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *SubscriptionVM) SetNameNil() {
+	o.Name.Set(nil)
 }
 
-// GetLocale returns the Locale field value if set, zero value otherwise.
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *SubscriptionVM) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetLocale returns the Locale field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionVM) GetLocale() string {
-	if o == nil || o.Locale == nil {
+	if o == nil || o.Locale.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Locale
+	return *o.Locale.Get()
 }
 
 // GetLocaleOk returns a tuple with the Locale field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionVM) GetLocaleOk() (*string, bool) {
-	if o == nil || o.Locale == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Locale, true
+	return o.Locale.Get(), o.Locale.IsSet()
 }
 
 // HasLocale returns a boolean if a field has been set.
 func (o *SubscriptionVM) HasLocale() bool {
-	if o != nil && o.Locale != nil {
+	if o != nil && o.Locale.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetLocale gets a reference to the given string and assigns it to the Locale field.
+// SetLocale gets a reference to the given NullableString and assigns it to the Locale field.
 func (o *SubscriptionVM) SetLocale(v string) {
-	o.Locale = &v
+	o.Locale.Set(&v)
+}
+// SetLocaleNil sets the value for Locale to be an explicit nil
+func (o *SubscriptionVM) SetLocaleNil() {
+	o.Locale.Set(nil)
+}
+
+// UnsetLocale ensures that no value is present for Locale, not even an explicit nil
+func (o *SubscriptionVM) UnsetLocale() {
+	o.Locale.Unset()
 }
 
 // GetCurrent returns the Current field value if set, zero value otherwise.
@@ -171,22 +201,23 @@ func (o *SubscriptionVM) SetCurrent(v SubscriptionPeriodVM) {
 	o.Current = &v
 }
 
-// GetOld returns the Old field value if set, zero value otherwise.
+// GetOld returns the Old field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionVM) GetOld() []SubscriptionPeriodVM {
-	if o == nil || o.Old == nil {
+	if o == nil  {
 		var ret []SubscriptionPeriodVM
 		return ret
 	}
-	return *o.Old
+	return o.Old
 }
 
 // GetOldOk returns a tuple with the Old field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionVM) GetOldOk() (*[]SubscriptionPeriodVM, bool) {
 	if o == nil || o.Old == nil {
 		return nil, false
 	}
-	return o.Old, true
+	return &o.Old, true
 }
 
 // HasOld returns a boolean if a field has been set.
@@ -200,7 +231,7 @@ func (o *SubscriptionVM) HasOld() bool {
 
 // SetOld gets a reference to the given []SubscriptionPeriodVM and assigns it to the Old field.
 func (o *SubscriptionVM) SetOld(v []SubscriptionPeriodVM) {
-	o.Old = &v
+	o.Old = v
 }
 
 // GetTemplatesFolder returns the TemplatesFolder field value if set, zero value otherwise.
@@ -301,14 +332,14 @@ func (o *SubscriptionVM) SetExportsFolder(v SubscriptionFolder) {
 
 func (o SubscriptionVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
-	if o.Locale != nil {
-		toSerialize["locale"] = o.Locale
+	if o.Locale.IsSet() {
+		toSerialize["locale"] = o.Locale.Get()
 	}
 	if o.Current != nil {
 		toSerialize["current"] = o.Current

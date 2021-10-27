@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Icon** | Pointer to **string** |  | [optional] 
-**Content** | Pointer to **string** |  | [optional] 
+**Icon** | Pointer to **NullableString** |  | [optional] 
+**Content** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -53,6 +53,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *TemplateCreateVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *TemplateCreateVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetTags
 
 `func (o *TemplateCreateVM) GetTags() []string`
@@ -78,6 +88,16 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
+### SetTagsNil
+
+`func (o *TemplateCreateVM) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *TemplateCreateVM) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
 ### GetIcon
 
 `func (o *TemplateCreateVM) GetIcon() string`
@@ -103,6 +123,16 @@ SetIcon sets Icon field to given value.
 
 HasIcon returns a boolean if a field has been set.
 
+### SetIconNil
+
+`func (o *TemplateCreateVM) SetIconNil(b bool)`
+
+ SetIconNil sets the value for Icon to be an explicit nil
+
+### UnsetIcon
+`func (o *TemplateCreateVM) UnsetIcon()`
+
+UnsetIcon ensures that no value is present for Icon, not even an explicit nil
 ### GetContent
 
 `func (o *TemplateCreateVM) GetContent() string`
@@ -128,6 +158,16 @@ SetContent sets Content field to given value.
 
 HasContent returns a boolean if a field has been set.
 
+### SetContentNil
+
+`func (o *TemplateCreateVM) SetContentNil(b bool)`
+
+ SetContentNil sets the value for Content to be an explicit nil
+
+### UnsetContent
+`func (o *TemplateCreateVM) UnsetContent()`
+
+UnsetContent ensures that no value is present for Content, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

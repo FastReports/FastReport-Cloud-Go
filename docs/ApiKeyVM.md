@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
+**Value** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **NullableString** |  | [optional] 
 **Expired** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
@@ -52,6 +52,16 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
+### SetValueNil
+
+`func (o *ApiKeyVM) SetValueNil(b bool)`
+
+ SetValueNil sets the value for Value to be an explicit nil
+
+### UnsetValue
+`func (o *ApiKeyVM) UnsetValue()`
+
+UnsetValue ensures that no value is present for Value, not even an explicit nil
 ### GetDescription
 
 `func (o *ApiKeyVM) GetDescription() string`
@@ -77,6 +87,16 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### SetDescriptionNil
+
+`func (o *ApiKeyVM) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *ApiKeyVM) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetExpired
 
 `func (o *ApiKeyVM) GetExpired() time.Time`

@@ -16,7 +16,7 @@ import (
 
 // FolderTagsUpdateVM struct for FolderTagsUpdateVM
 type FolderTagsUpdateVM struct {
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 }
 
 // NewFolderTagsUpdateVM instantiates a new FolderTagsUpdateVM object
@@ -36,22 +36,23 @@ func NewFolderTagsUpdateVMWithDefaults() *FolderTagsUpdateVM {
 	return &this
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FolderTagsUpdateVM) GetTags() []string {
-	if o == nil || o.Tags == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FolderTagsUpdateVM) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -65,7 +66,7 @@ func (o *FolderTagsUpdateVM) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *FolderTagsUpdateVM) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 func (o FolderTagsUpdateVM) MarshalJSON() ([]byte, error) {

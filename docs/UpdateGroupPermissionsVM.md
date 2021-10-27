@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NewPermissions** | [**GroupPermissions**](GroupPermissions.md) |  | 
-**Administrate** | **int32** |  | 
+**Administrate** | [**GroupAdministrate**](GroupAdministrate.md) |  | 
 
 ## Methods
 
 ### NewUpdateGroupPermissionsVM
 
-`func NewUpdateGroupPermissionsVM(newPermissions GroupPermissions, administrate int32, ) *UpdateGroupPermissionsVM`
+`func NewUpdateGroupPermissionsVM(newPermissions GroupPermissions, administrate GroupAdministrate, ) *UpdateGroupPermissionsVM`
 
 NewUpdateGroupPermissionsVM instantiates a new UpdateGroupPermissionsVM object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetNewPermissions sets NewPermissions field to given value.
 
 ### GetAdministrate
 
-`func (o *UpdateGroupPermissionsVM) GetAdministrate() int32`
+`func (o *UpdateGroupPermissionsVM) GetAdministrate() GroupAdministrate`
 
 GetAdministrate returns the Administrate field if non-nil, zero value otherwise.
 
 ### GetAdministrateOk
 
-`func (o *UpdateGroupPermissionsVM) GetAdministrateOk() (*int32, bool)`
+`func (o *UpdateGroupPermissionsVM) GetAdministrateOk() (*GroupAdministrate, bool)`
 
 GetAdministrateOk returns a tuple with the Administrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdministrate
 
-`func (o *UpdateGroupPermissionsVM) SetAdministrate(v int32)`
+`func (o *UpdateGroupPermissionsVM) SetAdministrate(v GroupAdministrate)`
 
 SetAdministrate sets Administrate field to given value.
 

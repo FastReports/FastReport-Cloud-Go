@@ -50,6 +50,16 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
+### SetTagsNil
+
+`func (o *FolderTagsUpdateVM) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *FolderTagsUpdateVM) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

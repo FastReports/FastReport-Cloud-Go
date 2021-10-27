@@ -16,12 +16,12 @@ import (
 
 // DataSourcePermission struct for DataSourcePermission
 type DataSourcePermission struct {
-	Create *int32 `json:"create,omitempty"`
-	Delete *int32 `json:"delete,omitempty"`
-	Execute *int32 `json:"execute,omitempty"`
-	Get *int32 `json:"get,omitempty"`
-	Update *int32 `json:"update,omitempty"`
-	Administrate *int32 `json:"administrate,omitempty"`
+	Create *DataSourceCreate `json:"create,omitempty"`
+	Delete *DataSourceDelete `json:"delete,omitempty"`
+	Execute *DataSourceExecute `json:"execute,omitempty"`
+	Get *DataSourceGet `json:"get,omitempty"`
+	Update *DataSourceUpdate `json:"update,omitempty"`
+	Administrate *DataSourceAdministrate `json:"administrate,omitempty"`
 }
 
 // NewDataSourcePermission instantiates a new DataSourcePermission object
@@ -42,9 +42,9 @@ func NewDataSourcePermissionWithDefaults() *DataSourcePermission {
 }
 
 // GetCreate returns the Create field value if set, zero value otherwise.
-func (o *DataSourcePermission) GetCreate() int32 {
+func (o *DataSourcePermission) GetCreate() DataSourceCreate {
 	if o == nil || o.Create == nil {
-		var ret int32
+		var ret DataSourceCreate
 		return ret
 	}
 	return *o.Create
@@ -52,7 +52,7 @@ func (o *DataSourcePermission) GetCreate() int32 {
 
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourcePermission) GetCreateOk() (*int32, bool) {
+func (o *DataSourcePermission) GetCreateOk() (*DataSourceCreate, bool) {
 	if o == nil || o.Create == nil {
 		return nil, false
 	}
@@ -68,15 +68,15 @@ func (o *DataSourcePermission) HasCreate() bool {
 	return false
 }
 
-// SetCreate gets a reference to the given int32 and assigns it to the Create field.
-func (o *DataSourcePermission) SetCreate(v int32) {
+// SetCreate gets a reference to the given DataSourceCreate and assigns it to the Create field.
+func (o *DataSourcePermission) SetCreate(v DataSourceCreate) {
 	o.Create = &v
 }
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
-func (o *DataSourcePermission) GetDelete() int32 {
+func (o *DataSourcePermission) GetDelete() DataSourceDelete {
 	if o == nil || o.Delete == nil {
-		var ret int32
+		var ret DataSourceDelete
 		return ret
 	}
 	return *o.Delete
@@ -84,7 +84,7 @@ func (o *DataSourcePermission) GetDelete() int32 {
 
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourcePermission) GetDeleteOk() (*int32, bool) {
+func (o *DataSourcePermission) GetDeleteOk() (*DataSourceDelete, bool) {
 	if o == nil || o.Delete == nil {
 		return nil, false
 	}
@@ -100,15 +100,15 @@ func (o *DataSourcePermission) HasDelete() bool {
 	return false
 }
 
-// SetDelete gets a reference to the given int32 and assigns it to the Delete field.
-func (o *DataSourcePermission) SetDelete(v int32) {
+// SetDelete gets a reference to the given DataSourceDelete and assigns it to the Delete field.
+func (o *DataSourcePermission) SetDelete(v DataSourceDelete) {
 	o.Delete = &v
 }
 
 // GetExecute returns the Execute field value if set, zero value otherwise.
-func (o *DataSourcePermission) GetExecute() int32 {
+func (o *DataSourcePermission) GetExecute() DataSourceExecute {
 	if o == nil || o.Execute == nil {
-		var ret int32
+		var ret DataSourceExecute
 		return ret
 	}
 	return *o.Execute
@@ -116,7 +116,7 @@ func (o *DataSourcePermission) GetExecute() int32 {
 
 // GetExecuteOk returns a tuple with the Execute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourcePermission) GetExecuteOk() (*int32, bool) {
+func (o *DataSourcePermission) GetExecuteOk() (*DataSourceExecute, bool) {
 	if o == nil || o.Execute == nil {
 		return nil, false
 	}
@@ -132,15 +132,15 @@ func (o *DataSourcePermission) HasExecute() bool {
 	return false
 }
 
-// SetExecute gets a reference to the given int32 and assigns it to the Execute field.
-func (o *DataSourcePermission) SetExecute(v int32) {
+// SetExecute gets a reference to the given DataSourceExecute and assigns it to the Execute field.
+func (o *DataSourcePermission) SetExecute(v DataSourceExecute) {
 	o.Execute = &v
 }
 
 // GetGet returns the Get field value if set, zero value otherwise.
-func (o *DataSourcePermission) GetGet() int32 {
+func (o *DataSourcePermission) GetGet() DataSourceGet {
 	if o == nil || o.Get == nil {
-		var ret int32
+		var ret DataSourceGet
 		return ret
 	}
 	return *o.Get
@@ -148,7 +148,7 @@ func (o *DataSourcePermission) GetGet() int32 {
 
 // GetGetOk returns a tuple with the Get field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourcePermission) GetGetOk() (*int32, bool) {
+func (o *DataSourcePermission) GetGetOk() (*DataSourceGet, bool) {
 	if o == nil || o.Get == nil {
 		return nil, false
 	}
@@ -164,15 +164,15 @@ func (o *DataSourcePermission) HasGet() bool {
 	return false
 }
 
-// SetGet gets a reference to the given int32 and assigns it to the Get field.
-func (o *DataSourcePermission) SetGet(v int32) {
+// SetGet gets a reference to the given DataSourceGet and assigns it to the Get field.
+func (o *DataSourcePermission) SetGet(v DataSourceGet) {
 	o.Get = &v
 }
 
 // GetUpdate returns the Update field value if set, zero value otherwise.
-func (o *DataSourcePermission) GetUpdate() int32 {
+func (o *DataSourcePermission) GetUpdate() DataSourceUpdate {
 	if o == nil || o.Update == nil {
-		var ret int32
+		var ret DataSourceUpdate
 		return ret
 	}
 	return *o.Update
@@ -180,7 +180,7 @@ func (o *DataSourcePermission) GetUpdate() int32 {
 
 // GetUpdateOk returns a tuple with the Update field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourcePermission) GetUpdateOk() (*int32, bool) {
+func (o *DataSourcePermission) GetUpdateOk() (*DataSourceUpdate, bool) {
 	if o == nil || o.Update == nil {
 		return nil, false
 	}
@@ -196,15 +196,15 @@ func (o *DataSourcePermission) HasUpdate() bool {
 	return false
 }
 
-// SetUpdate gets a reference to the given int32 and assigns it to the Update field.
-func (o *DataSourcePermission) SetUpdate(v int32) {
+// SetUpdate gets a reference to the given DataSourceUpdate and assigns it to the Update field.
+func (o *DataSourcePermission) SetUpdate(v DataSourceUpdate) {
 	o.Update = &v
 }
 
 // GetAdministrate returns the Administrate field value if set, zero value otherwise.
-func (o *DataSourcePermission) GetAdministrate() int32 {
+func (o *DataSourcePermission) GetAdministrate() DataSourceAdministrate {
 	if o == nil || o.Administrate == nil {
-		var ret int32
+		var ret DataSourceAdministrate
 		return ret
 	}
 	return *o.Administrate
@@ -212,7 +212,7 @@ func (o *DataSourcePermission) GetAdministrate() int32 {
 
 // GetAdministrateOk returns a tuple with the Administrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourcePermission) GetAdministrateOk() (*int32, bool) {
+func (o *DataSourcePermission) GetAdministrateOk() (*DataSourceAdministrate, bool) {
 	if o == nil || o.Administrate == nil {
 		return nil, false
 	}
@@ -228,8 +228,8 @@ func (o *DataSourcePermission) HasAdministrate() bool {
 	return false
 }
 
-// SetAdministrate gets a reference to the given int32 and assigns it to the Administrate field.
-func (o *DataSourcePermission) SetAdministrate(v int32) {
+// SetAdministrate gets a reference to the given DataSourceAdministrate and assigns it to the Administrate field.
+func (o *DataSourcePermission) SetAdministrate(v DataSourceAdministrate) {
 	o.Administrate = &v
 }
 

@@ -24,7 +24,7 @@ Method | HTTP request | Description
 [**ExportsDeleteFile**](ExportsApi.md#ExportsDeleteFile) | **Delete** /api/rp/v1/Exports/File/{id} | Delete specified file
 [**ExportsGetFile**](ExportsApi.md#ExportsGetFile) | **Get** /api/rp/v1/Exports/File/{id} | Get specified file
 [**ExportsGetFilesCount**](ExportsApi.md#ExportsGetFilesCount) | **Get** /api/rp/v1/Exports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
-[**ExportsGetFilesList**](ExportsApi.md#ExportsGetFilesList) | **Get** /api/rp/v1/Exports/Folder/{id}/ListFiles | Get all files from specified folder
+[**ExportsGetFilesList**](ExportsApi.md#ExportsGetFilesList) | **Get** /api/rp/v1/Exports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 [**ExportsGetPermissions**](ExportsApi.md#ExportsGetPermissions) | **Get** /api/rp/v1/Exports/File/{id}/permissions | Get all file permissions
 [**ExportsMoveFile**](ExportsApi.md#ExportsMoveFile) | **Post** /api/rp/v1/Exports/File/{id}/Move/{folderId} | Move file to a specified folder
 [**ExportsRenameFile**](ExportsApi.md#ExportsRenameFile) | **Put** /api/rp/v1/Exports/File/{id}/Rename | Rename a file
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ## ExportFolderAndFileGetFoldersAndFiles
 
-> FilesVM ExportFolderAndFileGetFoldersAndFiles(ctx, id).Skip(skip).Take(take).Execute()
+> FilesVM ExportFolderAndFileGetFoldersAndFiles(ctx, id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).Execute()
 
 Get all folders and files from specified folder
 
@@ -128,10 +128,13 @@ func main() {
     id := "id_example" // string | folder id
     skip := int32(56) // int32 | number of folder and files, that have to be skipped (optional) (default to 0)
     take := int32(56) // int32 | number of folder and files, that have to be returned (optional) (default to 10)
+    orderBy := openapiclient.FileSorting("None") // FileSorting | indicates a field to sort by (optional)
+    desc := true // bool | indicates if sorting is descending (optional) (default to false)
+    searchPattern := "searchPattern_example" // string |  (optional) (default to "")
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportFolderAndFileGetFoldersAndFiles(context.Background(), id).Skip(skip).Take(take).Execute()
+    resp, r, err := api_client.ExportsApi.ExportFolderAndFileGetFoldersAndFiles(context.Background(), id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportFolderAndFileGetFoldersAndFiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -159,6 +162,9 @@ Name | Type | Description  | Notes
 
  **skip** | **int32** | number of folder and files, that have to be skipped | [default to 0]
  **take** | **int32** | number of folder and files, that have to be returned | [default to 10]
+ **orderBy** | [**FileSorting**](FileSorting.md) | indicates a field to sort by | 
+ **desc** | **bool** | indicates if sorting is descending | [default to false]
+ **searchPattern** | **string** |  | [default to &quot;&quot;]
 
 ### Return type
 
@@ -171,7 +177,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -244,7 +250,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -314,7 +320,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -384,7 +390,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -454,7 +460,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -528,7 +534,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -598,7 +604,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -666,7 +672,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -732,7 +738,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -805,7 +811,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -814,7 +820,7 @@ Name | Type | Description  | Notes
 
 ## ExportFoldersPostFolder
 
-> FileVM ExportFoldersPostFolder(ctx, id).FolderVm(folderVm).Execute()
+> FileVM ExportFoldersPostFolder(ctx, id).ExportFolderCreateVM(exportFolderCreateVM).Execute()
 
 Create folder
 
@@ -834,11 +840,11 @@ import (
 
 func main() {
     id := "id_example" // string | Identifier of parent folder id
-    folderVm := *openapiclient.NewExportFolderCreateVM() // ExportFolderCreateVM | create VM (optional)
+    exportFolderCreateVM := *openapiclient.NewExportFolderCreateVM() // ExportFolderCreateVM | create VM (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportFoldersPostFolder(context.Background(), id).FolderVm(folderVm).Execute()
+    resp, r, err := api_client.ExportsApi.ExportFoldersPostFolder(context.Background(), id).ExportFolderCreateVM(exportFolderCreateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportFoldersPostFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -864,7 +870,7 @@ Other parameters are passed through a pointer to a apiExportFoldersPostFolderReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **folderVm** | [**ExportFolderCreateVM**](ExportFolderCreateVM.md) | create VM | 
+ **exportFolderCreateVM** | [**ExportFolderCreateVM**](ExportFolderCreateVM.md) | create VM | 
 
 ### Return type
 
@@ -876,8 +882,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -886,7 +892,7 @@ Name | Type | Description  | Notes
 
 ## ExportFoldersRenameFolder
 
-> FileVM ExportFoldersRenameFolder(ctx, id).NameModel(nameModel).Execute()
+> FileVM ExportFoldersRenameFolder(ctx, id).FolderRenameVM(folderRenameVM).Execute()
 
 Rename a folder
 
@@ -906,11 +912,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    nameModel := *openapiclient.NewFolderRenameVM("Name_example") // FolderRenameVM |  (optional)
+    folderRenameVM := *openapiclient.NewFolderRenameVM("Name_example") // FolderRenameVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportFoldersRenameFolder(context.Background(), id).NameModel(nameModel).Execute()
+    resp, r, err := api_client.ExportsApi.ExportFoldersRenameFolder(context.Background(), id).FolderRenameVM(folderRenameVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportFoldersRenameFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -936,7 +942,7 @@ Other parameters are passed through a pointer to a apiExportFoldersRenameFolderR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **nameModel** | [**FolderRenameVM**](FolderRenameVM.md) |  | 
+ **folderRenameVM** | [**FolderRenameVM**](FolderRenameVM.md) |  | 
 
 ### Return type
 
@@ -948,8 +954,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -958,7 +964,7 @@ Name | Type | Description  | Notes
 
 ## ExportFoldersUpdateIcon
 
-> FileVM ExportFoldersUpdateIcon(ctx, id).IconModel(iconModel).Execute()
+> FileVM ExportFoldersUpdateIcon(ctx, id).FolderIconVM(folderIconVM).Execute()
 
 Update a folder's icon
 
@@ -978,11 +984,11 @@ import (
 
 func main() {
     id := "id_example" // string | Identifier of folder
-    iconModel := *openapiclient.NewFolderIconVM(string(123)) // FolderIconVM | Update icon model (optional)
+    folderIconVM := *openapiclient.NewFolderIconVM(string(123)) // FolderIconVM | Update icon model (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportFoldersUpdateIcon(context.Background(), id).IconModel(iconModel).Execute()
+    resp, r, err := api_client.ExportsApi.ExportFoldersUpdateIcon(context.Background(), id).FolderIconVM(folderIconVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportFoldersUpdateIcon``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1008,7 +1014,7 @@ Other parameters are passed through a pointer to a apiExportFoldersUpdateIconReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **iconModel** | [**FolderIconVM**](FolderIconVM.md) | Update icon model | 
+ **folderIconVM** | [**FolderIconVM**](FolderIconVM.md) | Update icon model | 
 
 ### Return type
 
@@ -1020,8 +1026,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1030,7 +1036,7 @@ Name | Type | Description  | Notes
 
 ## ExportFoldersUpdatePermissions
 
-> ExportFoldersUpdatePermissions(ctx, id).PermissionsVM(permissionsVM).Execute()
+> ExportFoldersUpdatePermissions(ctx, id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
 
 Update permissions
 
@@ -1048,11 +1054,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    permissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), int32(123)) // UpdateFilePermissionsVM |  (optional)
+    updateFilePermissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), openapiclient.FileAdministrate(0)) // UpdateFilePermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportFoldersUpdatePermissions(context.Background(), id).PermissionsVM(permissionsVM).Execute()
+    resp, r, err := api_client.ExportsApi.ExportFoldersUpdatePermissions(context.Background(), id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportFoldersUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1076,7 +1082,7 @@ Other parameters are passed through a pointer to a apiExportFoldersUpdatePermiss
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | 
+ **updateFilePermissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | 
 
 ### Return type
 
@@ -1088,8 +1094,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1098,7 +1104,7 @@ Name | Type | Description  | Notes
 
 ## ExportFoldersUpdateTags
 
-> FileVM ExportFoldersUpdateTags(ctx, id).TagsModel(tagsModel).Execute()
+> FileVM ExportFoldersUpdateTags(ctx, id).FolderTagsUpdateVM(folderTagsUpdateVM).Execute()
 
 Update tags
 
@@ -1118,11 +1124,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    tagsModel := *openapiclient.NewFolderTagsUpdateVM() // FolderTagsUpdateVM |  (optional)
+    folderTagsUpdateVM := *openapiclient.NewFolderTagsUpdateVM() // FolderTagsUpdateVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportFoldersUpdateTags(context.Background(), id).TagsModel(tagsModel).Execute()
+    resp, r, err := api_client.ExportsApi.ExportFoldersUpdateTags(context.Background(), id).FolderTagsUpdateVM(folderTagsUpdateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportFoldersUpdateTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1148,7 +1154,7 @@ Other parameters are passed through a pointer to a apiExportFoldersUpdateTagsReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **tagsModel** | [**FolderTagsUpdateVM**](FolderTagsUpdateVM.md) |  | 
+ **folderTagsUpdateVM** | [**FolderTagsUpdateVM**](FolderTagsUpdateVM.md) |  | 
 
 ### Return type
 
@@ -1160,8 +1166,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1232,7 +1238,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1300,7 +1306,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1370,7 +1376,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1440,7 +1446,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1451,9 +1457,7 @@ Name | Type | Description  | Notes
 
 > ExportsVM ExportsGetFilesList(ctx, id).Skip(skip).Take(take).Execute()
 
-Get all files from specified folder
-
-
+Get all files from specified folder. <br />  User with Get Entity permission can access this method. <br />  The method will returns minimal infomration about the file: <br />  id, name, size, editedTime, createdTime, tags, status, statusReason.
 
 ### Example
 
@@ -1514,7 +1518,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1582,7 +1586,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1655,7 +1659,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1664,7 +1668,7 @@ Name | Type | Description  | Notes
 
 ## ExportsRenameFile
 
-> ExportVM ExportsRenameFile(ctx, id).NameModel(nameModel).Execute()
+> ExportVM ExportsRenameFile(ctx, id).FileRenameVM(fileRenameVM).Execute()
 
 Rename a file
 
@@ -1684,11 +1688,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    nameModel := *openapiclient.NewFileRenameVM() // FileRenameVM |  (optional)
+    fileRenameVM := *openapiclient.NewFileRenameVM() // FileRenameVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportsRenameFile(context.Background(), id).NameModel(nameModel).Execute()
+    resp, r, err := api_client.ExportsApi.ExportsRenameFile(context.Background(), id).FileRenameVM(fileRenameVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportsRenameFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1714,7 +1718,7 @@ Other parameters are passed through a pointer to a apiExportsRenameFileRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **nameModel** | [**FileRenameVM**](FileRenameVM.md) |  | 
+ **fileRenameVM** | [**FileRenameVM**](FileRenameVM.md) |  | 
 
 ### Return type
 
@@ -1726,8 +1730,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1736,7 +1740,7 @@ Name | Type | Description  | Notes
 
 ## ExportsUpdateIcon
 
-> ExportVM ExportsUpdateIcon(ctx, id).IconModel(iconModel).Execute()
+> ExportVM ExportsUpdateIcon(ctx, id).FileIconVM(fileIconVM).Execute()
 
 Update a files's icon
 
@@ -1756,11 +1760,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    iconModel := *openapiclient.NewFileIconVM() // FileIconVM |  (optional)
+    fileIconVM := *openapiclient.NewFileIconVM() // FileIconVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportsUpdateIcon(context.Background(), id).IconModel(iconModel).Execute()
+    resp, r, err := api_client.ExportsApi.ExportsUpdateIcon(context.Background(), id).FileIconVM(fileIconVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportsUpdateIcon``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1786,7 +1790,7 @@ Other parameters are passed through a pointer to a apiExportsUpdateIconRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **iconModel** | [**FileIconVM**](FileIconVM.md) |  | 
+ **fileIconVM** | [**FileIconVM**](FileIconVM.md) |  | 
 
 ### Return type
 
@@ -1798,8 +1802,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1808,7 +1812,7 @@ Name | Type | Description  | Notes
 
 ## ExportsUpdatePermissions
 
-> ExportsUpdatePermissions(ctx, id).PermissionsVM(permissionsVM).Execute()
+> ExportsUpdatePermissions(ctx, id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
 
 Update permissions
 
@@ -1826,11 +1830,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    permissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), int32(123)) // UpdateFilePermissionsVM |  (optional)
+    updateFilePermissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), openapiclient.FileAdministrate(0)) // UpdateFilePermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportsUpdatePermissions(context.Background(), id).PermissionsVM(permissionsVM).Execute()
+    resp, r, err := api_client.ExportsApi.ExportsUpdatePermissions(context.Background(), id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportsUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1854,7 +1858,7 @@ Other parameters are passed through a pointer to a apiExportsUpdatePermissionsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **permissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | 
+ **updateFilePermissionsVM** | [**UpdateFilePermissionsVM**](UpdateFilePermissionsVM.md) |  | 
 
 ### Return type
 
@@ -1866,8 +1870,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1876,7 +1880,7 @@ Name | Type | Description  | Notes
 
 ## ExportsUpdateTags
 
-> ExportVM ExportsUpdateTags(ctx, id).TagsModel(tagsModel).Execute()
+> ExportVM ExportsUpdateTags(ctx, id).FileTagsUpdateVM(fileTagsUpdateVM).Execute()
 
 Update tags
 
@@ -1896,11 +1900,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    tagsModel := *openapiclient.NewFileTagsUpdateVM() // FileTagsUpdateVM |  (optional)
+    fileTagsUpdateVM := *openapiclient.NewFileTagsUpdateVM() // FileTagsUpdateVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportsUpdateTags(context.Background(), id).TagsModel(tagsModel).Execute()
+    resp, r, err := api_client.ExportsApi.ExportsUpdateTags(context.Background(), id).FileTagsUpdateVM(fileTagsUpdateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportsUpdateTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1926,7 +1930,7 @@ Other parameters are passed through a pointer to a apiExportsUpdateTagsRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **tagsModel** | [**FileTagsUpdateVM**](FileTagsUpdateVM.md) |  | 
+ **fileTagsUpdateVM** | [**FileTagsUpdateVM**](FileTagsUpdateVM.md) |  | 
 
 ### Return type
 
@@ -1938,8 +1942,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

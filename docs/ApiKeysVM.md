@@ -51,6 +51,16 @@ SetApiKeys sets ApiKeys field to given value.
 
 HasApiKeys returns a boolean if a field has been set.
 
+### SetApiKeysNil
+
+`func (o *ApiKeysVM) SetApiKeysNil(b bool)`
+
+ SetApiKeysNil sets the value for ApiKeys to be an explicit nil
+
+### UnsetApiKeys
+`func (o *ApiKeysVM) UnsetApiKeys()`
+
+UnsetApiKeys ensures that no value is present for ApiKeys, not even an explicit nil
 ### GetCount
 
 `func (o *ApiKeysVM) GetCount() int64`

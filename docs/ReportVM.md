@@ -4,22 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TemplateId** | Pointer to **string** |  | [optional] 
+**TemplateId** | Pointer to **NullableString** |  | [optional] 
 **ReportInfo** | Pointer to [**ReportInfo**](ReportInfo.md) |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**ParentId** | Pointer to **string** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Icon** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**Size** | Pointer to **int64** |  | [optional] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**StatusReason** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **NullableString** |  | [optional] 
 **CreatedTime** | Pointer to **time.Time** |  | [optional] 
-**CreatorUserId** | Pointer to **string** |  | [optional] 
+**CreatorUserId** | Pointer to **NullableString** |  | [optional] 
 **EditedTime** | Pointer to **time.Time** |  | [optional] 
-**EditorUserId** | Pointer to **string** |  | [optional] 
+**EditorUserId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -65,6 +56,16 @@ SetTemplateId sets TemplateId field to given value.
 
 HasTemplateId returns a boolean if a field has been set.
 
+### SetTemplateIdNil
+
+`func (o *ReportVM) SetTemplateIdNil(b bool)`
+
+ SetTemplateIdNil sets the value for TemplateId to be an explicit nil
+
+### UnsetTemplateId
+`func (o *ReportVM) UnsetTemplateId()`
+
+UnsetTemplateId ensures that no value is present for TemplateId, not even an explicit nil
 ### GetReportInfo
 
 `func (o *ReportVM) GetReportInfo() ReportInfo`
@@ -89,231 +90,6 @@ SetReportInfo sets ReportInfo field to given value.
 `func (o *ReportVM) HasReportInfo() bool`
 
 HasReportInfo returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *ReportVM) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ReportVM) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ReportVM) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *ReportVM) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### GetParentId
-
-`func (o *ReportVM) GetParentId() string`
-
-GetParentId returns the ParentId field if non-nil, zero value otherwise.
-
-### GetParentIdOk
-
-`func (o *ReportVM) GetParentIdOk() (*string, bool)`
-
-GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetParentId
-
-`func (o *ReportVM) SetParentId(v string)`
-
-SetParentId sets ParentId field to given value.
-
-### HasParentId
-
-`func (o *ReportVM) HasParentId() bool`
-
-HasParentId returns a boolean if a field has been set.
-
-### GetTags
-
-`func (o *ReportVM) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *ReportVM) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *ReportVM) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *ReportVM) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
-### GetIcon
-
-`func (o *ReportVM) GetIcon() string`
-
-GetIcon returns the Icon field if non-nil, zero value otherwise.
-
-### GetIconOk
-
-`func (o *ReportVM) GetIconOk() (*string, bool)`
-
-GetIconOk returns a tuple with the Icon field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIcon
-
-`func (o *ReportVM) SetIcon(v string)`
-
-SetIcon sets Icon field to given value.
-
-### HasIcon
-
-`func (o *ReportVM) HasIcon() bool`
-
-HasIcon returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *ReportVM) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ReportVM) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ReportVM) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *ReportVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### GetSize
-
-`func (o *ReportVM) GetSize() int64`
-
-GetSize returns the Size field if non-nil, zero value otherwise.
-
-### GetSizeOk
-
-`func (o *ReportVM) GetSizeOk() (*int64, bool)`
-
-GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSize
-
-`func (o *ReportVM) SetSize(v int64)`
-
-SetSize sets Size field to given value.
-
-### HasSize
-
-`func (o *ReportVM) HasSize() bool`
-
-HasSize returns a boolean if a field has been set.
-
-### GetSubscriptionId
-
-`func (o *ReportVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *ReportVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *ReportVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *ReportVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### GetStatus
-
-`func (o *ReportVM) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *ReportVM) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *ReportVM) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *ReportVM) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
-
-### GetStatusReason
-
-`func (o *ReportVM) GetStatusReason() string`
-
-GetStatusReason returns the StatusReason field if non-nil, zero value otherwise.
-
-### GetStatusReasonOk
-
-`func (o *ReportVM) GetStatusReasonOk() (*string, bool)`
-
-GetStatusReasonOk returns a tuple with the StatusReason field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatusReason
-
-`func (o *ReportVM) SetStatusReason(v string)`
-
-SetStatusReason sets StatusReason field to given value.
-
-### HasStatusReason
-
-`func (o *ReportVM) HasStatusReason() bool`
-
-HasStatusReason returns a boolean if a field has been set.
 
 ### GetId
 
@@ -340,6 +116,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *ReportVM) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *ReportVM) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetCreatedTime
 
 `func (o *ReportVM) GetCreatedTime() time.Time`
@@ -390,6 +176,16 @@ SetCreatorUserId sets CreatorUserId field to given value.
 
 HasCreatorUserId returns a boolean if a field has been set.
 
+### SetCreatorUserIdNil
+
+`func (o *ReportVM) SetCreatorUserIdNil(b bool)`
+
+ SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+
+### UnsetCreatorUserId
+`func (o *ReportVM) UnsetCreatorUserId()`
+
+UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
 ### GetEditedTime
 
 `func (o *ReportVM) GetEditedTime() time.Time`
@@ -440,6 +236,16 @@ SetEditorUserId sets EditorUserId field to given value.
 
 HasEditorUserId returns a boolean if a field has been set.
 
+### SetEditorUserIdNil
+
+`func (o *ReportVM) SetEditorUserIdNil(b bool)`
+
+ SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
+
+### UnsetEditorUserId
+`func (o *ReportVM) UnsetEditorUserId()`
+
+UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

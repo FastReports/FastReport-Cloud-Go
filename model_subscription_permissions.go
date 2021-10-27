@@ -16,9 +16,9 @@ import (
 
 // SubscriptionPermissions struct for SubscriptionPermissions
 type SubscriptionPermissions struct {
-	OwnerId *string `json:"ownerId,omitempty"`
+	OwnerId NullableString `json:"ownerId,omitempty"`
 	Owner *SubscriptionPermission `json:"owner,omitempty"`
-	Groups *map[string]SubscriptionPermission `json:"groups,omitempty"`
+	Groups map[string]SubscriptionPermission `json:"groups,omitempty"`
 	Other *SubscriptionPermission `json:"other,omitempty"`
 	Anon *SubscriptionPermission `json:"anon,omitempty"`
 }
@@ -40,36 +40,46 @@ func NewSubscriptionPermissionsWithDefaults() *SubscriptionPermissions {
 	return &this
 }
 
-// GetOwnerId returns the OwnerId field value if set, zero value otherwise.
+// GetOwnerId returns the OwnerId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionPermissions) GetOwnerId() string {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || o.OwnerId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.OwnerId
+	return *o.OwnerId.Get()
 }
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionPermissions) GetOwnerIdOk() (*string, bool) {
-	if o == nil || o.OwnerId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.OwnerId, true
+	return o.OwnerId.Get(), o.OwnerId.IsSet()
 }
 
 // HasOwnerId returns a boolean if a field has been set.
 func (o *SubscriptionPermissions) HasOwnerId() bool {
-	if o != nil && o.OwnerId != nil {
+	if o != nil && o.OwnerId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
+// SetOwnerId gets a reference to the given NullableString and assigns it to the OwnerId field.
 func (o *SubscriptionPermissions) SetOwnerId(v string) {
-	o.OwnerId = &v
+	o.OwnerId.Set(&v)
+}
+// SetOwnerIdNil sets the value for OwnerId to be an explicit nil
+func (o *SubscriptionPermissions) SetOwnerIdNil() {
+	o.OwnerId.Set(nil)
+}
+
+// UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
+func (o *SubscriptionPermissions) UnsetOwnerId() {
+	o.OwnerId.Unset()
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
@@ -104,22 +114,23 @@ func (o *SubscriptionPermissions) SetOwner(v SubscriptionPermission) {
 	o.Owner = &v
 }
 
-// GetGroups returns the Groups field value if set, zero value otherwise.
+// GetGroups returns the Groups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionPermissions) GetGroups() map[string]SubscriptionPermission {
-	if o == nil || o.Groups == nil {
+	if o == nil  {
 		var ret map[string]SubscriptionPermission
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionPermissions) GetGroupsOk() (*map[string]SubscriptionPermission, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -133,7 +144,7 @@ func (o *SubscriptionPermissions) HasGroups() bool {
 
 // SetGroups gets a reference to the given map[string]SubscriptionPermission and assigns it to the Groups field.
 func (o *SubscriptionPermissions) SetGroups(v map[string]SubscriptionPermission) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 // GetOther returns the Other field value if set, zero value otherwise.
@@ -202,8 +213,8 @@ func (o *SubscriptionPermissions) SetAnon(v SubscriptionPermission) {
 
 func (o SubscriptionPermissions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OwnerId != nil {
-		toSerialize["ownerId"] = o.OwnerId
+	if o.OwnerId.IsSet() {
+		toSerialize["ownerId"] = o.OwnerId.Get()
 	}
 	if o.Owner != nil {
 		toSerialize["owner"] = o.Owner

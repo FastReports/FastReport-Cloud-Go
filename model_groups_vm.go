@@ -16,7 +16,7 @@ import (
 
 // GroupsVM struct for GroupsVM
 type GroupsVM struct {
-	Groups *[]GroupVM `json:"groups,omitempty"`
+	Groups []GroupVM `json:"groups,omitempty"`
 	Count *int64 `json:"count,omitempty"`
 	Skip *int32 `json:"skip,omitempty"`
 	Take *int32 `json:"take,omitempty"`
@@ -39,22 +39,23 @@ func NewGroupsVMWithDefaults() *GroupsVM {
 	return &this
 }
 
-// GetGroups returns the Groups field value if set, zero value otherwise.
+// GetGroups returns the Groups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GroupsVM) GetGroups() []GroupVM {
-	if o == nil || o.Groups == nil {
+	if o == nil  {
 		var ret []GroupVM
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GroupsVM) GetGroupsOk() (*[]GroupVM, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -68,7 +69,7 @@ func (o *GroupsVM) HasGroups() bool {
 
 // SetGroups gets a reference to the given []GroupVM and assigns it to the Groups field.
 func (o *GroupsVM) SetGroups(v []GroupVM) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.

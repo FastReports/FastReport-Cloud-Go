@@ -17,14 +17,14 @@ import (
 // UpdateSubscriptionPermissionsVM struct for UpdateSubscriptionPermissionsVM
 type UpdateSubscriptionPermissionsVM struct {
 	NewPermissions SubscriptionPermissions `json:"newPermissions"`
-	Administrate int32 `json:"administrate"`
+	Administrate SubscriptionAdministrate `json:"administrate"`
 }
 
 // NewUpdateSubscriptionPermissionsVM instantiates a new UpdateSubscriptionPermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateSubscriptionPermissionsVM(newPermissions SubscriptionPermissions, administrate int32) *UpdateSubscriptionPermissionsVM {
+func NewUpdateSubscriptionPermissionsVM(newPermissions SubscriptionPermissions, administrate SubscriptionAdministrate) *UpdateSubscriptionPermissionsVM {
 	this := UpdateSubscriptionPermissionsVM{}
 	this.NewPermissions = newPermissions
 	this.Administrate = administrate
@@ -64,9 +64,9 @@ func (o *UpdateSubscriptionPermissionsVM) SetNewPermissions(v SubscriptionPermis
 }
 
 // GetAdministrate returns the Administrate field value
-func (o *UpdateSubscriptionPermissionsVM) GetAdministrate() int32 {
+func (o *UpdateSubscriptionPermissionsVM) GetAdministrate() SubscriptionAdministrate {
 	if o == nil {
-		var ret int32
+		var ret SubscriptionAdministrate
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *UpdateSubscriptionPermissionsVM) GetAdministrate() int32 {
 
 // GetAdministrateOk returns a tuple with the Administrate field value
 // and a boolean to check if the value has been set.
-func (o *UpdateSubscriptionPermissionsVM) GetAdministrateOk() (*int32, bool) {
+func (o *UpdateSubscriptionPermissionsVM) GetAdministrateOk() (*SubscriptionAdministrate, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -83,7 +83,7 @@ func (o *UpdateSubscriptionPermissionsVM) GetAdministrateOk() (*int32, bool) {
 }
 
 // SetAdministrate sets field value
-func (o *UpdateSubscriptionPermissionsVM) SetAdministrate(v int32) {
+func (o *UpdateSubscriptionPermissionsVM) SetAdministrate(v SubscriptionAdministrate) {
 	o.Administrate = v
 }
 

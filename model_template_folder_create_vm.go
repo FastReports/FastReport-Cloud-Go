@@ -16,9 +16,9 @@ import (
 
 // TemplateFolderCreateVM struct for TemplateFolderCreateVM
 type TemplateFolderCreateVM struct {
-	Name *string `json:"name,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
-	Icon *string `json:"icon,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	Icon NullableString `json:"icon,omitempty"`
 }
 
 // NewTemplateFolderCreateVM instantiates a new TemplateFolderCreateVM object
@@ -38,54 +38,65 @@ func NewTemplateFolderCreateVMWithDefaults() *TemplateFolderCreateVM {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateFolderCreateVM) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateFolderCreateVM) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *TemplateFolderCreateVM) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *TemplateFolderCreateVM) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *TemplateFolderCreateVM) SetNameNil() {
+	o.Name.Set(nil)
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *TemplateFolderCreateVM) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateFolderCreateVM) GetTags() []string {
-	if o == nil || o.Tags == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateFolderCreateVM) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -99,51 +110,61 @@ func (o *TemplateFolderCreateVM) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *TemplateFolderCreateVM) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
-// GetIcon returns the Icon field value if set, zero value otherwise.
+// GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateFolderCreateVM) GetIcon() string {
-	if o == nil || o.Icon == nil {
+	if o == nil || o.Icon.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Icon
+	return *o.Icon.Get()
 }
 
 // GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateFolderCreateVM) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Icon, true
+	return o.Icon.Get(), o.Icon.IsSet()
 }
 
 // HasIcon returns a boolean if a field has been set.
 func (o *TemplateFolderCreateVM) HasIcon() bool {
-	if o != nil && o.Icon != nil {
+	if o != nil && o.Icon.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
+// SetIcon gets a reference to the given NullableString and assigns it to the Icon field.
 func (o *TemplateFolderCreateVM) SetIcon(v string) {
-	o.Icon = &v
+	o.Icon.Set(&v)
+}
+// SetIconNil sets the value for Icon to be an explicit nil
+func (o *TemplateFolderCreateVM) SetIconNil() {
+	o.Icon.Set(nil)
+}
+
+// UnsetIcon ensures that no value is present for Icon, not even an explicit nil
+func (o *TemplateFolderCreateVM) UnsetIcon() {
+	o.Icon.Unset()
 }
 
 func (o TemplateFolderCreateVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if o.Icon != nil {
-		toSerialize["icon"] = o.Icon
+	if o.Icon.IsSet() {
+		toSerialize["icon"] = o.Icon.Get()
 	}
 	return json.Marshal(toSerialize)
 }

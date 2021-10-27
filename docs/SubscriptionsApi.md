@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**SubscriptionsGetDefaultPermissions**](SubscriptionsApi.md#SubscriptionsGetDefaultPermissions) | **Get** /api/manage/v1/Subscriptions/{subscriptionId}/defaultPermissions | Get subscription&#39;s default permissions for new entities
+[**SubscriptionsGetMyPermissions**](SubscriptionsApi.md#SubscriptionsGetMyPermissions) | **Get** /api/manage/v1/Subscriptions/{subId}/mypermissions | Get user&#39;s permissions for a subscription by id
 [**SubscriptionsGetPermissions**](SubscriptionsApi.md#SubscriptionsGetPermissions) | **Get** /api/manage/v1/Subscriptions/{id}/permissions | Get permissions for a subscription by id
 [**SubscriptionsGetSubscription**](SubscriptionsApi.md#SubscriptionsGetSubscription) | **Get** /api/manage/v1/Subscriptions/{id} | Returns the subscription by id
 [**SubscriptionsGetSubscriptions**](SubscriptionsApi.md#SubscriptionsGetSubscriptions) | **Get** /api/manage/v1/Subscriptions | Returns a list of all subscriptions of current user
@@ -76,7 +77,75 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SubscriptionsGetMyPermissions
+
+> MyPermissionsVM SubscriptionsGetMyPermissions(ctx, subId).Execute()
+
+Get user's permissions for a subscription by id
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    subId := "subId_example" // string | subscription id
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.SubscriptionsApi.SubscriptionsGetMyPermissions(context.Background(), subId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsGetMyPermissions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SubscriptionsGetMyPermissions`: MyPermissionsVM
+    fmt.Fprintf(os.Stdout, "Response from `SubscriptionsApi.SubscriptionsGetMyPermissions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subId** | **string** | subscription id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubscriptionsGetMyPermissionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MyPermissionsVM**](MyPermissionsVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -144,7 +213,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -212,7 +281,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -278,7 +347,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -347,8 +416,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -357,7 +426,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionsUpdateDefaultPermissions
 
-> DefaultPermissionsVM SubscriptionsUpdateDefaultPermissions(ctx, subscriptionId).PermissionsVM(permissionsVM).Execute()
+> DefaultPermissionsVM SubscriptionsUpdateDefaultPermissions(ctx, subscriptionId).UpdateDefaultPermissionsVM(updateDefaultPermissionsVM).Execute()
 
 Change subscription's default permissions for new entities
 
@@ -375,11 +444,11 @@ import (
 
 func main() {
     subscriptionId := "subscriptionId_example" // string | id
-    permissionsVM := *openapiclient.NewUpdateDefaultPermissionsVM() // UpdateDefaultPermissionsVM | update default permissions VM
+    updateDefaultPermissionsVM := *openapiclient.NewUpdateDefaultPermissionsVM() // UpdateDefaultPermissionsVM | update default permissions VM
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdateDefaultPermissions(context.Background(), subscriptionId).PermissionsVM(permissionsVM).Execute()
+    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdateDefaultPermissions(context.Background(), subscriptionId).UpdateDefaultPermissionsVM(updateDefaultPermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsUpdateDefaultPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -405,7 +474,7 @@ Other parameters are passed through a pointer to a apiSubscriptionsUpdateDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **permissionsVM** | [**UpdateDefaultPermissionsVM**](UpdateDefaultPermissionsVM.md) | update default permissions VM | 
+ **updateDefaultPermissionsVM** | [**UpdateDefaultPermissionsVM**](UpdateDefaultPermissionsVM.md) | update default permissions VM | 
 
 ### Return type
 
@@ -417,8 +486,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -427,7 +496,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionsUpdateLocale
 
-> SubscriptionVM SubscriptionsUpdateLocale(ctx, subscriptionId).UpdateModel(updateModel).Execute()
+> SubscriptionVM SubscriptionsUpdateLocale(ctx, subscriptionId).UpdateSubscriptionLocaleVM(updateSubscriptionLocaleVM).Execute()
 
 Update subscription's default locale
 
@@ -445,11 +514,11 @@ import (
 
 func main() {
     subscriptionId := "subscriptionId_example" // string | id
-    updateModel := *openapiclient.NewUpdateSubscriptionLocaleVM("Locale_example") // UpdateSubscriptionLocaleVM | update VM
+    updateSubscriptionLocaleVM := *openapiclient.NewUpdateSubscriptionLocaleVM("Locale_example") // UpdateSubscriptionLocaleVM | update VM
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdateLocale(context.Background(), subscriptionId).UpdateModel(updateModel).Execute()
+    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdateLocale(context.Background(), subscriptionId).UpdateSubscriptionLocaleVM(updateSubscriptionLocaleVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsUpdateLocale``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -475,7 +544,7 @@ Other parameters are passed through a pointer to a apiSubscriptionsUpdateLocaleR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateModel** | [**UpdateSubscriptionLocaleVM**](UpdateSubscriptionLocaleVM.md) | update VM | 
+ **updateSubscriptionLocaleVM** | [**UpdateSubscriptionLocaleVM**](UpdateSubscriptionLocaleVM.md) | update VM | 
 
 ### Return type
 
@@ -487,8 +556,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -497,7 +566,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionsUpdatePermissions
 
-> SubscriptionsUpdatePermissions(ctx, id).PermissionsVM(permissionsVM).Execute()
+> SubscriptionsUpdatePermissions(ctx, id).UpdateSubscriptionPermissionsVM(updateSubscriptionPermissionsVM).Execute()
 
 Update permissions
 
@@ -515,11 +584,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    permissionsVM := *openapiclient.NewUpdateSubscriptionPermissionsVM(*openapiclient.NewSubscriptionPermissions(), int32(123)) // UpdateSubscriptionPermissionsVM |  (optional)
+    updateSubscriptionPermissionsVM := *openapiclient.NewUpdateSubscriptionPermissionsVM(*openapiclient.NewSubscriptionPermissions(), openapiclient.SubscriptionAdministrate(0)) // UpdateSubscriptionPermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdatePermissions(context.Background(), id).PermissionsVM(permissionsVM).Execute()
+    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdatePermissions(context.Background(), id).UpdateSubscriptionPermissionsVM(updateSubscriptionPermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -543,7 +612,7 @@ Other parameters are passed through a pointer to a apiSubscriptionsUpdatePermiss
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **permissionsVM** | [**UpdateSubscriptionPermissionsVM**](UpdateSubscriptionPermissionsVM.md) |  | 
+ **updateSubscriptionPermissionsVM** | [**UpdateSubscriptionPermissionsVM**](UpdateSubscriptionPermissionsVM.md) |  | 
 
 ### Return type
 
@@ -555,8 +624,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

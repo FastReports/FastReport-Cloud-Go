@@ -53,6 +53,16 @@ SetUsers sets Users field to given value.
 
 HasUsers returns a boolean if a field has been set.
 
+### SetUsersNil
+
+`func (o *SubscriptionUsersVM) SetUsersNil(b bool)`
+
+ SetUsersNil sets the value for Users to be an explicit nil
+
+### UnsetUsers
+`func (o *SubscriptionUsersVM) UnsetUsers()`
+
+UnsetUsers ensures that no value is present for Users, not even an explicit nil
 ### GetCount
 
 `func (o *SubscriptionUsersVM) GetCount() int64`

@@ -53,6 +53,16 @@ SetFiles sets Files field to given value.
 
 HasFiles returns a boolean if a field has been set.
 
+### SetFilesNil
+
+`func (o *FilesVM) SetFilesNil(b bool)`
+
+ SetFilesNil sets the value for Files to be an explicit nil
+
+### UnsetFiles
+`func (o *FilesVM) UnsetFiles()`
+
+UnsetFiles ensures that no value is present for Files, not even an explicit nil
 ### GetCount
 
 `func (o *FilesVM) GetCount() int64`

@@ -50,6 +50,8 @@ type APIClient struct {
 
 	ApiKeysApi *ApiKeysApiService
 
+	ConfigurationApi *ConfigurationApiService
+
 	DataSourcesApi *DataSourcesApiService
 
 	DownloadApi *DownloadApiService
@@ -73,6 +75,8 @@ type APIClient struct {
 	SubscriptionUsersApi *SubscriptionUsersApiService
 
 	SubscriptionsApi *SubscriptionsApiService
+
+	TasksApi *TasksApiService
 
 	TemplatesApi *TemplatesApiService
 
@@ -98,6 +102,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.ApiKeysApi = (*ApiKeysApiService)(&c.common)
+	c.ConfigurationApi = (*ConfigurationApiService)(&c.common)
 	c.DataSourcesApi = (*DataSourcesApiService)(&c.common)
 	c.DownloadApi = (*DownloadApiService)(&c.common)
 	c.ExportsApi = (*ExportsApiService)(&c.common)
@@ -110,6 +115,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SubscriptionPlansApi = (*SubscriptionPlansApiService)(&c.common)
 	c.SubscriptionUsersApi = (*SubscriptionUsersApiService)(&c.common)
 	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
+	c.TasksApi = (*TasksApiService)(&c.common)
 	c.TemplatesApi = (*TemplatesApiService)(&c.common)
 	c.UserProfileApi = (*UserProfileApiService)(&c.common)
 	c.UserSettingsApi = (*UserSettingsApiService)(&c.common)

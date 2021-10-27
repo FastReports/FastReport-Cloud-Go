@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NewPermissions** | [**DataSourcePermissions**](DataSourcePermissions.md) |  | 
-**Administrate** | **int32** |  | 
+**Administrate** | [**DataSourceAdministrate**](DataSourceAdministrate.md) |  | 
 
 ## Methods
 
 ### NewUpdateDataSourcePermissionsVM
 
-`func NewUpdateDataSourcePermissionsVM(newPermissions DataSourcePermissions, administrate int32, ) *UpdateDataSourcePermissionsVM`
+`func NewUpdateDataSourcePermissionsVM(newPermissions DataSourcePermissions, administrate DataSourceAdministrate, ) *UpdateDataSourcePermissionsVM`
 
 NewUpdateDataSourcePermissionsVM instantiates a new UpdateDataSourcePermissionsVM object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetNewPermissions sets NewPermissions field to given value.
 
 ### GetAdministrate
 
-`func (o *UpdateDataSourcePermissionsVM) GetAdministrate() int32`
+`func (o *UpdateDataSourcePermissionsVM) GetAdministrate() DataSourceAdministrate`
 
 GetAdministrate returns the Administrate field if non-nil, zero value otherwise.
 
 ### GetAdministrateOk
 
-`func (o *UpdateDataSourcePermissionsVM) GetAdministrateOk() (*int32, bool)`
+`func (o *UpdateDataSourcePermissionsVM) GetAdministrateOk() (*DataSourceAdministrate, bool)`
 
 GetAdministrateOk returns a tuple with the Administrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdministrate
 
-`func (o *UpdateDataSourcePermissionsVM) SetAdministrate(v int32)`
+`func (o *UpdateDataSourcePermissionsVM) SetAdministrate(v DataSourceAdministrate)`
 
 SetAdministrate sets Administrate field to given value.
 

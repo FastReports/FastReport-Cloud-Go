@@ -16,7 +16,7 @@ import (
 
 // ExportsVM struct for ExportsVM
 type ExportsVM struct {
-	Files *[]ExportVM `json:"files,omitempty"`
+	Files []ExportVM `json:"files,omitempty"`
 	Count *int64 `json:"count,omitempty"`
 	Skip *int32 `json:"skip,omitempty"`
 	Take *int32 `json:"take,omitempty"`
@@ -39,22 +39,23 @@ func NewExportsVMWithDefaults() *ExportsVM {
 	return &this
 }
 
-// GetFiles returns the Files field value if set, zero value otherwise.
+// GetFiles returns the Files field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ExportsVM) GetFiles() []ExportVM {
-	if o == nil || o.Files == nil {
+	if o == nil  {
 		var ret []ExportVM
 		return ret
 	}
-	return *o.Files
+	return o.Files
 }
 
 // GetFilesOk returns a tuple with the Files field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ExportsVM) GetFilesOk() (*[]ExportVM, bool) {
 	if o == nil || o.Files == nil {
 		return nil, false
 	}
-	return o.Files, true
+	return &o.Files, true
 }
 
 // HasFiles returns a boolean if a field has been set.
@@ -68,7 +69,7 @@ func (o *ExportsVM) HasFiles() bool {
 
 // SetFiles gets a reference to the given []ExportVM and assigns it to the Files field.
 func (o *ExportsVM) SetFiles(v []ExportVM) {
-	o.Files = &v
+	o.Files = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.

@@ -16,9 +16,9 @@ import (
 
 // DataSourcePermissions struct for DataSourcePermissions
 type DataSourcePermissions struct {
-	OwnerId *string `json:"ownerId,omitempty"`
+	OwnerId NullableString `json:"ownerId,omitempty"`
 	Owner *DataSourcePermission `json:"owner,omitempty"`
-	Groups *map[string]DataSourcePermission `json:"groups,omitempty"`
+	Groups map[string]DataSourcePermission `json:"groups,omitempty"`
 	Other *DataSourcePermission `json:"other,omitempty"`
 	Anon *DataSourcePermission `json:"anon,omitempty"`
 }
@@ -40,36 +40,46 @@ func NewDataSourcePermissionsWithDefaults() *DataSourcePermissions {
 	return &this
 }
 
-// GetOwnerId returns the OwnerId field value if set, zero value otherwise.
+// GetOwnerId returns the OwnerId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourcePermissions) GetOwnerId() string {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || o.OwnerId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.OwnerId
+	return *o.OwnerId.Get()
 }
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourcePermissions) GetOwnerIdOk() (*string, bool) {
-	if o == nil || o.OwnerId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.OwnerId, true
+	return o.OwnerId.Get(), o.OwnerId.IsSet()
 }
 
 // HasOwnerId returns a boolean if a field has been set.
 func (o *DataSourcePermissions) HasOwnerId() bool {
-	if o != nil && o.OwnerId != nil {
+	if o != nil && o.OwnerId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
+// SetOwnerId gets a reference to the given NullableString and assigns it to the OwnerId field.
 func (o *DataSourcePermissions) SetOwnerId(v string) {
-	o.OwnerId = &v
+	o.OwnerId.Set(&v)
+}
+// SetOwnerIdNil sets the value for OwnerId to be an explicit nil
+func (o *DataSourcePermissions) SetOwnerIdNil() {
+	o.OwnerId.Set(nil)
+}
+
+// UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
+func (o *DataSourcePermissions) UnsetOwnerId() {
+	o.OwnerId.Unset()
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
@@ -104,22 +114,23 @@ func (o *DataSourcePermissions) SetOwner(v DataSourcePermission) {
 	o.Owner = &v
 }
 
-// GetGroups returns the Groups field value if set, zero value otherwise.
+// GetGroups returns the Groups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourcePermissions) GetGroups() map[string]DataSourcePermission {
-	if o == nil || o.Groups == nil {
+	if o == nil  {
 		var ret map[string]DataSourcePermission
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DataSourcePermissions) GetGroupsOk() (*map[string]DataSourcePermission, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -133,7 +144,7 @@ func (o *DataSourcePermissions) HasGroups() bool {
 
 // SetGroups gets a reference to the given map[string]DataSourcePermission and assigns it to the Groups field.
 func (o *DataSourcePermissions) SetGroups(v map[string]DataSourcePermission) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 // GetOther returns the Other field value if set, zero value otherwise.
@@ -202,8 +213,8 @@ func (o *DataSourcePermissions) SetAnon(v DataSourcePermission) {
 
 func (o DataSourcePermissions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OwnerId != nil {
-		toSerialize["ownerId"] = o.OwnerId
+	if o.OwnerId.IsSet() {
+		toSerialize["ownerId"] = o.OwnerId.Get()
 	}
 	if o.Owner != nil {
 		toSerialize["owner"] = o.Owner

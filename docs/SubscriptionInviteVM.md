@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Usages** | Pointer to **int64** |  | [optional] 
 **Durable** | Pointer to **bool** |  | [optional] 
-**AccessToken** | Pointer to **string** |  | [optional] 
+**AccessToken** | Pointer to **NullableString** |  | [optional] 
 **ExpiredDate** | Pointer to **time.Time** |  | [optional] 
 **AddedUsers** | Pointer to [**[]InvitedUser**](InvitedUser.md) |  | [optional] 
-**CreatorUserId** | Pointer to **string** |  | [optional] 
+**CreatorUserId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -105,6 +105,16 @@ SetAccessToken sets AccessToken field to given value.
 
 HasAccessToken returns a boolean if a field has been set.
 
+### SetAccessTokenNil
+
+`func (o *SubscriptionInviteVM) SetAccessTokenNil(b bool)`
+
+ SetAccessTokenNil sets the value for AccessToken to be an explicit nil
+
+### UnsetAccessToken
+`func (o *SubscriptionInviteVM) UnsetAccessToken()`
+
+UnsetAccessToken ensures that no value is present for AccessToken, not even an explicit nil
 ### GetExpiredDate
 
 `func (o *SubscriptionInviteVM) GetExpiredDate() time.Time`
@@ -155,6 +165,16 @@ SetAddedUsers sets AddedUsers field to given value.
 
 HasAddedUsers returns a boolean if a field has been set.
 
+### SetAddedUsersNil
+
+`func (o *SubscriptionInviteVM) SetAddedUsersNil(b bool)`
+
+ SetAddedUsersNil sets the value for AddedUsers to be an explicit nil
+
+### UnsetAddedUsers
+`func (o *SubscriptionInviteVM) UnsetAddedUsers()`
+
+UnsetAddedUsers ensures that no value is present for AddedUsers, not even an explicit nil
 ### GetCreatorUserId
 
 `func (o *SubscriptionInviteVM) GetCreatorUserId() string`
@@ -180,6 +200,16 @@ SetCreatorUserId sets CreatorUserId field to given value.
 
 HasCreatorUserId returns a boolean if a field has been set.
 
+### SetCreatorUserIdNil
+
+`func (o *SubscriptionInviteVM) SetCreatorUserIdNil(b bool)`
+
+ SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+
+### UnsetCreatorUserId
+`func (o *SubscriptionInviteVM) UnsetCreatorUserId()`
+
+UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

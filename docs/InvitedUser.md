@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserId** | Pointer to **string** |  | [optional] 
+**UserId** | Pointer to **NullableString** |  | [optional] 
 **InvitedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
@@ -51,6 +51,16 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
+### SetUserIdNil
+
+`func (o *InvitedUser) SetUserIdNil(b bool)`
+
+ SetUserIdNil sets the value for UserId to be an explicit nil
+
+### UnsetUserId
+`func (o *InvitedUser) UnsetUserId()`
+
+UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 ### GetInvitedAt
 
 `func (o *InvitedUser) GetInvitedAt() time.Time`

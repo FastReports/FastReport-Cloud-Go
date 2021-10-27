@@ -18,20 +18,11 @@ import (
 // TemplateVM struct for TemplateVM
 type TemplateVM struct {
 	ReportInfo *ReportInfo `json:"reportInfo,omitempty"`
-	Name *string `json:"name,omitempty"`
-	ParentId *string `json:"parentId,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
-	Icon *string `json:"icon,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Size *int64 `json:"size,omitempty"`
-	SubscriptionId *string `json:"subscriptionId,omitempty"`
-	Status *string `json:"status,omitempty"`
-	StatusReason *string `json:"statusReason,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id NullableString `json:"id,omitempty"`
 	CreatedTime *time.Time `json:"createdTime,omitempty"`
-	CreatorUserId *string `json:"creatorUserId,omitempty"`
+	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
 	EditedTime *time.Time `json:"editedTime,omitempty"`
-	EditorUserId *string `json:"editorUserId,omitempty"`
+	EditorUserId NullableString `json:"editorUserId,omitempty"`
 }
 
 // NewTemplateVM instantiates a new TemplateVM object
@@ -83,324 +74,46 @@ func (o *TemplateVM) SetReportInfo(v ReportInfo) {
 	o.ReportInfo = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *TemplateVM) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *TemplateVM) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *TemplateVM) SetName(v string) {
-	o.Name = &v
-}
-
-// GetParentId returns the ParentId field value if set, zero value otherwise.
-func (o *TemplateVM) GetParentId() string {
-	if o == nil || o.ParentId == nil {
-		var ret string
-		return ret
-	}
-	return *o.ParentId
-}
-
-// GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetParentIdOk() (*string, bool) {
-	if o == nil || o.ParentId == nil {
-		return nil, false
-	}
-	return o.ParentId, true
-}
-
-// HasParentId returns a boolean if a field has been set.
-func (o *TemplateVM) HasParentId() bool {
-	if o != nil && o.ParentId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetParentId gets a reference to the given string and assigns it to the ParentId field.
-func (o *TemplateVM) SetParentId(v string) {
-	o.ParentId = &v
-}
-
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *TemplateVM) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return *o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetTagsOk() (*[]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *TemplateVM) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *TemplateVM) SetTags(v []string) {
-	o.Tags = &v
-}
-
-// GetIcon returns the Icon field value if set, zero value otherwise.
-func (o *TemplateVM) GetIcon() string {
-	if o == nil || o.Icon == nil {
-		var ret string
-		return ret
-	}
-	return *o.Icon
-}
-
-// GetIconOk returns a tuple with the Icon field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
-		return nil, false
-	}
-	return o.Icon, true
-}
-
-// HasIcon returns a boolean if a field has been set.
-func (o *TemplateVM) HasIcon() bool {
-	if o != nil && o.Icon != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
-func (o *TemplateVM) SetIcon(v string) {
-	o.Icon = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *TemplateVM) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *TemplateVM) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *TemplateVM) SetType(v string) {
-	o.Type = &v
-}
-
-// GetSize returns the Size field value if set, zero value otherwise.
-func (o *TemplateVM) GetSize() int64 {
-	if o == nil || o.Size == nil {
-		var ret int64
-		return ret
-	}
-	return *o.Size
-}
-
-// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetSizeOk() (*int64, bool) {
-	if o == nil || o.Size == nil {
-		return nil, false
-	}
-	return o.Size, true
-}
-
-// HasSize returns a boolean if a field has been set.
-func (o *TemplateVM) HasSize() bool {
-	if o != nil && o.Size != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *TemplateVM) SetSize(v int64) {
-	o.Size = &v
-}
-
-// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
-func (o *TemplateVM) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId == nil {
-		var ret string
-		return ret
-	}
-	return *o.SubscriptionId
-}
-
-// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil || o.SubscriptionId == nil {
-		return nil, false
-	}
-	return o.SubscriptionId, true
-}
-
-// HasSubscriptionId returns a boolean if a field has been set.
-func (o *TemplateVM) HasSubscriptionId() bool {
-	if o != nil && o.SubscriptionId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
-func (o *TemplateVM) SetSubscriptionId(v string) {
-	o.SubscriptionId = &v
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *TemplateVM) GetStatus() string {
-	if o == nil || o.Status == nil {
-		var ret string
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *TemplateVM) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *TemplateVM) SetStatus(v string) {
-	o.Status = &v
-}
-
-// GetStatusReason returns the StatusReason field value if set, zero value otherwise.
-func (o *TemplateVM) GetStatusReason() string {
-	if o == nil || o.StatusReason == nil {
-		var ret string
-		return ret
-	}
-	return *o.StatusReason
-}
-
-// GetStatusReasonOk returns a tuple with the StatusReason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TemplateVM) GetStatusReasonOk() (*string, bool) {
-	if o == nil || o.StatusReason == nil {
-		return nil, false
-	}
-	return o.StatusReason, true
-}
-
-// HasStatusReason returns a boolean if a field has been set.
-func (o *TemplateVM) HasStatusReason() bool {
-	if o != nil && o.StatusReason != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatusReason gets a reference to the given string and assigns it to the StatusReason field.
-func (o *TemplateVM) SetStatusReason(v string) {
-	o.StatusReason = &v
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateVM) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || o.Id.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Id.Get()
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateVM) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Id.Get(), o.Id.IsSet()
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *TemplateVM) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && o.Id.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId gets a reference to the given NullableString and assigns it to the Id field.
 func (o *TemplateVM) SetId(v string) {
-	o.Id = &v
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *TemplateVM) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *TemplateVM) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise.
@@ -435,36 +148,46 @@ func (o *TemplateVM) SetCreatedTime(v time.Time) {
 	o.CreatedTime = &v
 }
 
-// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise.
+// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateVM) GetCreatorUserId() string {
-	if o == nil || o.CreatorUserId == nil {
+	if o == nil || o.CreatorUserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.CreatorUserId
+	return *o.CreatorUserId.Get()
 }
 
 // GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateVM) GetCreatorUserIdOk() (*string, bool) {
-	if o == nil || o.CreatorUserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CreatorUserId, true
+	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
 }
 
 // HasCreatorUserId returns a boolean if a field has been set.
 func (o *TemplateVM) HasCreatorUserId() bool {
-	if o != nil && o.CreatorUserId != nil {
+	if o != nil && o.CreatorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatorUserId gets a reference to the given string and assigns it to the CreatorUserId field.
+// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
 func (o *TemplateVM) SetCreatorUserId(v string) {
-	o.CreatorUserId = &v
+	o.CreatorUserId.Set(&v)
+}
+// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+func (o *TemplateVM) SetCreatorUserIdNil() {
+	o.CreatorUserId.Set(nil)
+}
+
+// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+func (o *TemplateVM) UnsetCreatorUserId() {
+	o.CreatorUserId.Unset()
 }
 
 // GetEditedTime returns the EditedTime field value if set, zero value otherwise.
@@ -499,36 +222,46 @@ func (o *TemplateVM) SetEditedTime(v time.Time) {
 	o.EditedTime = &v
 }
 
-// GetEditorUserId returns the EditorUserId field value if set, zero value otherwise.
+// GetEditorUserId returns the EditorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TemplateVM) GetEditorUserId() string {
-	if o == nil || o.EditorUserId == nil {
+	if o == nil || o.EditorUserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.EditorUserId
+	return *o.EditorUserId.Get()
 }
 
 // GetEditorUserIdOk returns a tuple with the EditorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TemplateVM) GetEditorUserIdOk() (*string, bool) {
-	if o == nil || o.EditorUserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.EditorUserId, true
+	return o.EditorUserId.Get(), o.EditorUserId.IsSet()
 }
 
 // HasEditorUserId returns a boolean if a field has been set.
 func (o *TemplateVM) HasEditorUserId() bool {
-	if o != nil && o.EditorUserId != nil {
+	if o != nil && o.EditorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetEditorUserId gets a reference to the given string and assigns it to the EditorUserId field.
+// SetEditorUserId gets a reference to the given NullableString and assigns it to the EditorUserId field.
 func (o *TemplateVM) SetEditorUserId(v string) {
-	o.EditorUserId = &v
+	o.EditorUserId.Set(&v)
+}
+// SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
+func (o *TemplateVM) SetEditorUserIdNil() {
+	o.EditorUserId.Set(nil)
+}
+
+// UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
+func (o *TemplateVM) UnsetEditorUserId() {
+	o.EditorUserId.Unset()
 }
 
 func (o TemplateVM) MarshalJSON() ([]byte, error) {
@@ -536,47 +269,20 @@ func (o TemplateVM) MarshalJSON() ([]byte, error) {
 	if o.ReportInfo != nil {
 		toSerialize["reportInfo"] = o.ReportInfo
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.ParentId != nil {
-		toSerialize["parentId"] = o.ParentId
-	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if o.Icon != nil {
-		toSerialize["icon"] = o.Icon
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Size != nil {
-		toSerialize["size"] = o.Size
-	}
-	if o.SubscriptionId != nil {
-		toSerialize["subscriptionId"] = o.SubscriptionId
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.StatusReason != nil {
-		toSerialize["statusReason"] = o.StatusReason
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
 	}
 	if o.CreatedTime != nil {
 		toSerialize["createdTime"] = o.CreatedTime
 	}
-	if o.CreatorUserId != nil {
-		toSerialize["creatorUserId"] = o.CreatorUserId
+	if o.CreatorUserId.IsSet() {
+		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
 	}
 	if o.EditedTime != nil {
 		toSerialize["editedTime"] = o.EditedTime
 	}
-	if o.EditorUserId != nil {
-		toSerialize["editorUserId"] = o.EditorUserId
+	if o.EditorUserId.IsSet() {
+		toSerialize["editorUserId"] = o.EditorUserId.Get()
 	}
 	return json.Marshal(toSerialize)
 }

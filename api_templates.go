@@ -89,26 +89,12 @@ func (a *TemplatesApiService) TemplateFolderAndFileGetCountExecute(r ApiTemplate
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -182,6 +168,9 @@ type ApiTemplateFolderAndFileGetFoldersAndFilesRequest struct {
 	id string
 	skip *int32
 	take *int32
+	orderBy *FileSorting
+	desc *bool
+	searchPattern *string
 }
 
 func (r ApiTemplateFolderAndFileGetFoldersAndFilesRequest) Skip(skip int32) ApiTemplateFolderAndFileGetFoldersAndFilesRequest {
@@ -190,6 +179,18 @@ func (r ApiTemplateFolderAndFileGetFoldersAndFilesRequest) Skip(skip int32) ApiT
 }
 func (r ApiTemplateFolderAndFileGetFoldersAndFilesRequest) Take(take int32) ApiTemplateFolderAndFileGetFoldersAndFilesRequest {
 	r.take = &take
+	return r
+}
+func (r ApiTemplateFolderAndFileGetFoldersAndFilesRequest) OrderBy(orderBy FileSorting) ApiTemplateFolderAndFileGetFoldersAndFilesRequest {
+	r.orderBy = &orderBy
+	return r
+}
+func (r ApiTemplateFolderAndFileGetFoldersAndFilesRequest) Desc(desc bool) ApiTemplateFolderAndFileGetFoldersAndFilesRequest {
+	r.desc = &desc
+	return r
+}
+func (r ApiTemplateFolderAndFileGetFoldersAndFilesRequest) SearchPattern(searchPattern string) ApiTemplateFolderAndFileGetFoldersAndFilesRequest {
+	r.searchPattern = &searchPattern
 	return r
 }
 
@@ -244,6 +245,15 @@ func (a *TemplatesApiService) TemplateFolderAndFileGetFoldersAndFilesExecute(r A
 	if r.take != nil {
 		localVarQueryParams.Add("take", parameterToString(*r.take, ""))
 	}
+	if r.orderBy != nil {
+		localVarQueryParams.Add("orderBy", parameterToString(*r.orderBy, ""))
+	}
+	if r.desc != nil {
+		localVarQueryParams.Add("desc", parameterToString(*r.desc, ""))
+	}
+	if r.searchPattern != nil {
+		localVarQueryParams.Add("searchPattern", parameterToString(*r.searchPattern, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -254,26 +264,12 @@ func (a *TemplatesApiService) TemplateFolderAndFileGetFoldersAndFilesExecute(r A
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -408,26 +404,12 @@ func (a *TemplatesApiService) TemplateFoldersCopyFolderExecute(r ApiTemplateFold
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -461,7 +443,7 @@ func (a *TemplatesApiService) TemplateFoldersCopyFolderExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -471,7 +453,7 @@ func (a *TemplatesApiService) TemplateFoldersCopyFolderExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -573,26 +555,12 @@ func (a *TemplatesApiService) TemplateFoldersDeleteFolderExecute(r ApiTemplateFo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -626,7 +594,7 @@ func (a *TemplatesApiService) TemplateFoldersDeleteFolderExecute(r ApiTemplateFo
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -636,7 +604,7 @@ func (a *TemplatesApiService) TemplateFoldersDeleteFolderExecute(r ApiTemplateFo
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -723,26 +691,12 @@ func (a *TemplatesApiService) TemplateFoldersGetBreadcrumbsExecute(r ApiTemplate
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -872,26 +826,12 @@ func (a *TemplatesApiService) TemplateFoldersGetFolderExecute(r ApiTemplateFolde
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1037,26 +977,12 @@ func (a *TemplatesApiService) TemplateFoldersGetFoldersExecute(r ApiTemplateFold
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1186,26 +1112,12 @@ func (a *TemplatesApiService) TemplateFoldersGetFoldersCountExecute(r ApiTemplat
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1334,26 +1246,12 @@ func (a *TemplatesApiService) TemplateFoldersGetPermissionsExecute(r ApiTemplate
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1438,7 +1336,7 @@ func (r ApiTemplateFoldersGetRootFolderRequest) Execute() (FileVM, *_nethttp.Res
 
 /*
  * TemplateFoldersGetRootFolder Get user's root folder (without parents)
- * &gt; Breakchange. Now user model doesn't contain a root folders.
+ * > Breakchange. Now user model doesn't contain a root folders.
 This method can return error 400 and 404 when subscription is not found.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiTemplateFoldersGetRootFolderRequest
@@ -1488,26 +1386,12 @@ func (a *TemplatesApiService) TemplateFoldersGetRootFolderExecute(r ApiTemplateF
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1613,26 +1497,12 @@ func (a *TemplatesApiService) TemplateFoldersMoveFolderExecute(r ApiTemplateFold
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1666,7 +1536,7 @@ func (a *TemplatesApiService) TemplateFoldersMoveFolderExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1676,7 +1546,7 @@ func (a *TemplatesApiService) TemplateFoldersMoveFolderExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1714,11 +1584,11 @@ type ApiTemplateFoldersPostFolderRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	folderVm *TemplateFolderCreateVM
+	templateFolderCreateVM *TemplateFolderCreateVM
 }
 
-func (r ApiTemplateFoldersPostFolderRequest) FolderVm(folderVm TemplateFolderCreateVM) ApiTemplateFoldersPostFolderRequest {
-	r.folderVm = &folderVm
+func (r ApiTemplateFoldersPostFolderRequest) TemplateFolderCreateVM(templateFolderCreateVM TemplateFolderCreateVM) ApiTemplateFoldersPostFolderRequest {
+	r.templateFolderCreateVM = &templateFolderCreateVM
 	return r
 }
 
@@ -1768,7 +1638,7 @@ func (a *TemplatesApiService) TemplateFoldersPostFolderExecute(r ApiTemplateFold
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1777,7 +1647,7 @@ func (a *TemplatesApiService) TemplateFoldersPostFolderExecute(r ApiTemplateFold
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1785,21 +1655,7 @@ func (a *TemplatesApiService) TemplateFoldersPostFolderExecute(r ApiTemplateFold
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.folderVm
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.templateFolderCreateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1832,7 +1688,7 @@ func (a *TemplatesApiService) TemplateFoldersPostFolderExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1842,7 +1698,7 @@ func (a *TemplatesApiService) TemplateFoldersPostFolderExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1880,11 +1736,11 @@ type ApiTemplateFoldersRenameFolderRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	nameModel *FolderRenameVM
+	folderRenameVM *FolderRenameVM
 }
 
-func (r ApiTemplateFoldersRenameFolderRequest) NameModel(nameModel FolderRenameVM) ApiTemplateFoldersRenameFolderRequest {
-	r.nameModel = &nameModel
+func (r ApiTemplateFoldersRenameFolderRequest) FolderRenameVM(folderRenameVM FolderRenameVM) ApiTemplateFoldersRenameFolderRequest {
+	r.folderRenameVM = &folderRenameVM
 	return r
 }
 
@@ -1934,7 +1790,7 @@ func (a *TemplatesApiService) TemplateFoldersRenameFolderExecute(r ApiTemplateFo
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1943,7 +1799,7 @@ func (a *TemplatesApiService) TemplateFoldersRenameFolderExecute(r ApiTemplateFo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1951,21 +1807,7 @@ func (a *TemplatesApiService) TemplateFoldersRenameFolderExecute(r ApiTemplateFo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.nameModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.folderRenameVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1998,7 +1840,7 @@ func (a *TemplatesApiService) TemplateFoldersRenameFolderExecute(r ApiTemplateFo
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2008,7 +1850,7 @@ func (a *TemplatesApiService) TemplateFoldersRenameFolderExecute(r ApiTemplateFo
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2046,11 +1888,11 @@ type ApiTemplateFoldersUpdateIconRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	iconModel *FolderIconVM
+	folderIconVM *FolderIconVM
 }
 
-func (r ApiTemplateFoldersUpdateIconRequest) IconModel(iconModel FolderIconVM) ApiTemplateFoldersUpdateIconRequest {
-	r.iconModel = &iconModel
+func (r ApiTemplateFoldersUpdateIconRequest) FolderIconVM(folderIconVM FolderIconVM) ApiTemplateFoldersUpdateIconRequest {
+	r.folderIconVM = &folderIconVM
 	return r
 }
 
@@ -2100,7 +1942,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateIconExecute(r ApiTemplateFold
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2109,7 +1951,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateIconExecute(r ApiTemplateFold
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2117,21 +1959,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateIconExecute(r ApiTemplateFold
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.iconModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.folderIconVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2164,7 +1992,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateIconExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2174,7 +2002,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateIconExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2212,11 +2040,11 @@ type ApiTemplateFoldersUpdatePermissionsRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	permissionsVM *UpdateFilePermissionsVM
+	updateFilePermissionsVM *UpdateFilePermissionsVM
 }
 
-func (r ApiTemplateFoldersUpdatePermissionsRequest) PermissionsVM(permissionsVM UpdateFilePermissionsVM) ApiTemplateFoldersUpdatePermissionsRequest {
-	r.permissionsVM = &permissionsVM
+func (r ApiTemplateFoldersUpdatePermissionsRequest) UpdateFilePermissionsVM(updateFilePermissionsVM UpdateFilePermissionsVM) ApiTemplateFoldersUpdatePermissionsRequest {
+	r.updateFilePermissionsVM = &updateFilePermissionsVM
 	return r
 }
 
@@ -2263,7 +2091,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdatePermissionsExecute(r ApiTempl
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2272,7 +2100,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdatePermissionsExecute(r ApiTempl
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2280,21 +2108,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdatePermissionsExecute(r ApiTempl
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.permissionsVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateFilePermissionsVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -2367,11 +2181,11 @@ type ApiTemplateFoldersUpdateTagsRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	tagsModel *FolderTagsUpdateVM
+	folderTagsUpdateVM *FolderTagsUpdateVM
 }
 
-func (r ApiTemplateFoldersUpdateTagsRequest) TagsModel(tagsModel FolderTagsUpdateVM) ApiTemplateFoldersUpdateTagsRequest {
-	r.tagsModel = &tagsModel
+func (r ApiTemplateFoldersUpdateTagsRequest) FolderTagsUpdateVM(folderTagsUpdateVM FolderTagsUpdateVM) ApiTemplateFoldersUpdateTagsRequest {
+	r.folderTagsUpdateVM = &folderTagsUpdateVM
 	return r
 }
 
@@ -2421,7 +2235,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateTagsExecute(r ApiTemplateFold
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2430,7 +2244,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateTagsExecute(r ApiTemplateFold
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2438,21 +2252,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateTagsExecute(r ApiTemplateFold
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.tagsModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.folderTagsUpdateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2485,7 +2285,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateTagsExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2495,7 +2295,7 @@ func (a *TemplatesApiService) TemplateFoldersUpdateTagsExecute(r ApiTemplateFold
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2594,26 +2394,12 @@ func (a *TemplatesApiService) TemplatesCopyFileExecute(r ApiTemplatesCopyFileReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2647,7 +2433,7 @@ func (a *TemplatesApiService) TemplatesCopyFileExecute(r ApiTemplatesCopyFileReq
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2657,7 +2443,7 @@ func (a *TemplatesApiService) TemplatesCopyFileExecute(r ApiTemplatesCopyFileReq
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2752,26 +2538,12 @@ func (a *TemplatesApiService) TemplatesDeleteFileExecute(r ApiTemplatesDeleteFil
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2805,7 +2577,7 @@ func (a *TemplatesApiService) TemplatesDeleteFileExecute(r ApiTemplatesDeleteFil
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2815,7 +2587,7 @@ func (a *TemplatesApiService) TemplatesDeleteFileExecute(r ApiTemplatesDeleteFil
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2845,11 +2617,11 @@ type ApiTemplatesExportRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	exportTask *ExportTemplateTaskVM
+	exportTemplateVM *ExportTemplateVM
 }
 
-func (r ApiTemplatesExportRequest) ExportTask(exportTask ExportTemplateTaskVM) ApiTemplatesExportRequest {
-	r.exportTask = &exportTask
+func (r ApiTemplatesExportRequest) ExportTemplateVM(exportTemplateVM ExportTemplateVM) ApiTemplatesExportRequest {
+	r.exportTemplateVM = &exportTemplateVM
 	return r
 }
 
@@ -2900,7 +2672,7 @@ func (a *TemplatesApiService) TemplatesExportExecute(r ApiTemplatesExportRequest
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2909,7 +2681,7 @@ func (a *TemplatesApiService) TemplatesExportExecute(r ApiTemplatesExportRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2917,21 +2689,7 @@ func (a *TemplatesApiService) TemplatesExportExecute(r ApiTemplatesExportRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.exportTask
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.exportTemplateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2964,7 +2722,7 @@ func (a *TemplatesApiService) TemplatesExportExecute(r ApiTemplatesExportRequest
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2974,7 +2732,7 @@ func (a *TemplatesApiService) TemplatesExportExecute(r ApiTemplatesExportRequest
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3070,26 +2828,12 @@ func (a *TemplatesApiService) TemplatesGetFileExecute(r ApiTemplatesGetFileReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3220,26 +2964,12 @@ func (a *TemplatesApiService) TemplatesGetFilesCountExecute(r ApiTemplatesGetFil
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3330,8 +3060,7 @@ func (r ApiTemplatesGetFilesListRequest) Execute() (TemplatesVM, *_nethttp.Respo
 }
 
 /*
- * TemplatesGetFilesList Get all files from specified folder
- * User with Get Entity permission can access this method.
+ * TemplatesGetFilesList Get all files from specified folder. <br />  User with Get Entity permission can access this method. <br />  The method will returns minimal infomration about the file: <br />  id, name, size, editedTime, createdTime, tags, status, statusReason.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id folder id
  * @return ApiTemplatesGetFilesListRequest
@@ -3386,26 +3115,12 @@ func (a *TemplatesApiService) TemplatesGetFilesListExecute(r ApiTemplatesGetFile
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3535,26 +3250,12 @@ func (a *TemplatesApiService) TemplatesGetPermissionsExecute(r ApiTemplatesGetPe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3688,26 +3389,12 @@ func (a *TemplatesApiService) TemplatesMoveFileExecute(r ApiTemplatesMoveFileReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3741,7 +3428,7 @@ func (a *TemplatesApiService) TemplatesMoveFileExecute(r ApiTemplatesMoveFileReq
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3751,7 +3438,7 @@ func (a *TemplatesApiService) TemplatesMoveFileExecute(r ApiTemplatesMoveFileReq
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3790,11 +3477,11 @@ type ApiTemplatesPrepareRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	prepareTask *PrepareTemplateTaskVM
+	prepareTemplateVM *PrepareTemplateVM
 }
 
-func (r ApiTemplatesPrepareRequest) PrepareTask(prepareTask PrepareTemplateTaskVM) ApiTemplatesPrepareRequest {
-	r.prepareTask = &prepareTask
+func (r ApiTemplatesPrepareRequest) PrepareTemplateVM(prepareTemplateVM PrepareTemplateVM) ApiTemplatesPrepareRequest {
+	r.prepareTemplateVM = &prepareTemplateVM
 	return r
 }
 
@@ -3804,7 +3491,7 @@ func (r ApiTemplatesPrepareRequest) Execute() (ReportVM, *_nethttp.Response, err
 
 /*
  * TemplatesPrepare Prepare specified template to report
- * User with Execute Prepare permission on report and 
+ * User with Execute Prepare permission on report and
 Create Entity on a prepared report folder can access this method.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id template id
@@ -3845,7 +3532,7 @@ func (a *TemplatesApiService) TemplatesPrepareExecute(r ApiTemplatesPrepareReque
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3854,7 +3541,7 @@ func (a *TemplatesApiService) TemplatesPrepareExecute(r ApiTemplatesPrepareReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3862,21 +3549,7 @@ func (a *TemplatesApiService) TemplatesPrepareExecute(r ApiTemplatesPrepareReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.prepareTask
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.prepareTemplateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3909,7 +3582,7 @@ func (a *TemplatesApiService) TemplatesPrepareExecute(r ApiTemplatesPrepareReque
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3919,7 +3592,7 @@ func (a *TemplatesApiService) TemplatesPrepareExecute(r ApiTemplatesPrepareReque
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3957,11 +3630,11 @@ type ApiTemplatesRenameFileRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	nameModel *FileRenameVM
+	fileRenameVM *FileRenameVM
 }
 
-func (r ApiTemplatesRenameFileRequest) NameModel(nameModel FileRenameVM) ApiTemplatesRenameFileRequest {
-	r.nameModel = &nameModel
+func (r ApiTemplatesRenameFileRequest) FileRenameVM(fileRenameVM FileRenameVM) ApiTemplatesRenameFileRequest {
+	r.fileRenameVM = &fileRenameVM
 	return r
 }
 
@@ -4011,7 +3684,7 @@ func (a *TemplatesApiService) TemplatesRenameFileExecute(r ApiTemplatesRenameFil
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4020,7 +3693,7 @@ func (a *TemplatesApiService) TemplatesRenameFileExecute(r ApiTemplatesRenameFil
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4028,21 +3701,7 @@ func (a *TemplatesApiService) TemplatesRenameFileExecute(r ApiTemplatesRenameFil
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.nameModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.fileRenameVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4075,7 +3734,7 @@ func (a *TemplatesApiService) TemplatesRenameFileExecute(r ApiTemplatesRenameFil
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4085,7 +3744,7 @@ func (a *TemplatesApiService) TemplatesRenameFileExecute(r ApiTemplatesRenameFil
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4124,11 +3783,11 @@ type ApiTemplatesUpdateIconRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	iconModel *FileIconVM
+	fileIconVM *FileIconVM
 }
 
-func (r ApiTemplatesUpdateIconRequest) IconModel(iconModel FileIconVM) ApiTemplatesUpdateIconRequest {
-	r.iconModel = &iconModel
+func (r ApiTemplatesUpdateIconRequest) FileIconVM(fileIconVM FileIconVM) ApiTemplatesUpdateIconRequest {
+	r.fileIconVM = &fileIconVM
 	return r
 }
 
@@ -4178,7 +3837,7 @@ func (a *TemplatesApiService) TemplatesUpdateIconExecute(r ApiTemplatesUpdateIco
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4187,7 +3846,7 @@ func (a *TemplatesApiService) TemplatesUpdateIconExecute(r ApiTemplatesUpdateIco
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4195,21 +3854,7 @@ func (a *TemplatesApiService) TemplatesUpdateIconExecute(r ApiTemplatesUpdateIco
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.iconModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.fileIconVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4242,7 +3887,7 @@ func (a *TemplatesApiService) TemplatesUpdateIconExecute(r ApiTemplatesUpdateIco
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4252,7 +3897,7 @@ func (a *TemplatesApiService) TemplatesUpdateIconExecute(r ApiTemplatesUpdateIco
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4291,11 +3936,11 @@ type ApiTemplatesUpdatePermissionsRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	permissionsVM *UpdateFilePermissionsVM
+	updateFilePermissionsVM *UpdateFilePermissionsVM
 }
 
-func (r ApiTemplatesUpdatePermissionsRequest) PermissionsVM(permissionsVM UpdateFilePermissionsVM) ApiTemplatesUpdatePermissionsRequest {
-	r.permissionsVM = &permissionsVM
+func (r ApiTemplatesUpdatePermissionsRequest) UpdateFilePermissionsVM(updateFilePermissionsVM UpdateFilePermissionsVM) ApiTemplatesUpdatePermissionsRequest {
+	r.updateFilePermissionsVM = &updateFilePermissionsVM
 	return r
 }
 
@@ -4342,7 +3987,7 @@ func (a *TemplatesApiService) TemplatesUpdatePermissionsExecute(r ApiTemplatesUp
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4351,7 +3996,7 @@ func (a *TemplatesApiService) TemplatesUpdatePermissionsExecute(r ApiTemplatesUp
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4359,21 +4004,7 @@ func (a *TemplatesApiService) TemplatesUpdatePermissionsExecute(r ApiTemplatesUp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.permissionsVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateFilePermissionsVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -4446,11 +4077,11 @@ type ApiTemplatesUpdateTagsRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	tagsModel *FileTagsUpdateVM
+	fileTagsUpdateVM *FileTagsUpdateVM
 }
 
-func (r ApiTemplatesUpdateTagsRequest) TagsModel(tagsModel FileTagsUpdateVM) ApiTemplatesUpdateTagsRequest {
-	r.tagsModel = &tagsModel
+func (r ApiTemplatesUpdateTagsRequest) FileTagsUpdateVM(fileTagsUpdateVM FileTagsUpdateVM) ApiTemplatesUpdateTagsRequest {
+	r.fileTagsUpdateVM = &fileTagsUpdateVM
 	return r
 }
 
@@ -4500,7 +4131,7 @@ func (a *TemplatesApiService) TemplatesUpdateTagsExecute(r ApiTemplatesUpdateTag
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4509,7 +4140,7 @@ func (a *TemplatesApiService) TemplatesUpdateTagsExecute(r ApiTemplatesUpdateTag
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4517,21 +4148,7 @@ func (a *TemplatesApiService) TemplatesUpdateTagsExecute(r ApiTemplatesUpdateTag
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.tagsModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.fileTagsUpdateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4564,7 +4181,7 @@ func (a *TemplatesApiService) TemplatesUpdateTagsExecute(r ApiTemplatesUpdateTag
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4574,7 +4191,7 @@ func (a *TemplatesApiService) TemplatesUpdateTagsExecute(r ApiTemplatesUpdateTag
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4613,11 +4230,11 @@ type ApiTemplatesUploadFileRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
-	fileVM *TemplateCreateVM
+	templateCreateVM *TemplateCreateVM
 }
 
-func (r ApiTemplatesUploadFileRequest) FileVM(fileVM TemplateCreateVM) ApiTemplatesUploadFileRequest {
-	r.fileVM = &fileVM
+func (r ApiTemplatesUploadFileRequest) TemplateCreateVM(templateCreateVM TemplateCreateVM) ApiTemplatesUploadFileRequest {
+	r.templateCreateVM = &templateCreateVM
 	return r
 }
 
@@ -4667,7 +4284,7 @@ func (a *TemplatesApiService) TemplatesUploadFileExecute(r ApiTemplatesUploadFil
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4676,7 +4293,7 @@ func (a *TemplatesApiService) TemplatesUploadFileExecute(r ApiTemplatesUploadFil
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4684,21 +4301,7 @@ func (a *TemplatesApiService) TemplatesUploadFileExecute(r ApiTemplatesUploadFil
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.fileVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.templateCreateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4731,7 +4334,7 @@ func (a *TemplatesApiService) TemplatesUploadFileExecute(r ApiTemplatesUploadFil
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4741,7 +4344,7 @@ func (a *TemplatesApiService) TemplatesUploadFileExecute(r ApiTemplatesUploadFil
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

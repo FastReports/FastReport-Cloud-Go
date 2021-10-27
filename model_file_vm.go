@@ -17,20 +17,20 @@ import (
 
 // FileVM struct for FileVM
 type FileVM struct {
-	Name *string `json:"name,omitempty"`
-	ParentId *string `json:"parentId,omitempty"`
-	Tags *[]string `json:"tags,omitempty"`
-	Icon *string `json:"icon,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	ParentId NullableString `json:"parentId,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	Icon NullableString `json:"icon,omitempty"`
+	Type *FileType `json:"type,omitempty"`
 	Size *int64 `json:"size,omitempty"`
-	SubscriptionId *string `json:"subscriptionId,omitempty"`
-	Status *string `json:"status,omitempty"`
-	StatusReason *string `json:"statusReason,omitempty"`
-	Id *string `json:"id,omitempty"`
+	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
+	Status *FileStatus `json:"status,omitempty"`
+	StatusReason *FileStatusReason `json:"statusReason,omitempty"`
+	Id NullableString `json:"id,omitempty"`
 	CreatedTime *time.Time `json:"createdTime,omitempty"`
-	CreatorUserId *string `json:"creatorUserId,omitempty"`
+	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
 	EditedTime *time.Time `json:"editedTime,omitempty"`
-	EditorUserId *string `json:"editorUserId,omitempty"`
+	EditorUserId NullableString `json:"editorUserId,omitempty"`
 }
 
 // NewFileVM instantiates a new FileVM object
@@ -50,86 +50,107 @@ func NewFileVMWithDefaults() *FileVM {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileVM) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileVM) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *FileVM) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *FileVM) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *FileVM) SetNameNil() {
+	o.Name.Set(nil)
 }
 
-// GetParentId returns the ParentId field value if set, zero value otherwise.
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *FileVM) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetParentId returns the ParentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileVM) GetParentId() string {
-	if o == nil || o.ParentId == nil {
+	if o == nil || o.ParentId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.ParentId
+	return *o.ParentId.Get()
 }
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileVM) GetParentIdOk() (*string, bool) {
-	if o == nil || o.ParentId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.ParentId, true
+	return o.ParentId.Get(), o.ParentId.IsSet()
 }
 
 // HasParentId returns a boolean if a field has been set.
 func (o *FileVM) HasParentId() bool {
-	if o != nil && o.ParentId != nil {
+	if o != nil && o.ParentId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetParentId gets a reference to the given string and assigns it to the ParentId field.
+// SetParentId gets a reference to the given NullableString and assigns it to the ParentId field.
 func (o *FileVM) SetParentId(v string) {
-	o.ParentId = &v
+	o.ParentId.Set(&v)
+}
+// SetParentIdNil sets the value for ParentId to be an explicit nil
+func (o *FileVM) SetParentIdNil() {
+	o.ParentId.Set(nil)
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
+// UnsetParentId ensures that no value is present for ParentId, not even an explicit nil
+func (o *FileVM) UnsetParentId() {
+	o.ParentId.Unset()
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileVM) GetTags() []string {
-	if o == nil || o.Tags == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileVM) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -143,45 +164,55 @@ func (o *FileVM) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *FileVM) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
-// GetIcon returns the Icon field value if set, zero value otherwise.
+// GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileVM) GetIcon() string {
-	if o == nil || o.Icon == nil {
+	if o == nil || o.Icon.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Icon
+	return *o.Icon.Get()
 }
 
 // GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileVM) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Icon, true
+	return o.Icon.Get(), o.Icon.IsSet()
 }
 
 // HasIcon returns a boolean if a field has been set.
 func (o *FileVM) HasIcon() bool {
-	if o != nil && o.Icon != nil {
+	if o != nil && o.Icon.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
+// SetIcon gets a reference to the given NullableString and assigns it to the Icon field.
 func (o *FileVM) SetIcon(v string) {
-	o.Icon = &v
+	o.Icon.Set(&v)
+}
+// SetIconNil sets the value for Icon to be an explicit nil
+func (o *FileVM) SetIconNil() {
+	o.Icon.Set(nil)
+}
+
+// UnsetIcon ensures that no value is present for Icon, not even an explicit nil
+func (o *FileVM) UnsetIcon() {
+	o.Icon.Unset()
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *FileVM) GetType() string {
+func (o *FileVM) GetType() FileType {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret FileType
 		return ret
 	}
 	return *o.Type
@@ -189,7 +220,7 @@ func (o *FileVM) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileVM) GetTypeOk() (*string, bool) {
+func (o *FileVM) GetTypeOk() (*FileType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -205,8 +236,8 @@ func (o *FileVM) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *FileVM) SetType(v string) {
+// SetType gets a reference to the given FileType and assigns it to the Type field.
+func (o *FileVM) SetType(v FileType) {
 	o.Type = &v
 }
 
@@ -242,42 +273,52 @@ func (o *FileVM) SetSize(v int64) {
 	o.Size = &v
 }
 
-// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileVM) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil || o.SubscriptionId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.SubscriptionId
+	return *o.SubscriptionId.Get()
 }
 
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileVM) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.SubscriptionId, true
+	return o.SubscriptionId.Get(), o.SubscriptionId.IsSet()
 }
 
 // HasSubscriptionId returns a boolean if a field has been set.
 func (o *FileVM) HasSubscriptionId() bool {
-	if o != nil && o.SubscriptionId != nil {
+	if o != nil && o.SubscriptionId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+// SetSubscriptionId gets a reference to the given NullableString and assigns it to the SubscriptionId field.
 func (o *FileVM) SetSubscriptionId(v string) {
-	o.SubscriptionId = &v
+	o.SubscriptionId.Set(&v)
+}
+// SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+func (o *FileVM) SetSubscriptionIdNil() {
+	o.SubscriptionId.Set(nil)
+}
+
+// UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+func (o *FileVM) UnsetSubscriptionId() {
+	o.SubscriptionId.Unset()
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *FileVM) GetStatus() string {
+func (o *FileVM) GetStatus() FileStatus {
 	if o == nil || o.Status == nil {
-		var ret string
+		var ret FileStatus
 		return ret
 	}
 	return *o.Status
@@ -285,7 +326,7 @@ func (o *FileVM) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileVM) GetStatusOk() (*string, bool) {
+func (o *FileVM) GetStatusOk() (*FileStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -301,15 +342,15 @@ func (o *FileVM) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *FileVM) SetStatus(v string) {
+// SetStatus gets a reference to the given FileStatus and assigns it to the Status field.
+func (o *FileVM) SetStatus(v FileStatus) {
 	o.Status = &v
 }
 
 // GetStatusReason returns the StatusReason field value if set, zero value otherwise.
-func (o *FileVM) GetStatusReason() string {
+func (o *FileVM) GetStatusReason() FileStatusReason {
 	if o == nil || o.StatusReason == nil {
-		var ret string
+		var ret FileStatusReason
 		return ret
 	}
 	return *o.StatusReason
@@ -317,7 +358,7 @@ func (o *FileVM) GetStatusReason() string {
 
 // GetStatusReasonOk returns a tuple with the StatusReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileVM) GetStatusReasonOk() (*string, bool) {
+func (o *FileVM) GetStatusReasonOk() (*FileStatusReason, bool) {
 	if o == nil || o.StatusReason == nil {
 		return nil, false
 	}
@@ -333,41 +374,51 @@ func (o *FileVM) HasStatusReason() bool {
 	return false
 }
 
-// SetStatusReason gets a reference to the given string and assigns it to the StatusReason field.
-func (o *FileVM) SetStatusReason(v string) {
+// SetStatusReason gets a reference to the given FileStatusReason and assigns it to the StatusReason field.
+func (o *FileVM) SetStatusReason(v FileStatusReason) {
 	o.StatusReason = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileVM) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || o.Id.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Id.Get()
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileVM) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Id.Get(), o.Id.IsSet()
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *FileVM) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && o.Id.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId gets a reference to the given NullableString and assigns it to the Id field.
 func (o *FileVM) SetId(v string) {
-	o.Id = &v
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *FileVM) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *FileVM) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise.
@@ -402,36 +453,46 @@ func (o *FileVM) SetCreatedTime(v time.Time) {
 	o.CreatedTime = &v
 }
 
-// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise.
+// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileVM) GetCreatorUserId() string {
-	if o == nil || o.CreatorUserId == nil {
+	if o == nil || o.CreatorUserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.CreatorUserId
+	return *o.CreatorUserId.Get()
 }
 
 // GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileVM) GetCreatorUserIdOk() (*string, bool) {
-	if o == nil || o.CreatorUserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CreatorUserId, true
+	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
 }
 
 // HasCreatorUserId returns a boolean if a field has been set.
 func (o *FileVM) HasCreatorUserId() bool {
-	if o != nil && o.CreatorUserId != nil {
+	if o != nil && o.CreatorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatorUserId gets a reference to the given string and assigns it to the CreatorUserId field.
+// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
 func (o *FileVM) SetCreatorUserId(v string) {
-	o.CreatorUserId = &v
+	o.CreatorUserId.Set(&v)
+}
+// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+func (o *FileVM) SetCreatorUserIdNil() {
+	o.CreatorUserId.Set(nil)
+}
+
+// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+func (o *FileVM) UnsetCreatorUserId() {
+	o.CreatorUserId.Unset()
 }
 
 // GetEditedTime returns the EditedTime field value if set, zero value otherwise.
@@ -466,51 +527,61 @@ func (o *FileVM) SetEditedTime(v time.Time) {
 	o.EditedTime = &v
 }
 
-// GetEditorUserId returns the EditorUserId field value if set, zero value otherwise.
+// GetEditorUserId returns the EditorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileVM) GetEditorUserId() string {
-	if o == nil || o.EditorUserId == nil {
+	if o == nil || o.EditorUserId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.EditorUserId
+	return *o.EditorUserId.Get()
 }
 
 // GetEditorUserIdOk returns a tuple with the EditorUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileVM) GetEditorUserIdOk() (*string, bool) {
-	if o == nil || o.EditorUserId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.EditorUserId, true
+	return o.EditorUserId.Get(), o.EditorUserId.IsSet()
 }
 
 // HasEditorUserId returns a boolean if a field has been set.
 func (o *FileVM) HasEditorUserId() bool {
-	if o != nil && o.EditorUserId != nil {
+	if o != nil && o.EditorUserId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetEditorUserId gets a reference to the given string and assigns it to the EditorUserId field.
+// SetEditorUserId gets a reference to the given NullableString and assigns it to the EditorUserId field.
 func (o *FileVM) SetEditorUserId(v string) {
-	o.EditorUserId = &v
+	o.EditorUserId.Set(&v)
+}
+// SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
+func (o *FileVM) SetEditorUserIdNil() {
+	o.EditorUserId.Set(nil)
+}
+
+// UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
+func (o *FileVM) UnsetEditorUserId() {
+	o.EditorUserId.Unset()
 }
 
 func (o FileVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
-	if o.ParentId != nil {
-		toSerialize["parentId"] = o.ParentId
+	if o.ParentId.IsSet() {
+		toSerialize["parentId"] = o.ParentId.Get()
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if o.Icon != nil {
-		toSerialize["icon"] = o.Icon
+	if o.Icon.IsSet() {
+		toSerialize["icon"] = o.Icon.Get()
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
@@ -518,8 +589,8 @@ func (o FileVM) MarshalJSON() ([]byte, error) {
 	if o.Size != nil {
 		toSerialize["size"] = o.Size
 	}
-	if o.SubscriptionId != nil {
-		toSerialize["subscriptionId"] = o.SubscriptionId
+	if o.SubscriptionId.IsSet() {
+		toSerialize["subscriptionId"] = o.SubscriptionId.Get()
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
@@ -527,20 +598,20 @@ func (o FileVM) MarshalJSON() ([]byte, error) {
 	if o.StatusReason != nil {
 		toSerialize["statusReason"] = o.StatusReason
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
 	}
 	if o.CreatedTime != nil {
 		toSerialize["createdTime"] = o.CreatedTime
 	}
-	if o.CreatorUserId != nil {
-		toSerialize["creatorUserId"] = o.CreatorUserId
+	if o.CreatorUserId.IsSet() {
+		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
 	}
 	if o.EditedTime != nil {
 		toSerialize["editedTime"] = o.EditedTime
 	}
-	if o.EditorUserId != nil {
-		toSerialize["editorUserId"] = o.EditorUserId
+	if o.EditorUserId.IsSet() {
+		toSerialize["editorUserId"] = o.EditorUserId.Get()
 	}
 	return json.Marshal(toSerialize)
 }

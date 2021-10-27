@@ -16,9 +16,9 @@ import (
 
 // FilePermissions struct for FilePermissions
 type FilePermissions struct {
-	OwnerId *string `json:"ownerId,omitempty"`
+	OwnerId NullableString `json:"ownerId,omitempty"`
 	Owner *FilePermission `json:"owner,omitempty"`
-	Groups *map[string]FilePermission `json:"groups,omitempty"`
+	Groups map[string]FilePermission `json:"groups,omitempty"`
 	Other *FilePermission `json:"other,omitempty"`
 	Anon *FilePermission `json:"anon,omitempty"`
 }
@@ -40,36 +40,46 @@ func NewFilePermissionsWithDefaults() *FilePermissions {
 	return &this
 }
 
-// GetOwnerId returns the OwnerId field value if set, zero value otherwise.
+// GetOwnerId returns the OwnerId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FilePermissions) GetOwnerId() string {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || o.OwnerId.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.OwnerId
+	return *o.OwnerId.Get()
 }
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FilePermissions) GetOwnerIdOk() (*string, bool) {
-	if o == nil || o.OwnerId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.OwnerId, true
+	return o.OwnerId.Get(), o.OwnerId.IsSet()
 }
 
 // HasOwnerId returns a boolean if a field has been set.
 func (o *FilePermissions) HasOwnerId() bool {
-	if o != nil && o.OwnerId != nil {
+	if o != nil && o.OwnerId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
+// SetOwnerId gets a reference to the given NullableString and assigns it to the OwnerId field.
 func (o *FilePermissions) SetOwnerId(v string) {
-	o.OwnerId = &v
+	o.OwnerId.Set(&v)
+}
+// SetOwnerIdNil sets the value for OwnerId to be an explicit nil
+func (o *FilePermissions) SetOwnerIdNil() {
+	o.OwnerId.Set(nil)
+}
+
+// UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
+func (o *FilePermissions) UnsetOwnerId() {
+	o.OwnerId.Unset()
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
@@ -104,22 +114,23 @@ func (o *FilePermissions) SetOwner(v FilePermission) {
 	o.Owner = &v
 }
 
-// GetGroups returns the Groups field value if set, zero value otherwise.
+// GetGroups returns the Groups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FilePermissions) GetGroups() map[string]FilePermission {
-	if o == nil || o.Groups == nil {
+	if o == nil  {
 		var ret map[string]FilePermission
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FilePermissions) GetGroupsOk() (*map[string]FilePermission, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -133,7 +144,7 @@ func (o *FilePermissions) HasGroups() bool {
 
 // SetGroups gets a reference to the given map[string]FilePermission and assigns it to the Groups field.
 func (o *FilePermissions) SetGroups(v map[string]FilePermission) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 // GetOther returns the Other field value if set, zero value otherwise.
@@ -202,8 +213,8 @@ func (o *FilePermissions) SetAnon(v FilePermission) {
 
 func (o FilePermissions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OwnerId != nil {
-		toSerialize["ownerId"] = o.OwnerId
+	if o.OwnerId.IsSet() {
+		toSerialize["ownerId"] = o.OwnerId.Get()
 	}
 	if o.Owner != nil {
 		toSerialize["owner"] = o.Owner

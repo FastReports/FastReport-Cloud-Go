@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OwnerId** | Pointer to **string** |  | [optional] 
+**OwnerId** | Pointer to **NullableString** |  | [optional] 
 **Owner** | Pointer to [**DataSourcePermission**](DataSourcePermission.md) |  | [optional] 
 **Groups** | Pointer to [**map[string]DataSourcePermission**](DataSourcePermission.md) |  | [optional] 
 **Other** | Pointer to [**DataSourcePermission**](DataSourcePermission.md) |  | [optional] 
@@ -54,6 +54,16 @@ SetOwnerId sets OwnerId field to given value.
 
 HasOwnerId returns a boolean if a field has been set.
 
+### SetOwnerIdNil
+
+`func (o *DataSourcePermissions) SetOwnerIdNil(b bool)`
+
+ SetOwnerIdNil sets the value for OwnerId to be an explicit nil
+
+### UnsetOwnerId
+`func (o *DataSourcePermissions) UnsetOwnerId()`
+
+UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
 ### GetOwner
 
 `func (o *DataSourcePermissions) GetOwner() DataSourcePermission`
@@ -104,6 +114,16 @@ SetGroups sets Groups field to given value.
 
 HasGroups returns a boolean if a field has been set.
 
+### SetGroupsNil
+
+`func (o *DataSourcePermissions) SetGroupsNil(b bool)`
+
+ SetGroupsNil sets the value for Groups to be an explicit nil
+
+### UnsetGroups
+`func (o *DataSourcePermissions) UnsetGroups()`
+
+UnsetGroups ensures that no value is present for Groups, not even an explicit nil
 ### GetOther
 
 `func (o *DataSourcePermissions) GetOther() DataSourcePermission`

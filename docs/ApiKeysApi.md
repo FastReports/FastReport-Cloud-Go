@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## ApiKeysCreateApiKey
 
-> ApiKeyVM ApiKeysCreateApiKey(ctx).Model(model).Execute()
+> ApiKeyVM ApiKeysCreateApiKey(ctx).CreateApiKeyVM(createApiKeyVM).Execute()
 
 Create a new apikey, 5 apikeys for user. Hardcoded for ddos.
 
@@ -30,11 +30,11 @@ import (
 )
 
 func main() {
-    model := *openapiclient.NewCreateApiKeyVM(time.Now()) // CreateApiKeyVM | 
+    createApiKeyVM := *openapiclient.NewCreateApiKeyVM(time.Now()) // CreateApiKeyVM | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApiKeysApi.ApiKeysCreateApiKey(context.Background()).Model(model).Execute()
+    resp, r, err := api_client.ApiKeysApi.ApiKeysCreateApiKey(context.Background()).CreateApiKeyVM(createApiKeyVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.ApiKeysCreateApiKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +55,7 @@ Other parameters are passed through a pointer to a apiApiKeysCreateApiKeyRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**CreateApiKeyVM**](CreateApiKeyVM.md) |  | 
+ **createApiKeyVM** | [**CreateApiKeyVM**](CreateApiKeyVM.md) |  | 
 
 ### Return type
 
@@ -67,8 +67,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ## ApiKeysDeleteApiKey
 
-> ApiKeysDeleteApiKey(ctx).Model(model).Execute()
+> ApiKeysDeleteApiKey(ctx).DeleteApiKeyVM(deleteApiKeyVM).Execute()
 
 Delete an apikey
 
@@ -94,11 +94,11 @@ import (
 )
 
 func main() {
-    model := *openapiclient.NewDeleteApiKeyVM("ApiKey_example") // DeleteApiKeyVM | 
+    deleteApiKeyVM := *openapiclient.NewDeleteApiKeyVM("ApiKey_example") // DeleteApiKeyVM | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApiKeysApi.ApiKeysDeleteApiKey(context.Background()).Model(model).Execute()
+    resp, r, err := api_client.ApiKeysApi.ApiKeysDeleteApiKey(context.Background()).DeleteApiKeyVM(deleteApiKeyVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.ApiKeysDeleteApiKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -117,7 +117,7 @@ Other parameters are passed through a pointer to a apiApiKeysDeleteApiKeyRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model** | [**DeleteApiKeyVM**](DeleteApiKeyVM.md) |  | 
+ **deleteApiKeyVM** | [**DeleteApiKeyVM**](DeleteApiKeyVM.md) |  | 
 
 ### Return type
 
@@ -129,8 +129,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json-patch+json, application/json, text/json, application/_*+json
-- **Accept**: application/json, text/json, text/plain
+- **Content-Type**: application/json, text/json, application/_*+json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -191,7 +191,7 @@ Other parameters are passed through a pointer to a apiApiKeysGetApiKeysRequest s
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/json, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

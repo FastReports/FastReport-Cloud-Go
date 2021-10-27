@@ -51,6 +51,16 @@ SetInvites sets Invites field to given value.
 
 HasInvites returns a boolean if a field has been set.
 
+### SetInvitesNil
+
+`func (o *SubscriptionInvitesVM) SetInvitesNil(b bool)`
+
+ SetInvitesNil sets the value for Invites to be an explicit nil
+
+### UnsetInvites
+`func (o *SubscriptionInvitesVM) UnsetInvites()`
+
+UnsetInvites ensures that no value is present for Invites, not even an explicit nil
 ### GetCount
 
 `func (o *SubscriptionInvitesVM) GetCount() int64`

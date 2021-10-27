@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
 **ConnectionString** | **string** |  | 
 **SubscriptionId** | **string** |  | 
-**ConnectionType** | Pointer to **string** |  | [optional] 
+**ConnectionType** | Pointer to [**DataSourceConnectionType**](DataSourceConnectionType.md) |  | [optional] 
 
 ## Methods
 
@@ -53,6 +53,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *CreateDataSourceVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *CreateDataSourceVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetConnectionString
 
 `func (o *CreateDataSourceVM) GetConnectionString() string`
@@ -95,20 +105,20 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 ### GetConnectionType
 
-`func (o *CreateDataSourceVM) GetConnectionType() string`
+`func (o *CreateDataSourceVM) GetConnectionType() DataSourceConnectionType`
 
 GetConnectionType returns the ConnectionType field if non-nil, zero value otherwise.
 
 ### GetConnectionTypeOk
 
-`func (o *CreateDataSourceVM) GetConnectionTypeOk() (*string, bool)`
+`func (o *CreateDataSourceVM) GetConnectionTypeOk() (*DataSourceConnectionType, bool)`
 
 GetConnectionTypeOk returns a tuple with the ConnectionType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionType
 
-`func (o *CreateDataSourceVM) SetConnectionType(v string)`
+`func (o *CreateDataSourceVM) SetConnectionType(v DataSourceConnectionType)`
 
 SetConnectionType sets ConnectionType field to given value.
 

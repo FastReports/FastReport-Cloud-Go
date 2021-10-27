@@ -16,11 +16,11 @@ import (
 
 // UpdateUserProfileVM struct for UpdateUserProfileVM
 type UpdateUserProfileVM struct {
-	Name *string `json:"name,omitempty"`
-	Username *string `json:"username,omitempty"`
-	Email *string `json:"email,omitempty"`
-	PasswordNew *string `json:"passwordNew,omitempty"`
-	PasswordNew2 *string `json:"passwordNew2,omitempty"`
+	Name NullableString `json:"name,omitempty"`
+	Username NullableString `json:"username,omitempty"`
+	Email NullableString `json:"email,omitempty"`
+	PasswordNew NullableString `json:"passwordNew,omitempty"`
+	PasswordNew2 NullableString `json:"passwordNew2,omitempty"`
 }
 
 // NewUpdateUserProfileVM instantiates a new UpdateUserProfileVM object
@@ -40,182 +40,232 @@ func NewUpdateUserProfileVMWithDefaults() *UpdateUserProfileVM {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateUserProfileVM) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateUserProfileVM) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateUserProfileVM) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
 func (o *UpdateUserProfileVM) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *UpdateUserProfileVM) SetNameNil() {
+	o.Name.Set(nil)
 }
 
-// GetUsername returns the Username field value if set, zero value otherwise.
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *UpdateUserProfileVM) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetUsername returns the Username field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateUserProfileVM) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || o.Username.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Username
+	return *o.Username.Get()
 }
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateUserProfileVM) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Username, true
+	return o.Username.Get(), o.Username.IsSet()
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *UpdateUserProfileVM) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && o.Username.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUsername gets a reference to the given string and assigns it to the Username field.
+// SetUsername gets a reference to the given NullableString and assigns it to the Username field.
 func (o *UpdateUserProfileVM) SetUsername(v string) {
-	o.Username = &v
+	o.Username.Set(&v)
+}
+// SetUsernameNil sets the value for Username to be an explicit nil
+func (o *UpdateUserProfileVM) SetUsernameNil() {
+	o.Username.Set(nil)
 }
 
-// GetEmail returns the Email field value if set, zero value otherwise.
+// UnsetUsername ensures that no value is present for Username, not even an explicit nil
+func (o *UpdateUserProfileVM) UnsetUsername() {
+	o.Username.Unset()
+}
+
+// GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateUserProfileVM) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || o.Email.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Email
+	return *o.Email.Get()
 }
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateUserProfileVM) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Email, true
+	return o.Email.Get(), o.Email.IsSet()
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UpdateUserProfileVM) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && o.Email.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetEmail gets a reference to the given string and assigns it to the Email field.
+// SetEmail gets a reference to the given NullableString and assigns it to the Email field.
 func (o *UpdateUserProfileVM) SetEmail(v string) {
-	o.Email = &v
+	o.Email.Set(&v)
+}
+// SetEmailNil sets the value for Email to be an explicit nil
+func (o *UpdateUserProfileVM) SetEmailNil() {
+	o.Email.Set(nil)
 }
 
-// GetPasswordNew returns the PasswordNew field value if set, zero value otherwise.
+// UnsetEmail ensures that no value is present for Email, not even an explicit nil
+func (o *UpdateUserProfileVM) UnsetEmail() {
+	o.Email.Unset()
+}
+
+// GetPasswordNew returns the PasswordNew field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateUserProfileVM) GetPasswordNew() string {
-	if o == nil || o.PasswordNew == nil {
+	if o == nil || o.PasswordNew.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.PasswordNew
+	return *o.PasswordNew.Get()
 }
 
 // GetPasswordNewOk returns a tuple with the PasswordNew field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateUserProfileVM) GetPasswordNewOk() (*string, bool) {
-	if o == nil || o.PasswordNew == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.PasswordNew, true
+	return o.PasswordNew.Get(), o.PasswordNew.IsSet()
 }
 
 // HasPasswordNew returns a boolean if a field has been set.
 func (o *UpdateUserProfileVM) HasPasswordNew() bool {
-	if o != nil && o.PasswordNew != nil {
+	if o != nil && o.PasswordNew.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPasswordNew gets a reference to the given string and assigns it to the PasswordNew field.
+// SetPasswordNew gets a reference to the given NullableString and assigns it to the PasswordNew field.
 func (o *UpdateUserProfileVM) SetPasswordNew(v string) {
-	o.PasswordNew = &v
+	o.PasswordNew.Set(&v)
+}
+// SetPasswordNewNil sets the value for PasswordNew to be an explicit nil
+func (o *UpdateUserProfileVM) SetPasswordNewNil() {
+	o.PasswordNew.Set(nil)
 }
 
-// GetPasswordNew2 returns the PasswordNew2 field value if set, zero value otherwise.
+// UnsetPasswordNew ensures that no value is present for PasswordNew, not even an explicit nil
+func (o *UpdateUserProfileVM) UnsetPasswordNew() {
+	o.PasswordNew.Unset()
+}
+
+// GetPasswordNew2 returns the PasswordNew2 field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateUserProfileVM) GetPasswordNew2() string {
-	if o == nil || o.PasswordNew2 == nil {
+	if o == nil || o.PasswordNew2.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.PasswordNew2
+	return *o.PasswordNew2.Get()
 }
 
 // GetPasswordNew2Ok returns a tuple with the PasswordNew2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateUserProfileVM) GetPasswordNew2Ok() (*string, bool) {
-	if o == nil || o.PasswordNew2 == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.PasswordNew2, true
+	return o.PasswordNew2.Get(), o.PasswordNew2.IsSet()
 }
 
 // HasPasswordNew2 returns a boolean if a field has been set.
 func (o *UpdateUserProfileVM) HasPasswordNew2() bool {
-	if o != nil && o.PasswordNew2 != nil {
+	if o != nil && o.PasswordNew2.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPasswordNew2 gets a reference to the given string and assigns it to the PasswordNew2 field.
+// SetPasswordNew2 gets a reference to the given NullableString and assigns it to the PasswordNew2 field.
 func (o *UpdateUserProfileVM) SetPasswordNew2(v string) {
-	o.PasswordNew2 = &v
+	o.PasswordNew2.Set(&v)
+}
+// SetPasswordNew2Nil sets the value for PasswordNew2 to be an explicit nil
+func (o *UpdateUserProfileVM) SetPasswordNew2Nil() {
+	o.PasswordNew2.Set(nil)
+}
+
+// UnsetPasswordNew2 ensures that no value is present for PasswordNew2, not even an explicit nil
+func (o *UpdateUserProfileVM) UnsetPasswordNew2() {
+	o.PasswordNew2.Unset()
 }
 
 func (o UpdateUserProfileVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	if o.Username.IsSet() {
+		toSerialize["username"] = o.Username.Get()
 	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
+	if o.Email.IsSet() {
+		toSerialize["email"] = o.Email.Get()
 	}
-	if o.PasswordNew != nil {
-		toSerialize["passwordNew"] = o.PasswordNew
+	if o.PasswordNew.IsSet() {
+		toSerialize["passwordNew"] = o.PasswordNew.Get()
 	}
-	if o.PasswordNew2 != nil {
-		toSerialize["passwordNew2"] = o.PasswordNew2
+	if o.PasswordNew2.IsSet() {
+		toSerialize["passwordNew2"] = o.PasswordNew2.Get()
 	}
 	return json.Marshal(toSerialize)
 }

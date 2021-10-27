@@ -16,7 +16,7 @@ import (
 
 // SubscriptionInvitesVM struct for SubscriptionInvitesVM
 type SubscriptionInvitesVM struct {
-	Invites *[]SubscriptionInviteVM `json:"invites,omitempty"`
+	Invites []SubscriptionInviteVM `json:"invites,omitempty"`
 	Count *int64 `json:"count,omitempty"`
 }
 
@@ -37,22 +37,23 @@ func NewSubscriptionInvitesVMWithDefaults() *SubscriptionInvitesVM {
 	return &this
 }
 
-// GetInvites returns the Invites field value if set, zero value otherwise.
+// GetInvites returns the Invites field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SubscriptionInvitesVM) GetInvites() []SubscriptionInviteVM {
-	if o == nil || o.Invites == nil {
+	if o == nil  {
 		var ret []SubscriptionInviteVM
 		return ret
 	}
-	return *o.Invites
+	return o.Invites
 }
 
 // GetInvitesOk returns a tuple with the Invites field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SubscriptionInvitesVM) GetInvitesOk() (*[]SubscriptionInviteVM, bool) {
 	if o == nil || o.Invites == nil {
 		return nil, false
 	}
-	return o.Invites, true
+	return &o.Invites, true
 }
 
 // HasInvites returns a boolean if a field has been set.
@@ -66,7 +67,7 @@ func (o *SubscriptionInvitesVM) HasInvites() bool {
 
 // SetInvites gets a reference to the given []SubscriptionInviteVM and assigns it to the Invites field.
 func (o *SubscriptionInvitesVM) SetInvites(v []SubscriptionInviteVM) {
-	o.Invites = &v
+	o.Invites = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.

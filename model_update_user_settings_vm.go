@@ -16,8 +16,8 @@ import (
 
 // UpdateUserSettingsVM struct for UpdateUserSettingsVM
 type UpdateUserSettingsVM struct {
-	ProfileVisibility *int32 `json:"profileVisibility,omitempty"`
-	DefaultSubscription *string `json:"defaultSubscription,omitempty"`
+	ProfileVisibility *ProfileVisibility `json:"profileVisibility,omitempty"`
+	DefaultSubscription NullableString `json:"defaultSubscription,omitempty"`
 }
 
 // NewUpdateUserSettingsVM instantiates a new UpdateUserSettingsVM object
@@ -38,9 +38,9 @@ func NewUpdateUserSettingsVMWithDefaults() *UpdateUserSettingsVM {
 }
 
 // GetProfileVisibility returns the ProfileVisibility field value if set, zero value otherwise.
-func (o *UpdateUserSettingsVM) GetProfileVisibility() int32 {
+func (o *UpdateUserSettingsVM) GetProfileVisibility() ProfileVisibility {
 	if o == nil || o.ProfileVisibility == nil {
-		var ret int32
+		var ret ProfileVisibility
 		return ret
 	}
 	return *o.ProfileVisibility
@@ -48,7 +48,7 @@ func (o *UpdateUserSettingsVM) GetProfileVisibility() int32 {
 
 // GetProfileVisibilityOk returns a tuple with the ProfileVisibility field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUserSettingsVM) GetProfileVisibilityOk() (*int32, bool) {
+func (o *UpdateUserSettingsVM) GetProfileVisibilityOk() (*ProfileVisibility, bool) {
 	if o == nil || o.ProfileVisibility == nil {
 		return nil, false
 	}
@@ -64,41 +64,51 @@ func (o *UpdateUserSettingsVM) HasProfileVisibility() bool {
 	return false
 }
 
-// SetProfileVisibility gets a reference to the given int32 and assigns it to the ProfileVisibility field.
-func (o *UpdateUserSettingsVM) SetProfileVisibility(v int32) {
+// SetProfileVisibility gets a reference to the given ProfileVisibility and assigns it to the ProfileVisibility field.
+func (o *UpdateUserSettingsVM) SetProfileVisibility(v ProfileVisibility) {
 	o.ProfileVisibility = &v
 }
 
-// GetDefaultSubscription returns the DefaultSubscription field value if set, zero value otherwise.
+// GetDefaultSubscription returns the DefaultSubscription field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateUserSettingsVM) GetDefaultSubscription() string {
-	if o == nil || o.DefaultSubscription == nil {
+	if o == nil || o.DefaultSubscription.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.DefaultSubscription
+	return *o.DefaultSubscription.Get()
 }
 
 // GetDefaultSubscriptionOk returns a tuple with the DefaultSubscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UpdateUserSettingsVM) GetDefaultSubscriptionOk() (*string, bool) {
-	if o == nil || o.DefaultSubscription == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.DefaultSubscription, true
+	return o.DefaultSubscription.Get(), o.DefaultSubscription.IsSet()
 }
 
 // HasDefaultSubscription returns a boolean if a field has been set.
 func (o *UpdateUserSettingsVM) HasDefaultSubscription() bool {
-	if o != nil && o.DefaultSubscription != nil {
+	if o != nil && o.DefaultSubscription.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultSubscription gets a reference to the given string and assigns it to the DefaultSubscription field.
+// SetDefaultSubscription gets a reference to the given NullableString and assigns it to the DefaultSubscription field.
 func (o *UpdateUserSettingsVM) SetDefaultSubscription(v string) {
-	o.DefaultSubscription = &v
+	o.DefaultSubscription.Set(&v)
+}
+// SetDefaultSubscriptionNil sets the value for DefaultSubscription to be an explicit nil
+func (o *UpdateUserSettingsVM) SetDefaultSubscriptionNil() {
+	o.DefaultSubscription.Set(nil)
+}
+
+// UnsetDefaultSubscription ensures that no value is present for DefaultSubscription, not even an explicit nil
+func (o *UpdateUserSettingsVM) UnsetDefaultSubscription() {
+	o.DefaultSubscription.Unset()
 }
 
 func (o UpdateUserSettingsVM) MarshalJSON() ([]byte, error) {
@@ -106,8 +116,8 @@ func (o UpdateUserSettingsVM) MarshalJSON() ([]byte, error) {
 	if o.ProfileVisibility != nil {
 		toSerialize["profileVisibility"] = o.ProfileVisibility
 	}
-	if o.DefaultSubscription != nil {
-		toSerialize["defaultSubscription"] = o.DefaultSubscription
+	if o.DefaultSubscription.IsSet() {
+		toSerialize["defaultSubscription"] = o.DefaultSubscription.Get()
 	}
 	return json.Marshal(toSerialize)
 }

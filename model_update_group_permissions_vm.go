@@ -17,14 +17,14 @@ import (
 // UpdateGroupPermissionsVM struct for UpdateGroupPermissionsVM
 type UpdateGroupPermissionsVM struct {
 	NewPermissions GroupPermissions `json:"newPermissions"`
-	Administrate int32 `json:"administrate"`
+	Administrate GroupAdministrate `json:"administrate"`
 }
 
 // NewUpdateGroupPermissionsVM instantiates a new UpdateGroupPermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateGroupPermissionsVM(newPermissions GroupPermissions, administrate int32) *UpdateGroupPermissionsVM {
+func NewUpdateGroupPermissionsVM(newPermissions GroupPermissions, administrate GroupAdministrate) *UpdateGroupPermissionsVM {
 	this := UpdateGroupPermissionsVM{}
 	this.NewPermissions = newPermissions
 	this.Administrate = administrate
@@ -64,9 +64,9 @@ func (o *UpdateGroupPermissionsVM) SetNewPermissions(v GroupPermissions) {
 }
 
 // GetAdministrate returns the Administrate field value
-func (o *UpdateGroupPermissionsVM) GetAdministrate() int32 {
+func (o *UpdateGroupPermissionsVM) GetAdministrate() GroupAdministrate {
 	if o == nil {
-		var ret int32
+		var ret GroupAdministrate
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *UpdateGroupPermissionsVM) GetAdministrate() int32 {
 
 // GetAdministrateOk returns a tuple with the Administrate field value
 // and a boolean to check if the value has been set.
-func (o *UpdateGroupPermissionsVM) GetAdministrateOk() (*int32, bool) {
+func (o *UpdateGroupPermissionsVM) GetAdministrateOk() (*GroupAdministrate, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -83,7 +83,7 @@ func (o *UpdateGroupPermissionsVM) GetAdministrateOk() (*int32, bool) {
 }
 
 // SetAdministrate sets field value
-func (o *UpdateGroupPermissionsVM) SetAdministrate(v int32) {
+func (o *UpdateGroupPermissionsVM) SetAdministrate(v GroupAdministrate) {
 	o.Administrate = v
 }
 

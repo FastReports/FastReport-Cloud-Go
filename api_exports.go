@@ -89,26 +89,12 @@ func (a *ExportsApiService) ExportFolderAndFileGetCountExecute(r ApiExportFolder
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -182,6 +168,9 @@ type ApiExportFolderAndFileGetFoldersAndFilesRequest struct {
 	id string
 	skip *int32
 	take *int32
+	orderBy *FileSorting
+	desc *bool
+	searchPattern *string
 }
 
 func (r ApiExportFolderAndFileGetFoldersAndFilesRequest) Skip(skip int32) ApiExportFolderAndFileGetFoldersAndFilesRequest {
@@ -190,6 +179,18 @@ func (r ApiExportFolderAndFileGetFoldersAndFilesRequest) Skip(skip int32) ApiExp
 }
 func (r ApiExportFolderAndFileGetFoldersAndFilesRequest) Take(take int32) ApiExportFolderAndFileGetFoldersAndFilesRequest {
 	r.take = &take
+	return r
+}
+func (r ApiExportFolderAndFileGetFoldersAndFilesRequest) OrderBy(orderBy FileSorting) ApiExportFolderAndFileGetFoldersAndFilesRequest {
+	r.orderBy = &orderBy
+	return r
+}
+func (r ApiExportFolderAndFileGetFoldersAndFilesRequest) Desc(desc bool) ApiExportFolderAndFileGetFoldersAndFilesRequest {
+	r.desc = &desc
+	return r
+}
+func (r ApiExportFolderAndFileGetFoldersAndFilesRequest) SearchPattern(searchPattern string) ApiExportFolderAndFileGetFoldersAndFilesRequest {
+	r.searchPattern = &searchPattern
 	return r
 }
 
@@ -244,6 +245,15 @@ func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFilesExecute(r ApiEx
 	if r.take != nil {
 		localVarQueryParams.Add("take", parameterToString(*r.take, ""))
 	}
+	if r.orderBy != nil {
+		localVarQueryParams.Add("orderBy", parameterToString(*r.orderBy, ""))
+	}
+	if r.desc != nil {
+		localVarQueryParams.Add("desc", parameterToString(*r.desc, ""))
+	}
+	if r.searchPattern != nil {
+		localVarQueryParams.Add("searchPattern", parameterToString(*r.searchPattern, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -254,26 +264,12 @@ func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFilesExecute(r ApiEx
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -408,26 +404,12 @@ func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCop
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -461,7 +443,7 @@ func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCop
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -471,7 +453,7 @@ func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCop
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -573,26 +555,12 @@ func (a *ExportsApiService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersD
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -626,7 +594,7 @@ func (a *ExportsApiService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersD
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -636,7 +604,7 @@ func (a *ExportsApiService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersD
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -723,26 +691,12 @@ func (a *ExportsApiService) ExportFoldersGetBreadcrumbsExecute(r ApiExportFolder
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -872,26 +826,12 @@ func (a *ExportsApiService) ExportFoldersGetFolderExecute(r ApiExportFoldersGetF
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1037,26 +977,12 @@ func (a *ExportsApiService) ExportFoldersGetFoldersExecute(r ApiExportFoldersGet
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1186,26 +1112,12 @@ func (a *ExportsApiService) ExportFoldersGetFoldersCountExecute(r ApiExportFolde
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1334,26 +1246,12 @@ func (a *ExportsApiService) ExportFoldersGetPermissionsExecute(r ApiExportFolder
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1438,7 +1336,7 @@ func (r ApiExportFoldersGetRootFolderRequest) Execute() (FileVM, *_nethttp.Respo
 
 /*
  * ExportFoldersGetRootFolder Get user's root folder (without parents)
- * &gt; Breakchange. Now user model doesn't contain a root folders.
+ * > Breakchange. Now user model doesn't contain a root folders.
 This method can return error 400 and 404 when subscription is not found.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiExportFoldersGetRootFolderRequest
@@ -1488,26 +1386,12 @@ func (a *ExportsApiService) ExportFoldersGetRootFolderExecute(r ApiExportFolders
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1613,26 +1497,12 @@ func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMov
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1666,7 +1536,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMov
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1676,7 +1546,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMov
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1714,11 +1584,11 @@ type ApiExportFoldersPostFolderRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	folderVm *ExportFolderCreateVM
+	exportFolderCreateVM *ExportFolderCreateVM
 }
 
-func (r ApiExportFoldersPostFolderRequest) FolderVm(folderVm ExportFolderCreateVM) ApiExportFoldersPostFolderRequest {
-	r.folderVm = &folderVm
+func (r ApiExportFoldersPostFolderRequest) ExportFolderCreateVM(exportFolderCreateVM ExportFolderCreateVM) ApiExportFoldersPostFolderRequest {
+	r.exportFolderCreateVM = &exportFolderCreateVM
 	return r
 }
 
@@ -1768,7 +1638,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1777,7 +1647,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1785,21 +1655,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.folderVm
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.exportFolderCreateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1832,7 +1688,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1842,7 +1698,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1880,11 +1736,11 @@ type ApiExportFoldersRenameFolderRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	nameModel *FolderRenameVM
+	folderRenameVM *FolderRenameVM
 }
 
-func (r ApiExportFoldersRenameFolderRequest) NameModel(nameModel FolderRenameVM) ApiExportFoldersRenameFolderRequest {
-	r.nameModel = &nameModel
+func (r ApiExportFoldersRenameFolderRequest) FolderRenameVM(folderRenameVM FolderRenameVM) ApiExportFoldersRenameFolderRequest {
+	r.folderRenameVM = &folderRenameVM
 	return r
 }
 
@@ -1934,7 +1790,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1943,7 +1799,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1951,21 +1807,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.nameModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.folderRenameVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1998,7 +1840,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2008,7 +1850,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2046,11 +1888,11 @@ type ApiExportFoldersUpdateIconRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	iconModel *FolderIconVM
+	folderIconVM *FolderIconVM
 }
 
-func (r ApiExportFoldersUpdateIconRequest) IconModel(iconModel FolderIconVM) ApiExportFoldersUpdateIconRequest {
-	r.iconModel = &iconModel
+func (r ApiExportFoldersUpdateIconRequest) FolderIconVM(folderIconVM FolderIconVM) ApiExportFoldersUpdateIconRequest {
+	r.folderIconVM = &folderIconVM
 	return r
 }
 
@@ -2100,7 +1942,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2109,7 +1951,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2117,21 +1959,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.iconModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.folderIconVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2164,7 +1992,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2174,7 +2002,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2212,11 +2040,11 @@ type ApiExportFoldersUpdatePermissionsRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	permissionsVM *UpdateFilePermissionsVM
+	updateFilePermissionsVM *UpdateFilePermissionsVM
 }
 
-func (r ApiExportFoldersUpdatePermissionsRequest) PermissionsVM(permissionsVM UpdateFilePermissionsVM) ApiExportFoldersUpdatePermissionsRequest {
-	r.permissionsVM = &permissionsVM
+func (r ApiExportFoldersUpdatePermissionsRequest) UpdateFilePermissionsVM(updateFilePermissionsVM UpdateFilePermissionsVM) ApiExportFoldersUpdatePermissionsRequest {
+	r.updateFilePermissionsVM = &updateFilePermissionsVM
 	return r
 }
 
@@ -2263,7 +2091,7 @@ func (a *ExportsApiService) ExportFoldersUpdatePermissionsExecute(r ApiExportFol
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2272,7 +2100,7 @@ func (a *ExportsApiService) ExportFoldersUpdatePermissionsExecute(r ApiExportFol
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2280,21 +2108,7 @@ func (a *ExportsApiService) ExportFoldersUpdatePermissionsExecute(r ApiExportFol
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.permissionsVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateFilePermissionsVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -2367,11 +2181,11 @@ type ApiExportFoldersUpdateTagsRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	tagsModel *FolderTagsUpdateVM
+	folderTagsUpdateVM *FolderTagsUpdateVM
 }
 
-func (r ApiExportFoldersUpdateTagsRequest) TagsModel(tagsModel FolderTagsUpdateVM) ApiExportFoldersUpdateTagsRequest {
-	r.tagsModel = &tagsModel
+func (r ApiExportFoldersUpdateTagsRequest) FolderTagsUpdateVM(folderTagsUpdateVM FolderTagsUpdateVM) ApiExportFoldersUpdateTagsRequest {
+	r.folderTagsUpdateVM = &folderTagsUpdateVM
 	return r
 }
 
@@ -2421,7 +2235,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpd
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2430,7 +2244,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpd
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2438,21 +2252,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.tagsModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.folderTagsUpdateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2485,7 +2285,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpd
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2495,7 +2295,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpd
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2594,26 +2394,12 @@ func (a *ExportsApiService) ExportsCopyFileExecute(r ApiExportsCopyFileRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2647,7 +2433,7 @@ func (a *ExportsApiService) ExportsCopyFileExecute(r ApiExportsCopyFileRequest) 
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2657,7 +2443,7 @@ func (a *ExportsApiService) ExportsCopyFileExecute(r ApiExportsCopyFileRequest) 
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2752,26 +2538,12 @@ func (a *ExportsApiService) ExportsDeleteFileExecute(r ApiExportsDeleteFileReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2805,7 +2577,7 @@ func (a *ExportsApiService) ExportsDeleteFileExecute(r ApiExportsDeleteFileReque
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2815,7 +2587,7 @@ func (a *ExportsApiService) ExportsDeleteFileExecute(r ApiExportsDeleteFileReque
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2903,26 +2675,12 @@ func (a *ExportsApiService) ExportsGetFileExecute(r ApiExportsGetFileRequest) (E
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3053,26 +2811,12 @@ func (a *ExportsApiService) ExportsGetFilesCountExecute(r ApiExportsGetFilesCoun
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3163,8 +2907,7 @@ func (r ApiExportsGetFilesListRequest) Execute() (ExportsVM, *_nethttp.Response,
 }
 
 /*
- * ExportsGetFilesList Get all files from specified folder
- * User with Get Entity permission can access this method.
+ * ExportsGetFilesList Get all files from specified folder. <br />  User with Get Entity permission can access this method. <br />  The method will returns minimal infomration about the file: <br />  id, name, size, editedTime, createdTime, tags, status, statusReason.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id folder id
  * @return ApiExportsGetFilesListRequest
@@ -3219,26 +2962,12 @@ func (a *ExportsApiService) ExportsGetFilesListExecute(r ApiExportsGetFilesListR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3368,26 +3097,12 @@ func (a *ExportsApiService) ExportsGetPermissionsExecute(r ApiExportsGetPermissi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3521,26 +3236,12 @@ func (a *ExportsApiService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3574,7 +3275,7 @@ func (a *ExportsApiService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) 
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3584,7 +3285,7 @@ func (a *ExportsApiService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) 
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3623,11 +3324,11 @@ type ApiExportsRenameFileRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	nameModel *FileRenameVM
+	fileRenameVM *FileRenameVM
 }
 
-func (r ApiExportsRenameFileRequest) NameModel(nameModel FileRenameVM) ApiExportsRenameFileRequest {
-	r.nameModel = &nameModel
+func (r ApiExportsRenameFileRequest) FileRenameVM(fileRenameVM FileRenameVM) ApiExportsRenameFileRequest {
+	r.fileRenameVM = &fileRenameVM
 	return r
 }
 
@@ -3677,7 +3378,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3686,7 +3387,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3694,21 +3395,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.nameModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.fileRenameVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3741,7 +3428,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3751,7 +3438,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3790,11 +3477,11 @@ type ApiExportsUpdateIconRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	iconModel *FileIconVM
+	fileIconVM *FileIconVM
 }
 
-func (r ApiExportsUpdateIconRequest) IconModel(iconModel FileIconVM) ApiExportsUpdateIconRequest {
-	r.iconModel = &iconModel
+func (r ApiExportsUpdateIconRequest) FileIconVM(fileIconVM FileIconVM) ApiExportsUpdateIconRequest {
+	r.fileIconVM = &fileIconVM
 	return r
 }
 
@@ -3844,7 +3531,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3853,7 +3540,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3861,21 +3548,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.iconModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.fileIconVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3908,7 +3581,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3918,7 +3591,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3957,11 +3630,11 @@ type ApiExportsUpdatePermissionsRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	permissionsVM *UpdateFilePermissionsVM
+	updateFilePermissionsVM *UpdateFilePermissionsVM
 }
 
-func (r ApiExportsUpdatePermissionsRequest) PermissionsVM(permissionsVM UpdateFilePermissionsVM) ApiExportsUpdatePermissionsRequest {
-	r.permissionsVM = &permissionsVM
+func (r ApiExportsUpdatePermissionsRequest) UpdateFilePermissionsVM(updateFilePermissionsVM UpdateFilePermissionsVM) ApiExportsUpdatePermissionsRequest {
+	r.updateFilePermissionsVM = &updateFilePermissionsVM
 	return r
 }
 
@@ -4008,7 +3681,7 @@ func (a *ExportsApiService) ExportsUpdatePermissionsExecute(r ApiExportsUpdatePe
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4017,7 +3690,7 @@ func (a *ExportsApiService) ExportsUpdatePermissionsExecute(r ApiExportsUpdatePe
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4025,21 +3698,7 @@ func (a *ExportsApiService) ExportsUpdatePermissionsExecute(r ApiExportsUpdatePe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.permissionsVM
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateFilePermissionsVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -4112,11 +3771,11 @@ type ApiExportsUpdateTagsRequest struct {
 	ctx _context.Context
 	ApiService *ExportsApiService
 	id string
-	tagsModel *FileTagsUpdateVM
+	fileTagsUpdateVM *FileTagsUpdateVM
 }
 
-func (r ApiExportsUpdateTagsRequest) TagsModel(tagsModel FileTagsUpdateVM) ApiExportsUpdateTagsRequest {
-	r.tagsModel = &tagsModel
+func (r ApiExportsUpdateTagsRequest) FileTagsUpdateVM(fileTagsUpdateVM FileTagsUpdateVM) ApiExportsUpdateTagsRequest {
+	r.fileTagsUpdateVM = &fileTagsUpdateVM
 	return r
 }
 
@@ -4166,7 +3825,7 @@ func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsReque
 	localVarFormParams := _neturl.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/json", "text/json", "application/_*+json"}
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/_*+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -4175,7 +3834,7 @@ func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4183,21 +3842,7 @@ func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.tagsModel
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["JWT"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.fileTagsUpdateVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4230,7 +3875,7 @@ func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsReque
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4240,7 +3885,7 @@ func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsReque
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

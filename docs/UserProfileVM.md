@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Username** | Pointer to **string** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **NullableString** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
+**Username** | Pointer to **NullableString** |  | [optional] 
+**Email** | Pointer to **NullableString** |  | [optional] 
 **IsReadOnly** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -54,6 +54,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *UserProfileVM) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *UserProfileVM) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *UserProfileVM) GetName() string`
@@ -79,6 +89,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *UserProfileVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *UserProfileVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetUsername
 
 `func (o *UserProfileVM) GetUsername() string`
@@ -104,6 +124,16 @@ SetUsername sets Username field to given value.
 
 HasUsername returns a boolean if a field has been set.
 
+### SetUsernameNil
+
+`func (o *UserProfileVM) SetUsernameNil(b bool)`
+
+ SetUsernameNil sets the value for Username to be an explicit nil
+
+### UnsetUsername
+`func (o *UserProfileVM) UnsetUsername()`
+
+UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetEmail
 
 `func (o *UserProfileVM) GetEmail() string`
@@ -129,6 +159,16 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
+### SetEmailNil
+
+`func (o *UserProfileVM) SetEmailNil(b bool)`
+
+ SetEmailNil sets the value for Email to be an explicit nil
+
+### UnsetEmail
+`func (o *UserProfileVM) UnsetEmail()`
+
+UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetIsReadOnly
 
 `func (o *UserProfileVM) GetIsReadOnly() bool`

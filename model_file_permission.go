@@ -16,12 +16,12 @@ import (
 
 // FilePermission struct for FilePermission
 type FilePermission struct {
-	Create *int32 `json:"create,omitempty"`
-	Delete *int32 `json:"delete,omitempty"`
-	Execute *int32 `json:"execute,omitempty"`
-	Get *int32 `json:"get,omitempty"`
-	Update *int32 `json:"update,omitempty"`
-	Administrate *int32 `json:"administrate,omitempty"`
+	Create *FileCreate `json:"create,omitempty"`
+	Delete *FileDelete `json:"delete,omitempty"`
+	Execute *FileExecute `json:"execute,omitempty"`
+	Get *FileGet `json:"get,omitempty"`
+	Update *FileUpdate `json:"update,omitempty"`
+	Administrate *FileAdministrate `json:"administrate,omitempty"`
 }
 
 // NewFilePermission instantiates a new FilePermission object
@@ -42,9 +42,9 @@ func NewFilePermissionWithDefaults() *FilePermission {
 }
 
 // GetCreate returns the Create field value if set, zero value otherwise.
-func (o *FilePermission) GetCreate() int32 {
+func (o *FilePermission) GetCreate() FileCreate {
 	if o == nil || o.Create == nil {
-		var ret int32
+		var ret FileCreate
 		return ret
 	}
 	return *o.Create
@@ -52,7 +52,7 @@ func (o *FilePermission) GetCreate() int32 {
 
 // GetCreateOk returns a tuple with the Create field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FilePermission) GetCreateOk() (*int32, bool) {
+func (o *FilePermission) GetCreateOk() (*FileCreate, bool) {
 	if o == nil || o.Create == nil {
 		return nil, false
 	}
@@ -68,15 +68,15 @@ func (o *FilePermission) HasCreate() bool {
 	return false
 }
 
-// SetCreate gets a reference to the given int32 and assigns it to the Create field.
-func (o *FilePermission) SetCreate(v int32) {
+// SetCreate gets a reference to the given FileCreate and assigns it to the Create field.
+func (o *FilePermission) SetCreate(v FileCreate) {
 	o.Create = &v
 }
 
 // GetDelete returns the Delete field value if set, zero value otherwise.
-func (o *FilePermission) GetDelete() int32 {
+func (o *FilePermission) GetDelete() FileDelete {
 	if o == nil || o.Delete == nil {
-		var ret int32
+		var ret FileDelete
 		return ret
 	}
 	return *o.Delete
@@ -84,7 +84,7 @@ func (o *FilePermission) GetDelete() int32 {
 
 // GetDeleteOk returns a tuple with the Delete field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FilePermission) GetDeleteOk() (*int32, bool) {
+func (o *FilePermission) GetDeleteOk() (*FileDelete, bool) {
 	if o == nil || o.Delete == nil {
 		return nil, false
 	}
@@ -100,15 +100,15 @@ func (o *FilePermission) HasDelete() bool {
 	return false
 }
 
-// SetDelete gets a reference to the given int32 and assigns it to the Delete field.
-func (o *FilePermission) SetDelete(v int32) {
+// SetDelete gets a reference to the given FileDelete and assigns it to the Delete field.
+func (o *FilePermission) SetDelete(v FileDelete) {
 	o.Delete = &v
 }
 
 // GetExecute returns the Execute field value if set, zero value otherwise.
-func (o *FilePermission) GetExecute() int32 {
+func (o *FilePermission) GetExecute() FileExecute {
 	if o == nil || o.Execute == nil {
-		var ret int32
+		var ret FileExecute
 		return ret
 	}
 	return *o.Execute
@@ -116,7 +116,7 @@ func (o *FilePermission) GetExecute() int32 {
 
 // GetExecuteOk returns a tuple with the Execute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FilePermission) GetExecuteOk() (*int32, bool) {
+func (o *FilePermission) GetExecuteOk() (*FileExecute, bool) {
 	if o == nil || o.Execute == nil {
 		return nil, false
 	}
@@ -132,15 +132,15 @@ func (o *FilePermission) HasExecute() bool {
 	return false
 }
 
-// SetExecute gets a reference to the given int32 and assigns it to the Execute field.
-func (o *FilePermission) SetExecute(v int32) {
+// SetExecute gets a reference to the given FileExecute and assigns it to the Execute field.
+func (o *FilePermission) SetExecute(v FileExecute) {
 	o.Execute = &v
 }
 
 // GetGet returns the Get field value if set, zero value otherwise.
-func (o *FilePermission) GetGet() int32 {
+func (o *FilePermission) GetGet() FileGet {
 	if o == nil || o.Get == nil {
-		var ret int32
+		var ret FileGet
 		return ret
 	}
 	return *o.Get
@@ -148,7 +148,7 @@ func (o *FilePermission) GetGet() int32 {
 
 // GetGetOk returns a tuple with the Get field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FilePermission) GetGetOk() (*int32, bool) {
+func (o *FilePermission) GetGetOk() (*FileGet, bool) {
 	if o == nil || o.Get == nil {
 		return nil, false
 	}
@@ -164,15 +164,15 @@ func (o *FilePermission) HasGet() bool {
 	return false
 }
 
-// SetGet gets a reference to the given int32 and assigns it to the Get field.
-func (o *FilePermission) SetGet(v int32) {
+// SetGet gets a reference to the given FileGet and assigns it to the Get field.
+func (o *FilePermission) SetGet(v FileGet) {
 	o.Get = &v
 }
 
 // GetUpdate returns the Update field value if set, zero value otherwise.
-func (o *FilePermission) GetUpdate() int32 {
+func (o *FilePermission) GetUpdate() FileUpdate {
 	if o == nil || o.Update == nil {
-		var ret int32
+		var ret FileUpdate
 		return ret
 	}
 	return *o.Update
@@ -180,7 +180,7 @@ func (o *FilePermission) GetUpdate() int32 {
 
 // GetUpdateOk returns a tuple with the Update field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FilePermission) GetUpdateOk() (*int32, bool) {
+func (o *FilePermission) GetUpdateOk() (*FileUpdate, bool) {
 	if o == nil || o.Update == nil {
 		return nil, false
 	}
@@ -196,15 +196,15 @@ func (o *FilePermission) HasUpdate() bool {
 	return false
 }
 
-// SetUpdate gets a reference to the given int32 and assigns it to the Update field.
-func (o *FilePermission) SetUpdate(v int32) {
+// SetUpdate gets a reference to the given FileUpdate and assigns it to the Update field.
+func (o *FilePermission) SetUpdate(v FileUpdate) {
 	o.Update = &v
 }
 
 // GetAdministrate returns the Administrate field value if set, zero value otherwise.
-func (o *FilePermission) GetAdministrate() int32 {
+func (o *FilePermission) GetAdministrate() FileAdministrate {
 	if o == nil || o.Administrate == nil {
-		var ret int32
+		var ret FileAdministrate
 		return ret
 	}
 	return *o.Administrate
@@ -212,7 +212,7 @@ func (o *FilePermission) GetAdministrate() int32 {
 
 // GetAdministrateOk returns a tuple with the Administrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FilePermission) GetAdministrateOk() (*int32, bool) {
+func (o *FilePermission) GetAdministrateOk() (*FileAdministrate, bool) {
 	if o == nil || o.Administrate == nil {
 		return nil, false
 	}
@@ -228,8 +228,8 @@ func (o *FilePermission) HasAdministrate() bool {
 	return false
 }
 
-// SetAdministrate gets a reference to the given int32 and assigns it to the Administrate field.
-func (o *FilePermission) SetAdministrate(v int32) {
+// SetAdministrate gets a reference to the given FileAdministrate and assigns it to the Administrate field.
+func (o *FilePermission) SetAdministrate(v FileAdministrate) {
 	o.Administrate = &v
 }
 

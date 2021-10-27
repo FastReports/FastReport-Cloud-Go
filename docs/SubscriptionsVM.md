@@ -53,6 +53,16 @@ SetSubscriptions sets Subscriptions field to given value.
 
 HasSubscriptions returns a boolean if a field has been set.
 
+### SetSubscriptionsNil
+
+`func (o *SubscriptionsVM) SetSubscriptionsNil(b bool)`
+
+ SetSubscriptionsNil sets the value for Subscriptions to be an explicit nil
+
+### UnsetSubscriptions
+`func (o *SubscriptionsVM) UnsetSubscriptions()`
+
+UnsetSubscriptions ensures that no value is present for Subscriptions, not even an explicit nil
 ### GetCount
 
 `func (o *SubscriptionsVM) GetCount() int64`

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserId** | Pointer to **string** |  | [optional] 
+**UserId** | Pointer to **NullableString** |  | [optional] 
 **Groups** | Pointer to [**[]GroupVM**](GroupVM.md) |  | [optional] 
 
 ## Methods
@@ -51,6 +51,16 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
+### SetUserIdNil
+
+`func (o *SubscriptionUserVM) SetUserIdNil(b bool)`
+
+ SetUserIdNil sets the value for UserId to be an explicit nil
+
+### UnsetUserId
+`func (o *SubscriptionUserVM) UnsetUserId()`
+
+UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 ### GetGroups
 
 `func (o *SubscriptionUserVM) GetGroups() []GroupVM`
@@ -76,6 +86,16 @@ SetGroups sets Groups field to given value.
 
 HasGroups returns a boolean if a field has been set.
 
+### SetGroupsNil
+
+`func (o *SubscriptionUserVM) SetGroupsNil(b bool)`
+
+ SetGroupsNil sets the value for Groups to be an explicit nil
+
+### UnsetGroups
+`func (o *SubscriptionUserVM) UnsetGroups()`
+
+UnsetGroups ensures that no value is present for Groups, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -17,8 +17,8 @@ import (
 
 // ApiKeyVM struct for ApiKeyVM
 type ApiKeyVM struct {
-	Value *string `json:"value,omitempty"`
-	Description *string `json:"description,omitempty"`
+	Value NullableString `json:"value,omitempty"`
+	Description NullableString `json:"description,omitempty"`
 	Expired *time.Time `json:"expired,omitempty"`
 }
 
@@ -39,68 +39,88 @@ func NewApiKeyVMWithDefaults() *ApiKeyVM {
 	return &this
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApiKeyVM) GetValue() string {
-	if o == nil || o.Value == nil {
+	if o == nil || o.Value.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Value
+	return *o.Value.Get()
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKeyVM) GetValueOk() (*string, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Value, true
+	return o.Value.Get(), o.Value.IsSet()
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *ApiKeyVM) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && o.Value.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetValue gets a reference to the given string and assigns it to the Value field.
+// SetValue gets a reference to the given NullableString and assigns it to the Value field.
 func (o *ApiKeyVM) SetValue(v string) {
-	o.Value = &v
+	o.Value.Set(&v)
+}
+// SetValueNil sets the value for Value to be an explicit nil
+func (o *ApiKeyVM) SetValueNil() {
+	o.Value.Set(nil)
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// UnsetValue ensures that no value is present for Value, not even an explicit nil
+func (o *ApiKeyVM) UnsetValue() {
+	o.Value.Unset()
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApiKeyVM) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || o.Description.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+	return *o.Description.Get()
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ApiKeyVM) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Description, true
+	return o.Description.Get(), o.Description.IsSet()
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ApiKeyVM) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
 func (o *ApiKeyVM) SetDescription(v string) {
-	o.Description = &v
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *ApiKeyVM) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *ApiKeyVM) UnsetDescription() {
+	o.Description.Unset()
 }
 
 // GetExpired returns the Expired field value if set, zero value otherwise.
@@ -137,11 +157,11 @@ func (o *ApiKeyVM) SetExpired(v time.Time) {
 
 func (o ApiKeyVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
 	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	if o.Expired != nil {
 		toSerialize["expired"] = o.Expired

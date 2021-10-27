@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Icon** | Pointer to **string** |  | [optional] 
+**Icon** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -50,6 +50,16 @@ SetIcon sets Icon field to given value.
 
 HasIcon returns a boolean if a field has been set.
 
+### SetIconNil
+
+`func (o *FileIconVM) SetIconNil(b bool)`
+
+ SetIconNil sets the value for Icon to be an explicit nil
+
+### UnsetIcon
+`func (o *FileIconVM) UnsetIcon()`
+
+UnsetIcon ensures that no value is present for Icon, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

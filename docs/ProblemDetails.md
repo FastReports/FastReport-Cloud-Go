@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int32** |  | [optional] 
-**Detail** | Pointer to **string** |  | [optional] 
-**Instance** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **NullableString** |  | [optional] 
+**Title** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to **NullableInt32** |  | [optional] 
+**Detail** | Pointer to **NullableString** |  | [optional] 
+**Instance** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -54,6 +54,16 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
+### SetTypeNil
+
+`func (o *ProblemDetails) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *ProblemDetails) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
 ### GetTitle
 
 `func (o *ProblemDetails) GetTitle() string`
@@ -79,6 +89,16 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
+### SetTitleNil
+
+`func (o *ProblemDetails) SetTitleNil(b bool)`
+
+ SetTitleNil sets the value for Title to be an explicit nil
+
+### UnsetTitle
+`func (o *ProblemDetails) UnsetTitle()`
+
+UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetStatus
 
 `func (o *ProblemDetails) GetStatus() int32`
@@ -104,6 +124,16 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
+### SetStatusNil
+
+`func (o *ProblemDetails) SetStatusNil(b bool)`
+
+ SetStatusNil sets the value for Status to be an explicit nil
+
+### UnsetStatus
+`func (o *ProblemDetails) UnsetStatus()`
+
+UnsetStatus ensures that no value is present for Status, not even an explicit nil
 ### GetDetail
 
 `func (o *ProblemDetails) GetDetail() string`
@@ -129,6 +159,16 @@ SetDetail sets Detail field to given value.
 
 HasDetail returns a boolean if a field has been set.
 
+### SetDetailNil
+
+`func (o *ProblemDetails) SetDetailNil(b bool)`
+
+ SetDetailNil sets the value for Detail to be an explicit nil
+
+### UnsetDetail
+`func (o *ProblemDetails) UnsetDetail()`
+
+UnsetDetail ensures that no value is present for Detail, not even an explicit nil
 ### GetInstance
 
 `func (o *ProblemDetails) GetInstance() string`
@@ -154,6 +194,16 @@ SetInstance sets Instance field to given value.
 
 HasInstance returns a boolean if a field has been set.
 
+### SetInstanceNil
+
+`func (o *ProblemDetails) SetInstanceNil(b bool)`
+
+ SetInstanceNil sets the value for Instance to be an explicit nil
+
+### UnsetInstance
+`func (o *ProblemDetails) UnsetInstance()`
+
+UnsetInstance ensures that no value is present for Instance, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

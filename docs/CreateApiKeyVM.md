@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **NullableString** |  | [optional] 
 **Expired** | **time.Time** |  | 
 
 ## Methods
@@ -51,6 +51,16 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### SetDescriptionNil
+
+`func (o *CreateApiKeyVM) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *CreateApiKeyVM) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetExpired
 
 `func (o *CreateApiKeyVM) GetExpired() time.Time`

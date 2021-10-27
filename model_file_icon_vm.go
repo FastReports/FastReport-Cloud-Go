@@ -16,7 +16,7 @@ import (
 
 // FileIconVM struct for FileIconVM
 type FileIconVM struct {
-	Icon *string `json:"icon,omitempty"`
+	Icon NullableString `json:"icon,omitempty"`
 }
 
 // NewFileIconVM instantiates a new FileIconVM object
@@ -36,42 +36,52 @@ func NewFileIconVMWithDefaults() *FileIconVM {
 	return &this
 }
 
-// GetIcon returns the Icon field value if set, zero value otherwise.
+// GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileIconVM) GetIcon() string {
-	if o == nil || o.Icon == nil {
+	if o == nil || o.Icon.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Icon
+	return *o.Icon.Get()
 }
 
 // GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *FileIconVM) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Icon, true
+	return o.Icon.Get(), o.Icon.IsSet()
 }
 
 // HasIcon returns a boolean if a field has been set.
 func (o *FileIconVM) HasIcon() bool {
-	if o != nil && o.Icon != nil {
+	if o != nil && o.Icon.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
+// SetIcon gets a reference to the given NullableString and assigns it to the Icon field.
 func (o *FileIconVM) SetIcon(v string) {
-	o.Icon = &v
+	o.Icon.Set(&v)
+}
+// SetIconNil sets the value for Icon to be an explicit nil
+func (o *FileIconVM) SetIconNil() {
+	o.Icon.Set(nil)
+}
+
+// UnsetIcon ensures that no value is present for Icon, not even an explicit nil
+func (o *FileIconVM) UnsetIcon() {
+	o.Icon.Unset()
 }
 
 func (o FileIconVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Icon != nil {
-		toSerialize["icon"] = o.Icon
+	if o.Icon.IsSet() {
+		toSerialize["icon"] = o.Icon.Get()
 	}
 	return json.Marshal(toSerialize)
 }

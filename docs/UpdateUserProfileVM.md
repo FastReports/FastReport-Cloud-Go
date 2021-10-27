@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Username** | Pointer to **string** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**PasswordNew** | Pointer to **string** |  | [optional] 
-**PasswordNew2** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
+**Username** | Pointer to **NullableString** |  | [optional] 
+**Email** | Pointer to **NullableString** |  | [optional] 
+**PasswordNew** | Pointer to **NullableString** |  | [optional] 
+**PasswordNew2** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -54,6 +54,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *UpdateUserProfileVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *UpdateUserProfileVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetUsername
 
 `func (o *UpdateUserProfileVM) GetUsername() string`
@@ -79,6 +89,16 @@ SetUsername sets Username field to given value.
 
 HasUsername returns a boolean if a field has been set.
 
+### SetUsernameNil
+
+`func (o *UpdateUserProfileVM) SetUsernameNil(b bool)`
+
+ SetUsernameNil sets the value for Username to be an explicit nil
+
+### UnsetUsername
+`func (o *UpdateUserProfileVM) UnsetUsername()`
+
+UnsetUsername ensures that no value is present for Username, not even an explicit nil
 ### GetEmail
 
 `func (o *UpdateUserProfileVM) GetEmail() string`
@@ -104,6 +124,16 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
+### SetEmailNil
+
+`func (o *UpdateUserProfileVM) SetEmailNil(b bool)`
+
+ SetEmailNil sets the value for Email to be an explicit nil
+
+### UnsetEmail
+`func (o *UpdateUserProfileVM) UnsetEmail()`
+
+UnsetEmail ensures that no value is present for Email, not even an explicit nil
 ### GetPasswordNew
 
 `func (o *UpdateUserProfileVM) GetPasswordNew() string`
@@ -129,6 +159,16 @@ SetPasswordNew sets PasswordNew field to given value.
 
 HasPasswordNew returns a boolean if a field has been set.
 
+### SetPasswordNewNil
+
+`func (o *UpdateUserProfileVM) SetPasswordNewNil(b bool)`
+
+ SetPasswordNewNil sets the value for PasswordNew to be an explicit nil
+
+### UnsetPasswordNew
+`func (o *UpdateUserProfileVM) UnsetPasswordNew()`
+
+UnsetPasswordNew ensures that no value is present for PasswordNew, not even an explicit nil
 ### GetPasswordNew2
 
 `func (o *UpdateUserProfileVM) GetPasswordNew2() string`
@@ -154,6 +194,16 @@ SetPasswordNew2 sets PasswordNew2 field to given value.
 
 HasPasswordNew2 returns a boolean if a field has been set.
 
+### SetPasswordNew2Nil
+
+`func (o *UpdateUserProfileVM) SetPasswordNew2Nil(b bool)`
+
+ SetPasswordNew2Nil sets the value for PasswordNew2 to be an explicit nil
+
+### UnsetPasswordNew2
+`func (o *UpdateUserProfileVM) UnsetPasswordNew2()`
+
+UnsetPasswordNew2 ensures that no value is present for PasswordNew2, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

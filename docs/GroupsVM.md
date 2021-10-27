@@ -53,6 +53,16 @@ SetGroups sets Groups field to given value.
 
 HasGroups returns a boolean if a field has been set.
 
+### SetGroupsNil
+
+`func (o *GroupsVM) SetGroupsNil(b bool)`
+
+ SetGroupsNil sets the value for Groups to be an explicit nil
+
+### UnsetGroups
+`func (o *GroupsVM) UnsetGroups()`
+
+UnsetGroups ensures that no value is present for Groups, not even an explicit nil
 ### GetCount
 
 `func (o *GroupsVM) GetCount() int64`

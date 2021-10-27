@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**ParentId** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **NullableString** |  | [optional] 
+**ParentId** | Pointer to **NullableString** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
-**Icon** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Icon** | Pointer to **NullableString** |  | [optional] 
+**Type** | Pointer to [**FileType**](FileType.md) |  | [optional] 
 **Size** | Pointer to **int64** |  | [optional] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**StatusReason** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to [**FileStatus**](FileStatus.md) |  | [optional] 
+**StatusReason** | Pointer to [**FileStatusReason**](FileStatusReason.md) |  | [optional] 
+**Id** | Pointer to **NullableString** |  | [optional] 
 **CreatedTime** | Pointer to **time.Time** |  | [optional] 
-**CreatorUserId** | Pointer to **string** |  | [optional] 
+**CreatorUserId** | Pointer to **NullableString** |  | [optional] 
 **EditedTime** | Pointer to **time.Time** |  | [optional] 
-**EditorUserId** | Pointer to **string** |  | [optional] 
+**EditorUserId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -63,6 +63,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *FileVM) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *FileVM) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetParentId
 
 `func (o *FileVM) GetParentId() string`
@@ -88,6 +98,16 @@ SetParentId sets ParentId field to given value.
 
 HasParentId returns a boolean if a field has been set.
 
+### SetParentIdNil
+
+`func (o *FileVM) SetParentIdNil(b bool)`
+
+ SetParentIdNil sets the value for ParentId to be an explicit nil
+
+### UnsetParentId
+`func (o *FileVM) UnsetParentId()`
+
+UnsetParentId ensures that no value is present for ParentId, not even an explicit nil
 ### GetTags
 
 `func (o *FileVM) GetTags() []string`
@@ -113,6 +133,16 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
+### SetTagsNil
+
+`func (o *FileVM) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *FileVM) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
 ### GetIcon
 
 `func (o *FileVM) GetIcon() string`
@@ -138,22 +168,32 @@ SetIcon sets Icon field to given value.
 
 HasIcon returns a boolean if a field has been set.
 
+### SetIconNil
+
+`func (o *FileVM) SetIconNil(b bool)`
+
+ SetIconNil sets the value for Icon to be an explicit nil
+
+### UnsetIcon
+`func (o *FileVM) UnsetIcon()`
+
+UnsetIcon ensures that no value is present for Icon, not even an explicit nil
 ### GetType
 
-`func (o *FileVM) GetType() string`
+`func (o *FileVM) GetType() FileType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *FileVM) GetTypeOk() (*string, bool)`
+`func (o *FileVM) GetTypeOk() (*FileType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *FileVM) SetType(v string)`
+`func (o *FileVM) SetType(v FileType)`
 
 SetType sets Type field to given value.
 
@@ -213,22 +253,32 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 HasSubscriptionId returns a boolean if a field has been set.
 
+### SetSubscriptionIdNil
+
+`func (o *FileVM) SetSubscriptionIdNil(b bool)`
+
+ SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+
+### UnsetSubscriptionId
+`func (o *FileVM) UnsetSubscriptionId()`
+
+UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
 ### GetStatus
 
-`func (o *FileVM) GetStatus() string`
+`func (o *FileVM) GetStatus() FileStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *FileVM) GetStatusOk() (*string, bool)`
+`func (o *FileVM) GetStatusOk() (*FileStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *FileVM) SetStatus(v string)`
+`func (o *FileVM) SetStatus(v FileStatus)`
 
 SetStatus sets Status field to given value.
 
@@ -240,20 +290,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetStatusReason
 
-`func (o *FileVM) GetStatusReason() string`
+`func (o *FileVM) GetStatusReason() FileStatusReason`
 
 GetStatusReason returns the StatusReason field if non-nil, zero value otherwise.
 
 ### GetStatusReasonOk
 
-`func (o *FileVM) GetStatusReasonOk() (*string, bool)`
+`func (o *FileVM) GetStatusReasonOk() (*FileStatusReason, bool)`
 
 GetStatusReasonOk returns a tuple with the StatusReason field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatusReason
 
-`func (o *FileVM) SetStatusReason(v string)`
+`func (o *FileVM) SetStatusReason(v FileStatusReason)`
 
 SetStatusReason sets StatusReason field to given value.
 
@@ -288,6 +338,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *FileVM) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *FileVM) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetCreatedTime
 
 `func (o *FileVM) GetCreatedTime() time.Time`
@@ -338,6 +398,16 @@ SetCreatorUserId sets CreatorUserId field to given value.
 
 HasCreatorUserId returns a boolean if a field has been set.
 
+### SetCreatorUserIdNil
+
+`func (o *FileVM) SetCreatorUserIdNil(b bool)`
+
+ SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+
+### UnsetCreatorUserId
+`func (o *FileVM) UnsetCreatorUserId()`
+
+UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
 ### GetEditedTime
 
 `func (o *FileVM) GetEditedTime() time.Time`
@@ -388,6 +458,16 @@ SetEditorUserId sets EditorUserId field to given value.
 
 HasEditorUserId returns a boolean if a field has been set.
 
+### SetEditorUserIdNil
+
+`func (o *FileVM) SetEditorUserIdNil(b bool)`
+
+ SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
+
+### UnsetEditorUserId
+`func (o *FileVM) UnsetEditorUserId()`
+
+UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
