@@ -32,8 +32,13 @@ type ApiDownloadGetExportRequest struct {
 	ctx _context.Context
 	ApiService *DownloadApiService
 	id string
+	preview *bool
 }
 
+func (r ApiDownloadGetExportRequest) Preview(preview bool) ApiDownloadGetExportRequest {
+	r.preview = &preview
+	return r
+}
 
 func (r ApiDownloadGetExportRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	return r.ApiService.DownloadGetExportExecute(r)
@@ -79,6 +84,9 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.preview != nil {
+		localVarQueryParams.Add("preview", parameterToString(*r.preview, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -89,7 +97,7 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/pdf", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -233,7 +241,7 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"image/jpeg", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"image/png", "image/jpeg", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -673,7 +681,7 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"image/jpeg", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"image/png", "image/jpeg", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -920,7 +928,7 @@ func (r ApiDownloadGetTemplateRequest) Execute() (*os.File, *_nethttp.Response, 
 }
 
 /*
- * DownloadGetTemplate Returns a report file with specified id
+ * DownloadGetTemplate Returns a Template file with specified id
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id template id
  * @return ApiDownloadGetTemplateRequest
@@ -970,6 +978,150 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/octet-stream", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDownloadGetTemplateThumbnailRequest struct {
+	ctx _context.Context
+	ApiService *DownloadApiService
+	id string
+}
+
+
+func (r ApiDownloadGetTemplateThumbnailRequest) Execute() (*os.File, *_nethttp.Response, error) {
+	return r.ApiService.DownloadGetTemplateThumbnailExecute(r)
+}
+
+/*
+ * DownloadGetTemplateThumbnail Returns template's thumbnail
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id
+ * @return ApiDownloadGetTemplateThumbnailRequest
+ */
+func (a *DownloadApiService) DownloadGetTemplateThumbnail(ctx _context.Context, id string) ApiDownloadGetTemplateThumbnailRequest {
+	return ApiDownloadGetTemplateThumbnailRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return *os.File
+ */
+func (a *DownloadApiService) DownloadGetTemplateThumbnailExecute(r ApiDownloadGetTemplateThumbnailRequest) (*os.File, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  *os.File
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetTemplateThumbnail")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/download/t/{id}/thumbnail"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"image/png", "image/jpeg", "application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

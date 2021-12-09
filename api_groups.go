@@ -464,7 +464,7 @@ func (r ApiGroupsGetGroupListRequest) Execute() (GroupsVM, *_nethttp.Response, e
 }
 
 /*
- * GroupsGetGroupList Gets list of user groups
+ * GroupsGetGroupList Returns a list of current user's groups<br />  This method will return following data about groups : <br />  Id, Name, Created time (UTC), Edited time (UTC), creator id, <br />  editor id, subscription id
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiGroupsGetGroupListRequest
  */

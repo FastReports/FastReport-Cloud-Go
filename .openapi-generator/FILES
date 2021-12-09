@@ -34,6 +34,7 @@ docs/ApiKeyVM.md
 docs/ApiKeysApi.md
 docs/ApiKeysVM.md
 docs/AppMixins.md
+docs/AuthConfigVM.md
 docs/BreadcrumbsModel.md
 docs/BreadcrumbsVM.md
 docs/ConfigurationApi.md
@@ -51,6 +52,8 @@ docs/CreateGroupVM.md
 docs/CreatePrepareTemplateTaskVM.md
 docs/CreateSubscriptionInviteVM.md
 docs/CreateTaskBaseVM.md
+docs/CreateThumbnailReportTaskVM.md
+docs/CreateThumbnailTemplateTaskVM.md
 docs/CreateTransformTaskBaseVM.md
 docs/CreateTransportTaskBaseVM.md
 docs/CreateWebhookTaskVM.md
@@ -163,6 +166,8 @@ docs/RunFetchTaskVM.md
 docs/RunInputFileVM.md
 docs/RunPrepareTemplateTaskVM.md
 docs/RunTaskBaseVM.md
+docs/RunThumbnailReportTaskVM.md
+docs/RunThumbnailTemplateTaskVM.md
 docs/RunTransformTaskBaseVM.md
 docs/RunTransportTaskBaseVM.md
 docs/RunWebhookTaskVM.md
@@ -206,6 +211,8 @@ docs/TemplateVM.md
 docs/TemplateVMFilesVMBase.md
 docs/TemplatesApi.md
 docs/TemplatesVM.md
+docs/ThumbnailReportTaskVM.md
+docs/ThumbnailTemplateTaskVM.md
 docs/TimePeriodType.md
 docs/TransformTaskBaseVM.md
 docs/TransportTaskBaseVM.md
@@ -236,6 +243,7 @@ model_admin_template_folder_create_vm.go
 model_api_key_vm.go
 model_api_keys_vm.go
 model_app_mixins.go
+model_auth_config_vm.go
 model_breadcrumbs_model.go
 model_breadcrumbs_vm.go
 model_count_vm.go
@@ -252,6 +260,8 @@ model_create_group_vm.go
 model_create_prepare_template_task_vm.go
 model_create_subscription_invite_vm.go
 model_create_task_base_vm.go
+model_create_thumbnail_report_task_vm.go
+model_create_thumbnail_template_task_vm.go
 model_create_transform_task_base_vm.go
 model_create_transport_task_base_vm.go
 model_create_webhook_task_vm.go
@@ -357,6 +367,8 @@ model_run_fetch_task_vm.go
 model_run_input_file_vm.go
 model_run_prepare_template_task_vm.go
 model_run_task_base_vm.go
+model_run_thumbnail_report_task_vm.go
+model_run_thumbnail_template_task_vm.go
 model_run_transform_task_base_vm.go
 model_run_transport_task_base_vm.go
 model_run_webhook_task_vm.go
@@ -393,6 +405,8 @@ model_template_folder_create_vm.go
 model_template_vm.go
 model_template_vm_files_vm_base.go
 model_templates_vm.go
+model_thumbnail_report_task_vm.go
+model_thumbnail_template_task_vm.go
 model_time_period_type.go
 model_transform_task_base_vm.go
 model_transport_task_base_vm.go

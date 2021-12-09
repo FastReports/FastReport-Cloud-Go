@@ -696,6 +696,10 @@ paths:
       responses:
         "200":
           content:
+            image/png:
+              schema:
+                format: binary
+                type: string
             image/jpeg:
               schema:
                 format: binary
@@ -707,6 +711,9 @@ paths:
           description: Specified thumbnail was found
         "404":
           content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -717,6 +724,9 @@ paths:
             to it
         "400":
           content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -726,6 +736,9 @@ paths:
           description: Bad id provided
         "402":
           content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -735,6 +748,9 @@ paths:
           description: Subscription is blocked
         "403":
           content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -757,10 +773,22 @@ paths:
           pattern: ^[A-Fa-f0-9]{24}$
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: preview
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       responses:
         "200":
           content:
             application/octet-stream:
+              schema:
+                format: binary
+                type: string
+            application/pdf:
               schema:
                 format: binary
                 type: string
@@ -774,6 +802,9 @@ paths:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -782,6 +813,9 @@ paths:
         "400":
           content:
             application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/pdf:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
@@ -793,6 +827,9 @@ paths:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -800,6 +837,9 @@ paths:
         "403":
           content:
             application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/pdf:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
             application/json:
@@ -896,6 +936,10 @@ paths:
       responses:
         "200":
           content:
+            image/png:
+              schema:
+                format: binary
+                type: string
             image/jpeg:
               schema:
                 format: binary
@@ -907,6 +951,9 @@ paths:
           description: Specified thumbnail was found
         "404":
           content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -917,6 +964,9 @@ paths:
             to it
         "400":
           content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -926,6 +976,9 @@ paths:
           description: Bad id provided
         "402":
           content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -935,6 +988,9 @@ paths:
           description: Subscription is blocked
         "403":
           content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
             image/jpeg:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
@@ -1080,6 +1136,86 @@ paths:
       summary: Returns a zip archive with selected files
       tags:
       - Download
+  /download/t/{id}/thumbnail:
+    get:
+      operationId: Download_GetTemplateThumbnail
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: ^[A-Fa-f0-9]{24}$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            image/png:
+              schema:
+                format: binary
+                type: string
+            image/jpeg:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+          description: Specified thumbnail was found
+        "404":
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            image/jpeg:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Specified thumbnail was not found or user do not has access
+            to it
+        "400":
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            image/jpeg:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad id provided
+        "402":
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            image/jpeg:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Subscription is blocked
+        "403":
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            image/jpeg:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not enough permissions for the operation
+      summary: Returns template's thumbnail
+      tags:
+      - Download
   /download/t/{id}:
     get:
       operationId: Download_GetTemplate
@@ -1142,7 +1278,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Not enough permissions
-      summary: Returns a report file with specified id
+      summary: Returns a Template file with specified id
       tags:
       - Download
   /download/ts/{archiveName}:
@@ -1230,6 +1366,17 @@ paths:
           pattern: ^[A-Fa-f0-9]{24}$
           type: string
         style: simple
+      - description: "string, that must be incuded in file or folder name to be counted\
+          \ <br />\r\n            (leave undefined to count all files and folders)"
+        explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 0
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2299,6 +2446,15 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 0
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2900,7 +3056,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
           description: Current user is not found
-      summary: Gets list of user groups
+      summary: "Returns a list of current user's groups<br />\r\nThis method will\
+        \ return following data about groups : <br />\r\nId, Name, Created time (UTC),\
+        \ Edited time (UTC), creator id, <br />\r\neditor id, subscription id"
       tags:
       - Groups
     post:
@@ -3247,6 +3405,17 @@ paths:
           pattern: ^[A-Fa-f0-9]{24}$
           type: string
         style: simple
+      - description: "string, that must be incuded in file or folder name to be counted\
+          \ <br />\r\n            (leave undefined to count all files and folders)"
+        explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 0
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4376,6 +4545,15 @@ paths:
           maximum: 120
           minimum: 1
           type: integer
+        style: form
+      - explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 0
+          type: string
         style: form
       responses:
         "200":
@@ -6100,6 +6278,17 @@ paths:
           pattern: ^[A-Fa-f0-9]{24}$
           type: string
         style: simple
+      - description: "string, that must be incuded in file or folder name to be counted\
+          \ <br />\r\n            (leave undefined to count all files and folders)"
+        explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 0
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -7291,6 +7480,15 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - explode: true
+        in: query
+        name: searchPattern
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 0
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -7937,6 +8135,21 @@ components:
           nullable: true
           type: string
       type: object
+    AuthConfigVM:
+      additionalProperties: false
+      example:
+        useLocal: true
+        useOpenId: true
+        authority: authority
+      properties:
+        useLocal:
+          type: boolean
+        useOpenId:
+          type: boolean
+        authority:
+          nullable: true
+          type: string
+      type: object
     BreadcrumbsModel:
       additionalProperties: false
       example:
@@ -8125,15 +8338,6 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/CreateTransformTaskBaseVM'
-      properties:
-        connectionType:
-          $ref: '#/components/schemas/DataSourceConnectionType'
-        connectionString:
-          maxLength: 5000
-          minLength: 0
-          type: string
-      required:
-      - connectionString
       type: object
     CreateGroupAdminVM:
       additionalProperties: false
@@ -8220,6 +8424,16 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/TaskType'
+      type: object
+    CreateThumbnailReportTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/CreateTransformTaskBaseVM'
+      type: object
+    CreateThumbnailTemplateTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/CreateTransformTaskBaseVM'
       type: object
     CreateTransformTaskBaseVM:
       additionalProperties: false
@@ -8636,10 +8850,6 @@ components:
         parentId:
           pattern: ^[A-Fa-f0-9]{24}$
           type: string
-        templateId:
-          nullable: true
-          pattern: (^$)|(^[A-Fa-f0-9]{24}$)
-          type: string
       required:
       - ownerId
       - parentId
@@ -8842,15 +9052,6 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/TransformTaskBaseVM'
-      properties:
-        connectionType:
-          $ref: '#/components/schemas/DataSourceConnectionType'
-        connectionString:
-          maxLength: 5000
-          minLength: 0
-          type: string
-      required:
-      - connectionString
       type: object
     FileAdministrate:
       enum:
@@ -8946,6 +9147,7 @@ components:
       - 1
       - 2
       - 4
+      - 8
       - -1
       format: int32
       type: integer
@@ -8954,6 +9156,7 @@ components:
       - Export
       - Prepare
       - Design
+      - Thumbnail
       - All
       x-enumFlags: true
       x-typeName: FastReport.Cloud.Enums.FilePermissionsEnums.FileExecute
@@ -9875,15 +10078,6 @@ components:
       additionalProperties: false
       allOf:
       - $ref: '#/components/schemas/RunTransformTaskBaseVM'
-      properties:
-        connectionType:
-          $ref: '#/components/schemas/DataSourceConnectionType'
-        connectionString:
-          maxLength: 5000
-          minLength: 0
-          type: string
-      required:
-      - connectionString
       type: object
     RunInputFileVM:
       additionalProperties: false
@@ -9931,6 +10125,16 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/TaskType'
+      type: object
+    RunThumbnailReportTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/RunTransformTaskBaseVM'
+      type: object
+    RunThumbnailTemplateTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/RunTransformTaskBaseVM'
       type: object
     RunTransformTaskBaseVM:
       additionalProperties: false
@@ -9994,6 +10198,11 @@ components:
         appMixins:
           head: head
           body: body
+        auth:
+          useLocal: true
+          useOpenId: true
+          authority: authority
+        isDisabled: true
         title: title
       properties:
         title:
@@ -10001,8 +10210,12 @@ components:
           type: string
         corporateServerMode:
           type: boolean
+        isDisabled:
+          type: boolean
         appMixins:
           $ref: '#/components/schemas/AppMixins'
+        auth:
+          $ref: '#/components/schemas/AuthConfigVM'
       type: object
     SubscriptionAdministrate:
       enum:
@@ -10219,11 +10432,13 @@ components:
           groupLimit: 3
           tasks:
             prepare: true
+            thumbnailReport: true
             fetchData: true
             exportTemplate: true
             exportReport: true
             sendViaWebhook: true
             sendViaEmail: true
+            thumbnailTemplate: true
       properties:
         startTime:
           format: date-time
@@ -10296,11 +10511,13 @@ components:
           groupLimit: 3
           tasks:
             prepare: true
+            thumbnailReport: true
             fetchData: true
             exportTemplate: true
             exportReport: true
             sendViaWebhook: true
             sendViaEmail: true
+            thumbnailTemplate: true
         - onlineDesigner: true
           exportsSpaceLimit: 5
           displayName: displayName
@@ -10321,11 +10538,13 @@ components:
           groupLimit: 3
           tasks:
             prepare: true
+            thumbnailReport: true
             fetchData: true
             exportTemplate: true
             exportReport: true
             sendViaWebhook: true
             sendViaEmail: true
+            thumbnailTemplate: true
         count: 0
         skip: 6
       properties:
@@ -10367,11 +10586,13 @@ components:
         groupLimit: 3
         tasks:
           prepare: true
+          thumbnailReport: true
           fetchData: true
           exportTemplate: true
           exportReport: true
           sendViaWebhook: true
           sendViaEmail: true
+          thumbnailTemplate: true
       properties:
         id:
           nullable: true
@@ -10473,11 +10694,13 @@ components:
               groupLimit: 3
               tasks:
                 prepare: true
+                thumbnailReport: true
                 fetchData: true
                 exportTemplate: true
                 exportReport: true
                 sendViaWebhook: true
                 sendViaEmail: true
+                thumbnailTemplate: true
           templatesFolder:
             bytesUsed: 0
             folderId: folderId
@@ -10505,11 +10728,13 @@ components:
               groupLimit: 3
               tasks:
                 prepare: true
+                thumbnailReport: true
                 fetchData: true
                 exportTemplate: true
                 exportReport: true
                 sendViaWebhook: true
                 sendViaEmail: true
+                thumbnailTemplate: true
           - startTime: 2000-01-23T04:56:07.000+00:00
             endTime: 2000-01-23T04:56:07.000+00:00
             plan:
@@ -10533,11 +10758,13 @@ components:
               groupLimit: 3
               tasks:
                 prepare: true
+                thumbnailReport: true
                 fetchData: true
                 exportTemplate: true
                 exportReport: true
                 sendViaWebhook: true
                 sendViaEmail: true
+                thumbnailTemplate: true
           name: name
           reportsFolder:
             bytesUsed: 0
@@ -10571,11 +10798,13 @@ components:
               groupLimit: 3
               tasks:
                 prepare: true
+                thumbnailReport: true
                 fetchData: true
                 exportTemplate: true
                 exportReport: true
                 sendViaWebhook: true
                 sendViaEmail: true
+                thumbnailTemplate: true
           templatesFolder:
             bytesUsed: 0
             folderId: folderId
@@ -10603,11 +10832,13 @@ components:
               groupLimit: 3
               tasks:
                 prepare: true
+                thumbnailReport: true
                 fetchData: true
                 exportTemplate: true
                 exportReport: true
                 sendViaWebhook: true
                 sendViaEmail: true
+                thumbnailTemplate: true
           - startTime: 2000-01-23T04:56:07.000+00:00
             endTime: 2000-01-23T04:56:07.000+00:00
             plan:
@@ -10631,11 +10862,13 @@ components:
               groupLimit: 3
               tasks:
                 prepare: true
+                thumbnailReport: true
                 fetchData: true
                 exportTemplate: true
                 exportReport: true
                 sendViaWebhook: true
                 sendViaEmail: true
+                thumbnailTemplate: true
           name: name
           reportsFolder:
             bytesUsed: 0
@@ -10767,11 +11000,13 @@ components:
             groupLimit: 3
             tasks:
               prepare: true
+              thumbnailReport: true
               fetchData: true
               exportTemplate: true
               exportReport: true
               sendViaWebhook: true
               sendViaEmail: true
+              thumbnailTemplate: true
         templatesFolder:
           bytesUsed: 0
           folderId: folderId
@@ -10799,11 +11034,13 @@ components:
             groupLimit: 3
             tasks:
               prepare: true
+              thumbnailReport: true
               fetchData: true
               exportTemplate: true
               exportReport: true
               sendViaWebhook: true
               sendViaEmail: true
+              thumbnailTemplate: true
         - startTime: 2000-01-23T04:56:07.000+00:00
           endTime: 2000-01-23T04:56:07.000+00:00
           plan:
@@ -10827,11 +11064,13 @@ components:
             groupLimit: 3
             tasks:
               prepare: true
+              thumbnailReport: true
               fetchData: true
               exportTemplate: true
               exportReport: true
               sendViaWebhook: true
               sendViaEmail: true
+              thumbnailTemplate: true
         name: name
         reportsFolder:
           bytesUsed: 0
@@ -10878,11 +11117,13 @@ components:
       additionalProperties: false
       example:
         prepare: true
+        thumbnailReport: true
         fetchData: true
         exportTemplate: true
         exportReport: true
         sendViaWebhook: true
         sendViaEmail: true
+        thumbnailTemplate: true
       properties:
         prepare:
           nullable: true
@@ -10900,6 +11141,12 @@ components:
           nullable: true
           type: boolean
         fetchData:
+          nullable: true
+          type: boolean
+        thumbnailReport:
+          nullable: true
+          type: boolean
+        thumbnailTemplate:
           nullable: true
           type: boolean
       type: object
@@ -10936,6 +11183,8 @@ components:
       - Fetch
       - Email
       - Webhook
+      - ThumbnailTemplate
+      - ThumbnailReport
       type: string
       x-typeName: FastReport.Cloud.ViewModels.Tasks.TaskType
     TemplateCreateAdminVM:
@@ -11006,6 +11255,16 @@ components:
         take:
           format: int32
           type: integer
+      type: object
+    ThumbnailReportTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransformTaskBaseVM'
+      type: object
+    ThumbnailTemplateTaskVM:
+      additionalProperties: false
+      allOf:
+      - $ref: '#/components/schemas/TransformTaskBaseVM'
       type: object
     TimePeriodType:
       enum:
@@ -11184,12 +11443,16 @@ components:
       additionalProperties: false
       example:
         defaultSubscription: defaultSubscription
+        showHiddenFilesAndFolders: true
       properties:
         profileVisibility:
           $ref: '#/components/schemas/ProfileVisibility'
         defaultSubscription:
           nullable: true
           type: string
+        showHiddenFilesAndFolders:
+          nullable: true
+          type: boolean
       type: object
     UserProfileVM:
       additionalProperties: false
@@ -11219,6 +11482,7 @@ components:
       additionalProperties: false
       example:
         defaultSubscription: defaultSubscription
+        showHiddenFilesAndFolders: true
       properties:
         profileVisibility:
           $ref: '#/components/schemas/ProfileVisibility'
@@ -11226,6 +11490,8 @@ components:
           nullable: true
           pattern: ^[A-Fa-f0-9]{24}$
           type: string
+        showHiddenFilesAndFolders:
+          type: boolean
       type: object
     ValidationProblemDetails:
       additionalProperties: {}

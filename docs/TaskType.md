@@ -15,6 +15,10 @@
 
 * `WEBHOOK` (value: `"Webhook"`)
 
+* `THUMBNAIL_TEMPLATE` (value: `"ThumbnailTemplate"`)
+
+* `THUMBNAIL_REPORT` (value: `"ThumbnailReport"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

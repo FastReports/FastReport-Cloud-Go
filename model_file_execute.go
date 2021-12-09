@@ -24,6 +24,7 @@ const (
 	_1 FileExecute = 1
 	_2 FileExecute = 2
 	_4 FileExecute = 4
+	_8 FileExecute = 8
 	_MINUS_1 FileExecute = -1
 )
 
@@ -32,6 +33,7 @@ var allowedFileExecuteEnumValues = []FileExecute{
 	1,
 	2,
 	4,
+	8,
 	-1,
 }
 

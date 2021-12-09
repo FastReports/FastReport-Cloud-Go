@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConnectionType** | Pointer to [**DataSourceConnectionType**](DataSourceConnectionType.md) |  | [optional] 
-**ConnectionString** | **string** |  | 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
@@ -14,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewFetchTaskVM
 
-`func NewFetchTaskVM(connectionString string, ) *FetchTaskVM`
+`func NewFetchTaskVM() *FetchTaskVM`
 
 NewFetchTaskVM instantiates a new FetchTaskVM object
 This constructor will assign default values to properties that have it defined,
@@ -28,51 +26,6 @@ will change when the set of required properties is changed
 NewFetchTaskVMWithDefaults instantiates a new FetchTaskVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetConnectionType
-
-`func (o *FetchTaskVM) GetConnectionType() DataSourceConnectionType`
-
-GetConnectionType returns the ConnectionType field if non-nil, zero value otherwise.
-
-### GetConnectionTypeOk
-
-`func (o *FetchTaskVM) GetConnectionTypeOk() (*DataSourceConnectionType, bool)`
-
-GetConnectionTypeOk returns a tuple with the ConnectionType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConnectionType
-
-`func (o *FetchTaskVM) SetConnectionType(v DataSourceConnectionType)`
-
-SetConnectionType sets ConnectionType field to given value.
-
-### HasConnectionType
-
-`func (o *FetchTaskVM) HasConnectionType() bool`
-
-HasConnectionType returns a boolean if a field has been set.
-
-### GetConnectionString
-
-`func (o *FetchTaskVM) GetConnectionString() string`
-
-GetConnectionString returns the ConnectionString field if non-nil, zero value otherwise.
-
-### GetConnectionStringOk
-
-`func (o *FetchTaskVM) GetConnectionStringOk() (*string, bool)`
-
-GetConnectionStringOk returns a tuple with the ConnectionString field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConnectionString
-
-`func (o *FetchTaskVM) SetConnectionString(v string)`
-
-SetConnectionString sets ConnectionString field to given value.
-
 
 ### GetName
 

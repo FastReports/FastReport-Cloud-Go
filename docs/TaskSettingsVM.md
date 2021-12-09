@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **SendViaEmail** | Pointer to **NullableBool** |  | [optional] 
 **SendViaWebhook** | Pointer to **NullableBool** |  | [optional] 
 **FetchData** | Pointer to **NullableBool** |  | [optional] 
+**ThumbnailReport** | Pointer to **NullableBool** |  | [optional] 
+**ThumbnailTemplate** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -240,6 +242,76 @@ HasFetchData returns a boolean if a field has been set.
 `func (o *TaskSettingsVM) UnsetFetchData()`
 
 UnsetFetchData ensures that no value is present for FetchData, not even an explicit nil
+### GetThumbnailReport
+
+`func (o *TaskSettingsVM) GetThumbnailReport() bool`
+
+GetThumbnailReport returns the ThumbnailReport field if non-nil, zero value otherwise.
+
+### GetThumbnailReportOk
+
+`func (o *TaskSettingsVM) GetThumbnailReportOk() (*bool, bool)`
+
+GetThumbnailReportOk returns a tuple with the ThumbnailReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThumbnailReport
+
+`func (o *TaskSettingsVM) SetThumbnailReport(v bool)`
+
+SetThumbnailReport sets ThumbnailReport field to given value.
+
+### HasThumbnailReport
+
+`func (o *TaskSettingsVM) HasThumbnailReport() bool`
+
+HasThumbnailReport returns a boolean if a field has been set.
+
+### SetThumbnailReportNil
+
+`func (o *TaskSettingsVM) SetThumbnailReportNil(b bool)`
+
+ SetThumbnailReportNil sets the value for ThumbnailReport to be an explicit nil
+
+### UnsetThumbnailReport
+`func (o *TaskSettingsVM) UnsetThumbnailReport()`
+
+UnsetThumbnailReport ensures that no value is present for ThumbnailReport, not even an explicit nil
+### GetThumbnailTemplate
+
+`func (o *TaskSettingsVM) GetThumbnailTemplate() bool`
+
+GetThumbnailTemplate returns the ThumbnailTemplate field if non-nil, zero value otherwise.
+
+### GetThumbnailTemplateOk
+
+`func (o *TaskSettingsVM) GetThumbnailTemplateOk() (*bool, bool)`
+
+GetThumbnailTemplateOk returns a tuple with the ThumbnailTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThumbnailTemplate
+
+`func (o *TaskSettingsVM) SetThumbnailTemplate(v bool)`
+
+SetThumbnailTemplate sets ThumbnailTemplate field to given value.
+
+### HasThumbnailTemplate
+
+`func (o *TaskSettingsVM) HasThumbnailTemplate() bool`
+
+HasThumbnailTemplate returns a boolean if a field has been set.
+
+### SetThumbnailTemplateNil
+
+`func (o *TaskSettingsVM) SetThumbnailTemplateNil(b bool)`
+
+ SetThumbnailTemplateNil sets the value for ThumbnailTemplate to be an explicit nil
+
+### UnsetThumbnailTemplate
+`func (o *TaskSettingsVM) UnsetThumbnailTemplate()`
+
+UnsetThumbnailTemplate ensures that no value is present for ThumbnailTemplate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

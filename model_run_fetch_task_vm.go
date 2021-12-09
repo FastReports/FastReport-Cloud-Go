@@ -16,8 +16,6 @@ import (
 
 // RunFetchTaskVM struct for RunFetchTaskVM
 type RunFetchTaskVM struct {
-	ConnectionType *DataSourceConnectionType `json:"connectionType,omitempty"`
-	ConnectionString string `json:"connectionString"`
 	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
 	Type *TaskType `json:"type,omitempty"`
 }
@@ -26,7 +24,7 @@ type RunFetchTaskVM struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRunFetchTaskVM(connectionString string) *RunFetchTaskVM {
+func NewRunFetchTaskVM() *RunFetchTaskVM {
 	this := RunFetchTaskVM{}
 	return &this
 }
@@ -37,62 +35,6 @@ func NewRunFetchTaskVM(connectionString string) *RunFetchTaskVM {
 func NewRunFetchTaskVMWithDefaults() *RunFetchTaskVM {
 	this := RunFetchTaskVM{}
 	return &this
-}
-
-// GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
-func (o *RunFetchTaskVM) GetConnectionType() DataSourceConnectionType {
-	if o == nil || o.ConnectionType == nil {
-		var ret DataSourceConnectionType
-		return ret
-	}
-	return *o.ConnectionType
-}
-
-// GetConnectionTypeOk returns a tuple with the ConnectionType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RunFetchTaskVM) GetConnectionTypeOk() (*DataSourceConnectionType, bool) {
-	if o == nil || o.ConnectionType == nil {
-		return nil, false
-	}
-	return o.ConnectionType, true
-}
-
-// HasConnectionType returns a boolean if a field has been set.
-func (o *RunFetchTaskVM) HasConnectionType() bool {
-	if o != nil && o.ConnectionType != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionType gets a reference to the given DataSourceConnectionType and assigns it to the ConnectionType field.
-func (o *RunFetchTaskVM) SetConnectionType(v DataSourceConnectionType) {
-	o.ConnectionType = &v
-}
-
-// GetConnectionString returns the ConnectionString field value
-func (o *RunFetchTaskVM) GetConnectionString() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ConnectionString
-}
-
-// GetConnectionStringOk returns a tuple with the ConnectionString field value
-// and a boolean to check if the value has been set.
-func (o *RunFetchTaskVM) GetConnectionStringOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.ConnectionString, true
-}
-
-// SetConnectionString sets field value
-func (o *RunFetchTaskVM) SetConnectionString(v string) {
-	o.ConnectionString = v
 }
 
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -171,12 +113,6 @@ func (o *RunFetchTaskVM) SetType(v TaskType) {
 
 func (o RunFetchTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ConnectionType != nil {
-		toSerialize["connectionType"] = o.ConnectionType
-	}
-	if true {
-		toSerialize["connectionString"] = o.ConnectionString
-	}
 	if o.SubscriptionId.IsSet() {
 		toSerialize["subscriptionId"] = o.SubscriptionId.Get()
 	}

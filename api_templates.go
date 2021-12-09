@@ -31,8 +31,13 @@ type ApiTemplateFolderAndFileGetCountRequest struct {
 	ctx _context.Context
 	ApiService *TemplatesApiService
 	id string
+	searchPattern *string
 }
 
+func (r ApiTemplateFolderAndFileGetCountRequest) SearchPattern(searchPattern string) ApiTemplateFolderAndFileGetCountRequest {
+	r.searchPattern = &searchPattern
+	return r
+}
 
 func (r ApiTemplateFolderAndFileGetCountRequest) Execute() (CountVM, *_nethttp.Response, error) {
 	return r.ApiService.TemplateFolderAndFileGetCountExecute(r)
@@ -79,6 +84,9 @@ func (a *TemplatesApiService) TemplateFolderAndFileGetCountExecute(r ApiTemplate
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.searchPattern != nil {
+		localVarQueryParams.Add("searchPattern", parameterToString(*r.searchPattern, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -3044,6 +3052,7 @@ type ApiTemplatesGetFilesListRequest struct {
 	id string
 	skip *int32
 	take *int32
+	searchPattern *string
 }
 
 func (r ApiTemplatesGetFilesListRequest) Skip(skip int32) ApiTemplatesGetFilesListRequest {
@@ -3052,6 +3061,10 @@ func (r ApiTemplatesGetFilesListRequest) Skip(skip int32) ApiTemplatesGetFilesLi
 }
 func (r ApiTemplatesGetFilesListRequest) Take(take int32) ApiTemplatesGetFilesListRequest {
 	r.take = &take
+	return r
+}
+func (r ApiTemplatesGetFilesListRequest) SearchPattern(searchPattern string) ApiTemplatesGetFilesListRequest {
+	r.searchPattern = &searchPattern
 	return r
 }
 
@@ -3104,6 +3117,9 @@ func (a *TemplatesApiService) TemplatesGetFilesListExecute(r ApiTemplatesGetFile
 	}
 	if r.take != nil {
 		localVarQueryParams.Add("take", parameterToString(*r.take, ""))
+	}
+	if r.searchPattern != nil {
+		localVarQueryParams.Add("searchPattern", parameterToString(*r.searchPattern, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

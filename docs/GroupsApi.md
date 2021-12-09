@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**GroupsCreateGroup**](GroupsApi.md#GroupsCreateGroup) | **Post** /api/manage/v1/Groups | Create a new user group
 [**GroupsDeleteGroup**](GroupsApi.md#GroupsDeleteGroup) | **Delete** /api/manage/v1/Groups/{id} | Delete group by identifier
 [**GroupsGetGroup**](GroupsApi.md#GroupsGetGroup) | **Get** /api/manage/v1/Groups/{id} | Gets group by identifier
-[**GroupsGetGroupList**](GroupsApi.md#GroupsGetGroupList) | **Get** /api/manage/v1/Groups | Gets list of user groups
+[**GroupsGetGroupList**](GroupsApi.md#GroupsGetGroupList) | **Get** /api/manage/v1/Groups | Returns a list of current user&#39;s groups&lt;br /&gt;  This method will return following data about groups : &lt;br /&gt;  Id, Name, Created time (UTC), Edited time (UTC), creator id, &lt;br /&gt;  editor id, subscription id
 [**GroupsGetPermissions**](GroupsApi.md#GroupsGetPermissions) | **Get** /api/manage/v1/Groups/{id}/permissions | Gets group permissions by identifier
 [**GroupsRenameGroup**](GroupsApi.md#GroupsRenameGroup) | **Put** /api/manage/v1/Groups/{id}/rename | Rename group by identifier
 [**GroupsUpdatePermissions**](GroupsApi.md#GroupsUpdatePermissions) | **Post** /api/manage/v1/Groups/{id}/permissions | Update permissions
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 > GroupsVM GroupsGetGroupList(ctx).Skip(skip).Take(take).Execute()
 
-Gets list of user groups
+Returns a list of current user's groups<br />  This method will return following data about groups : <br />  Id, Name, Created time (UTC), Edited time (UTC), creator id, <br />  editor id, subscription id
 
 ### Example
 

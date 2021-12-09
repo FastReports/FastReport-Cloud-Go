@@ -18,6 +18,7 @@ import (
 type UserSettingsVM struct {
 	ProfileVisibility *ProfileVisibility `json:"profileVisibility,omitempty"`
 	DefaultSubscription NullableString `json:"defaultSubscription,omitempty"`
+	ShowHiddenFilesAndFolders *bool `json:"showHiddenFilesAndFolders,omitempty"`
 }
 
 // NewUserSettingsVM instantiates a new UserSettingsVM object
@@ -111,6 +112,38 @@ func (o *UserSettingsVM) UnsetDefaultSubscription() {
 	o.DefaultSubscription.Unset()
 }
 
+// GetShowHiddenFilesAndFolders returns the ShowHiddenFilesAndFolders field value if set, zero value otherwise.
+func (o *UserSettingsVM) GetShowHiddenFilesAndFolders() bool {
+	if o == nil || o.ShowHiddenFilesAndFolders == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShowHiddenFilesAndFolders
+}
+
+// GetShowHiddenFilesAndFoldersOk returns a tuple with the ShowHiddenFilesAndFolders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserSettingsVM) GetShowHiddenFilesAndFoldersOk() (*bool, bool) {
+	if o == nil || o.ShowHiddenFilesAndFolders == nil {
+		return nil, false
+	}
+	return o.ShowHiddenFilesAndFolders, true
+}
+
+// HasShowHiddenFilesAndFolders returns a boolean if a field has been set.
+func (o *UserSettingsVM) HasShowHiddenFilesAndFolders() bool {
+	if o != nil && o.ShowHiddenFilesAndFolders != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShowHiddenFilesAndFolders gets a reference to the given bool and assigns it to the ShowHiddenFilesAndFolders field.
+func (o *UserSettingsVM) SetShowHiddenFilesAndFolders(v bool) {
+	o.ShowHiddenFilesAndFolders = &v
+}
+
 func (o UserSettingsVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ProfileVisibility != nil {
@@ -118,6 +151,9 @@ func (o UserSettingsVM) MarshalJSON() ([]byte, error) {
 	}
 	if o.DefaultSubscription.IsSet() {
 		toSerialize["defaultSubscription"] = o.DefaultSubscription.Get()
+	}
+	if o.ShowHiddenFilesAndFolders != nil {
+		toSerialize["showHiddenFilesAndFolders"] = o.ShowHiddenFilesAndFolders
 	}
 	return json.Marshal(toSerialize)
 }

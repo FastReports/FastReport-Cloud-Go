@@ -22,6 +22,8 @@ type TaskSettingsVM struct {
 	SendViaEmail NullableBool `json:"sendViaEmail,omitempty"`
 	SendViaWebhook NullableBool `json:"sendViaWebhook,omitempty"`
 	FetchData NullableBool `json:"fetchData,omitempty"`
+	ThumbnailReport NullableBool `json:"thumbnailReport,omitempty"`
+	ThumbnailTemplate NullableBool `json:"thumbnailTemplate,omitempty"`
 }
 
 // NewTaskSettingsVM instantiates a new TaskSettingsVM object
@@ -293,6 +295,90 @@ func (o *TaskSettingsVM) UnsetFetchData() {
 	o.FetchData.Unset()
 }
 
+// GetThumbnailReport returns the ThumbnailReport field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TaskSettingsVM) GetThumbnailReport() bool {
+	if o == nil || o.ThumbnailReport.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ThumbnailReport.Get()
+}
+
+// GetThumbnailReportOk returns a tuple with the ThumbnailReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TaskSettingsVM) GetThumbnailReportOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ThumbnailReport.Get(), o.ThumbnailReport.IsSet()
+}
+
+// HasThumbnailReport returns a boolean if a field has been set.
+func (o *TaskSettingsVM) HasThumbnailReport() bool {
+	if o != nil && o.ThumbnailReport.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetThumbnailReport gets a reference to the given NullableBool and assigns it to the ThumbnailReport field.
+func (o *TaskSettingsVM) SetThumbnailReport(v bool) {
+	o.ThumbnailReport.Set(&v)
+}
+// SetThumbnailReportNil sets the value for ThumbnailReport to be an explicit nil
+func (o *TaskSettingsVM) SetThumbnailReportNil() {
+	o.ThumbnailReport.Set(nil)
+}
+
+// UnsetThumbnailReport ensures that no value is present for ThumbnailReport, not even an explicit nil
+func (o *TaskSettingsVM) UnsetThumbnailReport() {
+	o.ThumbnailReport.Unset()
+}
+
+// GetThumbnailTemplate returns the ThumbnailTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TaskSettingsVM) GetThumbnailTemplate() bool {
+	if o == nil || o.ThumbnailTemplate.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ThumbnailTemplate.Get()
+}
+
+// GetThumbnailTemplateOk returns a tuple with the ThumbnailTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TaskSettingsVM) GetThumbnailTemplateOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ThumbnailTemplate.Get(), o.ThumbnailTemplate.IsSet()
+}
+
+// HasThumbnailTemplate returns a boolean if a field has been set.
+func (o *TaskSettingsVM) HasThumbnailTemplate() bool {
+	if o != nil && o.ThumbnailTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetThumbnailTemplate gets a reference to the given NullableBool and assigns it to the ThumbnailTemplate field.
+func (o *TaskSettingsVM) SetThumbnailTemplate(v bool) {
+	o.ThumbnailTemplate.Set(&v)
+}
+// SetThumbnailTemplateNil sets the value for ThumbnailTemplate to be an explicit nil
+func (o *TaskSettingsVM) SetThumbnailTemplateNil() {
+	o.ThumbnailTemplate.Set(nil)
+}
+
+// UnsetThumbnailTemplate ensures that no value is present for ThumbnailTemplate, not even an explicit nil
+func (o *TaskSettingsVM) UnsetThumbnailTemplate() {
+	o.ThumbnailTemplate.Unset()
+}
+
 func (o TaskSettingsVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Prepare.IsSet() {
@@ -312,6 +398,12 @@ func (o TaskSettingsVM) MarshalJSON() ([]byte, error) {
 	}
 	if o.FetchData.IsSet() {
 		toSerialize["fetchData"] = o.FetchData.Get()
+	}
+	if o.ThumbnailReport.IsSet() {
+		toSerialize["thumbnailReport"] = o.ThumbnailReport.Get()
+	}
+	if o.ThumbnailTemplate.IsSet() {
+		toSerialize["thumbnailTemplate"] = o.ThumbnailTemplate.Get()
 	}
 	return json.Marshal(toSerialize)
 }

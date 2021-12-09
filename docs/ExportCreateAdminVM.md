@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **OwnerId** | **string** |  | 
 **ParentId** | **string** |  | 
-**TemplateId** | Pointer to **NullableString** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Icon** | Pointer to **NullableString** |  | [optional] 
@@ -71,41 +70,6 @@ and a boolean to check if the value has been set.
 SetParentId sets ParentId field to given value.
 
 
-### GetTemplateId
-
-`func (o *ExportCreateAdminVM) GetTemplateId() string`
-
-GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
-
-### GetTemplateIdOk
-
-`func (o *ExportCreateAdminVM) GetTemplateIdOk() (*string, bool)`
-
-GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplateId
-
-`func (o *ExportCreateAdminVM) SetTemplateId(v string)`
-
-SetTemplateId sets TemplateId field to given value.
-
-### HasTemplateId
-
-`func (o *ExportCreateAdminVM) HasTemplateId() bool`
-
-HasTemplateId returns a boolean if a field has been set.
-
-### SetTemplateIdNil
-
-`func (o *ExportCreateAdminVM) SetTemplateIdNil(b bool)`
-
- SetTemplateIdNil sets the value for TemplateId to be an explicit nil
-
-### UnsetTemplateId
-`func (o *ExportCreateAdminVM) UnsetTemplateId()`
-
-UnsetTemplateId ensures that no value is present for TemplateId, not even an explicit nil
 ### GetName
 
 `func (o *ExportCreateAdminVM) GetName() string`

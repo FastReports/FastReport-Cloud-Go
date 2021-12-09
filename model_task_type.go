@@ -26,6 +26,8 @@ const (
 	FETCH TaskType = "Fetch"
 	EMAIL TaskType = "Email"
 	WEBHOOK TaskType = "Webhook"
+	THUMBNAIL_TEMPLATE TaskType = "ThumbnailTemplate"
+	THUMBNAIL_REPORT TaskType = "ThumbnailReport"
 )
 
 var allowedTaskTypeEnumValues = []TaskType{
@@ -35,6 +37,8 @@ var allowedTaskTypeEnumValues = []TaskType{
 	"Fetch",
 	"Email",
 	"Webhook",
+	"ThumbnailTemplate",
+	"ThumbnailReport",
 }
 
 func (v *TaskType) UnmarshalJSON(src []byte) error {

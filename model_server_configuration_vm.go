@@ -18,7 +18,9 @@ import (
 type ServerConfigurationVM struct {
 	Title NullableString `json:"title,omitempty"`
 	CorporateServerMode *bool `json:"corporateServerMode,omitempty"`
+	IsDisabled *bool `json:"isDisabled,omitempty"`
 	AppMixins *AppMixins `json:"appMixins,omitempty"`
+	Auth *AuthConfigVM `json:"auth,omitempty"`
 }
 
 // NewServerConfigurationVM instantiates a new ServerConfigurationVM object
@@ -112,6 +114,38 @@ func (o *ServerConfigurationVM) SetCorporateServerMode(v bool) {
 	o.CorporateServerMode = &v
 }
 
+// GetIsDisabled returns the IsDisabled field value if set, zero value otherwise.
+func (o *ServerConfigurationVM) GetIsDisabled() bool {
+	if o == nil || o.IsDisabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsDisabled
+}
+
+// GetIsDisabledOk returns a tuple with the IsDisabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerConfigurationVM) GetIsDisabledOk() (*bool, bool) {
+	if o == nil || o.IsDisabled == nil {
+		return nil, false
+	}
+	return o.IsDisabled, true
+}
+
+// HasIsDisabled returns a boolean if a field has been set.
+func (o *ServerConfigurationVM) HasIsDisabled() bool {
+	if o != nil && o.IsDisabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsDisabled gets a reference to the given bool and assigns it to the IsDisabled field.
+func (o *ServerConfigurationVM) SetIsDisabled(v bool) {
+	o.IsDisabled = &v
+}
+
 // GetAppMixins returns the AppMixins field value if set, zero value otherwise.
 func (o *ServerConfigurationVM) GetAppMixins() AppMixins {
 	if o == nil || o.AppMixins == nil {
@@ -144,6 +178,38 @@ func (o *ServerConfigurationVM) SetAppMixins(v AppMixins) {
 	o.AppMixins = &v
 }
 
+// GetAuth returns the Auth field value if set, zero value otherwise.
+func (o *ServerConfigurationVM) GetAuth() AuthConfigVM {
+	if o == nil || o.Auth == nil {
+		var ret AuthConfigVM
+		return ret
+	}
+	return *o.Auth
+}
+
+// GetAuthOk returns a tuple with the Auth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerConfigurationVM) GetAuthOk() (*AuthConfigVM, bool) {
+	if o == nil || o.Auth == nil {
+		return nil, false
+	}
+	return o.Auth, true
+}
+
+// HasAuth returns a boolean if a field has been set.
+func (o *ServerConfigurationVM) HasAuth() bool {
+	if o != nil && o.Auth != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAuth gets a reference to the given AuthConfigVM and assigns it to the Auth field.
+func (o *ServerConfigurationVM) SetAuth(v AuthConfigVM) {
+	o.Auth = &v
+}
+
 func (o ServerConfigurationVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Title.IsSet() {
@@ -152,8 +218,14 @@ func (o ServerConfigurationVM) MarshalJSON() ([]byte, error) {
 	if o.CorporateServerMode != nil {
 		toSerialize["corporateServerMode"] = o.CorporateServerMode
 	}
+	if o.IsDisabled != nil {
+		toSerialize["isDisabled"] = o.IsDisabled
+	}
 	if o.AppMixins != nil {
 		toSerialize["appMixins"] = o.AppMixins
+	}
+	if o.Auth != nil {
+		toSerialize["auth"] = o.Auth
 	}
 	return json.Marshal(toSerialize)
 }

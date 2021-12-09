@@ -1,4 +1,4 @@
-# RunFetchTaskVM
+# RunThumbnailTemplateTaskVM
 
 ## Properties
 
@@ -9,80 +9,80 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewRunFetchTaskVM
+### NewRunThumbnailTemplateTaskVM
 
-`func NewRunFetchTaskVM() *RunFetchTaskVM`
+`func NewRunThumbnailTemplateTaskVM() *RunThumbnailTemplateTaskVM`
 
-NewRunFetchTaskVM instantiates a new RunFetchTaskVM object
+NewRunThumbnailTemplateTaskVM instantiates a new RunThumbnailTemplateTaskVM object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewRunFetchTaskVMWithDefaults
+### NewRunThumbnailTemplateTaskVMWithDefaults
 
-`func NewRunFetchTaskVMWithDefaults() *RunFetchTaskVM`
+`func NewRunThumbnailTemplateTaskVMWithDefaults() *RunThumbnailTemplateTaskVM`
 
-NewRunFetchTaskVMWithDefaults instantiates a new RunFetchTaskVM object
+NewRunThumbnailTemplateTaskVMWithDefaults instantiates a new RunThumbnailTemplateTaskVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetSubscriptionId
 
-`func (o *RunFetchTaskVM) GetSubscriptionId() string`
+`func (o *RunThumbnailTemplateTaskVM) GetSubscriptionId() string`
 
 GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
 
 ### GetSubscriptionIdOk
 
-`func (o *RunFetchTaskVM) GetSubscriptionIdOk() (*string, bool)`
+`func (o *RunThumbnailTemplateTaskVM) GetSubscriptionIdOk() (*string, bool)`
 
 GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscriptionId
 
-`func (o *RunFetchTaskVM) SetSubscriptionId(v string)`
+`func (o *RunThumbnailTemplateTaskVM) SetSubscriptionId(v string)`
 
 SetSubscriptionId sets SubscriptionId field to given value.
 
 ### HasSubscriptionId
 
-`func (o *RunFetchTaskVM) HasSubscriptionId() bool`
+`func (o *RunThumbnailTemplateTaskVM) HasSubscriptionId() bool`
 
 HasSubscriptionId returns a boolean if a field has been set.
 
 ### SetSubscriptionIdNil
 
-`func (o *RunFetchTaskVM) SetSubscriptionIdNil(b bool)`
+`func (o *RunThumbnailTemplateTaskVM) SetSubscriptionIdNil(b bool)`
 
  SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
 
 ### UnsetSubscriptionId
-`func (o *RunFetchTaskVM) UnsetSubscriptionId()`
+`func (o *RunThumbnailTemplateTaskVM) UnsetSubscriptionId()`
 
 UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
 ### GetType
 
-`func (o *RunFetchTaskVM) GetType() TaskType`
+`func (o *RunThumbnailTemplateTaskVM) GetType() TaskType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *RunFetchTaskVM) GetTypeOk() (*TaskType, bool)`
+`func (o *RunThumbnailTemplateTaskVM) GetTypeOk() (*TaskType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *RunFetchTaskVM) SetType(v TaskType)`
+`func (o *RunThumbnailTemplateTaskVM) SetType(v TaskType)`
 
 SetType sets Type field to given value.
 
 ### HasType
 
-`func (o *RunFetchTaskVM) HasType() bool`
+`func (o *RunThumbnailTemplateTaskVM) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 

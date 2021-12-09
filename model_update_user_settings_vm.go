@@ -18,6 +18,7 @@ import (
 type UpdateUserSettingsVM struct {
 	ProfileVisibility *ProfileVisibility `json:"profileVisibility,omitempty"`
 	DefaultSubscription NullableString `json:"defaultSubscription,omitempty"`
+	ShowHiddenFilesAndFolders NullableBool `json:"showHiddenFilesAndFolders,omitempty"`
 }
 
 // NewUpdateUserSettingsVM instantiates a new UpdateUserSettingsVM object
@@ -111,6 +112,48 @@ func (o *UpdateUserSettingsVM) UnsetDefaultSubscription() {
 	o.DefaultSubscription.Unset()
 }
 
+// GetShowHiddenFilesAndFolders returns the ShowHiddenFilesAndFolders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateUserSettingsVM) GetShowHiddenFilesAndFolders() bool {
+	if o == nil || o.ShowHiddenFilesAndFolders.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShowHiddenFilesAndFolders.Get()
+}
+
+// GetShowHiddenFilesAndFoldersOk returns a tuple with the ShowHiddenFilesAndFolders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateUserSettingsVM) GetShowHiddenFilesAndFoldersOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.ShowHiddenFilesAndFolders.Get(), o.ShowHiddenFilesAndFolders.IsSet()
+}
+
+// HasShowHiddenFilesAndFolders returns a boolean if a field has been set.
+func (o *UpdateUserSettingsVM) HasShowHiddenFilesAndFolders() bool {
+	if o != nil && o.ShowHiddenFilesAndFolders.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShowHiddenFilesAndFolders gets a reference to the given NullableBool and assigns it to the ShowHiddenFilesAndFolders field.
+func (o *UpdateUserSettingsVM) SetShowHiddenFilesAndFolders(v bool) {
+	o.ShowHiddenFilesAndFolders.Set(&v)
+}
+// SetShowHiddenFilesAndFoldersNil sets the value for ShowHiddenFilesAndFolders to be an explicit nil
+func (o *UpdateUserSettingsVM) SetShowHiddenFilesAndFoldersNil() {
+	o.ShowHiddenFilesAndFolders.Set(nil)
+}
+
+// UnsetShowHiddenFilesAndFolders ensures that no value is present for ShowHiddenFilesAndFolders, not even an explicit nil
+func (o *UpdateUserSettingsVM) UnsetShowHiddenFilesAndFolders() {
+	o.ShowHiddenFilesAndFolders.Unset()
+}
+
 func (o UpdateUserSettingsVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ProfileVisibility != nil {
@@ -118,6 +161,9 @@ func (o UpdateUserSettingsVM) MarshalJSON() ([]byte, error) {
 	}
 	if o.DefaultSubscription.IsSet() {
 		toSerialize["defaultSubscription"] = o.DefaultSubscription.Get()
+	}
+	if o.ShowHiddenFilesAndFolders.IsSet() {
+		toSerialize["showHiddenFilesAndFolders"] = o.ShowHiddenFilesAndFolders.Get()
 	}
 	return json.Marshal(toSerialize)
 }

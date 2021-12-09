@@ -10,14 +10,15 @@ Method | HTTP request | Description
 [**DownloadGetReport**](DownloadApi.md#DownloadGetReport) | **Get** /download/r/{id} | Returns a prepared file with specified id
 [**DownloadGetReportThumbnail**](DownloadApi.md#DownloadGetReportThumbnail) | **Get** /download/r/{id}/thumbnail | Returns report&#39;s thumbnail
 [**DownloadGetReports**](DownloadApi.md#DownloadGetReports) | **Get** /download/rs/{archiveName} | Returns a zip archive with selected files
-[**DownloadGetTemplate**](DownloadApi.md#DownloadGetTemplate) | **Get** /download/t/{id} | Returns a report file with specified id
+[**DownloadGetTemplate**](DownloadApi.md#DownloadGetTemplate) | **Get** /download/t/{id} | Returns a Template file with specified id
+[**DownloadGetTemplateThumbnail**](DownloadApi.md#DownloadGetTemplateThumbnail) | **Get** /download/t/{id}/thumbnail | Returns template&#39;s thumbnail
 [**DownloadGetTemplates**](DownloadApi.md#DownloadGetTemplates) | **Get** /download/ts/{archiveName} | Returns a zip archive with selected files
 
 
 
 ## DownloadGetExport
 
-> *os.File DownloadGetExport(ctx, id).Execute()
+> *os.File DownloadGetExport(ctx, id).Preview(preview).Execute()
 
 Returns a export file with specified id
 
@@ -35,10 +36,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
+    preview := true // bool |  (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetExport(context.Background(), id).Execute()
+    resp, r, err := api_client.DownloadApi.DownloadGetExport(context.Background(), id).Preview(preview).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetExport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,6 +66,7 @@ Other parameters are passed through a pointer to a apiDownloadGetExportRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **preview** | **bool** |  | [default to false]
 
 ### Return type
 
@@ -76,7 +79,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream, application/json
+- **Accept**: application/octet-stream, application/pdf, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -144,7 +147,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/jpeg, application/json
+- **Accept**: image/png, image/jpeg, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -350,7 +353,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/jpeg, application/json
+- **Accept**: image/png, image/jpeg, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -431,7 +434,7 @@ Name | Type | Description  | Notes
 
 > *os.File DownloadGetTemplate(ctx, id).Execute()
 
-Returns a report file with specified id
+Returns a Template file with specified id
 
 ### Example
 
@@ -489,6 +492,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/octet-stream, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DownloadGetTemplateThumbnail
+
+> *os.File DownloadGetTemplateThumbnail(ctx, id).Execute()
+
+Returns template's thumbnail
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DownloadApi.DownloadGetTemplateThumbnail(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetTemplateThumbnail``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DownloadGetTemplateThumbnail`: *os.File
+    fmt.Fprintf(os.Stdout, "Response from `DownloadApi.DownloadGetTemplateThumbnail`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDownloadGetTemplateThumbnailRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[***os.File**](*os.File.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: image/png, image/jpeg, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

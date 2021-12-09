@@ -6,7 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Title** | Pointer to **NullableString** |  | [optional] 
 **CorporateServerMode** | Pointer to **bool** |  | [optional] 
+**IsDisabled** | Pointer to **bool** |  | [optional] 
 **AppMixins** | Pointer to [**AppMixins**](AppMixins.md) |  | [optional] 
+**Auth** | Pointer to [**AuthConfigVM**](AuthConfigVM.md) |  | [optional] 
 
 ## Methods
 
@@ -87,6 +89,31 @@ SetCorporateServerMode sets CorporateServerMode field to given value.
 
 HasCorporateServerMode returns a boolean if a field has been set.
 
+### GetIsDisabled
+
+`func (o *ServerConfigurationVM) GetIsDisabled() bool`
+
+GetIsDisabled returns the IsDisabled field if non-nil, zero value otherwise.
+
+### GetIsDisabledOk
+
+`func (o *ServerConfigurationVM) GetIsDisabledOk() (*bool, bool)`
+
+GetIsDisabledOk returns a tuple with the IsDisabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsDisabled
+
+`func (o *ServerConfigurationVM) SetIsDisabled(v bool)`
+
+SetIsDisabled sets IsDisabled field to given value.
+
+### HasIsDisabled
+
+`func (o *ServerConfigurationVM) HasIsDisabled() bool`
+
+HasIsDisabled returns a boolean if a field has been set.
+
 ### GetAppMixins
 
 `func (o *ServerConfigurationVM) GetAppMixins() AppMixins`
@@ -111,6 +138,31 @@ SetAppMixins sets AppMixins field to given value.
 `func (o *ServerConfigurationVM) HasAppMixins() bool`
 
 HasAppMixins returns a boolean if a field has been set.
+
+### GetAuth
+
+`func (o *ServerConfigurationVM) GetAuth() AuthConfigVM`
+
+GetAuth returns the Auth field if non-nil, zero value otherwise.
+
+### GetAuthOk
+
+`func (o *ServerConfigurationVM) GetAuthOk() (*AuthConfigVM, bool)`
+
+GetAuthOk returns a tuple with the Auth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuth
+
+`func (o *ServerConfigurationVM) SetAuth(v AuthConfigVM)`
+
+SetAuth sets Auth field to given value.
+
+### HasAuth
+
+`func (o *ServerConfigurationVM) HasAuth() bool`
+
+HasAuth returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

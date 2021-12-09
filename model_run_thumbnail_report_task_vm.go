@@ -14,74 +14,31 @@ import (
 	"encoding/json"
 )
 
-// CreateFetchTaskVM struct for CreateFetchTaskVM
-type CreateFetchTaskVM struct {
-	Name NullableString `json:"name,omitempty"`
+// RunThumbnailReportTaskVM struct for RunThumbnailReportTaskVM
+type RunThumbnailReportTaskVM struct {
 	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
 	Type *TaskType `json:"type,omitempty"`
 }
 
-// NewCreateFetchTaskVM instantiates a new CreateFetchTaskVM object
+// NewRunThumbnailReportTaskVM instantiates a new RunThumbnailReportTaskVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateFetchTaskVM() *CreateFetchTaskVM {
-	this := CreateFetchTaskVM{}
+func NewRunThumbnailReportTaskVM() *RunThumbnailReportTaskVM {
+	this := RunThumbnailReportTaskVM{}
 	return &this
 }
 
-// NewCreateFetchTaskVMWithDefaults instantiates a new CreateFetchTaskVM object
+// NewRunThumbnailReportTaskVMWithDefaults instantiates a new RunThumbnailReportTaskVM object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateFetchTaskVMWithDefaults() *CreateFetchTaskVM {
-	this := CreateFetchTaskVM{}
+func NewRunThumbnailReportTaskVMWithDefaults() *RunThumbnailReportTaskVM {
+	this := RunThumbnailReportTaskVM{}
 	return &this
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateFetchTaskVM) GetName() string {
-	if o == nil || o.Name.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateFetchTaskVM) GetNameOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *CreateFetchTaskVM) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *CreateFetchTaskVM) SetName(v string) {
-	o.Name.Set(&v)
-}
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *CreateFetchTaskVM) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *CreateFetchTaskVM) UnsetName() {
-	o.Name.Unset()
 }
 
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateFetchTaskVM) GetSubscriptionId() string {
+func (o *RunThumbnailReportTaskVM) GetSubscriptionId() string {
 	if o == nil || o.SubscriptionId.Get() == nil {
 		var ret string
 		return ret
@@ -92,7 +49,7 @@ func (o *CreateFetchTaskVM) GetSubscriptionId() string {
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateFetchTaskVM) GetSubscriptionIdOk() (*string, bool) {
+func (o *RunThumbnailReportTaskVM) GetSubscriptionIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -100,7 +57,7 @@ func (o *CreateFetchTaskVM) GetSubscriptionIdOk() (*string, bool) {
 }
 
 // HasSubscriptionId returns a boolean if a field has been set.
-func (o *CreateFetchTaskVM) HasSubscriptionId() bool {
+func (o *RunThumbnailReportTaskVM) HasSubscriptionId() bool {
 	if o != nil && o.SubscriptionId.IsSet() {
 		return true
 	}
@@ -109,21 +66,21 @@ func (o *CreateFetchTaskVM) HasSubscriptionId() bool {
 }
 
 // SetSubscriptionId gets a reference to the given NullableString and assigns it to the SubscriptionId field.
-func (o *CreateFetchTaskVM) SetSubscriptionId(v string) {
+func (o *RunThumbnailReportTaskVM) SetSubscriptionId(v string) {
 	o.SubscriptionId.Set(&v)
 }
 // SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-func (o *CreateFetchTaskVM) SetSubscriptionIdNil() {
+func (o *RunThumbnailReportTaskVM) SetSubscriptionIdNil() {
 	o.SubscriptionId.Set(nil)
 }
 
 // UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-func (o *CreateFetchTaskVM) UnsetSubscriptionId() {
+func (o *RunThumbnailReportTaskVM) UnsetSubscriptionId() {
 	o.SubscriptionId.Unset()
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *CreateFetchTaskVM) GetType() TaskType {
+func (o *RunThumbnailReportTaskVM) GetType() TaskType {
 	if o == nil || o.Type == nil {
 		var ret TaskType
 		return ret
@@ -133,7 +90,7 @@ func (o *CreateFetchTaskVM) GetType() TaskType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateFetchTaskVM) GetTypeOk() (*TaskType, bool) {
+func (o *RunThumbnailReportTaskVM) GetTypeOk() (*TaskType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -141,7 +98,7 @@ func (o *CreateFetchTaskVM) GetTypeOk() (*TaskType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *CreateFetchTaskVM) HasType() bool {
+func (o *RunThumbnailReportTaskVM) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -150,15 +107,12 @@ func (o *CreateFetchTaskVM) HasType() bool {
 }
 
 // SetType gets a reference to the given TaskType and assigns it to the Type field.
-func (o *CreateFetchTaskVM) SetType(v TaskType) {
+func (o *RunThumbnailReportTaskVM) SetType(v TaskType) {
 	o.Type = &v
 }
 
-func (o CreateFetchTaskVM) MarshalJSON() ([]byte, error) {
+func (o RunThumbnailReportTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
 	if o.SubscriptionId.IsSet() {
 		toSerialize["subscriptionId"] = o.SubscriptionId.Get()
 	}
@@ -168,38 +122,38 @@ func (o CreateFetchTaskVM) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableCreateFetchTaskVM struct {
-	value *CreateFetchTaskVM
+type NullableRunThumbnailReportTaskVM struct {
+	value *RunThumbnailReportTaskVM
 	isSet bool
 }
 
-func (v NullableCreateFetchTaskVM) Get() *CreateFetchTaskVM {
+func (v NullableRunThumbnailReportTaskVM) Get() *RunThumbnailReportTaskVM {
 	return v.value
 }
 
-func (v *NullableCreateFetchTaskVM) Set(val *CreateFetchTaskVM) {
+func (v *NullableRunThumbnailReportTaskVM) Set(val *RunThumbnailReportTaskVM) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateFetchTaskVM) IsSet() bool {
+func (v NullableRunThumbnailReportTaskVM) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateFetchTaskVM) Unset() {
+func (v *NullableRunThumbnailReportTaskVM) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateFetchTaskVM(val *CreateFetchTaskVM) *NullableCreateFetchTaskVM {
-	return &NullableCreateFetchTaskVM{value: val, isSet: true}
+func NewNullableRunThumbnailReportTaskVM(val *RunThumbnailReportTaskVM) *NullableRunThumbnailReportTaskVM {
+	return &NullableRunThumbnailReportTaskVM{value: val, isSet: true}
 }
 
-func (v NullableCreateFetchTaskVM) MarshalJSON() ([]byte, error) {
+func (v NullableRunThumbnailReportTaskVM) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateFetchTaskVM) UnmarshalJSON(src []byte) error {
+func (v *NullableRunThumbnailReportTaskVM) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

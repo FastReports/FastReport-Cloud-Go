@@ -1,4 +1,4 @@
-# CreateFetchTaskVM
+# ThumbnailReportTaskVM
 
 ## Properties
 
@@ -10,115 +10,115 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCreateFetchTaskVM
+### NewThumbnailReportTaskVM
 
-`func NewCreateFetchTaskVM() *CreateFetchTaskVM`
+`func NewThumbnailReportTaskVM() *ThumbnailReportTaskVM`
 
-NewCreateFetchTaskVM instantiates a new CreateFetchTaskVM object
+NewThumbnailReportTaskVM instantiates a new ThumbnailReportTaskVM object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateFetchTaskVMWithDefaults
+### NewThumbnailReportTaskVMWithDefaults
 
-`func NewCreateFetchTaskVMWithDefaults() *CreateFetchTaskVM`
+`func NewThumbnailReportTaskVMWithDefaults() *ThumbnailReportTaskVM`
 
-NewCreateFetchTaskVMWithDefaults instantiates a new CreateFetchTaskVM object
+NewThumbnailReportTaskVMWithDefaults instantiates a new ThumbnailReportTaskVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *CreateFetchTaskVM) GetName() string`
+`func (o *ThumbnailReportTaskVM) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *CreateFetchTaskVM) GetNameOk() (*string, bool)`
+`func (o *ThumbnailReportTaskVM) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *CreateFetchTaskVM) SetName(v string)`
+`func (o *ThumbnailReportTaskVM) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *CreateFetchTaskVM) HasName() bool`
+`func (o *ThumbnailReportTaskVM) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### SetNameNil
 
-`func (o *CreateFetchTaskVM) SetNameNil(b bool)`
+`func (o *ThumbnailReportTaskVM) SetNameNil(b bool)`
 
  SetNameNil sets the value for Name to be an explicit nil
 
 ### UnsetName
-`func (o *CreateFetchTaskVM) UnsetName()`
+`func (o *ThumbnailReportTaskVM) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetSubscriptionId
 
-`func (o *CreateFetchTaskVM) GetSubscriptionId() string`
+`func (o *ThumbnailReportTaskVM) GetSubscriptionId() string`
 
 GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
 
 ### GetSubscriptionIdOk
 
-`func (o *CreateFetchTaskVM) GetSubscriptionIdOk() (*string, bool)`
+`func (o *ThumbnailReportTaskVM) GetSubscriptionIdOk() (*string, bool)`
 
 GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubscriptionId
 
-`func (o *CreateFetchTaskVM) SetSubscriptionId(v string)`
+`func (o *ThumbnailReportTaskVM) SetSubscriptionId(v string)`
 
 SetSubscriptionId sets SubscriptionId field to given value.
 
 ### HasSubscriptionId
 
-`func (o *CreateFetchTaskVM) HasSubscriptionId() bool`
+`func (o *ThumbnailReportTaskVM) HasSubscriptionId() bool`
 
 HasSubscriptionId returns a boolean if a field has been set.
 
 ### SetSubscriptionIdNil
 
-`func (o *CreateFetchTaskVM) SetSubscriptionIdNil(b bool)`
+`func (o *ThumbnailReportTaskVM) SetSubscriptionIdNil(b bool)`
 
  SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
 
 ### UnsetSubscriptionId
-`func (o *CreateFetchTaskVM) UnsetSubscriptionId()`
+`func (o *ThumbnailReportTaskVM) UnsetSubscriptionId()`
 
 UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
 ### GetType
 
-`func (o *CreateFetchTaskVM) GetType() TaskType`
+`func (o *ThumbnailReportTaskVM) GetType() TaskType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *CreateFetchTaskVM) GetTypeOk() (*TaskType, bool)`
+`func (o *ThumbnailReportTaskVM) GetTypeOk() (*TaskType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *CreateFetchTaskVM) SetType(v TaskType)`
+`func (o *ThumbnailReportTaskVM) SetType(v TaskType)`
 
 SetType sets Type field to given value.
 
 ### HasType
 
-`func (o *CreateFetchTaskVM) HasType() bool`
+`func (o *ThumbnailReportTaskVM) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 

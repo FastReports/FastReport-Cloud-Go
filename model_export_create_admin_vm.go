@@ -18,7 +18,6 @@ import (
 type ExportCreateAdminVM struct {
 	OwnerId string `json:"ownerId"`
 	ParentId string `json:"parentId"`
-	TemplateId NullableString `json:"templateId,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	Tags []string `json:"tags,omitempty"`
 	Icon NullableString `json:"icon,omitempty"`
@@ -88,48 +87,6 @@ func (o *ExportCreateAdminVM) GetParentIdOk() (*string, bool) {
 // SetParentId sets field value
 func (o *ExportCreateAdminVM) SetParentId(v string) {
 	o.ParentId = v
-}
-
-// GetTemplateId returns the TemplateId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExportCreateAdminVM) GetTemplateId() string {
-	if o == nil || o.TemplateId.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.TemplateId.Get()
-}
-
-// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExportCreateAdminVM) GetTemplateIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return o.TemplateId.Get(), o.TemplateId.IsSet()
-}
-
-// HasTemplateId returns a boolean if a field has been set.
-func (o *ExportCreateAdminVM) HasTemplateId() bool {
-	if o != nil && o.TemplateId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplateId gets a reference to the given NullableString and assigns it to the TemplateId field.
-func (o *ExportCreateAdminVM) SetTemplateId(v string) {
-	o.TemplateId.Set(&v)
-}
-// SetTemplateIdNil sets the value for TemplateId to be an explicit nil
-func (o *ExportCreateAdminVM) SetTemplateIdNil() {
-	o.TemplateId.Set(nil)
-}
-
-// UnsetTemplateId ensures that no value is present for TemplateId, not even an explicit nil
-func (o *ExportCreateAdminVM) UnsetTemplateId() {
-	o.TemplateId.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -298,9 +255,6 @@ func (o ExportCreateAdminVM) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["parentId"] = o.ParentId
-	}
-	if o.TemplateId.IsSet() {
-		toSerialize["templateId"] = o.TemplateId.Get()
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()

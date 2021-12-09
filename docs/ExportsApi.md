@@ -36,7 +36,7 @@ Method | HTTP request | Description
 
 ## ExportFolderAndFileGetCount
 
-> CountVM ExportFolderAndFileGetCount(ctx, id).Execute()
+> CountVM ExportFolderAndFileGetCount(ctx, id).SearchPattern(searchPattern).Execute()
 
 Get count of files and folders what contains in a specified folder
 
@@ -56,10 +56,11 @@ import (
 
 func main() {
     id := "id_example" // string | folder id
+    searchPattern := "searchPattern_example" // string | string, that must be incuded in file or folder name to be counted <br />              (leave undefined to count all files and folders) (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportFolderAndFileGetCount(context.Background(), id).Execute()
+    resp, r, err := api_client.ExportsApi.ExportFolderAndFileGetCount(context.Background(), id).SearchPattern(searchPattern).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportFolderAndFileGetCount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -85,6 +86,7 @@ Other parameters are passed through a pointer to a apiExportFolderAndFileGetCoun
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **searchPattern** | **string** | string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) | 
 
 ### Return type
 
@@ -1455,7 +1457,7 @@ Name | Type | Description  | Notes
 
 ## ExportsGetFilesList
 
-> ExportsVM ExportsGetFilesList(ctx, id).Skip(skip).Take(take).Execute()
+> ExportsVM ExportsGetFilesList(ctx, id).Skip(skip).Take(take).SearchPattern(searchPattern).Execute()
 
 Get all files from specified folder. <br />  User with Get Entity permission can access this method. <br />  The method will returns minimal infomration about the file: <br />  id, name, size, editedTime, createdTime, tags, status, statusReason.
 
@@ -1475,10 +1477,11 @@ func main() {
     id := "id_example" // string | folder id
     skip := int32(56) // int32 | number of files, that have to be skipped (optional) (default to 0)
     take := int32(56) // int32 | number of files, that have to be returned (optional) (default to 10)
+    searchPattern := "searchPattern_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExportsApi.ExportsGetFilesList(context.Background(), id).Skip(skip).Take(take).Execute()
+    resp, r, err := api_client.ExportsApi.ExportsGetFilesList(context.Background(), id).Skip(skip).Take(take).SearchPattern(searchPattern).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExportsApi.ExportsGetFilesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1506,6 +1509,7 @@ Name | Type | Description  | Notes
 
  **skip** | **int32** | number of files, that have to be skipped | [default to 0]
  **take** | **int32** | number of files, that have to be returned | [default to 10]
+ **searchPattern** | **string** |  | 
 
 ### Return type
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProfileVisibility** | Pointer to [**ProfileVisibility**](ProfileVisibility.md) |  | [optional] 
 **DefaultSubscription** | Pointer to **NullableString** |  | [optional] 
+**ShowHiddenFilesAndFolders** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -86,6 +87,41 @@ HasDefaultSubscription returns a boolean if a field has been set.
 `func (o *UpdateUserSettingsVM) UnsetDefaultSubscription()`
 
 UnsetDefaultSubscription ensures that no value is present for DefaultSubscription, not even an explicit nil
+### GetShowHiddenFilesAndFolders
+
+`func (o *UpdateUserSettingsVM) GetShowHiddenFilesAndFolders() bool`
+
+GetShowHiddenFilesAndFolders returns the ShowHiddenFilesAndFolders field if non-nil, zero value otherwise.
+
+### GetShowHiddenFilesAndFoldersOk
+
+`func (o *UpdateUserSettingsVM) GetShowHiddenFilesAndFoldersOk() (*bool, bool)`
+
+GetShowHiddenFilesAndFoldersOk returns a tuple with the ShowHiddenFilesAndFolders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShowHiddenFilesAndFolders
+
+`func (o *UpdateUserSettingsVM) SetShowHiddenFilesAndFolders(v bool)`
+
+SetShowHiddenFilesAndFolders sets ShowHiddenFilesAndFolders field to given value.
+
+### HasShowHiddenFilesAndFolders
+
+`func (o *UpdateUserSettingsVM) HasShowHiddenFilesAndFolders() bool`
+
+HasShowHiddenFilesAndFolders returns a boolean if a field has been set.
+
+### SetShowHiddenFilesAndFoldersNil
+
+`func (o *UpdateUserSettingsVM) SetShowHiddenFilesAndFoldersNil(b bool)`
+
+ SetShowHiddenFilesAndFoldersNil sets the value for ShowHiddenFilesAndFolders to be an explicit nil
+
+### UnsetShowHiddenFilesAndFolders
+`func (o *UpdateUserSettingsVM) UnsetShowHiddenFilesAndFolders()`
+
+UnsetShowHiddenFilesAndFolders ensures that no value is present for ShowHiddenFilesAndFolders, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
