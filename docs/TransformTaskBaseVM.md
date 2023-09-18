@@ -4,19 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Locale** | Pointer to **NullableString** |  | [optional] 
 **InputFile** | Pointer to [**InputFileVM**](InputFileVM.md) |  | [optional] 
+**Locale** | Pointer to **NullableString** |  | [optional] 
 **OutputFile** | Pointer to [**OutputFileVM**](OutputFileVM.md) |  | [optional] 
-**Transports** | Pointer to [**[]TransportTaskBaseVM**](TransportTaskBaseVM.md) |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**TransportIds** | Pointer to **[]string** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewTransformTaskBaseVM
 
-`func NewTransformTaskBaseVM() *TransformTaskBaseVM`
+`func NewTransformTaskBaseVM(t string, ) *TransformTaskBaseVM`
 
 NewTransformTaskBaseVM instantiates a new TransformTaskBaseVM object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +28,31 @@ will change when the set of required properties is changed
 NewTransformTaskBaseVMWithDefaults instantiates a new TransformTaskBaseVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetInputFile
+
+`func (o *TransformTaskBaseVM) GetInputFile() InputFileVM`
+
+GetInputFile returns the InputFile field if non-nil, zero value otherwise.
+
+### GetInputFileOk
+
+`func (o *TransformTaskBaseVM) GetInputFileOk() (*InputFileVM, bool)`
+
+GetInputFileOk returns a tuple with the InputFile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInputFile
+
+`func (o *TransformTaskBaseVM) SetInputFile(v InputFileVM)`
+
+SetInputFile sets InputFile field to given value.
+
+### HasInputFile
+
+`func (o *TransformTaskBaseVM) HasInputFile() bool`
+
+HasInputFile returns a boolean if a field has been set.
 
 ### GetLocale
 
@@ -66,31 +89,6 @@ HasLocale returns a boolean if a field has been set.
 `func (o *TransformTaskBaseVM) UnsetLocale()`
 
 UnsetLocale ensures that no value is present for Locale, not even an explicit nil
-### GetInputFile
-
-`func (o *TransformTaskBaseVM) GetInputFile() InputFileVM`
-
-GetInputFile returns the InputFile field if non-nil, zero value otherwise.
-
-### GetInputFileOk
-
-`func (o *TransformTaskBaseVM) GetInputFileOk() (*InputFileVM, bool)`
-
-GetInputFileOk returns a tuple with the InputFile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInputFile
-
-`func (o *TransformTaskBaseVM) SetInputFile(v InputFileVM)`
-
-SetInputFile sets InputFile field to given value.
-
-### HasInputFile
-
-`func (o *TransformTaskBaseVM) HasInputFile() bool`
-
-HasInputFile returns a boolean if a field has been set.
-
 ### GetOutputFile
 
 `func (o *TransformTaskBaseVM) GetOutputFile() OutputFileVM`
@@ -116,135 +114,60 @@ SetOutputFile sets OutputFile field to given value.
 
 HasOutputFile returns a boolean if a field has been set.
 
-### GetTransports
+### GetTransportIds
 
-`func (o *TransformTaskBaseVM) GetTransports() []TransportTaskBaseVM`
+`func (o *TransformTaskBaseVM) GetTransportIds() []string`
 
-GetTransports returns the Transports field if non-nil, zero value otherwise.
+GetTransportIds returns the TransportIds field if non-nil, zero value otherwise.
 
-### GetTransportsOk
+### GetTransportIdsOk
 
-`func (o *TransformTaskBaseVM) GetTransportsOk() (*[]TransportTaskBaseVM, bool)`
+`func (o *TransformTaskBaseVM) GetTransportIdsOk() (*[]string, bool)`
 
-GetTransportsOk returns a tuple with the Transports field if it's non-nil, zero value otherwise
+GetTransportIdsOk returns a tuple with the TransportIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTransports
+### SetTransportIds
 
-`func (o *TransformTaskBaseVM) SetTransports(v []TransportTaskBaseVM)`
+`func (o *TransformTaskBaseVM) SetTransportIds(v []string)`
 
-SetTransports sets Transports field to given value.
+SetTransportIds sets TransportIds field to given value.
 
-### HasTransports
+### HasTransportIds
 
-`func (o *TransformTaskBaseVM) HasTransports() bool`
+`func (o *TransformTaskBaseVM) HasTransportIds() bool`
 
-HasTransports returns a boolean if a field has been set.
+HasTransportIds returns a boolean if a field has been set.
 
-### SetTransportsNil
+### SetTransportIdsNil
 
-`func (o *TransformTaskBaseVM) SetTransportsNil(b bool)`
+`func (o *TransformTaskBaseVM) SetTransportIdsNil(b bool)`
 
- SetTransportsNil sets the value for Transports to be an explicit nil
+ SetTransportIdsNil sets the value for TransportIds to be an explicit nil
 
-### UnsetTransports
-`func (o *TransformTaskBaseVM) UnsetTransports()`
+### UnsetTransportIds
+`func (o *TransformTaskBaseVM) UnsetTransportIds()`
 
-UnsetTransports ensures that no value is present for Transports, not even an explicit nil
-### GetName
+UnsetTransportIds ensures that no value is present for TransportIds, not even an explicit nil
+### GetT
 
-`func (o *TransformTaskBaseVM) GetName() string`
+`func (o *TransformTaskBaseVM) GetT() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetT returns the T field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTOk
 
-`func (o *TransformTaskBaseVM) GetNameOk() (*string, bool)`
+`func (o *TransformTaskBaseVM) GetTOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetT
 
-`func (o *TransformTaskBaseVM) SetName(v string)`
+`func (o *TransformTaskBaseVM) SetT(v string)`
 
-SetName sets Name field to given value.
+SetT sets T field to given value.
 
-### HasName
-
-`func (o *TransformTaskBaseVM) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *TransformTaskBaseVM) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *TransformTaskBaseVM) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetSubscriptionId
-
-`func (o *TransformTaskBaseVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *TransformTaskBaseVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *TransformTaskBaseVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *TransformTaskBaseVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *TransformTaskBaseVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *TransformTaskBaseVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *TransformTaskBaseVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *TransformTaskBaseVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *TransformTaskBaseVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *TransformTaskBaseVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

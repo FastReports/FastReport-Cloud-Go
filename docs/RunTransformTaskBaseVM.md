@@ -4,18 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Locale** | Pointer to **NullableString** |  | [optional] 
 **InputFile** | Pointer to [**RunInputFileVM**](RunInputFileVM.md) |  | [optional] 
+**Locale** | Pointer to **NullableString** |  | [optional] 
 **OutputFile** | Pointer to [**OutputFileVM**](OutputFileVM.md) |  | [optional] 
 **Transports** | Pointer to [**[]RunTransportTaskBaseVM**](RunTransportTaskBaseVM.md) |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewRunTransformTaskBaseVM
 
-`func NewRunTransformTaskBaseVM() *RunTransformTaskBaseVM`
+`func NewRunTransformTaskBaseVM(t string, ) *RunTransformTaskBaseVM`
 
 NewRunTransformTaskBaseVM instantiates a new RunTransformTaskBaseVM object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +28,31 @@ will change when the set of required properties is changed
 NewRunTransformTaskBaseVMWithDefaults instantiates a new RunTransformTaskBaseVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetInputFile
+
+`func (o *RunTransformTaskBaseVM) GetInputFile() RunInputFileVM`
+
+GetInputFile returns the InputFile field if non-nil, zero value otherwise.
+
+### GetInputFileOk
+
+`func (o *RunTransformTaskBaseVM) GetInputFileOk() (*RunInputFileVM, bool)`
+
+GetInputFileOk returns a tuple with the InputFile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInputFile
+
+`func (o *RunTransformTaskBaseVM) SetInputFile(v RunInputFileVM)`
+
+SetInputFile sets InputFile field to given value.
+
+### HasInputFile
+
+`func (o *RunTransformTaskBaseVM) HasInputFile() bool`
+
+HasInputFile returns a boolean if a field has been set.
 
 ### GetLocale
 
@@ -65,31 +89,6 @@ HasLocale returns a boolean if a field has been set.
 `func (o *RunTransformTaskBaseVM) UnsetLocale()`
 
 UnsetLocale ensures that no value is present for Locale, not even an explicit nil
-### GetInputFile
-
-`func (o *RunTransformTaskBaseVM) GetInputFile() RunInputFileVM`
-
-GetInputFile returns the InputFile field if non-nil, zero value otherwise.
-
-### GetInputFileOk
-
-`func (o *RunTransformTaskBaseVM) GetInputFileOk() (*RunInputFileVM, bool)`
-
-GetInputFileOk returns a tuple with the InputFile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInputFile
-
-`func (o *RunTransformTaskBaseVM) SetInputFile(v RunInputFileVM)`
-
-SetInputFile sets InputFile field to given value.
-
-### HasInputFile
-
-`func (o *RunTransformTaskBaseVM) HasInputFile() bool`
-
-HasInputFile returns a boolean if a field has been set.
-
 ### GetOutputFile
 
 `func (o *RunTransformTaskBaseVM) GetOutputFile() OutputFileVM`
@@ -150,65 +149,25 @@ HasTransports returns a boolean if a field has been set.
 `func (o *RunTransformTaskBaseVM) UnsetTransports()`
 
 UnsetTransports ensures that no value is present for Transports, not even an explicit nil
-### GetSubscriptionId
+### GetT
 
-`func (o *RunTransformTaskBaseVM) GetSubscriptionId() string`
+`func (o *RunTransformTaskBaseVM) GetT() string`
 
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
+GetT returns the T field if non-nil, zero value otherwise.
 
-### GetSubscriptionIdOk
+### GetTOk
 
-`func (o *RunTransformTaskBaseVM) GetSubscriptionIdOk() (*string, bool)`
+`func (o *RunTransformTaskBaseVM) GetTOk() (*string, bool)`
 
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubscriptionId
+### SetT
 
-`func (o *RunTransformTaskBaseVM) SetSubscriptionId(v string)`
+`func (o *RunTransformTaskBaseVM) SetT(v string)`
 
-SetSubscriptionId sets SubscriptionId field to given value.
+SetT sets T field to given value.
 
-### HasSubscriptionId
-
-`func (o *RunTransformTaskBaseVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *RunTransformTaskBaseVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *RunTransformTaskBaseVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *RunTransformTaskBaseVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *RunTransformTaskBaseVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *RunTransformTaskBaseVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *RunTransformTaskBaseVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

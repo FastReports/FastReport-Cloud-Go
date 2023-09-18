@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ExportTemplate** | Pointer to **NullableBool** |  | [optional] 
 **ExportReport** | Pointer to **NullableBool** |  | [optional] 
 **SendViaEmail** | Pointer to **NullableBool** |  | [optional] 
+**UploadToFTP** | Pointer to **NullableBool** |  | [optional] 
 **SendViaWebhook** | Pointer to **NullableBool** |  | [optional] 
 **FetchData** | Pointer to **NullableBool** |  | [optional] 
 **ThumbnailReport** | Pointer to **NullableBool** |  | [optional] 
@@ -172,6 +173,41 @@ HasSendViaEmail returns a boolean if a field has been set.
 `func (o *TaskSettingsVM) UnsetSendViaEmail()`
 
 UnsetSendViaEmail ensures that no value is present for SendViaEmail, not even an explicit nil
+### GetUploadToFTP
+
+`func (o *TaskSettingsVM) GetUploadToFTP() bool`
+
+GetUploadToFTP returns the UploadToFTP field if non-nil, zero value otherwise.
+
+### GetUploadToFTPOk
+
+`func (o *TaskSettingsVM) GetUploadToFTPOk() (*bool, bool)`
+
+GetUploadToFTPOk returns a tuple with the UploadToFTP field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUploadToFTP
+
+`func (o *TaskSettingsVM) SetUploadToFTP(v bool)`
+
+SetUploadToFTP sets UploadToFTP field to given value.
+
+### HasUploadToFTP
+
+`func (o *TaskSettingsVM) HasUploadToFTP() bool`
+
+HasUploadToFTP returns a boolean if a field has been set.
+
+### SetUploadToFTPNil
+
+`func (o *TaskSettingsVM) SetUploadToFTPNil(b bool)`
+
+ SetUploadToFTPNil sets the value for UploadToFTP to be an explicit nil
+
+### UnsetUploadToFTP
+`func (o *TaskSettingsVM) UnsetUploadToFTP()`
+
+UnsetUploadToFTP ensures that no value is present for UploadToFTP, not even an explicit nil
 ### GetSendViaWebhook
 
 `func (o *TaskSettingsVM) GetSendViaWebhook() bool`

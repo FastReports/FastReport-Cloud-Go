@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **NullableString** |  | [optional] 
 **IsActive** | Pointer to **NullableBool** |  | [optional] 
 **DisplayName** | Pointer to **NullableString** |  | [optional] 
-**TimePeriodType** | Pointer to [**TimePeriodType**](TimePeriodType.md) |  | [optional] 
+**TimePeriodType** | Pointer to [**NullableTimePeriodType**](TimePeriodType.md) |  | [optional] 
 **TimePeriod** | Pointer to **NullableInt32** |  | [optional] 
 **ReadonlyTimeLimitType** | Pointer to [**TimePeriodType**](TimePeriodType.md) |  | [optional] 
 **ReadonlyTimeLimit** | Pointer to **int32** |  | [optional] 
@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **FileUploadSizeLimit** | Pointer to **NullableInt64** |  | [optional] 
 **DataSourceLimit** | Pointer to **NullableInt32** |  | [optional] 
 **MaxUsersCount** | Pointer to **NullableInt32** |  | [optional] 
-**HasSpaceOverdraft** | Pointer to **NullableBool** |  | [optional] 
 **GroupLimit** | Pointer to **NullableInt32** |  | [optional] 
 **OnlineDesigner** | Pointer to **NullableBool** |  | [optional] 
 **IsDemo** | Pointer to **NullableBool** |  | [optional] 
@@ -175,6 +174,16 @@ SetTimePeriodType sets TimePeriodType field to given value.
 
 HasTimePeriodType returns a boolean if a field has been set.
 
+### SetTimePeriodTypeNil
+
+`func (o *SubscriptionPlanVM) SetTimePeriodTypeNil(b bool)`
+
+ SetTimePeriodTypeNil sets the value for TimePeriodType to be an explicit nil
+
+### UnsetTimePeriodType
+`func (o *SubscriptionPlanVM) UnsetTimePeriodType()`
+
+UnsetTimePeriodType ensures that no value is present for TimePeriodType, not even an explicit nil
 ### GetTimePeriod
 
 `func (o *SubscriptionPlanVM) GetTimePeriod() int32`
@@ -470,41 +479,6 @@ HasMaxUsersCount returns a boolean if a field has been set.
 `func (o *SubscriptionPlanVM) UnsetMaxUsersCount()`
 
 UnsetMaxUsersCount ensures that no value is present for MaxUsersCount, not even an explicit nil
-### GetHasSpaceOverdraft
-
-`func (o *SubscriptionPlanVM) GetHasSpaceOverdraft() bool`
-
-GetHasSpaceOverdraft returns the HasSpaceOverdraft field if non-nil, zero value otherwise.
-
-### GetHasSpaceOverdraftOk
-
-`func (o *SubscriptionPlanVM) GetHasSpaceOverdraftOk() (*bool, bool)`
-
-GetHasSpaceOverdraftOk returns a tuple with the HasSpaceOverdraft field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHasSpaceOverdraft
-
-`func (o *SubscriptionPlanVM) SetHasSpaceOverdraft(v bool)`
-
-SetHasSpaceOverdraft sets HasSpaceOverdraft field to given value.
-
-### HasHasSpaceOverdraft
-
-`func (o *SubscriptionPlanVM) HasHasSpaceOverdraft() bool`
-
-HasHasSpaceOverdraft returns a boolean if a field has been set.
-
-### SetHasSpaceOverdraftNil
-
-`func (o *SubscriptionPlanVM) SetHasSpaceOverdraftNil(b bool)`
-
- SetHasSpaceOverdraftNil sets the value for HasSpaceOverdraft to be an explicit nil
-
-### UnsetHasSpaceOverdraft
-`func (o *SubscriptionPlanVM) UnsetHasSpaceOverdraft()`
-
-UnsetHasSpaceOverdraft ensures that no value is present for HasSpaceOverdraft, not even an explicit nil
 ### GetGroupLimit
 
 `func (o *SubscriptionPlanVM) GetGroupLimit() int32`

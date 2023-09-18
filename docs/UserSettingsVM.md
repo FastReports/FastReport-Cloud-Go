@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **ProfileVisibility** | Pointer to [**ProfileVisibility**](ProfileVisibility.md) |  | [optional] 
 **DefaultSubscription** | Pointer to **NullableString** |  | [optional] 
 **ShowHiddenFilesAndFolders** | Pointer to **bool** |  | [optional] 
+**SlaAcceptedDateTime** | Pointer to **NullableTime** |  | [optional] 
+**SubscribedNotifications** | Pointer to [**[]AuditType**](AuditType.md) |  | [optional] 
 
 ## Methods
 
@@ -112,6 +114,76 @@ SetShowHiddenFilesAndFolders sets ShowHiddenFilesAndFolders field to given value
 
 HasShowHiddenFilesAndFolders returns a boolean if a field has been set.
 
+### GetSlaAcceptedDateTime
+
+`func (o *UserSettingsVM) GetSlaAcceptedDateTime() time.Time`
+
+GetSlaAcceptedDateTime returns the SlaAcceptedDateTime field if non-nil, zero value otherwise.
+
+### GetSlaAcceptedDateTimeOk
+
+`func (o *UserSettingsVM) GetSlaAcceptedDateTimeOk() (*time.Time, bool)`
+
+GetSlaAcceptedDateTimeOk returns a tuple with the SlaAcceptedDateTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSlaAcceptedDateTime
+
+`func (o *UserSettingsVM) SetSlaAcceptedDateTime(v time.Time)`
+
+SetSlaAcceptedDateTime sets SlaAcceptedDateTime field to given value.
+
+### HasSlaAcceptedDateTime
+
+`func (o *UserSettingsVM) HasSlaAcceptedDateTime() bool`
+
+HasSlaAcceptedDateTime returns a boolean if a field has been set.
+
+### SetSlaAcceptedDateTimeNil
+
+`func (o *UserSettingsVM) SetSlaAcceptedDateTimeNil(b bool)`
+
+ SetSlaAcceptedDateTimeNil sets the value for SlaAcceptedDateTime to be an explicit nil
+
+### UnsetSlaAcceptedDateTime
+`func (o *UserSettingsVM) UnsetSlaAcceptedDateTime()`
+
+UnsetSlaAcceptedDateTime ensures that no value is present for SlaAcceptedDateTime, not even an explicit nil
+### GetSubscribedNotifications
+
+`func (o *UserSettingsVM) GetSubscribedNotifications() []AuditType`
+
+GetSubscribedNotifications returns the SubscribedNotifications field if non-nil, zero value otherwise.
+
+### GetSubscribedNotificationsOk
+
+`func (o *UserSettingsVM) GetSubscribedNotificationsOk() (*[]AuditType, bool)`
+
+GetSubscribedNotificationsOk returns a tuple with the SubscribedNotifications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscribedNotifications
+
+`func (o *UserSettingsVM) SetSubscribedNotifications(v []AuditType)`
+
+SetSubscribedNotifications sets SubscribedNotifications field to given value.
+
+### HasSubscribedNotifications
+
+`func (o *UserSettingsVM) HasSubscribedNotifications() bool`
+
+HasSubscribedNotifications returns a boolean if a field has been set.
+
+### SetSubscribedNotificationsNil
+
+`func (o *UserSettingsVM) SetSubscribedNotificationsNil(b bool)`
+
+ SetSubscribedNotificationsNil sets the value for SubscribedNotifications to be an explicit nil
+
+### UnsetSubscribedNotifications
+`func (o *UserSettingsVM) UnsetSubscribedNotifications()`
+
+UnsetSubscribedNotifications ensures that no value is present for SubscribedNotifications, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,12 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Exports** | Pointer to [**[]ExportReportTaskVM**](ExportReportTaskVM.md) |  | [optional] 
-**PagesCount** | Pointer to **NullableInt32** |  | [optional] 
+**ExportIds** | Pointer to **[]string** |  | [optional] 
+**PagesCount** | Pointer to **int32** |  | [optional] 
 **ReportParameters** | Pointer to **map[string]string** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
 
 ## Methods
 
@@ -30,41 +27,41 @@ NewPrepareTemplateTaskVMWithDefaults instantiates a new PrepareTemplateTaskVM ob
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetExports
+### GetExportIds
 
-`func (o *PrepareTemplateTaskVM) GetExports() []ExportReportTaskVM`
+`func (o *PrepareTemplateTaskVM) GetExportIds() []string`
 
-GetExports returns the Exports field if non-nil, zero value otherwise.
+GetExportIds returns the ExportIds field if non-nil, zero value otherwise.
 
-### GetExportsOk
+### GetExportIdsOk
 
-`func (o *PrepareTemplateTaskVM) GetExportsOk() (*[]ExportReportTaskVM, bool)`
+`func (o *PrepareTemplateTaskVM) GetExportIdsOk() (*[]string, bool)`
 
-GetExportsOk returns a tuple with the Exports field if it's non-nil, zero value otherwise
+GetExportIdsOk returns a tuple with the ExportIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExports
+### SetExportIds
 
-`func (o *PrepareTemplateTaskVM) SetExports(v []ExportReportTaskVM)`
+`func (o *PrepareTemplateTaskVM) SetExportIds(v []string)`
 
-SetExports sets Exports field to given value.
+SetExportIds sets ExportIds field to given value.
 
-### HasExports
+### HasExportIds
 
-`func (o *PrepareTemplateTaskVM) HasExports() bool`
+`func (o *PrepareTemplateTaskVM) HasExportIds() bool`
 
-HasExports returns a boolean if a field has been set.
+HasExportIds returns a boolean if a field has been set.
 
-### SetExportsNil
+### SetExportIdsNil
 
-`func (o *PrepareTemplateTaskVM) SetExportsNil(b bool)`
+`func (o *PrepareTemplateTaskVM) SetExportIdsNil(b bool)`
 
- SetExportsNil sets the value for Exports to be an explicit nil
+ SetExportIdsNil sets the value for ExportIds to be an explicit nil
 
-### UnsetExports
-`func (o *PrepareTemplateTaskVM) UnsetExports()`
+### UnsetExportIds
+`func (o *PrepareTemplateTaskVM) UnsetExportIds()`
 
-UnsetExports ensures that no value is present for Exports, not even an explicit nil
+UnsetExportIds ensures that no value is present for ExportIds, not even an explicit nil
 ### GetPagesCount
 
 `func (o *PrepareTemplateTaskVM) GetPagesCount() int32`
@@ -90,16 +87,6 @@ SetPagesCount sets PagesCount field to given value.
 
 HasPagesCount returns a boolean if a field has been set.
 
-### SetPagesCountNil
-
-`func (o *PrepareTemplateTaskVM) SetPagesCountNil(b bool)`
-
- SetPagesCountNil sets the value for PagesCount to be an explicit nil
-
-### UnsetPagesCount
-`func (o *PrepareTemplateTaskVM) UnsetPagesCount()`
-
-UnsetPagesCount ensures that no value is present for PagesCount, not even an explicit nil
 ### GetReportParameters
 
 `func (o *PrepareTemplateTaskVM) GetReportParameters() map[string]string`
@@ -135,101 +122,6 @@ HasReportParameters returns a boolean if a field has been set.
 `func (o *PrepareTemplateTaskVM) UnsetReportParameters()`
 
 UnsetReportParameters ensures that no value is present for ReportParameters, not even an explicit nil
-### GetName
-
-`func (o *PrepareTemplateTaskVM) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *PrepareTemplateTaskVM) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *PrepareTemplateTaskVM) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *PrepareTemplateTaskVM) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *PrepareTemplateTaskVM) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *PrepareTemplateTaskVM) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetSubscriptionId
-
-`func (o *PrepareTemplateTaskVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *PrepareTemplateTaskVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *PrepareTemplateTaskVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *PrepareTemplateTaskVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *PrepareTemplateTaskVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *PrepareTemplateTaskVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *PrepareTemplateTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PrepareTemplateTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PrepareTemplateTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *PrepareTemplateTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

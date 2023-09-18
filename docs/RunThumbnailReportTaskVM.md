@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**ReportId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -26,66 +25,41 @@ NewRunThumbnailReportTaskVMWithDefaults instantiates a new RunThumbnailReportTas
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSubscriptionId
+### GetReportId
 
-`func (o *RunThumbnailReportTaskVM) GetSubscriptionId() string`
+`func (o *RunThumbnailReportTaskVM) GetReportId() string`
 
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
+GetReportId returns the ReportId field if non-nil, zero value otherwise.
 
-### GetSubscriptionIdOk
+### GetReportIdOk
 
-`func (o *RunThumbnailReportTaskVM) GetSubscriptionIdOk() (*string, bool)`
+`func (o *RunThumbnailReportTaskVM) GetReportIdOk() (*string, bool)`
 
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
+GetReportIdOk returns a tuple with the ReportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubscriptionId
+### SetReportId
 
-`func (o *RunThumbnailReportTaskVM) SetSubscriptionId(v string)`
+`func (o *RunThumbnailReportTaskVM) SetReportId(v string)`
 
-SetSubscriptionId sets SubscriptionId field to given value.
+SetReportId sets ReportId field to given value.
 
-### HasSubscriptionId
+### HasReportId
 
-`func (o *RunThumbnailReportTaskVM) HasSubscriptionId() bool`
+`func (o *RunThumbnailReportTaskVM) HasReportId() bool`
 
-HasSubscriptionId returns a boolean if a field has been set.
+HasReportId returns a boolean if a field has been set.
 
-### SetSubscriptionIdNil
+### SetReportIdNil
 
-`func (o *RunThumbnailReportTaskVM) SetSubscriptionIdNil(b bool)`
+`func (o *RunThumbnailReportTaskVM) SetReportIdNil(b bool)`
 
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
+ SetReportIdNil sets the value for ReportId to be an explicit nil
 
-### UnsetSubscriptionId
-`func (o *RunThumbnailReportTaskVM) UnsetSubscriptionId()`
+### UnsetReportId
+`func (o *RunThumbnailReportTaskVM) UnsetReportId()`
 
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *RunThumbnailReportTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *RunThumbnailReportTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *RunThumbnailReportTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *RunThumbnailReportTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
+UnsetReportId ensures that no value is present for ReportId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

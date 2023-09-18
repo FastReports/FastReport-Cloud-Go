@@ -6,16 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ExportParameters** | Pointer to **map[string]string** |  | [optional] 
 **Format** | Pointer to [**ExportFormat**](ExportFormat.md) |  | [optional] 
-**PagesCount** | Pointer to **NullableInt32** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**PagesCount** | Pointer to **int32** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewExportReportTaskVM
 
-`func NewExportReportTaskVM() *ExportReportTaskVM`
+`func NewExportReportTaskVM(t string, ) *ExportReportTaskVM`
 
 NewExportReportTaskVM instantiates a new ExportReportTaskVM object
 This constructor will assign default values to properties that have it defined,
@@ -115,110 +113,25 @@ SetPagesCount sets PagesCount field to given value.
 
 HasPagesCount returns a boolean if a field has been set.
 
-### SetPagesCountNil
+### GetT
 
-`func (o *ExportReportTaskVM) SetPagesCountNil(b bool)`
+`func (o *ExportReportTaskVM) GetT() string`
 
- SetPagesCountNil sets the value for PagesCount to be an explicit nil
+GetT returns the T field if non-nil, zero value otherwise.
 
-### UnsetPagesCount
-`func (o *ExportReportTaskVM) UnsetPagesCount()`
+### GetTOk
 
-UnsetPagesCount ensures that no value is present for PagesCount, not even an explicit nil
-### GetName
+`func (o *ExportReportTaskVM) GetTOk() (*string, bool)`
 
-`func (o *ExportReportTaskVM) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ExportReportTaskVM) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetT
 
-`func (o *ExportReportTaskVM) SetName(v string)`
+`func (o *ExportReportTaskVM) SetT(v string)`
 
-SetName sets Name field to given value.
+SetT sets T field to given value.
 
-### HasName
-
-`func (o *ExportReportTaskVM) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *ExportReportTaskVM) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *ExportReportTaskVM) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetSubscriptionId
-
-`func (o *ExportReportTaskVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *ExportReportTaskVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *ExportReportTaskVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *ExportReportTaskVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *ExportReportTaskVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *ExportReportTaskVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *ExportReportTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ExportReportTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ExportReportTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *ExportReportTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

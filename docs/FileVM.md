@@ -13,11 +13,8 @@ Name | Type | Description | Notes
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**FileStatus**](FileStatus.md) |  | [optional] 
 **StatusReason** | Pointer to [**FileStatusReason**](FileStatusReason.md) |  | [optional] 
-**Id** | Pointer to **NullableString** |  | [optional] 
-**CreatedTime** | Pointer to **time.Time** |  | [optional] 
-**CreatorUserId** | Pointer to **NullableString** |  | [optional] 
-**EditedTime** | Pointer to **time.Time** |  | [optional] 
-**EditorUserId** | Pointer to **NullableString** |  | [optional] 
+**ErrorMessage** | Pointer to **NullableString** |  | [optional] 
+**IsDeleted** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -313,161 +310,66 @@ SetStatusReason sets StatusReason field to given value.
 
 HasStatusReason returns a boolean if a field has been set.
 
-### GetId
+### GetErrorMessage
 
-`func (o *FileVM) GetId() string`
+`func (o *FileVM) GetErrorMessage() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetErrorMessage returns the ErrorMessage field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetErrorMessageOk
 
-`func (o *FileVM) GetIdOk() (*string, bool)`
+`func (o *FileVM) GetErrorMessageOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetErrorMessageOk returns a tuple with the ErrorMessage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetErrorMessage
 
-`func (o *FileVM) SetId(v string)`
+`func (o *FileVM) SetErrorMessage(v string)`
 
-SetId sets Id field to given value.
+SetErrorMessage sets ErrorMessage field to given value.
 
-### HasId
+### HasErrorMessage
 
-`func (o *FileVM) HasId() bool`
+`func (o *FileVM) HasErrorMessage() bool`
 
-HasId returns a boolean if a field has been set.
+HasErrorMessage returns a boolean if a field has been set.
 
-### SetIdNil
+### SetErrorMessageNil
 
-`func (o *FileVM) SetIdNil(b bool)`
+`func (o *FileVM) SetErrorMessageNil(b bool)`
 
- SetIdNil sets the value for Id to be an explicit nil
+ SetErrorMessageNil sets the value for ErrorMessage to be an explicit nil
 
-### UnsetId
-`func (o *FileVM) UnsetId()`
+### UnsetErrorMessage
+`func (o *FileVM) UnsetErrorMessage()`
 
-UnsetId ensures that no value is present for Id, not even an explicit nil
-### GetCreatedTime
+UnsetErrorMessage ensures that no value is present for ErrorMessage, not even an explicit nil
+### GetIsDeleted
 
-`func (o *FileVM) GetCreatedTime() time.Time`
+`func (o *FileVM) GetIsDeleted() bool`
 
-GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
+GetIsDeleted returns the IsDeleted field if non-nil, zero value otherwise.
 
-### GetCreatedTimeOk
+### GetIsDeletedOk
 
-`func (o *FileVM) GetCreatedTimeOk() (*time.Time, bool)`
+`func (o *FileVM) GetIsDeletedOk() (*bool, bool)`
 
-GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
+GetIsDeletedOk returns a tuple with the IsDeleted field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedTime
+### SetIsDeleted
 
-`func (o *FileVM) SetCreatedTime(v time.Time)`
+`func (o *FileVM) SetIsDeleted(v bool)`
 
-SetCreatedTime sets CreatedTime field to given value.
+SetIsDeleted sets IsDeleted field to given value.
 
-### HasCreatedTime
+### HasIsDeleted
 
-`func (o *FileVM) HasCreatedTime() bool`
+`func (o *FileVM) HasIsDeleted() bool`
 
-HasCreatedTime returns a boolean if a field has been set.
+HasIsDeleted returns a boolean if a field has been set.
 
-### GetCreatorUserId
-
-`func (o *FileVM) GetCreatorUserId() string`
-
-GetCreatorUserId returns the CreatorUserId field if non-nil, zero value otherwise.
-
-### GetCreatorUserIdOk
-
-`func (o *FileVM) GetCreatorUserIdOk() (*string, bool)`
-
-GetCreatorUserIdOk returns a tuple with the CreatorUserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatorUserId
-
-`func (o *FileVM) SetCreatorUserId(v string)`
-
-SetCreatorUserId sets CreatorUserId field to given value.
-
-### HasCreatorUserId
-
-`func (o *FileVM) HasCreatorUserId() bool`
-
-HasCreatorUserId returns a boolean if a field has been set.
-
-### SetCreatorUserIdNil
-
-`func (o *FileVM) SetCreatorUserIdNil(b bool)`
-
- SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
-
-### UnsetCreatorUserId
-`func (o *FileVM) UnsetCreatorUserId()`
-
-UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
-### GetEditedTime
-
-`func (o *FileVM) GetEditedTime() time.Time`
-
-GetEditedTime returns the EditedTime field if non-nil, zero value otherwise.
-
-### GetEditedTimeOk
-
-`func (o *FileVM) GetEditedTimeOk() (*time.Time, bool)`
-
-GetEditedTimeOk returns a tuple with the EditedTime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditedTime
-
-`func (o *FileVM) SetEditedTime(v time.Time)`
-
-SetEditedTime sets EditedTime field to given value.
-
-### HasEditedTime
-
-`func (o *FileVM) HasEditedTime() bool`
-
-HasEditedTime returns a boolean if a field has been set.
-
-### GetEditorUserId
-
-`func (o *FileVM) GetEditorUserId() string`
-
-GetEditorUserId returns the EditorUserId field if non-nil, zero value otherwise.
-
-### GetEditorUserIdOk
-
-`func (o *FileVM) GetEditorUserIdOk() (*string, bool)`
-
-GetEditorUserIdOk returns a tuple with the EditorUserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditorUserId
-
-`func (o *FileVM) SetEditorUserId(v string)`
-
-SetEditorUserId sets EditorUserId field to given value.
-
-### HasEditorUserId
-
-`func (o *FileVM) HasEditorUserId() bool`
-
-HasEditorUserId returns a boolean if a field has been set.
-
-### SetEditorUserIdNil
-
-`func (o *FileVM) SetEditorUserIdNil(b bool)`
-
- SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
-
-### UnsetEditorUserId
-`func (o *FileVM) UnsetEditorUserId()`
-
-UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

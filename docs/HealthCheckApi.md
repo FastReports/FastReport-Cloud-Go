@@ -23,14 +23,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.HealthCheckApi.HealthCheckDataGet(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.HealthCheckApi.HealthCheckDataGet(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HealthCheckApi.HealthCheckDataGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

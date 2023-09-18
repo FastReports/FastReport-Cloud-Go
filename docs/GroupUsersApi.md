@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -34,8 +34,8 @@ func main() {
     userId := "userId_example" // string | Identifier of user
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.GroupUsersApi.GroupUsersAddUserToGroup(context.Background(), id, userId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.GroupUsersApi.GroupUsersAddUserToGroup(context.Background(), id, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GroupUsersApi.GroupUsersAddUserToGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -95,7 +95,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -104,8 +104,8 @@ func main() {
     take := int32(56) // int32 | how many to take (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.GroupUsersApi.GroupUsersGetUsersInGroup(context.Background(), id).Skip(skip).Take(take).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.GroupUsersApi.GroupUsersGetUsersInGroup(context.Background(), id).Skip(skip).Take(take).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GroupUsersApi.GroupUsersGetUsersInGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -167,15 +167,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | Identifier of group
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.GroupUsersApi.GroupUsersLeaveFromGroup(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.GroupUsersApi.GroupUsersLeaveFromGroup(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GroupUsersApi.GroupUsersLeaveFromGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -233,7 +233,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -241,8 +241,8 @@ func main() {
     userId := "userId_example" // string | Identifier of user
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.GroupUsersApi.GroupUsersRemoveFromGroup(context.Background(), id, userId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.GroupUsersApi.GroupUsersRemoveFromGroup(context.Background(), id, userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `GroupUsersApi.GroupUsersRemoveFromGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

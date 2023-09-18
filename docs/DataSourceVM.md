@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **CreatedTime** | Pointer to **time.Time** |  | [optional] 
 **CreatorUserId** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**DataSourceStatus**](DataSourceStatus.md) |  | [optional] 
+**ErrorMessage** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -380,6 +381,41 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
+### GetErrorMessage
+
+`func (o *DataSourceVM) GetErrorMessage() string`
+
+GetErrorMessage returns the ErrorMessage field if non-nil, zero value otherwise.
+
+### GetErrorMessageOk
+
+`func (o *DataSourceVM) GetErrorMessageOk() (*string, bool)`
+
+GetErrorMessageOk returns a tuple with the ErrorMessage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetErrorMessage
+
+`func (o *DataSourceVM) SetErrorMessage(v string)`
+
+SetErrorMessage sets ErrorMessage field to given value.
+
+### HasErrorMessage
+
+`func (o *DataSourceVM) HasErrorMessage() bool`
+
+HasErrorMessage returns a boolean if a field has been set.
+
+### SetErrorMessageNil
+
+`func (o *DataSourceVM) SetErrorMessageNil(b bool)`
+
+ SetErrorMessageNil sets the value for ErrorMessage to be an explicit nil
+
+### UnsetErrorMessage
+`func (o *DataSourceVM) UnsetErrorMessage()`
+
+UnsetErrorMessage ensures that no value is present for ErrorMessage, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

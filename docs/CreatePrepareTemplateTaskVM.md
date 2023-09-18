@@ -5,11 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Exports** | Pointer to [**[]CreateExportReportTaskVM**](CreateExportReportTaskVM.md) |  | [optional] 
-**PagesCount** | Pointer to **NullableInt32** |  | [optional] 
+**PagesCount** | Pointer to **int32** |  | [optional] 
 **ReportParameters** | Pointer to **map[string]string** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
 
 ## Methods
 
@@ -90,16 +87,6 @@ SetPagesCount sets PagesCount field to given value.
 
 HasPagesCount returns a boolean if a field has been set.
 
-### SetPagesCountNil
-
-`func (o *CreatePrepareTemplateTaskVM) SetPagesCountNil(b bool)`
-
- SetPagesCountNil sets the value for PagesCount to be an explicit nil
-
-### UnsetPagesCount
-`func (o *CreatePrepareTemplateTaskVM) UnsetPagesCount()`
-
-UnsetPagesCount ensures that no value is present for PagesCount, not even an explicit nil
 ### GetReportParameters
 
 `func (o *CreatePrepareTemplateTaskVM) GetReportParameters() map[string]string`
@@ -135,101 +122,6 @@ HasReportParameters returns a boolean if a field has been set.
 `func (o *CreatePrepareTemplateTaskVM) UnsetReportParameters()`
 
 UnsetReportParameters ensures that no value is present for ReportParameters, not even an explicit nil
-### GetName
-
-`func (o *CreatePrepareTemplateTaskVM) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *CreatePrepareTemplateTaskVM) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *CreatePrepareTemplateTaskVM) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *CreatePrepareTemplateTaskVM) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *CreatePrepareTemplateTaskVM) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CreatePrepareTemplateTaskVM) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetSubscriptionId
-
-`func (o *CreatePrepareTemplateTaskVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *CreatePrepareTemplateTaskVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *CreatePrepareTemplateTaskVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *CreatePrepareTemplateTaskVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *CreatePrepareTemplateTaskVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *CreatePrepareTemplateTaskVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *CreatePrepareTemplateTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *CreatePrepareTemplateTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *CreatePrepareTemplateTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *CreatePrepareTemplateTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

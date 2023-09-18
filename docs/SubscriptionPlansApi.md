@@ -24,15 +24,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | Identifier of subsctiption plan
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionPlansApi.SubscriptionPlansGetSubscriptionPlan(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionPlansApi.SubscriptionPlansGetSubscriptionPlan(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionPlansApi.SubscriptionPlansGetSubscriptionPlan``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -94,7 +94,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -102,8 +102,8 @@ func main() {
     take := int32(56) // int32 | Variable for pagination, default value is 10 (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionPlansApi.SubscriptionPlansGetSubscriptionPlans(context.Background()).Skip(skip).Take(take).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionPlansApi.SubscriptionPlansGetSubscriptionPlans(context.Background()).Skip(skip).Take(take).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionPlansApi.SubscriptionPlansGetSubscriptionPlans``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

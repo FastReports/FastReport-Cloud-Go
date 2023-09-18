@@ -25,14 +25,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserProfileApi.UserProfileGetMyProfile(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UserProfileApi.UserProfileGetMyProfile(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserProfileApi.UserProfileGetMyProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -84,15 +84,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     userId := "userId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserProfileApi.UserProfileGetUserProfile(context.Background(), userId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UserProfileApi.UserProfileGetUserProfile(context.Background(), userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserProfileApi.UserProfileGetUserProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -154,15 +154,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     updateUserProfileVM := *openapiclient.NewUpdateUserProfileVM() // UpdateUserProfileVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserProfileApi.UserProfileUpdateMyProfile(context.Background()).UpdateUserProfileVM(updateUserProfileVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.UserProfileApi.UserProfileUpdateMyProfile(context.Background()).UpdateUserProfileVM(updateUserProfileVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserProfileApi.UserProfileUpdateMyProfile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

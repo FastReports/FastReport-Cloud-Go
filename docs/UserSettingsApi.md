@@ -4,9 +4,72 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**UserSettingsAcceptAgreements**](UserSettingsApi.md#UserSettingsAcceptAgreements) | **Post** /api/manage/v1/UserSettings/accept | Use this endpoint to accept current version of service license agreement
 [**UserSettingsGetCurrentUserSettings**](UserSettingsApi.md#UserSettingsGetCurrentUserSettings) | **Get** /api/manage/v1/UserSettings | Return current user settings.
 [**UserSettingsUpdateMySettings**](UserSettingsApi.md#UserSettingsUpdateMySettings) | **Put** /api/manage/v1/UserSettings | Update settings of the current user
 
+
+
+## UserSettingsAcceptAgreements
+
+> UserSettingsAcceptAgreements(ctx).AcceptAgreementsVM(acceptAgreementsVM).Execute()
+
+Use this endpoint to accept current version of service license agreement
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    acceptAgreementsVM := *openapiclient.NewAcceptAgreementsVM() // AcceptAgreementsVM |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.UserSettingsApi.UserSettingsAcceptAgreements(context.Background()).AcceptAgreementsVM(acceptAgreementsVM).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserSettingsApi.UserSettingsAcceptAgreements``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUserSettingsAcceptAgreementsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **acceptAgreementsVM** | [**AcceptAgreementsVM**](AcceptAgreementsVM.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## UserSettingsGetCurrentUserSettings
@@ -24,14 +87,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserSettingsApi.UserSettingsGetCurrentUserSettings(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UserSettingsApi.UserSettingsGetCurrentUserSettings(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserSettingsApi.UserSettingsGetCurrentUserSettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -83,15 +146,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     updateUserSettingsVM := *openapiclient.NewUpdateUserSettingsVM() // UpdateUserSettingsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UserSettingsApi.UserSettingsUpdateMySettings(context.Background()).UpdateUserSettingsVM(updateUserSettingsVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UserSettingsApi.UserSettingsUpdateMySettings(context.Background()).UpdateUserSettingsVM(updateUserSettingsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserSettingsApi.UserSettingsUpdateMySettings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

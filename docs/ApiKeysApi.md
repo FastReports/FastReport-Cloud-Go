@@ -26,15 +26,15 @@ import (
     "fmt"
     "os"
     "time"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     createApiKeyVM := *openapiclient.NewCreateApiKeyVM(time.Now()) // CreateApiKeyVM | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApiKeysApi.ApiKeysCreateApiKey(context.Background()).CreateApiKeyVM(createApiKeyVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApiKeysApi.ApiKeysCreateApiKey(context.Background()).CreateApiKeyVM(createApiKeyVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.ApiKeysCreateApiKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -90,15 +90,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     deleteApiKeyVM := *openapiclient.NewDeleteApiKeyVM("ApiKey_example") // DeleteApiKeyVM | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApiKeysApi.ApiKeysDeleteApiKey(context.Background()).DeleteApiKeyVM(deleteApiKeyVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ApiKeysApi.ApiKeysDeleteApiKey(context.Background()).DeleteApiKeyVM(deleteApiKeyVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.ApiKeysDeleteApiKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -154,14 +154,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ApiKeysApi.ApiKeysGetApiKeys(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ApiKeysApi.ApiKeysGetApiKeys(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.ApiKeysGetApiKeys``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

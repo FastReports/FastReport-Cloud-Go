@@ -4,9 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**ReportId** | Pointer to **NullableString** |  | [optional] [readonly] 
 
 ## Methods
 
@@ -27,101 +25,41 @@ NewThumbnailReportTaskVMWithDefaults instantiates a new ThumbnailReportTaskVM ob
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetReportId
 
-`func (o *ThumbnailReportTaskVM) GetName() string`
+`func (o *ThumbnailReportTaskVM) GetReportId() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetReportId returns the ReportId field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetReportIdOk
 
-`func (o *ThumbnailReportTaskVM) GetNameOk() (*string, bool)`
+`func (o *ThumbnailReportTaskVM) GetReportIdOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetReportIdOk returns a tuple with the ReportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetReportId
 
-`func (o *ThumbnailReportTaskVM) SetName(v string)`
+`func (o *ThumbnailReportTaskVM) SetReportId(v string)`
 
-SetName sets Name field to given value.
+SetReportId sets ReportId field to given value.
 
-### HasName
+### HasReportId
 
-`func (o *ThumbnailReportTaskVM) HasName() bool`
+`func (o *ThumbnailReportTaskVM) HasReportId() bool`
 
-HasName returns a boolean if a field has been set.
+HasReportId returns a boolean if a field has been set.
 
-### SetNameNil
+### SetReportIdNil
 
-`func (o *ThumbnailReportTaskVM) SetNameNil(b bool)`
+`func (o *ThumbnailReportTaskVM) SetReportIdNil(b bool)`
 
- SetNameNil sets the value for Name to be an explicit nil
+ SetReportIdNil sets the value for ReportId to be an explicit nil
 
-### UnsetName
-`func (o *ThumbnailReportTaskVM) UnsetName()`
+### UnsetReportId
+`func (o *ThumbnailReportTaskVM) UnsetReportId()`
 
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetSubscriptionId
-
-`func (o *ThumbnailReportTaskVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *ThumbnailReportTaskVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *ThumbnailReportTaskVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *ThumbnailReportTaskVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *ThumbnailReportTaskVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *ThumbnailReportTaskVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *ThumbnailReportTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ThumbnailReportTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ThumbnailReportTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *ThumbnailReportTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
+UnsetReportId ensures that no value is present for ReportId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

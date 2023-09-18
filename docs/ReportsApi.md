@@ -4,18 +4,27 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ReportFolderAndFileClearRecycleBin**](ReportsApi.md#ReportFolderAndFileClearRecycleBin) | **Delete** /api/rp/v1/Reports/{subscriptionId}/ClearRecycleBin | Delete all folders and files from recycle bin
+[**ReportFolderAndFileDeleteFiles**](ReportsApi.md#ReportFolderAndFileDeleteFiles) | **Post** /api/rp/v1/Reports/{subscriptionId}/DeleteFiles | Delete folders and files
 [**ReportFolderAndFileGetCount**](ReportsApi.md#ReportFolderAndFileGetCount) | **Get** /api/rp/v1/Reports/Folder/{id}/CountFolderAndFiles | Get count of files and folders what contains in a specified folder
 [**ReportFolderAndFileGetFoldersAndFiles**](ReportsApi.md#ReportFolderAndFileGetFoldersAndFiles) | **Get** /api/rp/v1/Reports/Folder/{id}/ListFolderAndFiles | Get all folders and files from specified folder
+[**ReportFolderAndFileGetRecycleBinFoldersAndFiles**](ReportsApi.md#ReportFolderAndFileGetRecycleBinFoldersAndFiles) | **Get** /api/rp/v1/Reports/{subscriptionId}/ListRecycleBinFolderAndFiles | Get all folders and files from recycle bin
+[**ReportFolderAndFileRecoverAllFromRecycleBin**](ReportsApi.md#ReportFolderAndFileRecoverAllFromRecycleBin) | **Post** /api/rp/v1/Reports/{subscriptionId}/RecoverRecycleBin | Recover all folders and files from recycle bin
+[**ReportFoldersCalculateFolderSize**](ReportsApi.md#ReportFoldersCalculateFolderSize) | **Get** /api/rp/v1/Reports/Folder/{id}/size | Get specified folder, calculate it&#39;s size
 [**ReportFoldersCopyFolder**](ReportsApi.md#ReportFoldersCopyFolder) | **Post** /api/rp/v1/Reports/Folder/{id}/Copy/{folderId} | Move folder to a specified folder
 [**ReportFoldersDeleteFolder**](ReportsApi.md#ReportFoldersDeleteFolder) | **Delete** /api/rp/v1/Reports/Folder/{id} | Delete specified folder
+[**ReportFoldersExport**](ReportsApi.md#ReportFoldersExport) | **Post** /api/rp/v1/Reports/Folder/{id}/Export | Export specified report folder to a specified format
 [**ReportFoldersGetBreadcrumbs**](ReportsApi.md#ReportFoldersGetBreadcrumbs) | **Get** /api/rp/v1/Reports/Folder/{id}/Breadcrumbs | Get specified folder breadcrumbs
 [**ReportFoldersGetFolder**](ReportsApi.md#ReportFoldersGetFolder) | **Get** /api/rp/v1/Reports/Folder/{id} | Get specified folder
 [**ReportFoldersGetFolders**](ReportsApi.md#ReportFoldersGetFolders) | **Get** /api/rp/v1/Reports/Folder/{id}/ListFolders | Get all folders from specified folder
 [**ReportFoldersGetFoldersCount**](ReportsApi.md#ReportFoldersGetFoldersCount) | **Get** /api/rp/v1/Reports/Folder/{id}/CountFolders | Get count of folders what contains in a specified folder
+[**ReportFoldersGetOrCreate**](ReportsApi.md#ReportFoldersGetOrCreate) | **Get** /api/rp/v1/Reports/Folder/getOrCreate | Get specified folder
 [**ReportFoldersGetPermissions**](ReportsApi.md#ReportFoldersGetPermissions) | **Get** /api/rp/v1/Reports/Folder/{id}/permissions | Get all folder permissions
 [**ReportFoldersGetRootFolder**](ReportsApi.md#ReportFoldersGetRootFolder) | **Get** /api/rp/v1/Reports/Root | Get user&#39;s root folder (without parents)
 [**ReportFoldersMoveFolder**](ReportsApi.md#ReportFoldersMoveFolder) | **Post** /api/rp/v1/Reports/Folder/{id}/Move/{folderId} | Move folder to a specified folder
+[**ReportFoldersMoveFolderToBin**](ReportsApi.md#ReportFoldersMoveFolderToBin) | **Delete** /api/rp/v1/Reports/Folder/{id}/ToBin | Move specified folder to recycle bin
 [**ReportFoldersPostFolder**](ReportsApi.md#ReportFoldersPostFolder) | **Post** /api/rp/v1/Reports/Folder/{id}/Folder | Create folder
+[**ReportFoldersRecoverFolder**](ReportsApi.md#ReportFoldersRecoverFolder) | **Post** /api/rp/v1/Reports/Folder/{id}/Recover | Recover specified folder
 [**ReportFoldersRenameFolder**](ReportsApi.md#ReportFoldersRenameFolder) | **Put** /api/rp/v1/Reports/Folder/{id}/Rename | Rename a folder
 [**ReportFoldersUpdateIcon**](ReportsApi.md#ReportFoldersUpdateIcon) | **Put** /api/rp/v1/Reports/Folder/{id}/Icon | Update a folder&#39;s icon
 [**ReportFoldersUpdatePermissions**](ReportsApi.md#ReportFoldersUpdatePermissions) | **Post** /api/rp/v1/Reports/{id}/permissions | Update permissions
@@ -24,11 +33,15 @@ Method | HTTP request | Description
 [**ReportsDeleteFile**](ReportsApi.md#ReportsDeleteFile) | **Delete** /api/rp/v1/Reports/File/{id} | Delete specified file
 [**ReportsExport**](ReportsApi.md#ReportsExport) | **Post** /api/rp/v1/Reports/File/{id}/Export | Export specified report to a specified format
 [**ReportsGetFile**](ReportsApi.md#ReportsGetFile) | **Get** /api/rp/v1/Reports/File/{id} | Get specified file
+[**ReportsGetFileHistory**](ReportsApi.md#ReportsGetFileHistory) | **Get** /api/rp/v1/Reports/File/{id}/History | Returns list of actions, performed on this file
 [**ReportsGetFilesCount**](ReportsApi.md#ReportsGetFilesCount) | **Get** /api/rp/v1/Reports/Folder/{id}/CountFiles | Get count of files what contains in a specified folder
 [**ReportsGetFilesList**](ReportsApi.md#ReportsGetFilesList) | **Get** /api/rp/v1/Reports/Folder/{id}/ListFiles | Get all files from specified folder. &lt;br /&gt;  User with Get Entity permission can access this method. &lt;br /&gt;  The method will returns minimal infomration about the file: &lt;br /&gt;  id, name, size, editedTime, createdTime, tags, status, statusReason.
 [**ReportsGetPermissions**](ReportsApi.md#ReportsGetPermissions) | **Get** /api/rp/v1/Reports/File/{id}/permissions | Get all file permissions
 [**ReportsMoveFile**](ReportsApi.md#ReportsMoveFile) | **Post** /api/rp/v1/Reports/File/{id}/Move/{folderId} | Move file to a specified folder
+[**ReportsMoveFileToBin**](ReportsApi.md#ReportsMoveFileToBin) | **Delete** /api/rp/v1/Reports/File/{id}/ToBin | Move specified file to recycle bin
+[**ReportsRecoverFile**](ReportsApi.md#ReportsRecoverFile) | **Post** /api/rp/v1/Reports/File/{id}/Recover | Recover specified file from bin
 [**ReportsRenameFile**](ReportsApi.md#ReportsRenameFile) | **Put** /api/rp/v1/Reports/File/{id}/Rename | Rename a file
+[**ReportsStaticPreview**](ReportsApi.md#ReportsStaticPreview) | **Post** /api/rp/v1/Reports/File/{id}/StaticPreview | Make preview for the report.  Generate a new or return exist prepared svg files.  If template was changed will be returned a new.  Pass the &#x60;&#x60; parameter to check prepared timestamp
 [**ReportsUpdateIcon**](ReportsApi.md#ReportsUpdateIcon) | **Put** /api/rp/v1/Reports/File/{id}/Icon | Update a files&#39;s icon
 [**ReportsUpdatePermissions**](ReportsApi.md#ReportsUpdatePermissions) | **Post** /api/rp/v1/Reports/File/{id}/permissions | Update permissions
 [**ReportsUpdateTags**](ReportsApi.md#ReportsUpdateTags) | **Put** /api/rp/v1/Reports/File/{id}/UpdateTags | Update tags
@@ -36,9 +49,147 @@ Method | HTTP request | Description
 
 
 
+## ReportFolderAndFileClearRecycleBin
+
+> ReportFolderAndFileClearRecycleBin(ctx, subscriptionId).Execute()
+
+Delete all folders and files from recycle bin
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    subscriptionId := "subscriptionId_example" // string | subscription id
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportFolderAndFileClearRecycleBin(context.Background(), subscriptionId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFolderAndFileClearRecycleBin``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | subscription id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFolderAndFileClearRecycleBinRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReportFolderAndFileDeleteFiles
+
+> ReportFolderAndFileDeleteFiles(ctx, subscriptionId).SelectedFilesForDeletingVM(selectedFilesForDeletingVM).Execute()
+
+Delete folders and files
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    subscriptionId := "subscriptionId_example" // string | id of current subscription
+    selectedFilesForDeletingVM := *openapiclient.NewSelectedFilesForDeletingVM() // SelectedFilesForDeletingVM | VM with files' ids and params of their destination (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportFolderAndFileDeleteFiles(context.Background(), subscriptionId).SelectedFilesForDeletingVM(selectedFilesForDeletingVM).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFolderAndFileDeleteFiles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | id of current subscription | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFolderAndFileDeleteFilesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **selectedFilesForDeletingVM** | [**SelectedFilesForDeletingVM**](SelectedFilesForDeletingVM.md) | VM with files&#39; ids and params of their destination | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ReportFolderAndFileGetCount
 
-> CountVM ReportFolderAndFileGetCount(ctx, id).SearchPattern(searchPattern).Execute()
+> CountVM ReportFolderAndFileGetCount(ctx, id).SearchPattern(searchPattern).UseRegex(useRegex).Execute()
 
 Get count of files and folders what contains in a specified folder
 
@@ -53,16 +204,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | folder id
     searchPattern := "searchPattern_example" // string | string, that must be incuded in file or folder name to be counted <br />              (leave undefined to count all files and folders) (optional)
+    useRegex := true // bool | set this to true if you want to use regular expression to search (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFolderAndFileGetCount(context.Background(), id).SearchPattern(searchPattern).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFolderAndFileGetCount(context.Background(), id).SearchPattern(searchPattern).UseRegex(useRegex).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFolderAndFileGetCount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -89,6 +241,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **searchPattern** | **string** | string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders) | 
+ **useRegex** | **bool** | set this to true if you want to use regular expression to search | [default to false]
 
 ### Return type
 
@@ -110,7 +263,7 @@ Name | Type | Description  | Notes
 
 ## ReportFolderAndFileGetFoldersAndFiles
 
-> FilesVM ReportFolderAndFileGetFoldersAndFiles(ctx, id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).Execute()
+> FilesVM ReportFolderAndFileGetFoldersAndFiles(ctx, id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).UseRegex(useRegex).Execute()
 
 Get all folders and files from specified folder
 
@@ -125,7 +278,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -135,10 +288,11 @@ func main() {
     orderBy := openapiclient.FileSorting("None") // FileSorting | indicates a field to sort by (optional)
     desc := true // bool | indicates if sorting is descending (optional) (default to false)
     searchPattern := "searchPattern_example" // string |  (optional) (default to "")
+    useRegex := true // bool |  (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFolderAndFileGetFoldersAndFiles(context.Background(), id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFolderAndFileGetFoldersAndFiles(context.Background(), id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).UseRegex(useRegex).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFolderAndFileGetFoldersAndFiles``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -169,10 +323,231 @@ Name | Type | Description  | Notes
  **orderBy** | [**FileSorting**](FileSorting.md) | indicates a field to sort by | 
  **desc** | **bool** | indicates if sorting is descending | [default to false]
  **searchPattern** | **string** |  | [default to &quot;&quot;]
+ **useRegex** | **bool** |  | [default to false]
 
 ### Return type
 
 [**FilesVM**](FilesVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReportFolderAndFileGetRecycleBinFoldersAndFiles
+
+> FilesVM ReportFolderAndFileGetRecycleBinFoldersAndFiles(ctx, subscriptionId).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).UseRegex(useRegex).Execute()
+
+Get all folders and files from recycle bin
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    subscriptionId := "subscriptionId_example" // string | subscription id
+    skip := int32(56) // int32 | number of folder and files, that have to be skipped (optional) (default to 0)
+    take := int32(56) // int32 | number of folder and files, that have to be returned (optional) (default to 10)
+    orderBy := openapiclient.FileSorting("None") // FileSorting | indicates a field to sort by (optional)
+    desc := true // bool | indicates if sorting is descending (optional) (default to false)
+    searchPattern := "searchPattern_example" // string |  (optional) (default to "")
+    useRegex := true // bool |  (optional) (default to false)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFolderAndFileGetRecycleBinFoldersAndFiles(context.Background(), subscriptionId).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).UseRegex(useRegex).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFolderAndFileGetRecycleBinFoldersAndFiles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReportFolderAndFileGetRecycleBinFoldersAndFiles`: FilesVM
+    fmt.Fprintf(os.Stdout, "Response from `ReportsApi.ReportFolderAndFileGetRecycleBinFoldersAndFiles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | subscription id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFolderAndFileGetRecycleBinFoldersAndFilesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **skip** | **int32** | number of folder and files, that have to be skipped | [default to 0]
+ **take** | **int32** | number of folder and files, that have to be returned | [default to 10]
+ **orderBy** | [**FileSorting**](FileSorting.md) | indicates a field to sort by | 
+ **desc** | **bool** | indicates if sorting is descending | [default to false]
+ **searchPattern** | **string** |  | [default to &quot;&quot;]
+ **useRegex** | **bool** |  | [default to false]
+
+### Return type
+
+[**FilesVM**](FilesVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReportFolderAndFileRecoverAllFromRecycleBin
+
+> ReportFolderAndFileRecoverAllFromRecycleBin(ctx, subscriptionId).Execute()
+
+Recover all folders and files from recycle bin
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    subscriptionId := "subscriptionId_example" // string | subscription id
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportFolderAndFileRecoverAllFromRecycleBin(context.Background(), subscriptionId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFolderAndFileRecoverAllFromRecycleBin``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | subscription id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFolderAndFileRecoverAllFromRecycleBinRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReportFoldersCalculateFolderSize
+
+> FolderSizeVM ReportFoldersCalculateFolderSize(ctx, id).Execute()
+
+Get specified folder, calculate it's size
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    id := "id_example" // string | folder id
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersCalculateFolderSize(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersCalculateFolderSize``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReportFoldersCalculateFolderSize`: FolderSizeVM
+    fmt.Fprintf(os.Stdout, "Response from `ReportsApi.ReportFoldersCalculateFolderSize`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | folder id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFoldersCalculateFolderSizeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**FolderSizeVM**](FolderSizeVM.md)
 
 ### Authorization
 
@@ -205,7 +580,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -213,8 +588,8 @@ func main() {
     folderId := "folderId_example" // string | destination folder id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersCopyFolder(context.Background(), id, folderId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersCopyFolder(context.Background(), id, folderId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersCopyFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -263,7 +638,7 @@ Name | Type | Description  | Notes
 
 ## ReportFoldersDeleteFolder
 
-> ReportFoldersDeleteFolder(ctx, id).Recursive(recursive).Execute()
+> ReportFoldersDeleteFolder(ctx, id).Execute()
 
 Delete specified folder
 
@@ -278,16 +653,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | folder id
-    recursive := true // bool | delete all childs (optional) (default to true)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersDeleteFolder(context.Background(), id).Recursive(recursive).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportFoldersDeleteFolder(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersDeleteFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,7 +685,6 @@ Other parameters are passed through a pointer to a apiReportFoldersDeleteFolderR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **recursive** | **bool** | delete all childs | [default to true]
 
 ### Return type
 
@@ -324,6 +697,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReportFoldersExport
+
+> FileVM ReportFoldersExport(ctx, id).ExportReportVM(exportReportVM).Execute()
+
+Export specified report folder to a specified format
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    id := "id_example" // string | report folder id
+    exportReportVM := *openapiclient.NewExportReportVM() // ExportReportVM | export parameters (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersExport(context.Background(), id).ExportReportVM(exportReportVM).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReportFoldersExport`: FileVM
+    fmt.Fprintf(os.Stdout, "Response from `ReportsApi.ReportFoldersExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | report folder id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFoldersExportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **exportReportVM** | [**ExportReportVM**](ExportReportVM.md) | export parameters | 
+
+### Return type
+
+[**FileVM**](FileVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -348,15 +793,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | folder id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersGetBreadcrumbs(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersGetBreadcrumbs(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersGetBreadcrumbs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -418,15 +863,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | folder id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersGetFolder(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersGetFolder(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersGetFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -473,7 +918,7 @@ Name | Type | Description  | Notes
 
 ## ReportFoldersGetFolders
 
-> FilesVM ReportFoldersGetFolders(ctx, id).Skip(skip).Take(take).Execute()
+> FilesVM ReportFoldersGetFolders(ctx, id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).UseRegex(useRegex).Execute()
 
 Get all folders from specified folder
 
@@ -488,17 +933,21 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | folder id
     skip := int32(56) // int32 | number of files, that have to be skipped (optional) (default to 0)
     take := int32(56) // int32 | number of files, that have to be returned (optional) (default to 10)
+    orderBy := openapiclient.FileSorting("None") // FileSorting |  (optional)
+    desc := true // bool |  (optional) (default to false)
+    searchPattern := "searchPattern_example" // string |  (optional) (default to "")
+    useRegex := true // bool |  (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersGetFolders(context.Background(), id).Skip(skip).Take(take).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersGetFolders(context.Background(), id).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).SearchPattern(searchPattern).UseRegex(useRegex).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersGetFolders``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -526,6 +975,10 @@ Name | Type | Description  | Notes
 
  **skip** | **int32** | number of files, that have to be skipped | [default to 0]
  **take** | **int32** | number of files, that have to be returned | [default to 10]
+ **orderBy** | [**FileSorting**](FileSorting.md) |  | 
+ **desc** | **bool** |  | [default to false]
+ **searchPattern** | **string** |  | [default to &quot;&quot;]
+ **useRegex** | **bool** |  | [default to false]
 
 ### Return type
 
@@ -562,15 +1015,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | folder id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersGetFoldersCount(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersGetFoldersCount(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersGetFoldersCount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -615,6 +1068,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ReportFoldersGetOrCreate
+
+> FileVM ReportFoldersGetOrCreate(ctx).Name(name).SubscriptionId(subscriptionId).ParentId(parentId).Execute()
+
+Get specified folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    name := "name_example" // string | folder name (optional)
+    subscriptionId := "subscriptionId_example" // string | subscriptionId (optional)
+    parentId := "parentId_example" // string | parent folder id (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersGetOrCreate(context.Background()).Name(name).SubscriptionId(subscriptionId).ParentId(parentId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersGetOrCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReportFoldersGetOrCreate`: FileVM
+    fmt.Fprintf(os.Stdout, "Response from `ReportsApi.ReportFoldersGetOrCreate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFoldersGetOrCreateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **string** | folder name | 
+ **subscriptionId** | **string** | subscriptionId | 
+ **parentId** | **string** | parent folder id | 
+
+### Return type
+
+[**FileVM**](FileVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ReportFoldersGetPermissions
 
 > FilePermissionsVM ReportFoldersGetPermissions(ctx, id).Execute()
@@ -630,15 +1153,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersGetPermissions(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersGetPermissions(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersGetPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -700,15 +1223,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     subscriptionId := "subscriptionId_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersGetRootFolder(context.Background()).SubscriptionId(subscriptionId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersGetRootFolder(context.Background()).SubscriptionId(subscriptionId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersGetRootFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -766,7 +1289,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -774,8 +1297,8 @@ func main() {
     folderId := "folderId_example" // string | destination folder id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersMoveFolder(context.Background(), id, folderId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersMoveFolder(context.Background(), id, folderId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersMoveFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -822,6 +1345,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ReportFoldersMoveFolderToBin
+
+> ReportFoldersMoveFolderToBin(ctx, id).Execute()
+
+Move specified folder to recycle bin
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    id := "id_example" // string | folder id
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportFoldersMoveFolderToBin(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersMoveFolderToBin``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | folder id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFoldersMoveFolderToBinRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ReportFoldersPostFolder
 
 > FileVM ReportFoldersPostFolder(ctx, id).ReportFolderCreateVM(reportFolderCreateVM).Execute()
@@ -839,7 +1430,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -847,8 +1438,8 @@ func main() {
     reportFolderCreateVM := *openapiclient.NewReportFolderCreateVM() // ReportFolderCreateVM | create VM (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersPostFolder(context.Background(), id).ReportFolderCreateVM(reportFolderCreateVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersPostFolder(context.Background(), id).ReportFolderCreateVM(reportFolderCreateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersPostFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -886,7 +1477,77 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReportFoldersRecoverFolder
+
+> ReportFoldersRecoverFolder(ctx, id).RecoveryPath(recoveryPath).Execute()
+
+Recover specified folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    id := "id_example" // string | folder id
+    recoveryPath := "recoveryPath_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportFoldersRecoverFolder(context.Background(), id).RecoveryPath(recoveryPath).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersRecoverFolder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | folder id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportFoldersRecoverFolderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **recoveryPath** | **string** |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -911,7 +1572,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -919,8 +1580,8 @@ func main() {
     folderRenameVM := *openapiclient.NewFolderRenameVM("Name_example") // FolderRenameVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersRenameFolder(context.Background(), id).FolderRenameVM(folderRenameVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersRenameFolder(context.Background(), id).FolderRenameVM(folderRenameVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersRenameFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -958,7 +1619,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -983,7 +1644,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -991,8 +1652,8 @@ func main() {
     folderIconVM := *openapiclient.NewFolderIconVM(string(123)) // FolderIconVM | Update icon model (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersUpdateIcon(context.Background(), id).FolderIconVM(folderIconVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersUpdateIcon(context.Background(), id).FolderIconVM(folderIconVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersUpdateIcon``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1030,7 +1691,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1053,7 +1714,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1061,8 +1722,8 @@ func main() {
     updateFilePermissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), openapiclient.FileAdministrate(0)) // UpdateFilePermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersUpdatePermissions(context.Background(), id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportFoldersUpdatePermissions(context.Background(), id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1098,7 +1759,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1123,7 +1784,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1131,8 +1792,8 @@ func main() {
     folderTagsUpdateVM := *openapiclient.NewFolderTagsUpdateVM() // FolderTagsUpdateVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportFoldersUpdateTags(context.Background(), id).FolderTagsUpdateVM(folderTagsUpdateVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportFoldersUpdateTags(context.Background(), id).FolderTagsUpdateVM(folderTagsUpdateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportFoldersUpdateTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1170,7 +1831,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1193,7 +1854,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1201,8 +1862,8 @@ func main() {
     folderId := "folderId_example" // string | folder id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsCopyFile(context.Background(), id, folderId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsCopyFile(context.Background(), id, folderId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsCopyFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1266,15 +1927,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | file id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsDeleteFile(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportsDeleteFile(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsDeleteFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1334,7 +1995,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1342,8 +2003,8 @@ func main() {
     exportReportVM := *openapiclient.NewExportReportVM() // ExportReportVM | export parameters (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsExport(context.Background(), id).ExportReportVM(exportReportVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsExport(context.Background(), id).ExportReportVM(exportReportVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsExport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1381,7 +2042,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1406,15 +2067,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | file id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsGetFile(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsGetFile(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsGetFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1459,6 +2120,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ReportsGetFileHistory
+
+> AuditActionsVM ReportsGetFileHistory(ctx, id).Skip(skip).Take(take).Execute()
+
+Returns list of actions, performed on this file
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    id := "id_example" // string | 
+    skip := int32(56) // int32 |  (optional) (default to 0)
+    take := int32(56) // int32 |  (optional) (default to 10)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsGetFileHistory(context.Background(), id).Skip(skip).Take(take).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsGetFileHistory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReportsGetFileHistory`: AuditActionsVM
+    fmt.Fprintf(os.Stdout, "Response from `ReportsApi.ReportsGetFileHistory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportsGetFileHistoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **skip** | **int32** |  | [default to 0]
+ **take** | **int32** |  | [default to 10]
+
+### Return type
+
+[**AuditActionsVM**](AuditActionsVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ReportsGetFilesCount
 
 > CountVM ReportsGetFilesCount(ctx, id).Execute()
@@ -1476,15 +2209,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | folder id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsGetFilesCount(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsGetFilesCount(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsGetFilesCount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1531,7 +2264,7 @@ Name | Type | Description  | Notes
 
 ## ReportsGetFilesList
 
-> ReportsVM ReportsGetFilesList(ctx, id).Skip(skip).Take(take).SearchPattern(searchPattern).Execute()
+> ReportsVM ReportsGetFilesList(ctx, id).Skip(skip).Take(take).SearchPattern(searchPattern).OrderBy(orderBy).Desc(desc).UseRegex(useRegex).Execute()
 
 Get all files from specified folder. <br />  User with Get Entity permission can access this method. <br />  The method will returns minimal infomration about the file: <br />  id, name, size, editedTime, createdTime, tags, status, statusReason.
 
@@ -1544,7 +2277,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1552,10 +2285,13 @@ func main() {
     skip := int32(56) // int32 | number of files, that have to be skipped (optional) (default to 0)
     take := int32(56) // int32 | number of files, that have to be returned (optional) (default to 10)
     searchPattern := "searchPattern_example" // string |  (optional)
+    orderBy := openapiclient.FileSorting("None") // FileSorting |  (optional)
+    desc := true // bool |  (optional) (default to false)
+    useRegex := true // bool |  (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsGetFilesList(context.Background(), id).Skip(skip).Take(take).SearchPattern(searchPattern).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsGetFilesList(context.Background(), id).Skip(skip).Take(take).SearchPattern(searchPattern).OrderBy(orderBy).Desc(desc).UseRegex(useRegex).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsGetFilesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1584,6 +2320,9 @@ Name | Type | Description  | Notes
  **skip** | **int32** | number of files, that have to be skipped | [default to 0]
  **take** | **int32** | number of files, that have to be returned | [default to 10]
  **searchPattern** | **string** |  | 
+ **orderBy** | [**FileSorting**](FileSorting.md) |  | 
+ **desc** | **bool** |  | [default to false]
+ **useRegex** | **bool** |  | [default to false]
 
 ### Return type
 
@@ -1618,15 +2357,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsGetPermissions(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsGetPermissions(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsGetPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1688,7 +2427,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1696,8 +2435,8 @@ func main() {
     folderId := "folderId_example" // string | folder id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsMoveFile(context.Background(), id, folderId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsMoveFile(context.Background(), id, folderId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsMoveFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1744,6 +2483,144 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ReportsMoveFileToBin
+
+> ReportsMoveFileToBin(ctx, id).Execute()
+
+Move specified file to recycle bin
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    id := "id_example" // string | file id
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportsMoveFileToBin(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsMoveFileToBin``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | file id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportsMoveFileToBinRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReportsRecoverFile
+
+> ReportsRecoverFile(ctx, id).RecoveryPath(recoveryPath).Execute()
+
+Recover specified file from bin
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    id := "id_example" // string | file id
+    recoveryPath := "recoveryPath_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportsRecoverFile(context.Background(), id).RecoveryPath(recoveryPath).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsRecoverFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | file id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportsRecoverFileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **recoveryPath** | **string** |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ReportsRenameFile
 
 > ReportVM ReportsRenameFile(ctx, id).FileRenameVM(fileRenameVM).Execute()
@@ -1761,7 +2638,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1769,8 +2646,8 @@ func main() {
     fileRenameVM := *openapiclient.NewFileRenameVM() // FileRenameVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsRenameFile(context.Background(), id).FileRenameVM(fileRenameVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsRenameFile(context.Background(), id).FileRenameVM(fileRenameVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsRenameFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1808,7 +2685,77 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReportsStaticPreview
+
+> ExportVM ReportsStaticPreview(ctx, id).PreviewReportVM(previewReportVM).Execute()
+
+Make preview for the report.  Generate a new or return exist prepared svg files.  If template was changed will be returned a new.  Pass the `` parameter to check prepared timestamp
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    id := "id_example" // string | template id
+    previewReportVM := *openapiclient.NewPreviewReportVM() // PreviewReportVM | Model with parameters (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsStaticPreview(context.Background(), id).PreviewReportVM(previewReportVM).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsStaticPreview``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReportsStaticPreview`: ExportVM
+    fmt.Fprintf(os.Stdout, "Response from `ReportsApi.ReportsStaticPreview`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | template id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReportsStaticPreviewRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **previewReportVM** | [**PreviewReportVM**](PreviewReportVM.md) | Model with parameters | 
+
+### Return type
+
+[**ExportVM**](ExportVM.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1833,7 +2780,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1841,8 +2788,8 @@ func main() {
     fileIconVM := *openapiclient.NewFileIconVM() // FileIconVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsUpdateIcon(context.Background(), id).FileIconVM(fileIconVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsUpdateIcon(context.Background(), id).FileIconVM(fileIconVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsUpdateIcon``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1880,7 +2827,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1903,7 +2850,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1911,8 +2858,8 @@ func main() {
     updateFilePermissionsVM := *openapiclient.NewUpdateFilePermissionsVM(*openapiclient.NewFilePermissions(), openapiclient.FileAdministrate(0)) // UpdateFilePermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsUpdatePermissions(context.Background(), id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.ReportsApi.ReportsUpdatePermissions(context.Background(), id).UpdateFilePermissionsVM(updateFilePermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1948,7 +2895,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1973,7 +2920,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -1981,8 +2928,8 @@ func main() {
     fileTagsUpdateVM := *openapiclient.NewFileTagsUpdateVM() // FileTagsUpdateVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsUpdateTags(context.Background(), id).FileTagsUpdateVM(fileTagsUpdateVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsUpdateTags(context.Background(), id).FileTagsUpdateVM(fileTagsUpdateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsUpdateTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2020,7 +2967,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -2045,7 +2992,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -2053,8 +3000,8 @@ func main() {
     reportCreateVM := *openapiclient.NewReportCreateVM() // ReportCreateVM | file's view model (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ReportsApi.ReportsUploadFile(context.Background(), id).ReportCreateVM(reportCreateVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ReportsApi.ReportsUploadFile(context.Background(), id).ReportCreateVM(reportCreateVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ReportsApi.ReportsUploadFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2092,7 +3039,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

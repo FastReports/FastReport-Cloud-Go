@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EntityId** | Pointer to **NullableString** |  | [optional] 
-**FileName** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to [**FileKind**](FileKind.md) |  | [optional] 
 
 ## Methods
@@ -62,41 +61,6 @@ HasEntityId returns a boolean if a field has been set.
 `func (o *InputFileVM) UnsetEntityId()`
 
 UnsetEntityId ensures that no value is present for EntityId, not even an explicit nil
-### GetFileName
-
-`func (o *InputFileVM) GetFileName() string`
-
-GetFileName returns the FileName field if non-nil, zero value otherwise.
-
-### GetFileNameOk
-
-`func (o *InputFileVM) GetFileNameOk() (*string, bool)`
-
-GetFileNameOk returns a tuple with the FileName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFileName
-
-`func (o *InputFileVM) SetFileName(v string)`
-
-SetFileName sets FileName field to given value.
-
-### HasFileName
-
-`func (o *InputFileVM) HasFileName() bool`
-
-HasFileName returns a boolean if a field has been set.
-
-### SetFileNameNil
-
-`func (o *InputFileVM) SetFileNameNil(b bool)`
-
- SetFileNameNil sets the value for FileName to be an explicit nil
-
-### UnsetFileName
-`func (o *InputFileVM) UnsetFileName()`
-
-UnsetFileName ensures that no value is present for FileName, not even an explicit nil
 ### GetType
 
 `func (o *InputFileVM) GetType() FileKind`

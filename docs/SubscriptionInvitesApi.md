@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -34,8 +34,8 @@ func main() {
     accessToken := "accessToken_example" // string | access token of the subscription
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionInvitesApi.SubscriptionInvitesAcceptInvite(context.Background(), subscriptionId, accessToken).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.SubscriptionInvitesApi.SubscriptionInvitesAcceptInvite(context.Background(), subscriptionId, accessToken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionInvitesApi.SubscriptionInvitesAcceptInvite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -95,7 +95,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -103,8 +103,8 @@ func main() {
     createSubscriptionInviteVM := *openapiclient.NewCreateSubscriptionInviteVM() // CreateSubscriptionInviteVM | create VM (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionInvitesApi.SubscriptionInvitesCreateInvite(context.Background(), subscriptionId).CreateSubscriptionInviteVM(createSubscriptionInviteVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionInvitesApi.SubscriptionInvitesCreateInvite(context.Background(), subscriptionId).CreateSubscriptionInviteVM(createSubscriptionInviteVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionInvitesApi.SubscriptionInvitesCreateInvite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -165,7 +165,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -173,8 +173,8 @@ func main() {
     accesstoken := "accesstoken_example" // string | invite's token
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionInvitesApi.SubscriptionInvitesDeleteInvite(context.Background(), subscriptionId, accesstoken).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.SubscriptionInvitesApi.SubscriptionInvitesDeleteInvite(context.Background(), subscriptionId, accesstoken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionInvitesApi.SubscriptionInvitesDeleteInvite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -234,15 +234,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     subscriptionId := "subscriptionId_example" // string | Idenitifier of subscription
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionInvitesApi.SubscriptionInvitesGetInvites(context.Background(), subscriptionId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionInvitesApi.SubscriptionInvitesGetInvites(context.Background(), subscriptionId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionInvitesApi.SubscriptionInvitesGetInvites``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

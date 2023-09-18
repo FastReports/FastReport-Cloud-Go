@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## SubscriptionsGetDefaultPermissions
 
-> DefaultPermissions SubscriptionsGetDefaultPermissions(ctx, subscriptionId).Execute()
+> DefaultPermissionsVM SubscriptionsGetDefaultPermissions(ctx, subscriptionId).Execute()
 
 Get subscription's default permissions for new entities
 
@@ -31,20 +31,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     subscriptionId := "subscriptionId_example" // string | id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsGetDefaultPermissions(context.Background(), subscriptionId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionsApi.SubscriptionsGetDefaultPermissions(context.Background(), subscriptionId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsGetDefaultPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SubscriptionsGetDefaultPermissions`: DefaultPermissions
+    // response from `SubscriptionsGetDefaultPermissions`: DefaultPermissionsVM
     fmt.Fprintf(os.Stdout, "Response from `SubscriptionsApi.SubscriptionsGetDefaultPermissions`: %v\n", resp)
 }
 ```
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DefaultPermissions**](DefaultPermissions.md)
+[**DefaultPermissionsVM**](DefaultPermissionsVM.md)
 
 ### Authorization
 
@@ -99,15 +99,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     subId := "subId_example" // string | subscription id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsGetMyPermissions(context.Background(), subId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionsApi.SubscriptionsGetMyPermissions(context.Background(), subId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsGetMyPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -167,15 +167,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsGetPermissions(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionsApi.SubscriptionsGetPermissions(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsGetPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -235,15 +235,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | Identifier of subscription
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsGetSubscription(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionsApi.SubscriptionsGetSubscription(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsGetSubscription``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -303,7 +303,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -311,8 +311,8 @@ func main() {
     take := int32(56) // int32 | Variable for pagination, default value is 10 (optional) (default to 10)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsGetSubscriptions(context.Background()).Skip(skip).Take(take).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionsApi.SubscriptionsGetSubscriptions(context.Background()).Skip(skip).Take(take).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsGetSubscriptions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -369,7 +369,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -377,8 +377,8 @@ func main() {
     renameSubscriptionVM := *openapiclient.NewRenameSubscriptionVM("Name_example") // RenameSubscriptionVM | rename VM
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsRenameSubscription(context.Background(), subscriptionId).RenameSubscriptionVM(renameSubscriptionVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionsApi.SubscriptionsRenameSubscription(context.Background(), subscriptionId).RenameSubscriptionVM(renameSubscriptionVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsRenameSubscription``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -416,7 +416,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -439,7 +439,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -447,8 +447,8 @@ func main() {
     updateDefaultPermissionsVM := *openapiclient.NewUpdateDefaultPermissionsVM() // UpdateDefaultPermissionsVM | update default permissions VM
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdateDefaultPermissions(context.Background(), subscriptionId).UpdateDefaultPermissionsVM(updateDefaultPermissionsVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionsApi.SubscriptionsUpdateDefaultPermissions(context.Background(), subscriptionId).UpdateDefaultPermissionsVM(updateDefaultPermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsUpdateDefaultPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -486,7 +486,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -509,7 +509,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -517,8 +517,8 @@ func main() {
     updateSubscriptionLocaleVM := *openapiclient.NewUpdateSubscriptionLocaleVM("Locale_example") // UpdateSubscriptionLocaleVM | update VM
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdateLocale(context.Background(), subscriptionId).UpdateSubscriptionLocaleVM(updateSubscriptionLocaleVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SubscriptionsApi.SubscriptionsUpdateLocale(context.Background(), subscriptionId).UpdateSubscriptionLocaleVM(updateSubscriptionLocaleVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsUpdateLocale``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -556,7 +556,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -579,7 +579,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -587,8 +587,8 @@ func main() {
     updateSubscriptionPermissionsVM := *openapiclient.NewUpdateSubscriptionPermissionsVM(*openapiclient.NewSubscriptionPermissions(), openapiclient.SubscriptionAdministrate(0)) // UpdateSubscriptionPermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscriptionsApi.SubscriptionsUpdatePermissions(context.Background(), id).UpdateSubscriptionPermissionsVM(updateSubscriptionPermissionsVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.SubscriptionsApi.SubscriptionsUpdatePermissions(context.Background(), id).UpdateSubscriptionPermissionsVM(updateSubscriptionPermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsApi.SubscriptionsUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -624,7 +624,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

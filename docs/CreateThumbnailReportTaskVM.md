@@ -4,9 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**ReportId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -27,101 +25,41 @@ NewCreateThumbnailReportTaskVMWithDefaults instantiates a new CreateThumbnailRep
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetReportId
 
-`func (o *CreateThumbnailReportTaskVM) GetName() string`
+`func (o *CreateThumbnailReportTaskVM) GetReportId() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetReportId returns the ReportId field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetReportIdOk
 
-`func (o *CreateThumbnailReportTaskVM) GetNameOk() (*string, bool)`
+`func (o *CreateThumbnailReportTaskVM) GetReportIdOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetReportIdOk returns a tuple with the ReportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetReportId
 
-`func (o *CreateThumbnailReportTaskVM) SetName(v string)`
+`func (o *CreateThumbnailReportTaskVM) SetReportId(v string)`
 
-SetName sets Name field to given value.
+SetReportId sets ReportId field to given value.
 
-### HasName
+### HasReportId
 
-`func (o *CreateThumbnailReportTaskVM) HasName() bool`
+`func (o *CreateThumbnailReportTaskVM) HasReportId() bool`
 
-HasName returns a boolean if a field has been set.
+HasReportId returns a boolean if a field has been set.
 
-### SetNameNil
+### SetReportIdNil
 
-`func (o *CreateThumbnailReportTaskVM) SetNameNil(b bool)`
+`func (o *CreateThumbnailReportTaskVM) SetReportIdNil(b bool)`
 
- SetNameNil sets the value for Name to be an explicit nil
+ SetReportIdNil sets the value for ReportId to be an explicit nil
 
-### UnsetName
-`func (o *CreateThumbnailReportTaskVM) UnsetName()`
+### UnsetReportId
+`func (o *CreateThumbnailReportTaskVM) UnsetReportId()`
 
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetSubscriptionId
-
-`func (o *CreateThumbnailReportTaskVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *CreateThumbnailReportTaskVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *CreateThumbnailReportTaskVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *CreateThumbnailReportTaskVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *CreateThumbnailReportTaskVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *CreateThumbnailReportTaskVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *CreateThumbnailReportTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *CreateThumbnailReportTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *CreateThumbnailReportTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *CreateThumbnailReportTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
+UnsetReportId ensures that no value is present for ReportId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

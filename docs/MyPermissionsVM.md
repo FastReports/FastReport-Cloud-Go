@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Files** | Pointer to [**FilePermission**](FilePermission.md) |  | [optional] 
 **Datasources** | Pointer to [**DataSourcePermission**](DataSourcePermission.md) |  | [optional] 
 **Groups** | Pointer to [**GroupPermission**](GroupPermission.md) |  | [optional] 
+**Tasks** | Pointer to [**TaskPermission**](TaskPermission.md) |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetGroups sets Groups field to given value.
 `func (o *MyPermissionsVM) HasGroups() bool`
 
 HasGroups returns a boolean if a field has been set.
+
+### GetTasks
+
+`func (o *MyPermissionsVM) GetTasks() TaskPermission`
+
+GetTasks returns the Tasks field if non-nil, zero value otherwise.
+
+### GetTasksOk
+
+`func (o *MyPermissionsVM) GetTasksOk() (*TaskPermission, bool)`
+
+GetTasksOk returns a tuple with the Tasks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTasks
+
+`func (o *MyPermissionsVM) SetTasks(v TaskPermission)`
+
+SetTasks sets Tasks field to given value.
+
+### HasTasks
+
+`func (o *MyPermissionsVM) HasTasks() bool`
+
+HasTasks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

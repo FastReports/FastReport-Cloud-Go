@@ -6,11 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Format** | Pointer to [**ExportFormat**](ExportFormat.md) |  | [optional] 
 **ReportId** | Pointer to **NullableString** |  | [optional] 
-**Id** | Pointer to **NullableString** |  | [optional] 
-**CreatedTime** | Pointer to **time.Time** |  | [optional] 
-**CreatorUserId** | Pointer to **NullableString** |  | [optional] 
-**EditedTime** | Pointer to **time.Time** |  | [optional] 
-**EditorUserId** | Pointer to **NullableString** |  | [optional] 
+**TemplateId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -91,161 +87,41 @@ HasReportId returns a boolean if a field has been set.
 `func (o *ExportVM) UnsetReportId()`
 
 UnsetReportId ensures that no value is present for ReportId, not even an explicit nil
-### GetId
+### GetTemplateId
 
-`func (o *ExportVM) GetId() string`
+`func (o *ExportVM) GetTemplateId() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetTemplateIdOk
 
-`func (o *ExportVM) GetIdOk() (*string, bool)`
+`func (o *ExportVM) GetTemplateIdOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetTemplateId
 
-`func (o *ExportVM) SetId(v string)`
+`func (o *ExportVM) SetTemplateId(v string)`
 
-SetId sets Id field to given value.
+SetTemplateId sets TemplateId field to given value.
 
-### HasId
+### HasTemplateId
 
-`func (o *ExportVM) HasId() bool`
+`func (o *ExportVM) HasTemplateId() bool`
 
-HasId returns a boolean if a field has been set.
+HasTemplateId returns a boolean if a field has been set.
 
-### SetIdNil
+### SetTemplateIdNil
 
-`func (o *ExportVM) SetIdNil(b bool)`
+`func (o *ExportVM) SetTemplateIdNil(b bool)`
 
- SetIdNil sets the value for Id to be an explicit nil
+ SetTemplateIdNil sets the value for TemplateId to be an explicit nil
 
-### UnsetId
-`func (o *ExportVM) UnsetId()`
+### UnsetTemplateId
+`func (o *ExportVM) UnsetTemplateId()`
 
-UnsetId ensures that no value is present for Id, not even an explicit nil
-### GetCreatedTime
-
-`func (o *ExportVM) GetCreatedTime() time.Time`
-
-GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
-
-### GetCreatedTimeOk
-
-`func (o *ExportVM) GetCreatedTimeOk() (*time.Time, bool)`
-
-GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedTime
-
-`func (o *ExportVM) SetCreatedTime(v time.Time)`
-
-SetCreatedTime sets CreatedTime field to given value.
-
-### HasCreatedTime
-
-`func (o *ExportVM) HasCreatedTime() bool`
-
-HasCreatedTime returns a boolean if a field has been set.
-
-### GetCreatorUserId
-
-`func (o *ExportVM) GetCreatorUserId() string`
-
-GetCreatorUserId returns the CreatorUserId field if non-nil, zero value otherwise.
-
-### GetCreatorUserIdOk
-
-`func (o *ExportVM) GetCreatorUserIdOk() (*string, bool)`
-
-GetCreatorUserIdOk returns a tuple with the CreatorUserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatorUserId
-
-`func (o *ExportVM) SetCreatorUserId(v string)`
-
-SetCreatorUserId sets CreatorUserId field to given value.
-
-### HasCreatorUserId
-
-`func (o *ExportVM) HasCreatorUserId() bool`
-
-HasCreatorUserId returns a boolean if a field has been set.
-
-### SetCreatorUserIdNil
-
-`func (o *ExportVM) SetCreatorUserIdNil(b bool)`
-
- SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
-
-### UnsetCreatorUserId
-`func (o *ExportVM) UnsetCreatorUserId()`
-
-UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
-### GetEditedTime
-
-`func (o *ExportVM) GetEditedTime() time.Time`
-
-GetEditedTime returns the EditedTime field if non-nil, zero value otherwise.
-
-### GetEditedTimeOk
-
-`func (o *ExportVM) GetEditedTimeOk() (*time.Time, bool)`
-
-GetEditedTimeOk returns a tuple with the EditedTime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditedTime
-
-`func (o *ExportVM) SetEditedTime(v time.Time)`
-
-SetEditedTime sets EditedTime field to given value.
-
-### HasEditedTime
-
-`func (o *ExportVM) HasEditedTime() bool`
-
-HasEditedTime returns a boolean if a field has been set.
-
-### GetEditorUserId
-
-`func (o *ExportVM) GetEditorUserId() string`
-
-GetEditorUserId returns the EditorUserId field if non-nil, zero value otherwise.
-
-### GetEditorUserIdOk
-
-`func (o *ExportVM) GetEditorUserIdOk() (*string, bool)`
-
-GetEditorUserIdOk returns a tuple with the EditorUserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditorUserId
-
-`func (o *ExportVM) SetEditorUserId(v string)`
-
-SetEditorUserId sets EditorUserId field to given value.
-
-### HasEditorUserId
-
-`func (o *ExportVM) HasEditorUserId() bool`
-
-HasEditorUserId returns a boolean if a field has been set.
-
-### SetEditorUserIdNil
-
-`func (o *ExportVM) SetEditorUserIdNil(b bool)`
-
- SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
-
-### UnsetEditorUserId
-`func (o *ExportVM) UnsetEditorUserId()`
-
-UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
+UnsetTemplateId ensures that no value is present for TemplateId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

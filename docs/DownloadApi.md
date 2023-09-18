@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**DownloadGetExport**](DownloadApi.md#DownloadGetExport) | **Get** /download/e/{id} | Returns a export file with specified id
 [**DownloadGetExportThumbnail**](DownloadApi.md#DownloadGetExportThumbnail) | **Get** /download/e/{id}/thumbnail | Returns export&#39;s thumbnail
 [**DownloadGetExports**](DownloadApi.md#DownloadGetExports) | **Get** /download/es/{archiveName} | Returns a zip archive with selected ids
+[**DownloadGetLastSVGExport**](DownloadApi.md#DownloadGetLastSVGExport) | **Get** /download/lastPreview/{reportId} | returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
 [**DownloadGetReport**](DownloadApi.md#DownloadGetReport) | **Get** /download/r/{id} | Returns a prepared file with specified id
 [**DownloadGetReportThumbnail**](DownloadApi.md#DownloadGetReportThumbnail) | **Get** /download/r/{id}/thumbnail | Returns report&#39;s thumbnail
 [**DownloadGetReports**](DownloadApi.md#DownloadGetReports) | **Get** /download/rs/{archiveName} | Returns a zip archive with selected files
@@ -31,7 +32,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -39,8 +40,8 @@ func main() {
     preview := true // bool |  (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetExport(context.Background(), id).Preview(preview).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetExport(context.Background(), id).Preview(preview).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetExport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -79,7 +80,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream, application/pdf, application/json
+- **Accept**: text/plain, application/json, application/octet-stream, application/pdf
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -101,15 +102,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetExportThumbnail(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetExportThumbnail(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetExportThumbnail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -147,7 +148,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/png, image/jpeg, application/json
+- **Accept**: text/plain, application/json, image/png, image/jpeg
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -156,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## DownloadGetExports
 
-> *os.File DownloadGetExports(ctx, archiveName).Ids(ids).Execute()
+> *os.File DownloadGetExports(ctx, archiveName).FileIds(fileIds).FolderIds(folderIds).Execute()
 
 Returns a zip archive with selected ids
 
@@ -169,16 +170,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     archiveName := "archiveName_example" // string | name of the created archive
-    ids := "ids_example" // string | ids separated with a ',' sign (optional)
+    fileIds := "fileIds_example" // string | ids separated with a ',' sign (optional)
+    folderIds := "folderIds_example" // string | ids separated with a ',' sign (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetExports(context.Background(), archiveName).Ids(ids).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetExports(context.Background(), archiveName).FileIds(fileIds).FolderIds(folderIds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetExports``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,7 +206,8 @@ Other parameters are passed through a pointer to a apiDownloadGetExportsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **ids** | **string** | ids separated with a &#39;,&#39; sign | 
+ **fileIds** | **string** | ids separated with a &#39;,&#39; sign | 
+ **folderIds** | **string** | ids separated with a &#39;,&#39; sign | 
 
 ### Return type
 
@@ -217,7 +220,75 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/zip, application/json
+- **Accept**: text/plain, application/json, application/zip
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DownloadGetLastSVGExport
+
+> *os.File DownloadGetLastSVGExport(ctx, reportId).Execute()
+
+returns export, that was created from report with specified id.  INTERNAL USAGE ONLY!
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    reportId := "reportId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetLastSVGExport(context.Background(), reportId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetLastSVGExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DownloadGetLastSVGExport`: *os.File
+    fmt.Fprintf(os.Stdout, "Response from `DownloadApi.DownloadGetLastSVGExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**reportId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDownloadGetLastSVGExportRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[***os.File**](*os.File.md)
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -239,15 +310,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetReport(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetReport(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetReport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -285,7 +356,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream, application/json
+- **Accept**: text/plain, application/json, application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -307,15 +378,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetReportThumbnail(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetReportThumbnail(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetReportThumbnail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -353,7 +424,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/png, image/jpeg, application/json
+- **Accept**: text/plain, application/json, image/png, image/jpeg
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -362,7 +433,7 @@ Name | Type | Description  | Notes
 
 ## DownloadGetReports
 
-> *os.File DownloadGetReports(ctx, archiveName).Ids(ids).Execute()
+> *os.File DownloadGetReports(ctx, archiveName).FileIds(fileIds).FolderIds(folderIds).Execute()
 
 Returns a zip archive with selected files
 
@@ -375,16 +446,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     archiveName := "archiveName_example" // string | name of the created archive
-    ids := "ids_example" // string | ids separated with a ',' sign (optional)
+    fileIds := "fileIds_example" // string | ids separated with a ',' sign (optional)
+    folderIds := "folderIds_example" // string | ids separated with a ',' sign (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetReports(context.Background(), archiveName).Ids(ids).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetReports(context.Background(), archiveName).FileIds(fileIds).FolderIds(folderIds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetReports``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -410,7 +482,8 @@ Other parameters are passed through a pointer to a apiDownloadGetReportsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **ids** | **string** | ids separated with a &#39;,&#39; sign | 
+ **fileIds** | **string** | ids separated with a &#39;,&#39; sign | 
+ **folderIds** | **string** | ids separated with a &#39;,&#39; sign | 
 
 ### Return type
 
@@ -423,7 +496,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/zip, application/json
+- **Accept**: text/plain, application/json, application/zip
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -445,15 +518,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | template id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetTemplate(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetTemplate(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetTemplate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -491,7 +564,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream, application/json
+- **Accept**: text/plain, application/json, application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -513,15 +586,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetTemplateThumbnail(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetTemplateThumbnail(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetTemplateThumbnail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -559,7 +632,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/png, image/jpeg, application/json
+- **Accept**: text/plain, application/json, image/png, image/jpeg
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -568,7 +641,7 @@ Name | Type | Description  | Notes
 
 ## DownloadGetTemplates
 
-> *os.File DownloadGetTemplates(ctx, archiveName).Ids(ids).Execute()
+> *os.File DownloadGetTemplates(ctx, archiveName).FileIds(fileIds).FolderIds(folderIds).Execute()
 
 Returns a zip archive with selected files
 
@@ -581,16 +654,17 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     archiveName := "archiveName_example" // string | name of the created archive
-    ids := "ids_example" // string | ids separated with a ',' sign (optional)
+    fileIds := "fileIds_example" // string | ids separated with a ',' sign (optional)
+    folderIds := "folderIds_example" // string | ids separated with a ',' sign (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DownloadApi.DownloadGetTemplates(context.Background(), archiveName).Ids(ids).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DownloadApi.DownloadGetTemplates(context.Background(), archiveName).FileIds(fileIds).FolderIds(folderIds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DownloadApi.DownloadGetTemplates``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -616,7 +690,8 @@ Other parameters are passed through a pointer to a apiDownloadGetTemplatesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **ids** | **string** | ids separated with a &#39;,&#39; sign | 
+ **fileIds** | **string** | ids separated with a &#39;,&#39; sign | 
+ **folderIds** | **string** | ids separated with a &#39;,&#39; sign | 
 
 ### Return type
 
@@ -629,7 +704,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/zip, application/json
+- **Accept**: text/plain, application/json, application/zip
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

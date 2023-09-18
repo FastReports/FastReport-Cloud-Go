@@ -5,9 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Content** | Pointer to **NullableString** |  | [optional] 
-**EntityId** | Pointer to **NullableString** |  | [optional] 
 **FileName** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**FileKind**](FileKind.md) |  | [optional] 
 
 ## Methods
 
@@ -63,41 +61,6 @@ HasContent returns a boolean if a field has been set.
 `func (o *RunInputFileVM) UnsetContent()`
 
 UnsetContent ensures that no value is present for Content, not even an explicit nil
-### GetEntityId
-
-`func (o *RunInputFileVM) GetEntityId() string`
-
-GetEntityId returns the EntityId field if non-nil, zero value otherwise.
-
-### GetEntityIdOk
-
-`func (o *RunInputFileVM) GetEntityIdOk() (*string, bool)`
-
-GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEntityId
-
-`func (o *RunInputFileVM) SetEntityId(v string)`
-
-SetEntityId sets EntityId field to given value.
-
-### HasEntityId
-
-`func (o *RunInputFileVM) HasEntityId() bool`
-
-HasEntityId returns a boolean if a field has been set.
-
-### SetEntityIdNil
-
-`func (o *RunInputFileVM) SetEntityIdNil(b bool)`
-
- SetEntityIdNil sets the value for EntityId to be an explicit nil
-
-### UnsetEntityId
-`func (o *RunInputFileVM) UnsetEntityId()`
-
-UnsetEntityId ensures that no value is present for EntityId, not even an explicit nil
 ### GetFileName
 
 `func (o *RunInputFileVM) GetFileName() string`
@@ -133,31 +96,6 @@ HasFileName returns a boolean if a field has been set.
 `func (o *RunInputFileVM) UnsetFileName()`
 
 UnsetFileName ensures that no value is present for FileName, not even an explicit nil
-### GetType
-
-`func (o *RunInputFileVM) GetType() FileKind`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *RunInputFileVM) GetTypeOk() (*FileKind, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *RunInputFileVM) SetType(v FileKind)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *RunInputFileVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

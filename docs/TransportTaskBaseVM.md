@@ -4,16 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Files** | Pointer to [**[]InputFileVM**](InputFileVM.md) |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**InputFile** | Pointer to [**InputFileVM**](InputFileVM.md) |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewTransportTaskBaseVM
 
-`func NewTransportTaskBaseVM() *TransportTaskBaseVM`
+`func NewTransportTaskBaseVM(t string, ) *TransportTaskBaseVM`
 
 NewTransportTaskBaseVM instantiates a new TransportTaskBaseVM object
 This constructor will assign default values to properties that have it defined,
@@ -28,135 +26,50 @@ NewTransportTaskBaseVMWithDefaults instantiates a new TransportTaskBaseVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetFiles
+### GetInputFile
 
-`func (o *TransportTaskBaseVM) GetFiles() []InputFileVM`
+`func (o *TransportTaskBaseVM) GetInputFile() InputFileVM`
 
-GetFiles returns the Files field if non-nil, zero value otherwise.
+GetInputFile returns the InputFile field if non-nil, zero value otherwise.
 
-### GetFilesOk
+### GetInputFileOk
 
-`func (o *TransportTaskBaseVM) GetFilesOk() (*[]InputFileVM, bool)`
+`func (o *TransportTaskBaseVM) GetInputFileOk() (*InputFileVM, bool)`
 
-GetFilesOk returns a tuple with the Files field if it's non-nil, zero value otherwise
+GetInputFileOk returns a tuple with the InputFile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFiles
+### SetInputFile
 
-`func (o *TransportTaskBaseVM) SetFiles(v []InputFileVM)`
+`func (o *TransportTaskBaseVM) SetInputFile(v InputFileVM)`
 
-SetFiles sets Files field to given value.
+SetInputFile sets InputFile field to given value.
 
-### HasFiles
+### HasInputFile
 
-`func (o *TransportTaskBaseVM) HasFiles() bool`
+`func (o *TransportTaskBaseVM) HasInputFile() bool`
 
-HasFiles returns a boolean if a field has been set.
+HasInputFile returns a boolean if a field has been set.
 
-### SetFilesNil
+### GetT
 
-`func (o *TransportTaskBaseVM) SetFilesNil(b bool)`
+`func (o *TransportTaskBaseVM) GetT() string`
 
- SetFilesNil sets the value for Files to be an explicit nil
+GetT returns the T field if non-nil, zero value otherwise.
 
-### UnsetFiles
-`func (o *TransportTaskBaseVM) UnsetFiles()`
+### GetTOk
 
-UnsetFiles ensures that no value is present for Files, not even an explicit nil
-### GetName
+`func (o *TransportTaskBaseVM) GetTOk() (*string, bool)`
 
-`func (o *TransportTaskBaseVM) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *TransportTaskBaseVM) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetT
 
-`func (o *TransportTaskBaseVM) SetName(v string)`
+`func (o *TransportTaskBaseVM) SetT(v string)`
 
-SetName sets Name field to given value.
+SetT sets T field to given value.
 
-### HasName
-
-`func (o *TransportTaskBaseVM) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *TransportTaskBaseVM) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *TransportTaskBaseVM) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetSubscriptionId
-
-`func (o *TransportTaskBaseVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *TransportTaskBaseVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *TransportTaskBaseVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *TransportTaskBaseVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *TransportTaskBaseVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *TransportTaskBaseVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *TransportTaskBaseVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *TransportTaskBaseVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *TransportTaskBaseVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *TransportTaskBaseVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

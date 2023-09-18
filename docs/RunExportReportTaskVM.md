@@ -6,15 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ExportParameters** | Pointer to **map[string]string** |  | [optional] 
 **Format** | Pointer to [**ExportFormat**](ExportFormat.md) |  | [optional] 
-**PagesCount** | Pointer to **NullableInt32** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**PagesCount** | Pointer to **int32** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewRunExportReportTaskVM
 
-`func NewRunExportReportTaskVM() *RunExportReportTaskVM`
+`func NewRunExportReportTaskVM(t string, ) *RunExportReportTaskVM`
 
 NewRunExportReportTaskVM instantiates a new RunExportReportTaskVM object
 This constructor will assign default values to properties that have it defined,
@@ -114,75 +113,25 @@ SetPagesCount sets PagesCount field to given value.
 
 HasPagesCount returns a boolean if a field has been set.
 
-### SetPagesCountNil
+### GetT
 
-`func (o *RunExportReportTaskVM) SetPagesCountNil(b bool)`
+`func (o *RunExportReportTaskVM) GetT() string`
 
- SetPagesCountNil sets the value for PagesCount to be an explicit nil
+GetT returns the T field if non-nil, zero value otherwise.
 
-### UnsetPagesCount
-`func (o *RunExportReportTaskVM) UnsetPagesCount()`
+### GetTOk
 
-UnsetPagesCount ensures that no value is present for PagesCount, not even an explicit nil
-### GetSubscriptionId
+`func (o *RunExportReportTaskVM) GetTOk() (*string, bool)`
 
-`func (o *RunExportReportTaskVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *RunExportReportTaskVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubscriptionId
+### SetT
 
-`func (o *RunExportReportTaskVM) SetSubscriptionId(v string)`
+`func (o *RunExportReportTaskVM) SetT(v string)`
 
-SetSubscriptionId sets SubscriptionId field to given value.
+SetT sets T field to given value.
 
-### HasSubscriptionId
-
-`func (o *RunExportReportTaskVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *RunExportReportTaskVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *RunExportReportTaskVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *RunExportReportTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *RunExportReportTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *RunExportReportTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *RunExportReportTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **FileName** | Pointer to **NullableString** |  | [optional] 
 **FolderId** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to [**FileKind**](FileKind.md) |  | [optional] 
+**IsTemporary** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -121,6 +122,31 @@ SetType sets Type field to given value.
 `func (o *OutputFileVM) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetIsTemporary
+
+`func (o *OutputFileVM) GetIsTemporary() bool`
+
+GetIsTemporary returns the IsTemporary field if non-nil, zero value otherwise.
+
+### GetIsTemporaryOk
+
+`func (o *OutputFileVM) GetIsTemporaryOk() (*bool, bool)`
+
+GetIsTemporaryOk returns a tuple with the IsTemporary field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsTemporary
+
+`func (o *OutputFileVM) SetIsTemporary(v bool)`
+
+SetIsTemporary sets IsTemporary field to given value.
+
+### HasIsTemporary
+
+`func (o *OutputFileVM) HasIsTemporary() bool`
+
+HasIsTemporary returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

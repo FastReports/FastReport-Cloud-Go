@@ -17,6 +17,12 @@
 
 * `ORACLE_DB` (value: `"OracleDB"`)
 
+* `FIREBIRD_DB` (value: `"FirebirdDB"`)
+
+* `MONGO_DB` (value: `"MongoDB"`)
+
+* `CLICK_HOUSE` (value: `"ClickHouse"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

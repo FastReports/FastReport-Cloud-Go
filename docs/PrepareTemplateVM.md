@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Locale** | Pointer to **NullableString** |  | [optional] 
-**ParentFolderId** | Pointer to **NullableString** |  | [optional] 
+**FolderId** | Pointer to **NullableString** |  | [optional] 
 **PagesCount** | Pointer to **NullableInt32** |  | [optional] 
 **ReportParameters** | Pointer to **map[string]string** |  | [optional] 
 
@@ -99,41 +99,41 @@ HasLocale returns a boolean if a field has been set.
 `func (o *PrepareTemplateVM) UnsetLocale()`
 
 UnsetLocale ensures that no value is present for Locale, not even an explicit nil
-### GetParentFolderId
+### GetFolderId
 
-`func (o *PrepareTemplateVM) GetParentFolderId() string`
+`func (o *PrepareTemplateVM) GetFolderId() string`
 
-GetParentFolderId returns the ParentFolderId field if non-nil, zero value otherwise.
+GetFolderId returns the FolderId field if non-nil, zero value otherwise.
 
-### GetParentFolderIdOk
+### GetFolderIdOk
 
-`func (o *PrepareTemplateVM) GetParentFolderIdOk() (*string, bool)`
+`func (o *PrepareTemplateVM) GetFolderIdOk() (*string, bool)`
 
-GetParentFolderIdOk returns a tuple with the ParentFolderId field if it's non-nil, zero value otherwise
+GetFolderIdOk returns a tuple with the FolderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetParentFolderId
+### SetFolderId
 
-`func (o *PrepareTemplateVM) SetParentFolderId(v string)`
+`func (o *PrepareTemplateVM) SetFolderId(v string)`
 
-SetParentFolderId sets ParentFolderId field to given value.
+SetFolderId sets FolderId field to given value.
 
-### HasParentFolderId
+### HasFolderId
 
-`func (o *PrepareTemplateVM) HasParentFolderId() bool`
+`func (o *PrepareTemplateVM) HasFolderId() bool`
 
-HasParentFolderId returns a boolean if a field has been set.
+HasFolderId returns a boolean if a field has been set.
 
-### SetParentFolderIdNil
+### SetFolderIdNil
 
-`func (o *PrepareTemplateVM) SetParentFolderIdNil(b bool)`
+`func (o *PrepareTemplateVM) SetFolderIdNil(b bool)`
 
- SetParentFolderIdNil sets the value for ParentFolderId to be an explicit nil
+ SetFolderIdNil sets the value for FolderId to be an explicit nil
 
-### UnsetParentFolderId
-`func (o *PrepareTemplateVM) UnsetParentFolderId()`
+### UnsetFolderId
+`func (o *PrepareTemplateVM) UnsetFolderId()`
 
-UnsetParentFolderId ensures that no value is present for ParentFolderId, not even an explicit nil
+UnsetFolderId ensures that no value is present for FolderId, not even an explicit nil
 ### GetPagesCount
 
 `func (o *PrepareTemplateVM) GetPagesCount() int32`

@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DataSourcesCountDataSourcesAsync**](DataSourcesApi.md#DataSourcesCountDataSourcesAsync) | **Get** /api/data/v1/DataSources/{subscriptionId}/count | Returns a number of data sources in subscription
 [**DataSourcesCreateDataSource**](DataSourcesApi.md#DataSourcesCreateDataSource) | **Post** /api/data/v1/DataSources | Create new data source
 [**DataSourcesDeleteDataSource**](DataSourcesApi.md#DataSourcesDeleteDataSource) | **Delete** /api/data/v1/DataSources/{id} | Delete data source by id
 [**DataSourcesFetchData**](DataSourcesApi.md#DataSourcesFetchData) | **Get** /api/data/v1/DataSources/{id}/fetch | This should connect to a database and set data structure
@@ -15,6 +16,74 @@ Method | HTTP request | Description
 [**DataSourcesUpdatePermissions**](DataSourcesApi.md#DataSourcesUpdatePermissions) | **Post** /api/data/v1/DataSources/{id}/permissions | Update permissions
 [**DataSourcesUpdateSubscriptionDataSource**](DataSourcesApi.md#DataSourcesUpdateSubscriptionDataSource) | **Put** /api/data/v1/DataSources/{id}/updateSubscription | Update data source&#39;s subscription
 
+
+
+## DataSourcesCountDataSourcesAsync
+
+> int64 DataSourcesCountDataSourcesAsync(ctx, subscriptionId).Execute()
+
+Returns a number of data sources in subscription
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/fastreports/gofrcloud"
+)
+
+func main() {
+    subscriptionId := "subscriptionId_example" // string | subscripiton id
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DataSourcesApi.DataSourcesCountDataSourcesAsync(context.Background(), subscriptionId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesCountDataSourcesAsync``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DataSourcesCountDataSourcesAsync`: int64
+    fmt.Fprintf(os.Stdout, "Response from `DataSourcesApi.DataSourcesCountDataSourcesAsync`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | subscripiton id | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDataSourcesCountDataSourcesAsyncRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**int64**
+
+### Authorization
+
+[ApiKey](../README.md#ApiKey), [JWT](../README.md#JWT)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DataSourcesCreateDataSource
@@ -32,15 +101,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     createDataSourceVM := *openapiclient.NewCreateDataSourceVM("ConnectionString_example", "SubscriptionId_example") // CreateDataSourceVM | create viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesCreateDataSource(context.Background()).CreateDataSourceVM(createDataSourceVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DataSourcesApi.DataSourcesCreateDataSource(context.Background()).CreateDataSourceVM(createDataSourceVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesCreateDataSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -73,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -96,15 +165,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | data source id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesDeleteDataSource(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DataSourcesApi.DataSourcesDeleteDataSource(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesDeleteDataSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -162,15 +231,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | datasource's id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesFetchData(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DataSourcesApi.DataSourcesFetchData(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesFetchData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -228,7 +297,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -239,8 +308,8 @@ func main() {
     desc := true // bool | descending sort (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesGetAvailableDataSources(context.Background()).SubscriptionId(subscriptionId).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DataSourcesApi.DataSourcesGetAvailableDataSources(context.Background()).SubscriptionId(subscriptionId).Skip(skip).Take(take).OrderBy(orderBy).Desc(desc).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesGetAvailableDataSources``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -300,15 +369,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | data source id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesGetDataSource(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DataSourcesApi.DataSourcesGetDataSource(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesGetDataSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -368,15 +437,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
     id := "id_example" // string | data source id
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesGetPermissions(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DataSourcesApi.DataSourcesGetPermissions(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesGetPermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -436,7 +505,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -444,8 +513,8 @@ func main() {
     renameDataSourceVM := *openapiclient.NewRenameDataSourceVM("Name_example") // RenameDataSourceVM | rename viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesRenameDataSource(context.Background(), id).RenameDataSourceVM(renameDataSourceVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DataSourcesApi.DataSourcesRenameDataSource(context.Background(), id).RenameDataSourceVM(renameDataSourceVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesRenameDataSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -483,7 +552,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -506,7 +575,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -514,8 +583,8 @@ func main() {
     updateDataSourceConnectionStringVM := *openapiclient.NewUpdateDataSourceConnectionStringVM("ConnectionString_example") // UpdateDataSourceConnectionStringVM | update viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdateConnectionString(context.Background(), id).UpdateDataSourceConnectionStringVM(updateDataSourceConnectionStringVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DataSourcesApi.DataSourcesUpdateConnectionString(context.Background(), id).UpdateDataSourceConnectionStringVM(updateDataSourceConnectionStringVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesUpdateConnectionString``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -553,7 +622,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -576,7 +645,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -584,8 +653,8 @@ func main() {
     updateDataSourcePermissionsVM := *openapiclient.NewUpdateDataSourcePermissionsVM(*openapiclient.NewDataSourcePermissions(), openapiclient.DataSourceAdministrate(0)) // UpdateDataSourcePermissionsVM |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdatePermissions(context.Background(), id).UpdateDataSourcePermissionsVM(updateDataSourcePermissionsVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DataSourcesApi.DataSourcesUpdatePermissions(context.Background(), id).UpdateDataSourcePermissionsVM(updateDataSourcePermissionsVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesUpdatePermissions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -621,7 +690,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -644,7 +713,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/fastreports/gofrcloud"
 )
 
 func main() {
@@ -652,8 +721,8 @@ func main() {
     updateDataSourceSubscriptionVM := *openapiclient.NewUpdateDataSourceSubscriptionVM("SubscriptionId_example") // UpdateDataSourceSubscriptionVM | update subscription viewmodel (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DataSourcesApi.DataSourcesUpdateSubscriptionDataSource(context.Background(), id).UpdateDataSourceSubscriptionVM(updateDataSourceSubscriptionVM).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DataSourcesApi.DataSourcesUpdateSubscriptionDataSource(context.Background(), id).UpdateDataSourceSubscriptionVM(updateDataSourceSubscriptionVM).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataSourcesApi.DataSourcesUpdateSubscriptionDataSource``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -689,7 +758,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/json, application/_*+json
+- **Content-Type**: application/json, text/json, application/*+json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -4,24 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | Pointer to **NullableString** |  | [optional] 
 **Body** | Pointer to **NullableString** |  | [optional] 
-**IsBodyHtml** | Pointer to **bool** |  | [optional] 
-**Subject** | Pointer to **NullableString** |  | [optional] 
-**To** | Pointer to **[]string** |  | [optional] 
-**From** | Pointer to **NullableString** |  | [optional] 
-**Username** | Pointer to **NullableString** |  | [optional] 
-**Server** | Pointer to **NullableString** |  | [optional] 
-**Port** | Pointer to **int32** |  | [optional] 
 **EnableSsl** | Pointer to **bool** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**From** | Pointer to **NullableString** |  | [optional] 
+**IsBodyHtml** | Pointer to **bool** |  | [optional] 
+**Password** | Pointer to **NullableString** |  | [optional] 
+**Port** | Pointer to **int32** |  | [optional] 
+**Server** | Pointer to **NullableString** |  | [optional] 
+**Subject** | Pointer to **NullableString** |  | [optional] 
+**To** | **[]string** |  | 
+**Username** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewRunEmailTaskVM
 
-`func NewRunEmailTaskVM() *RunEmailTaskVM`
+`func NewRunEmailTaskVM(to []string, ) *RunEmailTaskVM`
 
 NewRunEmailTaskVM instantiates a new RunEmailTaskVM object
 This constructor will assign default values to properties that have it defined,
@@ -35,6 +33,126 @@ will change when the set of required properties is changed
 NewRunEmailTaskVMWithDefaults instantiates a new RunEmailTaskVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBody
+
+`func (o *RunEmailTaskVM) GetBody() string`
+
+GetBody returns the Body field if non-nil, zero value otherwise.
+
+### GetBodyOk
+
+`func (o *RunEmailTaskVM) GetBodyOk() (*string, bool)`
+
+GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBody
+
+`func (o *RunEmailTaskVM) SetBody(v string)`
+
+SetBody sets Body field to given value.
+
+### HasBody
+
+`func (o *RunEmailTaskVM) HasBody() bool`
+
+HasBody returns a boolean if a field has been set.
+
+### SetBodyNil
+
+`func (o *RunEmailTaskVM) SetBodyNil(b bool)`
+
+ SetBodyNil sets the value for Body to be an explicit nil
+
+### UnsetBody
+`func (o *RunEmailTaskVM) UnsetBody()`
+
+UnsetBody ensures that no value is present for Body, not even an explicit nil
+### GetEnableSsl
+
+`func (o *RunEmailTaskVM) GetEnableSsl() bool`
+
+GetEnableSsl returns the EnableSsl field if non-nil, zero value otherwise.
+
+### GetEnableSslOk
+
+`func (o *RunEmailTaskVM) GetEnableSslOk() (*bool, bool)`
+
+GetEnableSslOk returns a tuple with the EnableSsl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableSsl
+
+`func (o *RunEmailTaskVM) SetEnableSsl(v bool)`
+
+SetEnableSsl sets EnableSsl field to given value.
+
+### HasEnableSsl
+
+`func (o *RunEmailTaskVM) HasEnableSsl() bool`
+
+HasEnableSsl returns a boolean if a field has been set.
+
+### GetFrom
+
+`func (o *RunEmailTaskVM) GetFrom() string`
+
+GetFrom returns the From field if non-nil, zero value otherwise.
+
+### GetFromOk
+
+`func (o *RunEmailTaskVM) GetFromOk() (*string, bool)`
+
+GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrom
+
+`func (o *RunEmailTaskVM) SetFrom(v string)`
+
+SetFrom sets From field to given value.
+
+### HasFrom
+
+`func (o *RunEmailTaskVM) HasFrom() bool`
+
+HasFrom returns a boolean if a field has been set.
+
+### SetFromNil
+
+`func (o *RunEmailTaskVM) SetFromNil(b bool)`
+
+ SetFromNil sets the value for From to be an explicit nil
+
+### UnsetFrom
+`func (o *RunEmailTaskVM) UnsetFrom()`
+
+UnsetFrom ensures that no value is present for From, not even an explicit nil
+### GetIsBodyHtml
+
+`func (o *RunEmailTaskVM) GetIsBodyHtml() bool`
+
+GetIsBodyHtml returns the IsBodyHtml field if non-nil, zero value otherwise.
+
+### GetIsBodyHtmlOk
+
+`func (o *RunEmailTaskVM) GetIsBodyHtmlOk() (*bool, bool)`
+
+GetIsBodyHtmlOk returns a tuple with the IsBodyHtml field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsBodyHtml
+
+`func (o *RunEmailTaskVM) SetIsBodyHtml(v bool)`
+
+SetIsBodyHtml sets IsBodyHtml field to given value.
+
+### HasIsBodyHtml
+
+`func (o *RunEmailTaskVM) HasIsBodyHtml() bool`
+
+HasIsBodyHtml returns a boolean if a field has been set.
 
 ### GetPassword
 
@@ -71,66 +189,66 @@ HasPassword returns a boolean if a field has been set.
 `func (o *RunEmailTaskVM) UnsetPassword()`
 
 UnsetPassword ensures that no value is present for Password, not even an explicit nil
-### GetBody
+### GetPort
 
-`func (o *RunEmailTaskVM) GetBody() string`
+`func (o *RunEmailTaskVM) GetPort() int32`
 
-GetBody returns the Body field if non-nil, zero value otherwise.
+GetPort returns the Port field if non-nil, zero value otherwise.
 
-### GetBodyOk
+### GetPortOk
 
-`func (o *RunEmailTaskVM) GetBodyOk() (*string, bool)`
+`func (o *RunEmailTaskVM) GetPortOk() (*int32, bool)`
 
-GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
+GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBody
+### SetPort
 
-`func (o *RunEmailTaskVM) SetBody(v string)`
+`func (o *RunEmailTaskVM) SetPort(v int32)`
 
-SetBody sets Body field to given value.
+SetPort sets Port field to given value.
 
-### HasBody
+### HasPort
 
-`func (o *RunEmailTaskVM) HasBody() bool`
+`func (o *RunEmailTaskVM) HasPort() bool`
 
-HasBody returns a boolean if a field has been set.
+HasPort returns a boolean if a field has been set.
 
-### SetBodyNil
+### GetServer
 
-`func (o *RunEmailTaskVM) SetBodyNil(b bool)`
+`func (o *RunEmailTaskVM) GetServer() string`
 
- SetBodyNil sets the value for Body to be an explicit nil
+GetServer returns the Server field if non-nil, zero value otherwise.
 
-### UnsetBody
-`func (o *RunEmailTaskVM) UnsetBody()`
+### GetServerOk
 
-UnsetBody ensures that no value is present for Body, not even an explicit nil
-### GetIsBodyHtml
+`func (o *RunEmailTaskVM) GetServerOk() (*string, bool)`
 
-`func (o *RunEmailTaskVM) GetIsBodyHtml() bool`
-
-GetIsBodyHtml returns the IsBodyHtml field if non-nil, zero value otherwise.
-
-### GetIsBodyHtmlOk
-
-`func (o *RunEmailTaskVM) GetIsBodyHtmlOk() (*bool, bool)`
-
-GetIsBodyHtmlOk returns a tuple with the IsBodyHtml field if it's non-nil, zero value otherwise
+GetServerOk returns a tuple with the Server field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsBodyHtml
+### SetServer
 
-`func (o *RunEmailTaskVM) SetIsBodyHtml(v bool)`
+`func (o *RunEmailTaskVM) SetServer(v string)`
 
-SetIsBodyHtml sets IsBodyHtml field to given value.
+SetServer sets Server field to given value.
 
-### HasIsBodyHtml
+### HasServer
 
-`func (o *RunEmailTaskVM) HasIsBodyHtml() bool`
+`func (o *RunEmailTaskVM) HasServer() bool`
 
-HasIsBodyHtml returns a boolean if a field has been set.
+HasServer returns a boolean if a field has been set.
 
+### SetServerNil
+
+`func (o *RunEmailTaskVM) SetServerNil(b bool)`
+
+ SetServerNil sets the value for Server to be an explicit nil
+
+### UnsetServer
+`func (o *RunEmailTaskVM) UnsetServer()`
+
+UnsetServer ensures that no value is present for Server, not even an explicit nil
 ### GetSubject
 
 `func (o *RunEmailTaskVM) GetSubject() string`
@@ -185,57 +303,7 @@ and a boolean to check if the value has been set.
 
 SetTo sets To field to given value.
 
-### HasTo
 
-`func (o *RunEmailTaskVM) HasTo() bool`
-
-HasTo returns a boolean if a field has been set.
-
-### SetToNil
-
-`func (o *RunEmailTaskVM) SetToNil(b bool)`
-
- SetToNil sets the value for To to be an explicit nil
-
-### UnsetTo
-`func (o *RunEmailTaskVM) UnsetTo()`
-
-UnsetTo ensures that no value is present for To, not even an explicit nil
-### GetFrom
-
-`func (o *RunEmailTaskVM) GetFrom() string`
-
-GetFrom returns the From field if non-nil, zero value otherwise.
-
-### GetFromOk
-
-`func (o *RunEmailTaskVM) GetFromOk() (*string, bool)`
-
-GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFrom
-
-`func (o *RunEmailTaskVM) SetFrom(v string)`
-
-SetFrom sets From field to given value.
-
-### HasFrom
-
-`func (o *RunEmailTaskVM) HasFrom() bool`
-
-HasFrom returns a boolean if a field has been set.
-
-### SetFromNil
-
-`func (o *RunEmailTaskVM) SetFromNil(b bool)`
-
- SetFromNil sets the value for From to be an explicit nil
-
-### UnsetFrom
-`func (o *RunEmailTaskVM) UnsetFrom()`
-
-UnsetFrom ensures that no value is present for From, not even an explicit nil
 ### GetUsername
 
 `func (o *RunEmailTaskVM) GetUsername() string`
@@ -271,151 +339,6 @@ HasUsername returns a boolean if a field has been set.
 `func (o *RunEmailTaskVM) UnsetUsername()`
 
 UnsetUsername ensures that no value is present for Username, not even an explicit nil
-### GetServer
-
-`func (o *RunEmailTaskVM) GetServer() string`
-
-GetServer returns the Server field if non-nil, zero value otherwise.
-
-### GetServerOk
-
-`func (o *RunEmailTaskVM) GetServerOk() (*string, bool)`
-
-GetServerOk returns a tuple with the Server field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServer
-
-`func (o *RunEmailTaskVM) SetServer(v string)`
-
-SetServer sets Server field to given value.
-
-### HasServer
-
-`func (o *RunEmailTaskVM) HasServer() bool`
-
-HasServer returns a boolean if a field has been set.
-
-### SetServerNil
-
-`func (o *RunEmailTaskVM) SetServerNil(b bool)`
-
- SetServerNil sets the value for Server to be an explicit nil
-
-### UnsetServer
-`func (o *RunEmailTaskVM) UnsetServer()`
-
-UnsetServer ensures that no value is present for Server, not even an explicit nil
-### GetPort
-
-`func (o *RunEmailTaskVM) GetPort() int32`
-
-GetPort returns the Port field if non-nil, zero value otherwise.
-
-### GetPortOk
-
-`func (o *RunEmailTaskVM) GetPortOk() (*int32, bool)`
-
-GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPort
-
-`func (o *RunEmailTaskVM) SetPort(v int32)`
-
-SetPort sets Port field to given value.
-
-### HasPort
-
-`func (o *RunEmailTaskVM) HasPort() bool`
-
-HasPort returns a boolean if a field has been set.
-
-### GetEnableSsl
-
-`func (o *RunEmailTaskVM) GetEnableSsl() bool`
-
-GetEnableSsl returns the EnableSsl field if non-nil, zero value otherwise.
-
-### GetEnableSslOk
-
-`func (o *RunEmailTaskVM) GetEnableSslOk() (*bool, bool)`
-
-GetEnableSslOk returns a tuple with the EnableSsl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnableSsl
-
-`func (o *RunEmailTaskVM) SetEnableSsl(v bool)`
-
-SetEnableSsl sets EnableSsl field to given value.
-
-### HasEnableSsl
-
-`func (o *RunEmailTaskVM) HasEnableSsl() bool`
-
-HasEnableSsl returns a boolean if a field has been set.
-
-### GetSubscriptionId
-
-`func (o *RunEmailTaskVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *RunEmailTaskVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *RunEmailTaskVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *RunEmailTaskVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *RunEmailTaskVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *RunEmailTaskVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *RunEmailTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *RunEmailTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *RunEmailTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *RunEmailTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

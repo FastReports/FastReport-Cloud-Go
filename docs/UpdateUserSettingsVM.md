@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProfileVisibility** | Pointer to [**ProfileVisibility**](ProfileVisibility.md) |  | [optional] 
+**ProfileVisibility** | Pointer to [**NullableProfileVisibility**](ProfileVisibility.md) |  | [optional] 
 **DefaultSubscription** | Pointer to **NullableString** |  | [optional] 
 **ShowHiddenFilesAndFolders** | Pointer to **NullableBool** |  | [optional] 
+**SubscribedNotifications** | Pointer to [**[]AuditType**](AuditType.md) |  | [optional] 
 
 ## Methods
 
@@ -52,6 +53,16 @@ SetProfileVisibility sets ProfileVisibility field to given value.
 
 HasProfileVisibility returns a boolean if a field has been set.
 
+### SetProfileVisibilityNil
+
+`func (o *UpdateUserSettingsVM) SetProfileVisibilityNil(b bool)`
+
+ SetProfileVisibilityNil sets the value for ProfileVisibility to be an explicit nil
+
+### UnsetProfileVisibility
+`func (o *UpdateUserSettingsVM) UnsetProfileVisibility()`
+
+UnsetProfileVisibility ensures that no value is present for ProfileVisibility, not even an explicit nil
 ### GetDefaultSubscription
 
 `func (o *UpdateUserSettingsVM) GetDefaultSubscription() string`
@@ -122,6 +133,41 @@ HasShowHiddenFilesAndFolders returns a boolean if a field has been set.
 `func (o *UpdateUserSettingsVM) UnsetShowHiddenFilesAndFolders()`
 
 UnsetShowHiddenFilesAndFolders ensures that no value is present for ShowHiddenFilesAndFolders, not even an explicit nil
+### GetSubscribedNotifications
+
+`func (o *UpdateUserSettingsVM) GetSubscribedNotifications() []AuditType`
+
+GetSubscribedNotifications returns the SubscribedNotifications field if non-nil, zero value otherwise.
+
+### GetSubscribedNotificationsOk
+
+`func (o *UpdateUserSettingsVM) GetSubscribedNotificationsOk() (*[]AuditType, bool)`
+
+GetSubscribedNotificationsOk returns a tuple with the SubscribedNotifications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscribedNotifications
+
+`func (o *UpdateUserSettingsVM) SetSubscribedNotifications(v []AuditType)`
+
+SetSubscribedNotifications sets SubscribedNotifications field to given value.
+
+### HasSubscribedNotifications
+
+`func (o *UpdateUserSettingsVM) HasSubscribedNotifications() bool`
+
+HasSubscribedNotifications returns a boolean if a field has been set.
+
+### SetSubscribedNotificationsNil
+
+`func (o *UpdateUserSettingsVM) SetSubscribedNotificationsNil(b bool)`
+
+ SetSubscribedNotificationsNil sets the value for SubscribedNotifications to be an explicit nil
+
+### UnsetSubscribedNotifications
+`func (o *UpdateUserSettingsVM) UnsetSubscribedNotifications()`
+
+UnsetSubscribedNotifications ensures that no value is present for SubscribedNotifications, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

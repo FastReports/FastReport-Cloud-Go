@@ -5,10 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TemplateId** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Icon** | Pointer to **NullableString** |  | [optional] 
-**Content** | Pointer to **NullableString** |  | [optional] 
+**ReportId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -64,146 +61,41 @@ HasTemplateId returns a boolean if a field has been set.
 `func (o *ExportCreateVM) UnsetTemplateId()`
 
 UnsetTemplateId ensures that no value is present for TemplateId, not even an explicit nil
-### GetName
+### GetReportId
 
-`func (o *ExportCreateVM) GetName() string`
+`func (o *ExportCreateVM) GetReportId() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetReportId returns the ReportId field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetReportIdOk
 
-`func (o *ExportCreateVM) GetNameOk() (*string, bool)`
+`func (o *ExportCreateVM) GetReportIdOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetReportIdOk returns a tuple with the ReportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetReportId
 
-`func (o *ExportCreateVM) SetName(v string)`
+`func (o *ExportCreateVM) SetReportId(v string)`
 
-SetName sets Name field to given value.
+SetReportId sets ReportId field to given value.
 
-### HasName
+### HasReportId
 
-`func (o *ExportCreateVM) HasName() bool`
+`func (o *ExportCreateVM) HasReportId() bool`
 
-HasName returns a boolean if a field has been set.
+HasReportId returns a boolean if a field has been set.
 
-### SetNameNil
+### SetReportIdNil
 
-`func (o *ExportCreateVM) SetNameNil(b bool)`
+`func (o *ExportCreateVM) SetReportIdNil(b bool)`
 
- SetNameNil sets the value for Name to be an explicit nil
+ SetReportIdNil sets the value for ReportId to be an explicit nil
 
-### UnsetName
-`func (o *ExportCreateVM) UnsetName()`
+### UnsetReportId
+`func (o *ExportCreateVM) UnsetReportId()`
 
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetTags
-
-`func (o *ExportCreateVM) GetTags() []string`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *ExportCreateVM) GetTagsOk() (*[]string, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *ExportCreateVM) SetTags(v []string)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *ExportCreateVM) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
-
-### SetTagsNil
-
-`func (o *ExportCreateVM) SetTagsNil(b bool)`
-
- SetTagsNil sets the value for Tags to be an explicit nil
-
-### UnsetTags
-`func (o *ExportCreateVM) UnsetTags()`
-
-UnsetTags ensures that no value is present for Tags, not even an explicit nil
-### GetIcon
-
-`func (o *ExportCreateVM) GetIcon() string`
-
-GetIcon returns the Icon field if non-nil, zero value otherwise.
-
-### GetIconOk
-
-`func (o *ExportCreateVM) GetIconOk() (*string, bool)`
-
-GetIconOk returns a tuple with the Icon field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIcon
-
-`func (o *ExportCreateVM) SetIcon(v string)`
-
-SetIcon sets Icon field to given value.
-
-### HasIcon
-
-`func (o *ExportCreateVM) HasIcon() bool`
-
-HasIcon returns a boolean if a field has been set.
-
-### SetIconNil
-
-`func (o *ExportCreateVM) SetIconNil(b bool)`
-
- SetIconNil sets the value for Icon to be an explicit nil
-
-### UnsetIcon
-`func (o *ExportCreateVM) UnsetIcon()`
-
-UnsetIcon ensures that no value is present for Icon, not even an explicit nil
-### GetContent
-
-`func (o *ExportCreateVM) GetContent() string`
-
-GetContent returns the Content field if non-nil, zero value otherwise.
-
-### GetContentOk
-
-`func (o *ExportCreateVM) GetContentOk() (*string, bool)`
-
-GetContentOk returns a tuple with the Content field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContent
-
-`func (o *ExportCreateVM) SetContent(v string)`
-
-SetContent sets Content field to given value.
-
-### HasContent
-
-`func (o *ExportCreateVM) HasContent() bool`
-
-HasContent returns a boolean if a field has been set.
-
-### SetContentNil
-
-`func (o *ExportCreateVM) SetContentNil(b bool)`
-
- SetContentNil sets the value for Content to be an explicit nil
-
-### UnsetContent
-`func (o *ExportCreateVM) UnsetContent()`
-
-UnsetContent ensures that no value is present for Content, not even an explicit nil
+UnsetReportId ensures that no value is present for ReportId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

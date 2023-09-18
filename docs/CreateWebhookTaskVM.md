@@ -4,10 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Endpoints** | Pointer to [**[]CreateEndpointVM**](CreateEndpointVM.md) |  | [optional] 
-**Name** | Pointer to **NullableString** |  | [optional] 
-**SubscriptionId** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to [**TaskType**](TaskType.md) |  | [optional] 
+**Headers** | Pointer to **map[string]string** |  | [optional] 
+**Url** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -28,136 +26,76 @@ NewCreateWebhookTaskVMWithDefaults instantiates a new CreateWebhookTaskVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEndpoints
+### GetHeaders
 
-`func (o *CreateWebhookTaskVM) GetEndpoints() []CreateEndpointVM`
+`func (o *CreateWebhookTaskVM) GetHeaders() map[string]string`
 
-GetEndpoints returns the Endpoints field if non-nil, zero value otherwise.
+GetHeaders returns the Headers field if non-nil, zero value otherwise.
 
-### GetEndpointsOk
+### GetHeadersOk
 
-`func (o *CreateWebhookTaskVM) GetEndpointsOk() (*[]CreateEndpointVM, bool)`
+`func (o *CreateWebhookTaskVM) GetHeadersOk() (*map[string]string, bool)`
 
-GetEndpointsOk returns a tuple with the Endpoints field if it's non-nil, zero value otherwise
+GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndpoints
+### SetHeaders
 
-`func (o *CreateWebhookTaskVM) SetEndpoints(v []CreateEndpointVM)`
+`func (o *CreateWebhookTaskVM) SetHeaders(v map[string]string)`
 
-SetEndpoints sets Endpoints field to given value.
+SetHeaders sets Headers field to given value.
 
-### HasEndpoints
+### HasHeaders
 
-`func (o *CreateWebhookTaskVM) HasEndpoints() bool`
+`func (o *CreateWebhookTaskVM) HasHeaders() bool`
 
-HasEndpoints returns a boolean if a field has been set.
+HasHeaders returns a boolean if a field has been set.
 
-### SetEndpointsNil
+### SetHeadersNil
 
-`func (o *CreateWebhookTaskVM) SetEndpointsNil(b bool)`
+`func (o *CreateWebhookTaskVM) SetHeadersNil(b bool)`
 
- SetEndpointsNil sets the value for Endpoints to be an explicit nil
+ SetHeadersNil sets the value for Headers to be an explicit nil
 
-### UnsetEndpoints
-`func (o *CreateWebhookTaskVM) UnsetEndpoints()`
+### UnsetHeaders
+`func (o *CreateWebhookTaskVM) UnsetHeaders()`
 
-UnsetEndpoints ensures that no value is present for Endpoints, not even an explicit nil
-### GetName
+UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
+### GetUrl
 
-`func (o *CreateWebhookTaskVM) GetName() string`
+`func (o *CreateWebhookTaskVM) GetUrl() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetUrl returns the Url field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetUrlOk
 
-`func (o *CreateWebhookTaskVM) GetNameOk() (*string, bool)`
+`func (o *CreateWebhookTaskVM) GetUrlOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetUrl
 
-`func (o *CreateWebhookTaskVM) SetName(v string)`
+`func (o *CreateWebhookTaskVM) SetUrl(v string)`
 
-SetName sets Name field to given value.
+SetUrl sets Url field to given value.
 
-### HasName
+### HasUrl
 
-`func (o *CreateWebhookTaskVM) HasName() bool`
+`func (o *CreateWebhookTaskVM) HasUrl() bool`
 
-HasName returns a boolean if a field has been set.
+HasUrl returns a boolean if a field has been set.
 
-### SetNameNil
+### SetUrlNil
 
-`func (o *CreateWebhookTaskVM) SetNameNil(b bool)`
+`func (o *CreateWebhookTaskVM) SetUrlNil(b bool)`
 
- SetNameNil sets the value for Name to be an explicit nil
+ SetUrlNil sets the value for Url to be an explicit nil
 
-### UnsetName
-`func (o *CreateWebhookTaskVM) UnsetName()`
+### UnsetUrl
+`func (o *CreateWebhookTaskVM) UnsetUrl()`
 
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetSubscriptionId
-
-`func (o *CreateWebhookTaskVM) GetSubscriptionId() string`
-
-GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
-
-### GetSubscriptionIdOk
-
-`func (o *CreateWebhookTaskVM) GetSubscriptionIdOk() (*string, bool)`
-
-GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionId
-
-`func (o *CreateWebhookTaskVM) SetSubscriptionId(v string)`
-
-SetSubscriptionId sets SubscriptionId field to given value.
-
-### HasSubscriptionId
-
-`func (o *CreateWebhookTaskVM) HasSubscriptionId() bool`
-
-HasSubscriptionId returns a boolean if a field has been set.
-
-### SetSubscriptionIdNil
-
-`func (o *CreateWebhookTaskVM) SetSubscriptionIdNil(b bool)`
-
- SetSubscriptionIdNil sets the value for SubscriptionId to be an explicit nil
-
-### UnsetSubscriptionId
-`func (o *CreateWebhookTaskVM) UnsetSubscriptionId()`
-
-UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
-### GetType
-
-`func (o *CreateWebhookTaskVM) GetType() TaskType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *CreateWebhookTaskVM) GetTypeOk() (*TaskType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *CreateWebhookTaskVM) SetType(v TaskType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *CreateWebhookTaskVM) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
+UnsetUrl ensures that no value is present for Url, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
