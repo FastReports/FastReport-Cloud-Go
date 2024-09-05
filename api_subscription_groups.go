@@ -20,12 +20,12 @@ import (
 )
 
 
-// SubscriptionGroupsApiService SubscriptionGroupsApi service
-type SubscriptionGroupsApiService service
+// SubscriptionGroupsAPIService SubscriptionGroupsAPI service
+type SubscriptionGroupsAPIService service
 
 type ApiSubscriptionGroupsCountGroupsAsyncRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionGroupsApiService
+	ApiService *SubscriptionGroupsAPIService
 	subscriptionId string
 }
 
@@ -40,7 +40,7 @@ SubscriptionGroupsCountGroupsAsync Returns a number of groups in subscription
  @param subscriptionId subscripiton id
  @return ApiSubscriptionGroupsCountGroupsAsyncRequest
 */
-func (a *SubscriptionGroupsApiService) SubscriptionGroupsCountGroupsAsync(ctx context.Context, subscriptionId string) ApiSubscriptionGroupsCountGroupsAsyncRequest {
+func (a *SubscriptionGroupsAPIService) SubscriptionGroupsCountGroupsAsync(ctx context.Context, subscriptionId string) ApiSubscriptionGroupsCountGroupsAsyncRequest {
 	return ApiSubscriptionGroupsCountGroupsAsyncRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -50,7 +50,7 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsCountGroupsAsync(ctx co
 
 // Execute executes the request
 //  @return int64
-func (a *SubscriptionGroupsApiService) SubscriptionGroupsCountGroupsAsyncExecute(r ApiSubscriptionGroupsCountGroupsAsyncRequest) (int64, *http.Response, error) {
+func (a *SubscriptionGroupsAPIService) SubscriptionGroupsCountGroupsAsyncExecute(r ApiSubscriptionGroupsCountGroupsAsyncRequest) (int64, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -58,7 +58,7 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsCountGroupsAsyncExecute
 		localVarReturnValue  int64
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionGroupsApiService.SubscriptionGroupsCountGroupsAsync")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionGroupsAPIService.SubscriptionGroupsCountGroupsAsync")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -120,6 +120,17 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsCountGroupsAsyncExecute
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -158,7 +169,7 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsCountGroupsAsyncExecute
 
 type ApiSubscriptionGroupsGetGroupsListRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionGroupsApiService
+	ApiService *SubscriptionGroupsAPIService
 	subscriptionId string
 	userId *string
 }
@@ -180,7 +191,7 @@ SubscriptionGroupsGetGroupsList returns groups of the subscription or subscripti
  @param subscriptionId subscripiton id
  @return ApiSubscriptionGroupsGetGroupsListRequest
 */
-func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupsList(ctx context.Context, subscriptionId string) ApiSubscriptionGroupsGetGroupsListRequest {
+func (a *SubscriptionGroupsAPIService) SubscriptionGroupsGetGroupsList(ctx context.Context, subscriptionId string) ApiSubscriptionGroupsGetGroupsListRequest {
 	return ApiSubscriptionGroupsGetGroupsListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -190,7 +201,7 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupsList(ctx conte
 
 // Execute executes the request
 //  @return GroupsVM
-func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupsListExecute(r ApiSubscriptionGroupsGetGroupsListRequest) (*GroupsVM, *http.Response, error) {
+func (a *SubscriptionGroupsAPIService) SubscriptionGroupsGetGroupsListExecute(r ApiSubscriptionGroupsGetGroupsListRequest) (*GroupsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -198,7 +209,7 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupsListExecute(r 
 		localVarReturnValue  *GroupsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionGroupsApiService.SubscriptionGroupsGetGroupsList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionGroupsAPIService.SubscriptionGroupsGetGroupsList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -253,6 +264,17 @@ func (a *SubscriptionGroupsApiService) SubscriptionGroupsGetGroupsListExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

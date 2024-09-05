@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing ContactsApiService
+Testing ContactsAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_ContactsApiService(t *testing.T) {
+func Test_gofrcloud_ContactsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ContactsApiService ContactsCreate", func(t *testing.T) {
+	t.Run("Test ContactsAPIService ContactsCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ContactsApi.ContactsCreate(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ContactsAPI.ContactsCreate(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,26 +34,26 @@ func Test_gofrcloud_ContactsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ContactsApiService ContactsDelete", func(t *testing.T) {
+	t.Run("Test ContactsAPIService ContactsDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.ContactsApi.ContactsDelete(context.Background(), id).Execute()
+		httpRes, err := apiClient.ContactsAPI.ContactsDelete(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ContactsApiService ContactsGet", func(t *testing.T) {
+	t.Run("Test ContactsAPIService ContactsGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ContactsApi.ContactsGet(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ContactsAPI.ContactsGet(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -61,13 +61,13 @@ func Test_gofrcloud_ContactsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ContactsApiService ContactsGetByGroup", func(t *testing.T) {
+	t.Run("Test ContactsAPIService ContactsGetByGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var groupId string
 
-		resp, httpRes, err := apiClient.ContactsApi.ContactsGetByGroup(context.Background(), groupId).Execute()
+		resp, httpRes, err := apiClient.ContactsAPI.ContactsGetByGroup(context.Background(), groupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -75,13 +75,13 @@ func Test_gofrcloud_ContactsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ContactsApiService ContactsGetList", func(t *testing.T) {
+	t.Run("Test ContactsAPIService ContactsGetList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.ContactsApi.ContactsGetList(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.ContactsAPI.ContactsGetList(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -89,13 +89,13 @@ func Test_gofrcloud_ContactsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ContactsApiService ContactsUpdate", func(t *testing.T) {
+	t.Run("Test ContactsAPIService ContactsUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ContactsApi.ContactsUpdate(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ContactsAPI.ContactsUpdate(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

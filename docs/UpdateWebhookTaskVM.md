@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Headers** | Pointer to **map[string]string** |  | [optional] 
 **Url** | Pointer to **NullableString** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewUpdateWebhookTaskVM
 
-`func NewUpdateWebhookTaskVM() *UpdateWebhookTaskVM`
+`func NewUpdateWebhookTaskVM(t string, ) *UpdateWebhookTaskVM`
 
 NewUpdateWebhookTaskVM instantiates a new UpdateWebhookTaskVM object
 This constructor will assign default values to properties that have it defined,
@@ -96,6 +97,26 @@ HasUrl returns a boolean if a field has been set.
 `func (o *UpdateWebhookTaskVM) UnsetUrl()`
 
 UnsetUrl ensures that no value is present for Url, not even an explicit nil
+### GetT
+
+`func (o *UpdateWebhookTaskVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *UpdateWebhookTaskVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *UpdateWebhookTaskVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

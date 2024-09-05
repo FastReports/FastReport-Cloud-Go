@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UpdateDataSourcePermissionsVM type satisfies the MappedNullable interface at compile time
@@ -19,18 +21,21 @@ var _ MappedNullable = &UpdateDataSourcePermissionsVM{}
 
 // UpdateDataSourcePermissionsVM struct for UpdateDataSourcePermissionsVM
 type UpdateDataSourcePermissionsVM struct {
-	NewPermissions DataSourcePermissions `json:"newPermissions"`
+	CloudBaseVM
+	NewPermissions DataSourcePermissionsCRUDVM `json:"newPermissions"`
 	Administrate DataSourceAdministrate `json:"administrate"`
+	T string `json:"$t"`
 }
+
+type _UpdateDataSourcePermissionsVM UpdateDataSourcePermissionsVM
 
 // NewUpdateDataSourcePermissionsVM instantiates a new UpdateDataSourcePermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateDataSourcePermissionsVM(newPermissions DataSourcePermissions, administrate DataSourceAdministrate) *UpdateDataSourcePermissionsVM {
+func NewUpdateDataSourcePermissionsVM(newPermissions DataSourcePermissionsCRUDVM, administrate DataSourceAdministrate, t string) *UpdateDataSourcePermissionsVM {
 	this := UpdateDataSourcePermissionsVM{}
-	this.NewPermissions = newPermissions
-	this.Administrate = administrate
+	this.T = t
 	return &this
 }
 
@@ -43,9 +48,9 @@ func NewUpdateDataSourcePermissionsVMWithDefaults() *UpdateDataSourcePermissions
 }
 
 // GetNewPermissions returns the NewPermissions field value
-func (o *UpdateDataSourcePermissionsVM) GetNewPermissions() DataSourcePermissions {
+func (o *UpdateDataSourcePermissionsVM) GetNewPermissions() DataSourcePermissionsCRUDVM {
 	if o == nil {
-		var ret DataSourcePermissions
+		var ret DataSourcePermissionsCRUDVM
 		return ret
 	}
 
@@ -54,7 +59,7 @@ func (o *UpdateDataSourcePermissionsVM) GetNewPermissions() DataSourcePermission
 
 // GetNewPermissionsOk returns a tuple with the NewPermissions field value
 // and a boolean to check if the value has been set.
-func (o *UpdateDataSourcePermissionsVM) GetNewPermissionsOk() (*DataSourcePermissions, bool) {
+func (o *UpdateDataSourcePermissionsVM) GetNewPermissionsOk() (*DataSourcePermissionsCRUDVM, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,7 +67,7 @@ func (o *UpdateDataSourcePermissionsVM) GetNewPermissionsOk() (*DataSourcePermis
 }
 
 // SetNewPermissions sets field value
-func (o *UpdateDataSourcePermissionsVM) SetNewPermissions(v DataSourcePermissions) {
+func (o *UpdateDataSourcePermissionsVM) SetNewPermissions(v DataSourcePermissionsCRUDVM) {
 	o.NewPermissions = v
 }
 
@@ -90,6 +95,30 @@ func (o *UpdateDataSourcePermissionsVM) SetAdministrate(v DataSourceAdministrate
 	o.Administrate = v
 }
 
+// GetT returns the T field value
+func (o *UpdateDataSourcePermissionsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *UpdateDataSourcePermissionsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *UpdateDataSourcePermissionsVM) SetT(v string) {
+	o.T = v
+}
+
 func (o UpdateDataSourcePermissionsVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -100,9 +129,57 @@ func (o UpdateDataSourcePermissionsVM) MarshalJSON() ([]byte, error) {
 
 func (o UpdateDataSourcePermissionsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	toSerialize["newPermissions"] = o.NewPermissions
 	toSerialize["administrate"] = o.Administrate
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *UpdateDataSourcePermissionsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"newPermissions",
+		"administrate",
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateDataSourcePermissionsVM := _UpdateDataSourcePermissionsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateDataSourcePermissionsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateDataSourcePermissionsVM(varUpdateDataSourcePermissionsVM)
+
+	return err
 }
 
 type NullableUpdateDataSourcePermissionsVM struct {

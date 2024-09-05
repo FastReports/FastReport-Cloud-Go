@@ -10,12 +10,13 @@ Name | Type | Description | Notes
 **PagesCount** | Pointer to **NullableInt32** |  | [optional] 
 **Format** | Pointer to [**ExportFormat**](ExportFormat.md) |  | [optional] 
 **ExportParameters** | Pointer to **map[string]string** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewExportReportVM
 
-`func NewExportReportVM() *ExportReportVM`
+`func NewExportReportVM(t string, ) *ExportReportVM`
 
 NewExportReportVM instantiates a new ExportReportVM object
 This constructor will assign default values to properties that have it defined,
@@ -230,6 +231,26 @@ HasExportParameters returns a boolean if a field has been set.
 `func (o *ExportReportVM) UnsetExportParameters()`
 
 UnsetExportParameters ensures that no value is present for ExportParameters, not even an explicit nil
+### GetT
+
+`func (o *ExportReportVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *ExportReportVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *ExportReportVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

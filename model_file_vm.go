@@ -12,6 +12,9 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FileVM type satisfies the MappedNullable interface at compile time
@@ -19,6 +22,12 @@ var _ MappedNullable = &FileVM{}
 
 // FileVM struct for FileVM
 type FileVM struct {
+	CloudBaseVM
+	Id NullableString `json:"id,omitempty"`
+	CreatedTime *time.Time `json:"createdTime,omitempty"`
+	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
+	EditedTime *time.Time `json:"editedTime,omitempty"`
+	EditorUserId NullableString `json:"editorUserId,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	ParentId NullableString `json:"parentId,omitempty"`
 	Tags []string `json:"tags,omitempty"`
@@ -30,14 +39,18 @@ type FileVM struct {
 	StatusReason *FileStatusReason `json:"statusReason,omitempty"`
 	ErrorMessage NullableString `json:"errorMessage,omitempty"`
 	IsDeleted *bool `json:"isDeleted,omitempty"`
+	T string `json:"$t"`
 }
+
+type _FileVM FileVM
 
 // NewFileVM instantiates a new FileVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileVM() *FileVM {
+func NewFileVM(t string) *FileVM {
 	this := FileVM{}
+	this.T = t
 	return &this
 }
 
@@ -47,6 +60,196 @@ func NewFileVM() *FileVM {
 func NewFileVMWithDefaults() *FileVM {
 	this := FileVM{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FileVM) GetId() string {
+	if o == nil || IsNil(o.Id.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Id.Get()
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FileVM) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id.Get(), o.Id.IsSet()
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *FileVM) HasId() bool {
+	if o != nil && o.Id.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given NullableString and assigns it to the Id field.
+func (o *FileVM) SetId(v string) {
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *FileVM) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *FileVM) UnsetId() {
+	o.Id.Unset()
+}
+
+// GetCreatedTime returns the CreatedTime field value if set, zero value otherwise.
+func (o *FileVM) GetCreatedTime() time.Time {
+	if o == nil || IsNil(o.CreatedTime) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedTime
+}
+
+// GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileVM) GetCreatedTimeOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.CreatedTime) {
+		return nil, false
+	}
+	return o.CreatedTime, true
+}
+
+// HasCreatedTime returns a boolean if a field has been set.
+func (o *FileVM) HasCreatedTime() bool {
+	if o != nil && !IsNil(o.CreatedTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedTime gets a reference to the given time.Time and assigns it to the CreatedTime field.
+func (o *FileVM) SetCreatedTime(v time.Time) {
+	o.CreatedTime = &v
+}
+
+// GetCreatorUserId returns the CreatorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FileVM) GetCreatorUserId() string {
+	if o == nil || IsNil(o.CreatorUserId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CreatorUserId.Get()
+}
+
+// GetCreatorUserIdOk returns a tuple with the CreatorUserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FileVM) GetCreatorUserIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatorUserId.Get(), o.CreatorUserId.IsSet()
+}
+
+// HasCreatorUserId returns a boolean if a field has been set.
+func (o *FileVM) HasCreatorUserId() bool {
+	if o != nil && o.CreatorUserId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatorUserId gets a reference to the given NullableString and assigns it to the CreatorUserId field.
+func (o *FileVM) SetCreatorUserId(v string) {
+	o.CreatorUserId.Set(&v)
+}
+// SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+func (o *FileVM) SetCreatorUserIdNil() {
+	o.CreatorUserId.Set(nil)
+}
+
+// UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+func (o *FileVM) UnsetCreatorUserId() {
+	o.CreatorUserId.Unset()
+}
+
+// GetEditedTime returns the EditedTime field value if set, zero value otherwise.
+func (o *FileVM) GetEditedTime() time.Time {
+	if o == nil || IsNil(o.EditedTime) {
+		var ret time.Time
+		return ret
+	}
+	return *o.EditedTime
+}
+
+// GetEditedTimeOk returns a tuple with the EditedTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileVM) GetEditedTimeOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.EditedTime) {
+		return nil, false
+	}
+	return o.EditedTime, true
+}
+
+// HasEditedTime returns a boolean if a field has been set.
+func (o *FileVM) HasEditedTime() bool {
+	if o != nil && !IsNil(o.EditedTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetEditedTime gets a reference to the given time.Time and assigns it to the EditedTime field.
+func (o *FileVM) SetEditedTime(v time.Time) {
+	o.EditedTime = &v
+}
+
+// GetEditorUserId returns the EditorUserId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FileVM) GetEditorUserId() string {
+	if o == nil || IsNil(o.EditorUserId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.EditorUserId.Get()
+}
+
+// GetEditorUserIdOk returns a tuple with the EditorUserId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FileVM) GetEditorUserIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EditorUserId.Get(), o.EditorUserId.IsSet()
+}
+
+// HasEditorUserId returns a boolean if a field has been set.
+func (o *FileVM) HasEditorUserId() bool {
+	if o != nil && o.EditorUserId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEditorUserId gets a reference to the given NullableString and assigns it to the EditorUserId field.
+func (o *FileVM) SetEditorUserId(v string) {
+	o.EditorUserId.Set(&v)
+}
+// SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
+func (o *FileVM) SetEditorUserIdNil() {
+	o.EditorUserId.Set(nil)
+}
+
+// UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
+func (o *FileVM) UnsetEditorUserId() {
+	o.EditorUserId.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -452,6 +655,30 @@ func (o *FileVM) SetIsDeleted(v bool) {
 	o.IsDeleted = &v
 }
 
+// GetT returns the T field value
+func (o *FileVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *FileVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *FileVM) SetT(v string) {
+	o.T = v
+}
+
 func (o FileVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -462,6 +689,29 @@ func (o FileVM) MarshalJSON() ([]byte, error) {
 
 func (o FileVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
+	}
+	if !IsNil(o.CreatedTime) {
+		toSerialize["createdTime"] = o.CreatedTime
+	}
+	if o.CreatorUserId.IsSet() {
+		toSerialize["creatorUserId"] = o.CreatorUserId.Get()
+	}
+	if !IsNil(o.EditedTime) {
+		toSerialize["editedTime"] = o.EditedTime
+	}
+	if o.EditorUserId.IsSet() {
+		toSerialize["editorUserId"] = o.EditorUserId.Get()
+	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
@@ -495,7 +745,45 @@ func (o FileVM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsDeleted) {
 		toSerialize["isDeleted"] = o.IsDeleted
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *FileVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFileVM := _FileVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFileVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FileVM(varFileVM)
+
+	return err
 }
 
 type NullableFileVM struct {

@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing GroupsApiService
+Testing GroupsAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_GroupsApiService(t *testing.T) {
+func Test_gofrcloud_GroupsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test GroupsApiService GroupsCreateGroup", func(t *testing.T) {
+	t.Run("Test GroupsAPIService GroupsCreateGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.GroupsApi.GroupsCreateGroup(context.Background()).Execute()
+		resp, httpRes, err := apiClient.GroupsAPI.GroupsCreateGroup(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,38 +34,26 @@ func Test_gofrcloud_GroupsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test GroupsApiService GroupsDeleteGroup", func(t *testing.T) {
+	t.Run("Test GroupsAPIService GroupsDeleteGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.GroupsApi.GroupsDeleteGroup(context.Background(), id).Execute()
+		httpRes, err := apiClient.GroupsAPI.GroupsDeleteGroup(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test GroupsApiService GroupsGetGroup", func(t *testing.T) {
+	t.Run("Test GroupsAPIService GroupsGetGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.GroupsApi.GroupsGetGroup(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test GroupsApiService GroupsGetGroupList", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.GroupsApi.GroupsGetGroupList(context.Background()).Execute()
+		resp, httpRes, err := apiClient.GroupsAPI.GroupsGetGroup(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -73,13 +61,11 @@ func Test_gofrcloud_GroupsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test GroupsApiService GroupsGetPermissions", func(t *testing.T) {
+	t.Run("Test GroupsAPIService GroupsGetGroupList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-
-		resp, httpRes, err := apiClient.GroupsApi.GroupsGetPermissions(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.GroupsAPI.GroupsGetGroupList(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -87,13 +73,13 @@ func Test_gofrcloud_GroupsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test GroupsApiService GroupsRenameGroup", func(t *testing.T) {
+	t.Run("Test GroupsAPIService GroupsGetPermissions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.GroupsApi.GroupsRenameGroup(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.GroupsAPI.GroupsGetPermissions(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -101,13 +87,27 @@ func Test_gofrcloud_GroupsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test GroupsApiService GroupsUpdatePermissions", func(t *testing.T) {
+	t.Run("Test GroupsAPIService GroupsRenameGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.GroupsApi.GroupsUpdatePermissions(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.GroupsAPI.GroupsRenameGroup(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test GroupsAPIService GroupsUpdatePermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		httpRes, err := apiClient.GroupsAPI.GroupsUpdatePermissions(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

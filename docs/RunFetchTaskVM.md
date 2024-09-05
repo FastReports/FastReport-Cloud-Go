@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DataSourceId** | Pointer to **NullableString** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewRunFetchTaskVM
 
-`func NewRunFetchTaskVM() *RunFetchTaskVM`
+`func NewRunFetchTaskVM(t string, ) *RunFetchTaskVM`
 
 NewRunFetchTaskVM instantiates a new RunFetchTaskVM object
 This constructor will assign default values to properties that have it defined,
@@ -60,6 +61,26 @@ HasDataSourceId returns a boolean if a field has been set.
 `func (o *RunFetchTaskVM) UnsetDataSourceId()`
 
 UnsetDataSourceId ensures that no value is present for DataSourceId, not even an explicit nil
+### GetT
+
+`func (o *RunFetchTaskVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *RunFetchTaskVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *RunFetchTaskVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

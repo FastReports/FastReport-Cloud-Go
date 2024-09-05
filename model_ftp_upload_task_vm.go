@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FTPUploadTaskVM type satisfies the MappedNullable interface at compile time
@@ -19,6 +21,7 @@ var _ MappedNullable = &FTPUploadTaskVM{}
 
 // FTPUploadTaskVM struct for FTPUploadTaskVM
 type FTPUploadTaskVM struct {
+	TransportTaskBaseVM
 	Archive *bool `json:"archive,omitempty"`
 	ArchiveName NullableString `json:"archiveName,omitempty"`
 	DestinationFolder NullableString `json:"destinationFolder,omitempty"`
@@ -26,7 +29,10 @@ type FTPUploadTaskVM struct {
 	FtpPort *int32 `json:"ftpPort,omitempty"`
 	FtpUsername NullableString `json:"ftpUsername,omitempty"`
 	UseSFTP *bool `json:"useSFTP,omitempty"`
+	T string `json:"$t"`
 }
+
+type _FTPUploadTaskVM FTPUploadTaskVM
 
 // NewFTPUploadTaskVM instantiates a new FTPUploadTaskVM object
 // This constructor will assign default values to properties that have it defined,
@@ -310,6 +316,30 @@ func (o *FTPUploadTaskVM) SetUseSFTP(v bool) {
 	o.UseSFTP = &v
 }
 
+// GetT returns the T field value
+func (o *FTPUploadTaskVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *FTPUploadTaskVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *FTPUploadTaskVM) SetT(v string) {
+	o.T = v
+}
+
 func (o FTPUploadTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -320,6 +350,14 @@ func (o FTPUploadTaskVM) MarshalJSON() ([]byte, error) {
 
 func (o FTPUploadTaskVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedTransportTaskBaseVM, errTransportTaskBaseVM := json.Marshal(o.TransportTaskBaseVM)
+	if errTransportTaskBaseVM != nil {
+		return map[string]interface{}{}, errTransportTaskBaseVM
+	}
+	errTransportTaskBaseVM = json.Unmarshal([]byte(serializedTransportTaskBaseVM), &toSerialize)
+	if errTransportTaskBaseVM != nil {
+		return map[string]interface{}{}, errTransportTaskBaseVM
+	}
 	if !IsNil(o.Archive) {
 		toSerialize["archive"] = o.Archive
 	}
@@ -341,7 +379,45 @@ func (o FTPUploadTaskVM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UseSFTP) {
 		toSerialize["useSFTP"] = o.UseSFTP
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *FTPUploadTaskVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFTPUploadTaskVM := _FTPUploadTaskVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFTPUploadTaskVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FTPUploadTaskVM(varFTPUploadTaskVM)
+
+	return err
 }
 
 type NullableFTPUploadTaskVM struct {

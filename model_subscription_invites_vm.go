@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SubscriptionInvitesVM type satisfies the MappedNullable interface at compile time
@@ -19,16 +21,21 @@ var _ MappedNullable = &SubscriptionInvitesVM{}
 
 // SubscriptionInvitesVM struct for SubscriptionInvitesVM
 type SubscriptionInvitesVM struct {
+	CloudBaseVM
 	Invites []SubscriptionInviteVM `json:"invites,omitempty"`
 	Count *int64 `json:"count,omitempty"`
+	T string `json:"$t"`
 }
+
+type _SubscriptionInvitesVM SubscriptionInvitesVM
 
 // NewSubscriptionInvitesVM instantiates a new SubscriptionInvitesVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionInvitesVM() *SubscriptionInvitesVM {
+func NewSubscriptionInvitesVM(t string) *SubscriptionInvitesVM {
 	this := SubscriptionInvitesVM{}
+	this.T = t
 	return &this
 }
 
@@ -105,6 +112,30 @@ func (o *SubscriptionInvitesVM) SetCount(v int64) {
 	o.Count = &v
 }
 
+// GetT returns the T field value
+func (o *SubscriptionInvitesVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *SubscriptionInvitesVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *SubscriptionInvitesVM) SetT(v string) {
+	o.T = v
+}
+
 func (o SubscriptionInvitesVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -115,13 +146,59 @@ func (o SubscriptionInvitesVM) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionInvitesVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.Invites != nil {
 		toSerialize["invites"] = o.Invites
 	}
 	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *SubscriptionInvitesVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubscriptionInvitesVM := _SubscriptionInvitesVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSubscriptionInvitesVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionInvitesVM(varSubscriptionInvitesVM)
+
+	return err
 }
 
 type NullableSubscriptionInvitesVM struct {

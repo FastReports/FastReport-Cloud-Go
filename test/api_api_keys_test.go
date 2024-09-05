@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing ApiKeysApiService
+Testing ApiKeysAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_ApiKeysApiService(t *testing.T) {
+func Test_gofrcloud_ApiKeysAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ApiKeysApiService ApiKeysCreateApiKey", func(t *testing.T) {
+	t.Run("Test ApiKeysAPIService ApiKeysCreateApiKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ApiKeysApi.ApiKeysCreateApiKey(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ApiKeysAPI.ApiKeysCreateApiKey(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,22 +34,23 @@ func Test_gofrcloud_ApiKeysApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApiKeysApiService ApiKeysDeleteApiKey", func(t *testing.T) {
+	t.Run("Test ApiKeysAPIService ApiKeysDeleteApiKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.ApiKeysApi.ApiKeysDeleteApiKey(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ApiKeysAPI.ApiKeysDeleteApiKey(context.Background()).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ApiKeysApiService ApiKeysGetApiKeys", func(t *testing.T) {
+	t.Run("Test ApiKeysAPIService ApiKeysGetApiKeys", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ApiKeysApi.ApiKeysGetApiKeys(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ApiKeysAPI.ApiKeysGetApiKeys(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

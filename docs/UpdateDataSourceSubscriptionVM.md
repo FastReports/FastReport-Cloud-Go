@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SubscriptionId** | **string** |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewUpdateDataSourceSubscriptionVM
 
-`func NewUpdateDataSourceSubscriptionVM(subscriptionId string, ) *UpdateDataSourceSubscriptionVM`
+`func NewUpdateDataSourceSubscriptionVM(subscriptionId string, t string, ) *UpdateDataSourceSubscriptionVM`
 
 NewUpdateDataSourceSubscriptionVM instantiates a new UpdateDataSourceSubscriptionVM object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *UpdateDataSourceSubscriptionVM) SetSubscriptionId(v string)`
 
 SetSubscriptionId sets SubscriptionId field to given value.
+
+
+### GetT
+
+`func (o *UpdateDataSourceSubscriptionVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *UpdateDataSourceSubscriptionVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *UpdateDataSourceSubscriptionVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

@@ -19,12 +19,12 @@ import (
 )
 
 
-// ConfigurationApiService ConfigurationApi service
-type ConfigurationApiService service
+// ConfigurationAPIService ConfigurationAPI service
+type ConfigurationAPIService service
 
 type ApiConfigurationGetRequest struct {
 	ctx context.Context
-	ApiService *ConfigurationApiService
+	ApiService *ConfigurationAPIService
 }
 
 func (r ApiConfigurationGetRequest) Execute() (*ServerConfigurationVM, *http.Response, error) {
@@ -37,7 +37,7 @@ ConfigurationGet returns information about server configuration
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiConfigurationGetRequest
 */
-func (a *ConfigurationApiService) ConfigurationGet(ctx context.Context) ApiConfigurationGetRequest {
+func (a *ConfigurationAPIService) ConfigurationGet(ctx context.Context) ApiConfigurationGetRequest {
 	return ApiConfigurationGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -46,7 +46,7 @@ func (a *ConfigurationApiService) ConfigurationGet(ctx context.Context) ApiConfi
 
 // Execute executes the request
 //  @return ServerConfigurationVM
-func (a *ConfigurationApiService) ConfigurationGetExecute(r ApiConfigurationGetRequest) (*ServerConfigurationVM, *http.Response, error) {
+func (a *ConfigurationAPIService) ConfigurationGetExecute(r ApiConfigurationGetRequest) (*ServerConfigurationVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -54,7 +54,7 @@ func (a *ConfigurationApiService) ConfigurationGetExecute(r ApiConfigurationGetR
 		localVarReturnValue  *ServerConfigurationVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigurationApiService.ConfigurationGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigurationAPIService.ConfigurationGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

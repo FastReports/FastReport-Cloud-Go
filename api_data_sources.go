@@ -20,12 +20,12 @@ import (
 )
 
 
-// DataSourcesApiService DataSourcesApi service
-type DataSourcesApiService service
+// DataSourcesAPIService DataSourcesAPI service
+type DataSourcesAPIService service
 
 type ApiDataSourcesCountDataSourcesAsyncRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	subscriptionId string
 }
 
@@ -40,7 +40,7 @@ DataSourcesCountDataSourcesAsync Returns a number of data sources in subscriptio
  @param subscriptionId subscripiton id
  @return ApiDataSourcesCountDataSourcesAsyncRequest
 */
-func (a *DataSourcesApiService) DataSourcesCountDataSourcesAsync(ctx context.Context, subscriptionId string) ApiDataSourcesCountDataSourcesAsyncRequest {
+func (a *DataSourcesAPIService) DataSourcesCountDataSourcesAsync(ctx context.Context, subscriptionId string) ApiDataSourcesCountDataSourcesAsyncRequest {
 	return ApiDataSourcesCountDataSourcesAsyncRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -50,7 +50,7 @@ func (a *DataSourcesApiService) DataSourcesCountDataSourcesAsync(ctx context.Con
 
 // Execute executes the request
 //  @return int64
-func (a *DataSourcesApiService) DataSourcesCountDataSourcesAsyncExecute(r ApiDataSourcesCountDataSourcesAsyncRequest) (int64, *http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesCountDataSourcesAsyncExecute(r ApiDataSourcesCountDataSourcesAsyncRequest) (int64, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -58,7 +58,7 @@ func (a *DataSourcesApiService) DataSourcesCountDataSourcesAsyncExecute(r ApiDat
 		localVarReturnValue  int64
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesCountDataSourcesAsync")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesCountDataSourcesAsync")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -120,6 +120,17 @@ func (a *DataSourcesApiService) DataSourcesCountDataSourcesAsyncExecute(r ApiDat
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -158,7 +169,7 @@ func (a *DataSourcesApiService) DataSourcesCountDataSourcesAsyncExecute(r ApiDat
 
 type ApiDataSourcesCreateDataSourceRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	createDataSourceVM *CreateDataSourceVM
 }
 
@@ -178,7 +189,7 @@ DataSourcesCreateDataSource Create new data source
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDataSourcesCreateDataSourceRequest
 */
-func (a *DataSourcesApiService) DataSourcesCreateDataSource(ctx context.Context) ApiDataSourcesCreateDataSourceRequest {
+func (a *DataSourcesAPIService) DataSourcesCreateDataSource(ctx context.Context) ApiDataSourcesCreateDataSourceRequest {
 	return ApiDataSourcesCreateDataSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -187,7 +198,7 @@ func (a *DataSourcesApiService) DataSourcesCreateDataSource(ctx context.Context)
 
 // Execute executes the request
 //  @return DataSourceVM
-func (a *DataSourcesApiService) DataSourcesCreateDataSourceExecute(r ApiDataSourcesCreateDataSourceRequest) (*DataSourceVM, *http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesCreateDataSourceExecute(r ApiDataSourcesCreateDataSourceRequest) (*DataSourceVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -195,7 +206,7 @@ func (a *DataSourcesApiService) DataSourcesCreateDataSourceExecute(r ApiDataSour
 		localVarReturnValue  *DataSourceVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesCreateDataSource")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesCreateDataSource")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -308,7 +319,7 @@ func (a *DataSourcesApiService) DataSourcesCreateDataSourceExecute(r ApiDataSour
 
 type ApiDataSourcesDeleteDataSourceRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	id string
 }
 
@@ -323,7 +334,7 @@ DataSourcesDeleteDataSource Delete data source by id
  @param id data source id
  @return ApiDataSourcesDeleteDataSourceRequest
 */
-func (a *DataSourcesApiService) DataSourcesDeleteDataSource(ctx context.Context, id string) ApiDataSourcesDeleteDataSourceRequest {
+func (a *DataSourcesAPIService) DataSourcesDeleteDataSource(ctx context.Context, id string) ApiDataSourcesDeleteDataSourceRequest {
 	return ApiDataSourcesDeleteDataSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -332,14 +343,14 @@ func (a *DataSourcesApiService) DataSourcesDeleteDataSource(ctx context.Context,
 }
 
 // Execute executes the request
-func (a *DataSourcesApiService) DataSourcesDeleteDataSourceExecute(r ApiDataSourcesDeleteDataSourceRequest) (*http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesDeleteDataSourceExecute(r ApiDataSourcesDeleteDataSourceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesDeleteDataSource")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesDeleteDataSource")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -442,7 +453,7 @@ func (a *DataSourcesApiService) DataSourcesDeleteDataSourceExecute(r ApiDataSour
 
 type ApiDataSourcesFetchDataRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	id string
 }
 
@@ -457,7 +468,7 @@ DataSourcesFetchData This should connect to a database and set data structure
  @param id datasource's id
  @return ApiDataSourcesFetchDataRequest
 */
-func (a *DataSourcesApiService) DataSourcesFetchData(ctx context.Context, id string) ApiDataSourcesFetchDataRequest {
+func (a *DataSourcesAPIService) DataSourcesFetchData(ctx context.Context, id string) ApiDataSourcesFetchDataRequest {
 	return ApiDataSourcesFetchDataRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -466,14 +477,14 @@ func (a *DataSourcesApiService) DataSourcesFetchData(ctx context.Context, id str
 }
 
 // Execute executes the request
-func (a *DataSourcesApiService) DataSourcesFetchDataExecute(r ApiDataSourcesFetchDataRequest) (*http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesFetchDataExecute(r ApiDataSourcesFetchDataRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesFetchData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesFetchData")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -576,7 +587,7 @@ func (a *DataSourcesApiService) DataSourcesFetchDataExecute(r ApiDataSourcesFetc
 
 type ApiDataSourcesGetAvailableDataSourcesRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	subscriptionId *string
 	skip *int32
 	take *int32
@@ -584,7 +595,7 @@ type ApiDataSourcesGetAvailableDataSourcesRequest struct {
 	desc *bool
 }
 
-// subscription id
+// id of subscription where the datasources are located
 func (r ApiDataSourcesGetAvailableDataSourcesRequest) SubscriptionId(subscriptionId string) ApiDataSourcesGetAvailableDataSourcesRequest {
 	r.subscriptionId = &subscriptionId
 	return r
@@ -624,7 +635,7 @@ DataSourcesGetAvailableDataSources Returns all of the data sources, that current
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDataSourcesGetAvailableDataSourcesRequest
 */
-func (a *DataSourcesApiService) DataSourcesGetAvailableDataSources(ctx context.Context) ApiDataSourcesGetAvailableDataSourcesRequest {
+func (a *DataSourcesAPIService) DataSourcesGetAvailableDataSources(ctx context.Context) ApiDataSourcesGetAvailableDataSourcesRequest {
 	return ApiDataSourcesGetAvailableDataSourcesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -633,7 +644,7 @@ func (a *DataSourcesApiService) DataSourcesGetAvailableDataSources(ctx context.C
 
 // Execute executes the request
 //  @return DataSourcesVM
-func (a *DataSourcesApiService) DataSourcesGetAvailableDataSourcesExecute(r ApiDataSourcesGetAvailableDataSourcesRequest) (*DataSourcesVM, *http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesGetAvailableDataSourcesExecute(r ApiDataSourcesGetAvailableDataSourcesRequest) (*DataSourcesVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -641,7 +652,7 @@ func (a *DataSourcesApiService) DataSourcesGetAvailableDataSourcesExecute(r ApiD
 		localVarReturnValue  *DataSourcesVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesGetAvailableDataSources")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesGetAvailableDataSources")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -657,15 +668,24 @@ func (a *DataSourcesApiService) DataSourcesGetAvailableDataSourcesExecute(r ApiD
 	}
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	if r.orderBy != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
 	}
 	if r.desc != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "")
+	} else {
+		var defaultValue bool = false
+		r.desc = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -766,7 +786,7 @@ func (a *DataSourcesApiService) DataSourcesGetAvailableDataSourcesExecute(r ApiD
 
 type ApiDataSourcesGetDataSourceRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	id string
 }
 
@@ -781,7 +801,7 @@ DataSourcesGetDataSource Get data source by id
  @param id data source id
  @return ApiDataSourcesGetDataSourceRequest
 */
-func (a *DataSourcesApiService) DataSourcesGetDataSource(ctx context.Context, id string) ApiDataSourcesGetDataSourceRequest {
+func (a *DataSourcesAPIService) DataSourcesGetDataSource(ctx context.Context, id string) ApiDataSourcesGetDataSourceRequest {
 	return ApiDataSourcesGetDataSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -791,7 +811,7 @@ func (a *DataSourcesApiService) DataSourcesGetDataSource(ctx context.Context, id
 
 // Execute executes the request
 //  @return DataSourceVM
-func (a *DataSourcesApiService) DataSourcesGetDataSourceExecute(r ApiDataSourcesGetDataSourceRequest) (*DataSourceVM, *http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesGetDataSourceExecute(r ApiDataSourcesGetDataSourceRequest) (*DataSourceVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -799,7 +819,7 @@ func (a *DataSourcesApiService) DataSourcesGetDataSourceExecute(r ApiDataSources
 		localVarReturnValue  *DataSourceVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesGetDataSource")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesGetDataSource")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -909,9 +929,121 @@ func (a *DataSourcesApiService) DataSourcesGetDataSourceExecute(r ApiDataSources
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiDataSourcesGetParameterTypesRequest struct {
+	ctx context.Context
+	ApiService *DataSourcesAPIService
+	dataSourceType DataSourceConnectionType
+}
+
+func (r ApiDataSourcesGetParameterTypesRequest) Execute() (*DataSourceParameterTypesVM, *http.Response, error) {
+	return r.ApiService.DataSourcesGetParameterTypesExecute(r)
+}
+
+/*
+DataSourcesGetParameterTypes Get data source parameter DataType's
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param dataSourceType data source type (MsSql, MySql, etc.)
+ @return ApiDataSourcesGetParameterTypesRequest
+*/
+func (a *DataSourcesAPIService) DataSourcesGetParameterTypes(ctx context.Context, dataSourceType DataSourceConnectionType) ApiDataSourcesGetParameterTypesRequest {
+	return ApiDataSourcesGetParameterTypesRequest{
+		ApiService: a,
+		ctx: ctx,
+		dataSourceType: dataSourceType,
+	}
+}
+
+// Execute executes the request
+//  @return DataSourceParameterTypesVM
+func (a *DataSourcesAPIService) DataSourcesGetParameterTypesExecute(r ApiDataSourcesGetParameterTypesRequest) (*DataSourceParameterTypesVM, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DataSourceParameterTypesVM
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesGetParameterTypes")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/data/v1/DataSources/parameterTypes/{dataSourceType}"
+	localVarPath = strings.Replace(localVarPath, "{"+"dataSourceType"+"}", url.PathEscape(parameterValueToString(r.dataSourceType, "dataSourceType")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDataSourcesGetPermissionsRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	id string
 }
 
@@ -926,7 +1058,7 @@ DataSourcesGetPermissions Get all Data source permissions
  @param id data source id
  @return ApiDataSourcesGetPermissionsRequest
 */
-func (a *DataSourcesApiService) DataSourcesGetPermissions(ctx context.Context, id string) ApiDataSourcesGetPermissionsRequest {
+func (a *DataSourcesAPIService) DataSourcesGetPermissions(ctx context.Context, id string) ApiDataSourcesGetPermissionsRequest {
 	return ApiDataSourcesGetPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -936,7 +1068,7 @@ func (a *DataSourcesApiService) DataSourcesGetPermissions(ctx context.Context, i
 
 // Execute executes the request
 //  @return DataSourcePermissionsVM
-func (a *DataSourcesApiService) DataSourcesGetPermissionsExecute(r ApiDataSourcesGetPermissionsRequest) (*DataSourcePermissionsVM, *http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesGetPermissionsExecute(r ApiDataSourcesGetPermissionsRequest) (*DataSourcePermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -944,7 +1076,7 @@ func (a *DataSourcesApiService) DataSourcesGetPermissionsExecute(r ApiDataSource
 		localVarReturnValue  *DataSourcePermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesGetPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesGetPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1056,7 +1188,7 @@ func (a *DataSourcesApiService) DataSourcesGetPermissionsExecute(r ApiDataSource
 
 type ApiDataSourcesRenameDataSourceRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	id string
 	renameDataSourceVM *RenameDataSourceVM
 }
@@ -1078,7 +1210,7 @@ DataSourcesRenameDataSource Rename data source by id
  @param id data source id
  @return ApiDataSourcesRenameDataSourceRequest
 */
-func (a *DataSourcesApiService) DataSourcesRenameDataSource(ctx context.Context, id string) ApiDataSourcesRenameDataSourceRequest {
+func (a *DataSourcesAPIService) DataSourcesRenameDataSource(ctx context.Context, id string) ApiDataSourcesRenameDataSourceRequest {
 	return ApiDataSourcesRenameDataSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1088,7 +1220,7 @@ func (a *DataSourcesApiService) DataSourcesRenameDataSource(ctx context.Context,
 
 // Execute executes the request
 //  @return DataSourceVM
-func (a *DataSourcesApiService) DataSourcesRenameDataSourceExecute(r ApiDataSourcesRenameDataSourceRequest) (*DataSourceVM, *http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesRenameDataSourceExecute(r ApiDataSourcesRenameDataSourceRequest) (*DataSourceVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1096,7 +1228,7 @@ func (a *DataSourcesApiService) DataSourcesRenameDataSourceExecute(r ApiDataSour
 		localVarReturnValue  *DataSourceVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesRenameDataSource")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesRenameDataSource")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1210,7 +1342,7 @@ func (a *DataSourcesApiService) DataSourcesRenameDataSourceExecute(r ApiDataSour
 
 type ApiDataSourcesUpdateConnectionStringRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	id string
 	updateDataSourceConnectionStringVM *UpdateDataSourceConnectionStringVM
 }
@@ -1232,7 +1364,7 @@ DataSourcesUpdateConnectionString Update data source's connection string by id
  @param id data source id
  @return ApiDataSourcesUpdateConnectionStringRequest
 */
-func (a *DataSourcesApiService) DataSourcesUpdateConnectionString(ctx context.Context, id string) ApiDataSourcesUpdateConnectionStringRequest {
+func (a *DataSourcesAPIService) DataSourcesUpdateConnectionString(ctx context.Context, id string) ApiDataSourcesUpdateConnectionStringRequest {
 	return ApiDataSourcesUpdateConnectionStringRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1242,7 +1374,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateConnectionString(ctx context.Co
 
 // Execute executes the request
 //  @return DataSourceVM
-func (a *DataSourcesApiService) DataSourcesUpdateConnectionStringExecute(r ApiDataSourcesUpdateConnectionStringRequest) (*DataSourceVM, *http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesUpdateConnectionStringExecute(r ApiDataSourcesUpdateConnectionStringRequest) (*DataSourceVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1250,12 +1382,12 @@ func (a *DataSourcesApiService) DataSourcesUpdateConnectionStringExecute(r ApiDa
 		localVarReturnValue  *DataSourceVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesUpdateConnectionString")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesUpdateConnectionString")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/data/v1/DataSources/{id}/ConnectionString"
+	localVarPath := localBasePath + "/api/data/v1/DataSources/{id}/connectionString"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1364,7 +1496,7 @@ func (a *DataSourcesApiService) DataSourcesUpdateConnectionStringExecute(r ApiDa
 
 type ApiDataSourcesUpdatePermissionsRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	id string
 	updateDataSourcePermissionsVM *UpdateDataSourcePermissionsVM
 }
@@ -1386,7 +1518,7 @@ DataSourcesUpdatePermissions Update permissions
  @param id 
  @return ApiDataSourcesUpdatePermissionsRequest
 */
-func (a *DataSourcesApiService) DataSourcesUpdatePermissions(ctx context.Context, id string) ApiDataSourcesUpdatePermissionsRequest {
+func (a *DataSourcesAPIService) DataSourcesUpdatePermissions(ctx context.Context, id string) ApiDataSourcesUpdatePermissionsRequest {
 	return ApiDataSourcesUpdatePermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1395,14 +1527,14 @@ func (a *DataSourcesApiService) DataSourcesUpdatePermissions(ctx context.Context
 }
 
 // Execute executes the request
-func (a *DataSourcesApiService) DataSourcesUpdatePermissionsExecute(r ApiDataSourcesUpdatePermissionsRequest) (*http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesUpdatePermissionsExecute(r ApiDataSourcesUpdatePermissionsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesUpdatePermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesUpdatePermissions")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1505,9 +1637,163 @@ func (a *DataSourcesApiService) DataSourcesUpdatePermissionsExecute(r ApiDataSou
 	return localVarHTTPResponse, nil
 }
 
+type ApiDataSourcesUpdateSelectCommandsRequest struct {
+	ctx context.Context
+	ApiService *DataSourcesAPIService
+	id string
+	updateDataSourceSelectCommandsVM *UpdateDataSourceSelectCommandsVM
+}
+
+// update viewmodel
+func (r ApiDataSourcesUpdateSelectCommandsRequest) UpdateDataSourceSelectCommandsVM(updateDataSourceSelectCommandsVM UpdateDataSourceSelectCommandsVM) ApiDataSourcesUpdateSelectCommandsRequest {
+	r.updateDataSourceSelectCommandsVM = &updateDataSourceSelectCommandsVM
+	return r
+}
+
+func (r ApiDataSourcesUpdateSelectCommandsRequest) Execute() (*DataSourceVM, *http.Response, error) {
+	return r.ApiService.DataSourcesUpdateSelectCommandsExecute(r)
+}
+
+/*
+DataSourcesUpdateSelectCommands Update data source's select commands by id
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id data source id
+ @return ApiDataSourcesUpdateSelectCommandsRequest
+*/
+func (a *DataSourcesAPIService) DataSourcesUpdateSelectCommands(ctx context.Context, id string) ApiDataSourcesUpdateSelectCommandsRequest {
+	return ApiDataSourcesUpdateSelectCommandsRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DataSourceVM
+func (a *DataSourcesAPIService) DataSourcesUpdateSelectCommandsExecute(r ApiDataSourcesUpdateSelectCommandsRequest) (*DataSourceVM, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DataSourceVM
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesUpdateSelectCommands")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/data/v1/DataSources/{id}/selectCommands"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateDataSourceSelectCommandsVM
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDataSourcesUpdateSubscriptionDataSourceRequest struct {
 	ctx context.Context
-	ApiService *DataSourcesApiService
+	ApiService *DataSourcesAPIService
 	id string
 	updateDataSourceSubscriptionVM *UpdateDataSourceSubscriptionVM
 }
@@ -1529,7 +1815,7 @@ DataSourcesUpdateSubscriptionDataSource Update data source's subscription
  @param id data source id
  @return ApiDataSourcesUpdateSubscriptionDataSourceRequest
 */
-func (a *DataSourcesApiService) DataSourcesUpdateSubscriptionDataSource(ctx context.Context, id string) ApiDataSourcesUpdateSubscriptionDataSourceRequest {
+func (a *DataSourcesAPIService) DataSourcesUpdateSubscriptionDataSource(ctx context.Context, id string) ApiDataSourcesUpdateSubscriptionDataSourceRequest {
 	return ApiDataSourcesUpdateSubscriptionDataSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1538,14 +1824,14 @@ func (a *DataSourcesApiService) DataSourcesUpdateSubscriptionDataSource(ctx cont
 }
 
 // Execute executes the request
-func (a *DataSourcesApiService) DataSourcesUpdateSubscriptionDataSourceExecute(r ApiDataSourcesUpdateSubscriptionDataSourceRequest) (*http.Response, error) {
+func (a *DataSourcesAPIService) DataSourcesUpdateSubscriptionDataSourceExecute(r ApiDataSourcesUpdateSubscriptionDataSourceRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesApiService.DataSourcesUpdateSubscriptionDataSource")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataSourcesAPIService.DataSourcesUpdateSubscriptionDataSource")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

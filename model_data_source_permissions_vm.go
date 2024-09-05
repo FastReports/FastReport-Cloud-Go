@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the DataSourcePermissionsVM type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,20 @@ var _ MappedNullable = &DataSourcePermissionsVM{}
 
 // DataSourcePermissionsVM struct for DataSourcePermissionsVM
 type DataSourcePermissionsVM struct {
-	Permissions *DataSourcePermissions `json:"permissions,omitempty"`
+	CloudBaseVM
+	Permissions *DataSourcePermissionsCRUDVM `json:"permissions,omitempty"`
+	T string `json:"$t"`
 }
+
+type _DataSourcePermissionsVM DataSourcePermissionsVM
 
 // NewDataSourcePermissionsVM instantiates a new DataSourcePermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataSourcePermissionsVM() *DataSourcePermissionsVM {
+func NewDataSourcePermissionsVM(t string) *DataSourcePermissionsVM {
 	this := DataSourcePermissionsVM{}
+	this.T = t
 	return &this
 }
 
@@ -40,9 +47,9 @@ func NewDataSourcePermissionsVMWithDefaults() *DataSourcePermissionsVM {
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise.
-func (o *DataSourcePermissionsVM) GetPermissions() DataSourcePermissions {
+func (o *DataSourcePermissionsVM) GetPermissions() DataSourcePermissionsCRUDVM {
 	if o == nil || IsNil(o.Permissions) {
-		var ret DataSourcePermissions
+		var ret DataSourcePermissionsCRUDVM
 		return ret
 	}
 	return *o.Permissions
@@ -50,7 +57,7 @@ func (o *DataSourcePermissionsVM) GetPermissions() DataSourcePermissions {
 
 // GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourcePermissionsVM) GetPermissionsOk() (*DataSourcePermissions, bool) {
+func (o *DataSourcePermissionsVM) GetPermissionsOk() (*DataSourcePermissionsCRUDVM, bool) {
 	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
@@ -66,9 +73,33 @@ func (o *DataSourcePermissionsVM) HasPermissions() bool {
 	return false
 }
 
-// SetPermissions gets a reference to the given DataSourcePermissions and assigns it to the Permissions field.
-func (o *DataSourcePermissionsVM) SetPermissions(v DataSourcePermissions) {
+// SetPermissions gets a reference to the given DataSourcePermissionsCRUDVM and assigns it to the Permissions field.
+func (o *DataSourcePermissionsVM) SetPermissions(v DataSourcePermissionsCRUDVM) {
 	o.Permissions = &v
+}
+
+// GetT returns the T field value
+func (o *DataSourcePermissionsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *DataSourcePermissionsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *DataSourcePermissionsVM) SetT(v string) {
+	o.T = v
 }
 
 func (o DataSourcePermissionsVM) MarshalJSON() ([]byte, error) {
@@ -81,10 +112,56 @@ func (o DataSourcePermissionsVM) MarshalJSON() ([]byte, error) {
 
 func (o DataSourcePermissionsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if !IsNil(o.Permissions) {
 		toSerialize["permissions"] = o.Permissions
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *DataSourcePermissionsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDataSourcePermissionsVM := _DataSourcePermissionsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDataSourcePermissionsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DataSourcePermissionsVM(varDataSourcePermissionsVM)
+
+	return err
 }
 
 type NullableDataSourcePermissionsVM struct {

@@ -13,6 +13,8 @@ package gofrcloud
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UpdateTaskBaseVM type satisfies the MappedNullable interface at compile time
@@ -20,11 +22,15 @@ var _ MappedNullable = &UpdateTaskBaseVM{}
 
 // UpdateTaskBaseVM struct for UpdateTaskBaseVM
 type UpdateTaskBaseVM struct {
+	CloudBaseVM
 	CronExpression NullableString `json:"cronExpression,omitempty"`
-	DelayedRunTime NullableTime `json:"delayedRunTime,omitempty"`
+	StartsOn NullableTime `json:"startsOn,omitempty"`
+	Ends *CreateTaskEndVM `json:"ends,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	T string `json:"$t"`
 }
+
+type _UpdateTaskBaseVM UpdateTaskBaseVM
 
 // NewUpdateTaskBaseVM instantiates a new UpdateTaskBaseVM object
 // This constructor will assign default values to properties that have it defined,
@@ -86,46 +92,78 @@ func (o *UpdateTaskBaseVM) UnsetCronExpression() {
 	o.CronExpression.Unset()
 }
 
-// GetDelayedRunTime returns the DelayedRunTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateTaskBaseVM) GetDelayedRunTime() time.Time {
-	if o == nil || IsNil(o.DelayedRunTime.Get()) {
+// GetStartsOn returns the StartsOn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateTaskBaseVM) GetStartsOn() time.Time {
+	if o == nil || IsNil(o.StartsOn.Get()) {
 		var ret time.Time
 		return ret
 	}
-	return *o.DelayedRunTime.Get()
+	return *o.StartsOn.Get()
 }
 
-// GetDelayedRunTimeOk returns a tuple with the DelayedRunTime field value if set, nil otherwise
+// GetStartsOnOk returns a tuple with the StartsOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateTaskBaseVM) GetDelayedRunTimeOk() (*time.Time, bool) {
+func (o *UpdateTaskBaseVM) GetStartsOnOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DelayedRunTime.Get(), o.DelayedRunTime.IsSet()
+	return o.StartsOn.Get(), o.StartsOn.IsSet()
 }
 
-// HasDelayedRunTime returns a boolean if a field has been set.
-func (o *UpdateTaskBaseVM) HasDelayedRunTime() bool {
-	if o != nil && o.DelayedRunTime.IsSet() {
+// HasStartsOn returns a boolean if a field has been set.
+func (o *UpdateTaskBaseVM) HasStartsOn() bool {
+	if o != nil && o.StartsOn.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDelayedRunTime gets a reference to the given NullableTime and assigns it to the DelayedRunTime field.
-func (o *UpdateTaskBaseVM) SetDelayedRunTime(v time.Time) {
-	o.DelayedRunTime.Set(&v)
+// SetStartsOn gets a reference to the given NullableTime and assigns it to the StartsOn field.
+func (o *UpdateTaskBaseVM) SetStartsOn(v time.Time) {
+	o.StartsOn.Set(&v)
 }
-// SetDelayedRunTimeNil sets the value for DelayedRunTime to be an explicit nil
-func (o *UpdateTaskBaseVM) SetDelayedRunTimeNil() {
-	o.DelayedRunTime.Set(nil)
+// SetStartsOnNil sets the value for StartsOn to be an explicit nil
+func (o *UpdateTaskBaseVM) SetStartsOnNil() {
+	o.StartsOn.Set(nil)
 }
 
-// UnsetDelayedRunTime ensures that no value is present for DelayedRunTime, not even an explicit nil
-func (o *UpdateTaskBaseVM) UnsetDelayedRunTime() {
-	o.DelayedRunTime.Unset()
+// UnsetStartsOn ensures that no value is present for StartsOn, not even an explicit nil
+func (o *UpdateTaskBaseVM) UnsetStartsOn() {
+	o.StartsOn.Unset()
+}
+
+// GetEnds returns the Ends field value if set, zero value otherwise.
+func (o *UpdateTaskBaseVM) GetEnds() CreateTaskEndVM {
+	if o == nil || IsNil(o.Ends) {
+		var ret CreateTaskEndVM
+		return ret
+	}
+	return *o.Ends
+}
+
+// GetEndsOk returns a tuple with the Ends field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateTaskBaseVM) GetEndsOk() (*CreateTaskEndVM, bool) {
+	if o == nil || IsNil(o.Ends) {
+		return nil, false
+	}
+	return o.Ends, true
+}
+
+// HasEnds returns a boolean if a field has been set.
+func (o *UpdateTaskBaseVM) HasEnds() bool {
+	if o != nil && !IsNil(o.Ends) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnds gets a reference to the given CreateTaskEndVM and assigns it to the Ends field.
+func (o *UpdateTaskBaseVM) SetEnds(v CreateTaskEndVM) {
+	o.Ends = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -204,17 +242,65 @@ func (o UpdateTaskBaseVM) MarshalJSON() ([]byte, error) {
 
 func (o UpdateTaskBaseVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.CronExpression.IsSet() {
 		toSerialize["cronExpression"] = o.CronExpression.Get()
 	}
-	if o.DelayedRunTime.IsSet() {
-		toSerialize["delayedRunTime"] = o.DelayedRunTime.Get()
+	if o.StartsOn.IsSet() {
+		toSerialize["startsOn"] = o.StartsOn.Get()
+	}
+	if !IsNil(o.Ends) {
+		toSerialize["ends"] = o.Ends
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
 	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *UpdateTaskBaseVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateTaskBaseVM := _UpdateTaskBaseVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateTaskBaseVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateTaskBaseVM(varUpdateTaskBaseVM)
+
+	return err
 }
 
 type NullableUpdateTaskBaseVM struct {

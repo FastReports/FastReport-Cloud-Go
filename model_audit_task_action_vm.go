@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AuditTaskActionVM type satisfies the MappedNullable interface at compile time
@@ -19,8 +21,13 @@ var _ MappedNullable = &AuditTaskActionVM{}
 
 // AuditTaskActionVM struct for AuditTaskActionVM
 type AuditTaskActionVM struct {
+	AuditActionVM
 	MessageId NullableString `json:"messageId,omitempty"`
+	FileName NullableString `json:"fileName,omitempty"`
+	T string `json:"$t"`
 }
+
+type _AuditTaskActionVM AuditTaskActionVM
 
 // NewAuditTaskActionVM instantiates a new AuditTaskActionVM object
 // This constructor will assign default values to properties that have it defined,
@@ -82,6 +89,72 @@ func (o *AuditTaskActionVM) UnsetMessageId() {
 	o.MessageId.Unset()
 }
 
+// GetFileName returns the FileName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AuditTaskActionVM) GetFileName() string {
+	if o == nil || IsNil(o.FileName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FileName.Get()
+}
+
+// GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AuditTaskActionVM) GetFileNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FileName.Get(), o.FileName.IsSet()
+}
+
+// HasFileName returns a boolean if a field has been set.
+func (o *AuditTaskActionVM) HasFileName() bool {
+	if o != nil && o.FileName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFileName gets a reference to the given NullableString and assigns it to the FileName field.
+func (o *AuditTaskActionVM) SetFileName(v string) {
+	o.FileName.Set(&v)
+}
+// SetFileNameNil sets the value for FileName to be an explicit nil
+func (o *AuditTaskActionVM) SetFileNameNil() {
+	o.FileName.Set(nil)
+}
+
+// UnsetFileName ensures that no value is present for FileName, not even an explicit nil
+func (o *AuditTaskActionVM) UnsetFileName() {
+	o.FileName.Unset()
+}
+
+// GetT returns the T field value
+func (o *AuditTaskActionVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *AuditTaskActionVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *AuditTaskActionVM) SetT(v string) {
+	o.T = v
+}
+
 func (o AuditTaskActionVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -92,10 +165,59 @@ func (o AuditTaskActionVM) MarshalJSON() ([]byte, error) {
 
 func (o AuditTaskActionVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedAuditActionVM, errAuditActionVM := json.Marshal(o.AuditActionVM)
+	if errAuditActionVM != nil {
+		return map[string]interface{}{}, errAuditActionVM
+	}
+	errAuditActionVM = json.Unmarshal([]byte(serializedAuditActionVM), &toSerialize)
+	if errAuditActionVM != nil {
+		return map[string]interface{}{}, errAuditActionVM
+	}
 	if o.MessageId.IsSet() {
 		toSerialize["messageId"] = o.MessageId.Get()
 	}
+	if o.FileName.IsSet() {
+		toSerialize["fileName"] = o.FileName.Get()
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *AuditTaskActionVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAuditTaskActionVM := _AuditTaskActionVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAuditTaskActionVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AuditTaskActionVM(varAuditTaskActionVM)
+
+	return err
 }
 
 type NullableAuditTaskActionVM struct {

@@ -5,15 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Items** | Pointer to [**[]AuditActionVM**](AuditActionVM.md) |  | [optional] 
-**Count** | Pointer to **int64** |  | [optional] 
+**HasMore** | Pointer to **bool** |  | [optional] 
 **Skip** | Pointer to **int32** |  | [optional] 
 **Take** | Pointer to **int32** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewAuditActionsVM
 
-`func NewAuditActionsVM() *AuditActionsVM`
+`func NewAuditActionsVM(t string, ) *AuditActionsVM`
 
 NewAuditActionsVM instantiates a new AuditActionsVM object
 This constructor will assign default values to properties that have it defined,
@@ -63,30 +64,30 @@ HasItems returns a boolean if a field has been set.
 `func (o *AuditActionsVM) UnsetItems()`
 
 UnsetItems ensures that no value is present for Items, not even an explicit nil
-### GetCount
+### GetHasMore
 
-`func (o *AuditActionsVM) GetCount() int64`
+`func (o *AuditActionsVM) GetHasMore() bool`
 
-GetCount returns the Count field if non-nil, zero value otherwise.
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
 
-### GetCountOk
+### GetHasMoreOk
 
-`func (o *AuditActionsVM) GetCountOk() (*int64, bool)`
+`func (o *AuditActionsVM) GetHasMoreOk() (*bool, bool)`
 
-GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCount
+### SetHasMore
 
-`func (o *AuditActionsVM) SetCount(v int64)`
+`func (o *AuditActionsVM) SetHasMore(v bool)`
 
-SetCount sets Count field to given value.
+SetHasMore sets HasMore field to given value.
 
-### HasCount
+### HasHasMore
 
-`func (o *AuditActionsVM) HasCount() bool`
+`func (o *AuditActionsVM) HasHasMore() bool`
 
-HasCount returns a boolean if a field has been set.
+HasHasMore returns a boolean if a field has been set.
 
 ### GetSkip
 
@@ -137,6 +138,26 @@ SetTake sets Take field to given value.
 `func (o *AuditActionsVM) HasTake() bool`
 
 HasTake returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *AuditActionsVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *AuditActionsVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *AuditActionsVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

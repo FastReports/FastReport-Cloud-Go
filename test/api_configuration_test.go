@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing ConfigurationApiService
+Testing ConfigurationAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_ConfigurationApiService(t *testing.T) {
+func Test_gofrcloud_ConfigurationAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ConfigurationApiService ConfigurationGet", func(t *testing.T) {
+	t.Run("Test ConfigurationAPIService ConfigurationGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ConfigurationApi.ConfigurationGet(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ConfigurationAPI.ConfigurationGet(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewRenameGroupVM
 
-`func NewRenameGroupVM(name string, ) *RenameGroupVM`
+`func NewRenameGroupVM(name string, t string, ) *RenameGroupVM`
 
 NewRenameGroupVM instantiates a new RenameGroupVM object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *RenameGroupVM) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetT
+
+`func (o *RenameGroupVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *RenameGroupVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *RenameGroupVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

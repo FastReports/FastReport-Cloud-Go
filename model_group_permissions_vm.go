@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the GroupPermissionsVM type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,20 @@ var _ MappedNullable = &GroupPermissionsVM{}
 
 // GroupPermissionsVM struct for GroupPermissionsVM
 type GroupPermissionsVM struct {
-	Permissions *GroupPermissions `json:"permissions,omitempty"`
+	CloudBaseVM
+	Permissions *GroupPermissionsCRUDVM `json:"permissions,omitempty"`
+	T string `json:"$t"`
 }
+
+type _GroupPermissionsVM GroupPermissionsVM
 
 // NewGroupPermissionsVM instantiates a new GroupPermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupPermissionsVM() *GroupPermissionsVM {
+func NewGroupPermissionsVM(t string) *GroupPermissionsVM {
 	this := GroupPermissionsVM{}
+	this.T = t
 	return &this
 }
 
@@ -40,9 +47,9 @@ func NewGroupPermissionsVMWithDefaults() *GroupPermissionsVM {
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise.
-func (o *GroupPermissionsVM) GetPermissions() GroupPermissions {
+func (o *GroupPermissionsVM) GetPermissions() GroupPermissionsCRUDVM {
 	if o == nil || IsNil(o.Permissions) {
-		var ret GroupPermissions
+		var ret GroupPermissionsCRUDVM
 		return ret
 	}
 	return *o.Permissions
@@ -50,7 +57,7 @@ func (o *GroupPermissionsVM) GetPermissions() GroupPermissions {
 
 // GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupPermissionsVM) GetPermissionsOk() (*GroupPermissions, bool) {
+func (o *GroupPermissionsVM) GetPermissionsOk() (*GroupPermissionsCRUDVM, bool) {
 	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
@@ -66,9 +73,33 @@ func (o *GroupPermissionsVM) HasPermissions() bool {
 	return false
 }
 
-// SetPermissions gets a reference to the given GroupPermissions and assigns it to the Permissions field.
-func (o *GroupPermissionsVM) SetPermissions(v GroupPermissions) {
+// SetPermissions gets a reference to the given GroupPermissionsCRUDVM and assigns it to the Permissions field.
+func (o *GroupPermissionsVM) SetPermissions(v GroupPermissionsCRUDVM) {
 	o.Permissions = &v
+}
+
+// GetT returns the T field value
+func (o *GroupPermissionsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *GroupPermissionsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *GroupPermissionsVM) SetT(v string) {
+	o.T = v
 }
 
 func (o GroupPermissionsVM) MarshalJSON() ([]byte, error) {
@@ -81,10 +112,56 @@ func (o GroupPermissionsVM) MarshalJSON() ([]byte, error) {
 
 func (o GroupPermissionsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if !IsNil(o.Permissions) {
 		toSerialize["permissions"] = o.Permissions
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *GroupPermissionsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGroupPermissionsVM := _GroupPermissionsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varGroupPermissionsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GroupPermissionsVM(varGroupPermissionsVM)
+
+	return err
 }
 
 type NullableGroupPermissionsVM struct {

@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Locale** | **string** |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewUpdateSubscriptionLocaleVM
 
-`func NewUpdateSubscriptionLocaleVM(locale string, ) *UpdateSubscriptionLocaleVM`
+`func NewUpdateSubscriptionLocaleVM(locale string, t string, ) *UpdateSubscriptionLocaleVM`
 
 NewUpdateSubscriptionLocaleVM instantiates a new UpdateSubscriptionLocaleVM object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *UpdateSubscriptionLocaleVM) SetLocale(v string)`
 
 SetLocale sets Locale field to given value.
+
+
+### GetT
+
+`func (o *UpdateSubscriptionLocaleVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *UpdateSubscriptionLocaleVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *UpdateSubscriptionLocaleVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

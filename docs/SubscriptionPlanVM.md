@@ -24,12 +24,13 @@ Name | Type | Description | Notes
 **UnlimitedPage** | Pointer to **bool** |  | [optional] 
 **PageLimit** | Pointer to **int32** |  | [optional] 
 **Tasks** | Pointer to [**TaskSettingsVM**](TaskSettingsVM.md) |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewSubscriptionPlanVM
 
-`func NewSubscriptionPlanVM() *SubscriptionPlanVM`
+`func NewSubscriptionPlanVM(t string, ) *SubscriptionPlanVM`
 
 NewSubscriptionPlanVM instantiates a new SubscriptionPlanVM object
 This constructor will assign default values to properties that have it defined,
@@ -693,6 +694,26 @@ SetTasks sets Tasks field to given value.
 `func (o *SubscriptionPlanVM) HasTasks() bool`
 
 HasTasks returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *SubscriptionPlanVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *SubscriptionPlanVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *SubscriptionPlanVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Count** | Pointer to **int64** |  | [optional] 
 **Skip** | Pointer to **int32** |  | [optional] 
 **Take** | Pointer to **int32** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewSubscriptionsVM
 
-`func NewSubscriptionsVM() *SubscriptionsVM`
+`func NewSubscriptionsVM(t string, ) *SubscriptionsVM`
 
 NewSubscriptionsVM instantiates a new SubscriptionsVM object
 This constructor will assign default values to properties that have it defined,
@@ -137,6 +138,26 @@ SetTake sets Take field to given value.
 `func (o *SubscriptionsVM) HasTake() bool`
 
 HasTake returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *SubscriptionsVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *SubscriptionsVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *SubscriptionsVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

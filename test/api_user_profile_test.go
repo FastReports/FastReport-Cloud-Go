@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing UserProfileApiService
+Testing UserProfileAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_UserProfileApiService(t *testing.T) {
+func Test_gofrcloud_UserProfileAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UserProfileApiService UserProfileGetMyProfile", func(t *testing.T) {
+	t.Run("Test UserProfileAPIService UserProfileGetMyProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserProfileApi.UserProfileGetMyProfile(context.Background()).Execute()
+		resp, httpRes, err := apiClient.UserProfileAPI.UserProfileGetMyProfile(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,13 +34,13 @@ func Test_gofrcloud_UserProfileApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserProfileApiService UserProfileGetUserProfile", func(t *testing.T) {
+	t.Run("Test UserProfileAPIService UserProfileGetUserProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var userId string
 
-		resp, httpRes, err := apiClient.UserProfileApi.UserProfileGetUserProfile(context.Background(), userId).Execute()
+		resp, httpRes, err := apiClient.UserProfileAPI.UserProfileGetUserProfile(context.Background(), userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,11 +48,11 @@ func Test_gofrcloud_UserProfileApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserProfileApiService UserProfileUpdateMyProfile", func(t *testing.T) {
+	t.Run("Test UserProfileAPIService UserProfileUpdateMyProfile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.UserProfileApi.UserProfileUpdateMyProfile(context.Background()).Execute()
+		httpRes, err := apiClient.UserProfileAPI.UserProfileUpdateMyProfile(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

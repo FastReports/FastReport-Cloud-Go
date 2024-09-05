@@ -19,12 +19,12 @@ import (
 )
 
 
-// UserNotificationsApiService UserNotificationsApi service
-type UserNotificationsApiService service
+// UserNotificationsAPIService UserNotificationsAPI service
+type UserNotificationsAPIService service
 
 type ApiUserNotificationsClearNotificationsRequest struct {
 	ctx context.Context
-	ApiService *UserNotificationsApiService
+	ApiService *UserNotificationsAPIService
 	clearNotificationsVM *ClearNotificationsVM
 }
 
@@ -44,7 +44,7 @@ UserNotificationsClearNotifications Use this endpoint to \"clear\" your notifica
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUserNotificationsClearNotificationsRequest
 */
-func (a *UserNotificationsApiService) UserNotificationsClearNotifications(ctx context.Context) ApiUserNotificationsClearNotificationsRequest {
+func (a *UserNotificationsAPIService) UserNotificationsClearNotifications(ctx context.Context) ApiUserNotificationsClearNotificationsRequest {
 	return ApiUserNotificationsClearNotificationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -52,14 +52,14 @@ func (a *UserNotificationsApiService) UserNotificationsClearNotifications(ctx co
 }
 
 // Execute executes the request
-func (a *UserNotificationsApiService) UserNotificationsClearNotificationsExecute(r ApiUserNotificationsClearNotificationsRequest) (*http.Response, error) {
+func (a *UserNotificationsAPIService) UserNotificationsClearNotificationsExecute(r ApiUserNotificationsClearNotificationsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserNotificationsApiService.UserNotificationsClearNotifications")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserNotificationsAPIService.UserNotificationsClearNotifications")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -140,7 +140,7 @@ func (a *UserNotificationsApiService) UserNotificationsClearNotificationsExecute
 
 type ApiUserNotificationsGetNotificationsRequest struct {
 	ctx context.Context
-	ApiService *UserNotificationsApiService
+	ApiService *UserNotificationsAPIService
 	skip *int32
 	take *int32
 	subscriptionId *string
@@ -171,7 +171,7 @@ UserNotificationsGetNotifications Use this endpoint to recieve notifications
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUserNotificationsGetNotificationsRequest
 */
-func (a *UserNotificationsApiService) UserNotificationsGetNotifications(ctx context.Context) ApiUserNotificationsGetNotificationsRequest {
+func (a *UserNotificationsAPIService) UserNotificationsGetNotifications(ctx context.Context) ApiUserNotificationsGetNotificationsRequest {
 	return ApiUserNotificationsGetNotificationsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -180,7 +180,7 @@ func (a *UserNotificationsApiService) UserNotificationsGetNotifications(ctx cont
 
 // Execute executes the request
 //  @return AuditActionsVM
-func (a *UserNotificationsApiService) UserNotificationsGetNotificationsExecute(r ApiUserNotificationsGetNotificationsRequest) (*AuditActionsVM, *http.Response, error) {
+func (a *UserNotificationsAPIService) UserNotificationsGetNotificationsExecute(r ApiUserNotificationsGetNotificationsRequest) (*AuditActionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -188,7 +188,7 @@ func (a *UserNotificationsApiService) UserNotificationsGetNotificationsExecute(r
 		localVarReturnValue  *AuditActionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserNotificationsApiService.UserNotificationsGetNotifications")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserNotificationsAPIService.UserNotificationsGetNotifications")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -201,12 +201,21 @@ func (a *UserNotificationsApiService) UserNotificationsGetNotificationsExecute(r
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 5
+		r.take = &defaultValue
 	}
 	if r.subscriptionId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "subscriptionId", r.subscriptionId, "")
+	} else {
+		var defaultValue string = ""
+		r.subscriptionId = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

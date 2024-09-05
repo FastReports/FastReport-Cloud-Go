@@ -13,6 +13,8 @@ package gofrcloud
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the DataSourceVM type satisfies the MappedNullable interface at compile time
@@ -20,6 +22,7 @@ var _ MappedNullable = &DataSourceVM{}
 
 // DataSourceVM struct for DataSourceVM
 type DataSourceVM struct {
+	CloudBaseVM
 	Id NullableString `json:"id,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	ConnectionType *DataSourceConnectionType `json:"connectionType,omitempty"`
@@ -32,14 +35,19 @@ type DataSourceVM struct {
 	CreatorUserId NullableString `json:"creatorUserId,omitempty"`
 	Status *DataSourceStatus `json:"status,omitempty"`
 	ErrorMessage NullableString `json:"errorMessage,omitempty"`
+	SelectCommands []DataSourceSelectCommandVM `json:"selectCommands,omitempty"`
+	T string `json:"$t"`
 }
+
+type _DataSourceVM DataSourceVM
 
 // NewDataSourceVM instantiates a new DataSourceVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataSourceVM() *DataSourceVM {
+func NewDataSourceVM(t string) *DataSourceVM {
 	this := DataSourceVM{}
+	this.T = t
 	return &this
 }
 
@@ -515,6 +523,63 @@ func (o *DataSourceVM) UnsetErrorMessage() {
 	o.ErrorMessage.Unset()
 }
 
+// GetSelectCommands returns the SelectCommands field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DataSourceVM) GetSelectCommands() []DataSourceSelectCommandVM {
+	if o == nil {
+		var ret []DataSourceSelectCommandVM
+		return ret
+	}
+	return o.SelectCommands
+}
+
+// GetSelectCommandsOk returns a tuple with the SelectCommands field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DataSourceVM) GetSelectCommandsOk() ([]DataSourceSelectCommandVM, bool) {
+	if o == nil || IsNil(o.SelectCommands) {
+		return nil, false
+	}
+	return o.SelectCommands, true
+}
+
+// HasSelectCommands returns a boolean if a field has been set.
+func (o *DataSourceVM) HasSelectCommands() bool {
+	if o != nil && IsNil(o.SelectCommands) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelectCommands gets a reference to the given []DataSourceSelectCommandVM and assigns it to the SelectCommands field.
+func (o *DataSourceVM) SetSelectCommands(v []DataSourceSelectCommandVM) {
+	o.SelectCommands = v
+}
+
+// GetT returns the T field value
+func (o *DataSourceVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *DataSourceVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *DataSourceVM) SetT(v string) {
+	o.T = v
+}
+
 func (o DataSourceVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -525,6 +590,14 @@ func (o DataSourceVM) MarshalJSON() ([]byte, error) {
 
 func (o DataSourceVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.Id.IsSet() {
 		toSerialize["id"] = o.Id.Get()
 	}
@@ -561,7 +634,48 @@ func (o DataSourceVM) ToMap() (map[string]interface{}, error) {
 	if o.ErrorMessage.IsSet() {
 		toSerialize["errorMessage"] = o.ErrorMessage.Get()
 	}
+	if o.SelectCommands != nil {
+		toSerialize["selectCommands"] = o.SelectCommands
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *DataSourceVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDataSourceVM := _DataSourceVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDataSourceVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DataSourceVM(varDataSourceVM)
+
+	return err
 }
 
 type NullableDataSourceVM struct {

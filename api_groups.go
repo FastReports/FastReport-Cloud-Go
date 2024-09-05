@@ -20,12 +20,12 @@ import (
 )
 
 
-// GroupsApiService GroupsApi service
-type GroupsApiService service
+// GroupsAPIService GroupsAPI service
+type GroupsAPIService service
 
 type ApiGroupsCreateGroupRequest struct {
 	ctx context.Context
-	ApiService *GroupsApiService
+	ApiService *GroupsAPIService
 	createGroupVM *CreateGroupVM
 }
 
@@ -45,7 +45,7 @@ GroupsCreateGroup Create a new user group
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGroupsCreateGroupRequest
 */
-func (a *GroupsApiService) GroupsCreateGroup(ctx context.Context) ApiGroupsCreateGroupRequest {
+func (a *GroupsAPIService) GroupsCreateGroup(ctx context.Context) ApiGroupsCreateGroupRequest {
 	return ApiGroupsCreateGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -54,7 +54,7 @@ func (a *GroupsApiService) GroupsCreateGroup(ctx context.Context) ApiGroupsCreat
 
 // Execute executes the request
 //  @return GroupVM
-func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupRequest) (*GroupVM, *http.Response, error) {
+func (a *GroupsAPIService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupRequest) (*GroupVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,7 +62,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 		localVarReturnValue  *GroupVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GroupsCreateGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GroupsCreateGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -125,7 +125,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -136,7 +136,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -174,7 +174,7 @@ func (a *GroupsApiService) GroupsCreateGroupExecute(r ApiGroupsCreateGroupReques
 
 type ApiGroupsDeleteGroupRequest struct {
 	ctx context.Context
-	ApiService *GroupsApiService
+	ApiService *GroupsAPIService
 	id string
 }
 
@@ -189,7 +189,7 @@ GroupsDeleteGroup Delete group by identifier
  @param id Identifier of group
  @return ApiGroupsDeleteGroupRequest
 */
-func (a *GroupsApiService) GroupsDeleteGroup(ctx context.Context, id string) ApiGroupsDeleteGroupRequest {
+func (a *GroupsAPIService) GroupsDeleteGroup(ctx context.Context, id string) ApiGroupsDeleteGroupRequest {
 	return ApiGroupsDeleteGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -198,14 +198,14 @@ func (a *GroupsApiService) GroupsDeleteGroup(ctx context.Context, id string) Api
 }
 
 // Execute executes the request
-func (a *GroupsApiService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupRequest) (*http.Response, error) {
+func (a *GroupsAPIService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GroupsDeleteGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GroupsDeleteGroup")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -267,7 +267,7 @@ func (a *GroupsApiService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupReques
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -278,7 +278,7 @@ func (a *GroupsApiService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupReques
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -308,7 +308,7 @@ func (a *GroupsApiService) GroupsDeleteGroupExecute(r ApiGroupsDeleteGroupReques
 
 type ApiGroupsGetGroupRequest struct {
 	ctx context.Context
-	ApiService *GroupsApiService
+	ApiService *GroupsAPIService
 	id string
 }
 
@@ -323,7 +323,7 @@ GroupsGetGroup Gets group by identifier
  @param id Identifier of group
  @return ApiGroupsGetGroupRequest
 */
-func (a *GroupsApiService) GroupsGetGroup(ctx context.Context, id string) ApiGroupsGetGroupRequest {
+func (a *GroupsAPIService) GroupsGetGroup(ctx context.Context, id string) ApiGroupsGetGroupRequest {
 	return ApiGroupsGetGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -333,7 +333,7 @@ func (a *GroupsApiService) GroupsGetGroup(ctx context.Context, id string) ApiGro
 
 // Execute executes the request
 //  @return GroupVM
-func (a *GroupsApiService) GroupsGetGroupExecute(r ApiGroupsGetGroupRequest) (*GroupVM, *http.Response, error) {
+func (a *GroupsAPIService) GroupsGetGroupExecute(r ApiGroupsGetGroupRequest) (*GroupVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -341,7 +341,7 @@ func (a *GroupsApiService) GroupsGetGroupExecute(r ApiGroupsGetGroupRequest) (*G
 		localVarReturnValue  *GroupVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GroupsGetGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GroupsGetGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -442,7 +442,7 @@ func (a *GroupsApiService) GroupsGetGroupExecute(r ApiGroupsGetGroupRequest) (*G
 
 type ApiGroupsGetGroupListRequest struct {
 	ctx context.Context
-	ApiService *GroupsApiService
+	ApiService *GroupsAPIService
 	skip *int32
 	take *int32
 }
@@ -469,7 +469,7 @@ GroupsGetGroupList Returns a list of current user's groups<br />  This method wi
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGroupsGetGroupListRequest
 */
-func (a *GroupsApiService) GroupsGetGroupList(ctx context.Context) ApiGroupsGetGroupListRequest {
+func (a *GroupsAPIService) GroupsGetGroupList(ctx context.Context) ApiGroupsGetGroupListRequest {
 	return ApiGroupsGetGroupListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -478,7 +478,7 @@ func (a *GroupsApiService) GroupsGetGroupList(ctx context.Context) ApiGroupsGetG
 
 // Execute executes the request
 //  @return GroupsVM
-func (a *GroupsApiService) GroupsGetGroupListExecute(r ApiGroupsGetGroupListRequest) (*GroupsVM, *http.Response, error) {
+func (a *GroupsAPIService) GroupsGetGroupListExecute(r ApiGroupsGetGroupListRequest) (*GroupsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -486,7 +486,7 @@ func (a *GroupsApiService) GroupsGetGroupListExecute(r ApiGroupsGetGroupListRequ
 		localVarReturnValue  *GroupsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GroupsGetGroupList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GroupsGetGroupList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -499,9 +499,15 @@ func (a *GroupsApiService) GroupsGetGroupListExecute(r ApiGroupsGetGroupListRequ
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -553,6 +559,17 @@ func (a *GroupsApiService) GroupsGetGroupListExecute(r ApiGroupsGetGroupListRequ
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -591,7 +608,7 @@ func (a *GroupsApiService) GroupsGetGroupListExecute(r ApiGroupsGetGroupListRequ
 
 type ApiGroupsGetPermissionsRequest struct {
 	ctx context.Context
-	ApiService *GroupsApiService
+	ApiService *GroupsAPIService
 	id string
 }
 
@@ -606,7 +623,7 @@ GroupsGetPermissions Gets group permissions by identifier
  @param id Identifier of group
  @return ApiGroupsGetPermissionsRequest
 */
-func (a *GroupsApiService) GroupsGetPermissions(ctx context.Context, id string) ApiGroupsGetPermissionsRequest {
+func (a *GroupsAPIService) GroupsGetPermissions(ctx context.Context, id string) ApiGroupsGetPermissionsRequest {
 	return ApiGroupsGetPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -616,7 +633,7 @@ func (a *GroupsApiService) GroupsGetPermissions(ctx context.Context, id string) 
 
 // Execute executes the request
 //  @return GroupPermissionsVM
-func (a *GroupsApiService) GroupsGetPermissionsExecute(r ApiGroupsGetPermissionsRequest) (*GroupPermissionsVM, *http.Response, error) {
+func (a *GroupsAPIService) GroupsGetPermissionsExecute(r ApiGroupsGetPermissionsRequest) (*GroupPermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -624,7 +641,7 @@ func (a *GroupsApiService) GroupsGetPermissionsExecute(r ApiGroupsGetPermissions
 		localVarReturnValue  *GroupPermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GroupsGetPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GroupsGetPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -724,7 +741,7 @@ func (a *GroupsApiService) GroupsGetPermissionsExecute(r ApiGroupsGetPermissions
 
 type ApiGroupsRenameGroupRequest struct {
 	ctx context.Context
-	ApiService *GroupsApiService
+	ApiService *GroupsAPIService
 	id string
 	renameGroupVM *RenameGroupVM
 }
@@ -746,7 +763,7 @@ GroupsRenameGroup Rename group by identifier
  @param id Identifier of group
  @return ApiGroupsRenameGroupRequest
 */
-func (a *GroupsApiService) GroupsRenameGroup(ctx context.Context, id string) ApiGroupsRenameGroupRequest {
+func (a *GroupsAPIService) GroupsRenameGroup(ctx context.Context, id string) ApiGroupsRenameGroupRequest {
 	return ApiGroupsRenameGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -756,7 +773,7 @@ func (a *GroupsApiService) GroupsRenameGroup(ctx context.Context, id string) Api
 
 // Execute executes the request
 //  @return GroupVM
-func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupRequest) (*GroupVM, *http.Response, error) {
+func (a *GroupsAPIService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupRequest) (*GroupVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -764,7 +781,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 		localVarReturnValue  *GroupVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GroupsRenameGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GroupsRenameGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -831,7 +848,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -842,7 +859,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -881,7 +898,7 @@ func (a *GroupsApiService) GroupsRenameGroupExecute(r ApiGroupsRenameGroupReques
 
 type ApiGroupsUpdatePermissionsRequest struct {
 	ctx context.Context
-	ApiService *GroupsApiService
+	ApiService *GroupsAPIService
 	id string
 	updateGroupPermissionsVM *UpdateGroupPermissionsVM
 }
@@ -903,7 +920,7 @@ GroupsUpdatePermissions Update permissions
  @param id 
  @return ApiGroupsUpdatePermissionsRequest
 */
-func (a *GroupsApiService) GroupsUpdatePermissions(ctx context.Context, id string) ApiGroupsUpdatePermissionsRequest {
+func (a *GroupsAPIService) GroupsUpdatePermissions(ctx context.Context, id string) ApiGroupsUpdatePermissionsRequest {
 	return ApiGroupsUpdatePermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -912,14 +929,14 @@ func (a *GroupsApiService) GroupsUpdatePermissions(ctx context.Context, id strin
 }
 
 // Execute executes the request
-func (a *GroupsApiService) GroupsUpdatePermissionsExecute(r ApiGroupsUpdatePermissionsRequest) (*http.Response, error) {
+func (a *GroupsAPIService) GroupsUpdatePermissionsExecute(r ApiGroupsUpdatePermissionsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsApiService.GroupsUpdatePermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GroupsUpdatePermissions")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

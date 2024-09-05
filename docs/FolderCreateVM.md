@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Name** | Pointer to **NullableString** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Icon** | Pointer to **NullableString** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewFolderCreateVM
 
-`func NewFolderCreateVM() *FolderCreateVM`
+`func NewFolderCreateVM(t string, ) *FolderCreateVM`
 
 NewFolderCreateVM instantiates a new FolderCreateVM object
 This constructor will assign default values to properties that have it defined,
@@ -132,6 +133,26 @@ HasIcon returns a boolean if a field has been set.
 `func (o *FolderCreateVM) UnsetIcon()`
 
 UnsetIcon ensures that no value is present for Icon, not even an explicit nil
+### GetT
+
+`func (o *FolderCreateVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *FolderCreateVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *FolderCreateVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

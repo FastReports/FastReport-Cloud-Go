@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the MyPermissionsVM type satisfies the MappedNullable interface at compile time
@@ -19,19 +21,24 @@ var _ MappedNullable = &MyPermissionsVM{}
 
 // MyPermissionsVM struct for MyPermissionsVM
 type MyPermissionsVM struct {
-	Subscription *SubscriptionPermission `json:"subscription,omitempty"`
-	Files *FilePermission `json:"files,omitempty"`
-	Datasources *DataSourcePermission `json:"datasources,omitempty"`
-	Groups *GroupPermission `json:"groups,omitempty"`
-	Tasks *TaskPermission `json:"tasks,omitempty"`
+	CloudBaseVM
+	Subscription *SubscriptionPermissionCRUDVM `json:"subscription,omitempty"`
+	Files *FilePermissionCRUDVM `json:"files,omitempty"`
+	Datasources *DataSourcePermissionCRUDVM `json:"datasources,omitempty"`
+	Groups *GroupPermissionCRUDVM `json:"groups,omitempty"`
+	Tasks *TaskPermissionCRUDVM `json:"tasks,omitempty"`
+	T string `json:"$t"`
 }
+
+type _MyPermissionsVM MyPermissionsVM
 
 // NewMyPermissionsVM instantiates a new MyPermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMyPermissionsVM() *MyPermissionsVM {
+func NewMyPermissionsVM(t string) *MyPermissionsVM {
 	this := MyPermissionsVM{}
+	this.T = t
 	return &this
 }
 
@@ -44,9 +51,9 @@ func NewMyPermissionsVMWithDefaults() *MyPermissionsVM {
 }
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
-func (o *MyPermissionsVM) GetSubscription() SubscriptionPermission {
+func (o *MyPermissionsVM) GetSubscription() SubscriptionPermissionCRUDVM {
 	if o == nil || IsNil(o.Subscription) {
-		var ret SubscriptionPermission
+		var ret SubscriptionPermissionCRUDVM
 		return ret
 	}
 	return *o.Subscription
@@ -54,7 +61,7 @@ func (o *MyPermissionsVM) GetSubscription() SubscriptionPermission {
 
 // GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyPermissionsVM) GetSubscriptionOk() (*SubscriptionPermission, bool) {
+func (o *MyPermissionsVM) GetSubscriptionOk() (*SubscriptionPermissionCRUDVM, bool) {
 	if o == nil || IsNil(o.Subscription) {
 		return nil, false
 	}
@@ -70,15 +77,15 @@ func (o *MyPermissionsVM) HasSubscription() bool {
 	return false
 }
 
-// SetSubscription gets a reference to the given SubscriptionPermission and assigns it to the Subscription field.
-func (o *MyPermissionsVM) SetSubscription(v SubscriptionPermission) {
+// SetSubscription gets a reference to the given SubscriptionPermissionCRUDVM and assigns it to the Subscription field.
+func (o *MyPermissionsVM) SetSubscription(v SubscriptionPermissionCRUDVM) {
 	o.Subscription = &v
 }
 
 // GetFiles returns the Files field value if set, zero value otherwise.
-func (o *MyPermissionsVM) GetFiles() FilePermission {
+func (o *MyPermissionsVM) GetFiles() FilePermissionCRUDVM {
 	if o == nil || IsNil(o.Files) {
-		var ret FilePermission
+		var ret FilePermissionCRUDVM
 		return ret
 	}
 	return *o.Files
@@ -86,7 +93,7 @@ func (o *MyPermissionsVM) GetFiles() FilePermission {
 
 // GetFilesOk returns a tuple with the Files field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyPermissionsVM) GetFilesOk() (*FilePermission, bool) {
+func (o *MyPermissionsVM) GetFilesOk() (*FilePermissionCRUDVM, bool) {
 	if o == nil || IsNil(o.Files) {
 		return nil, false
 	}
@@ -102,15 +109,15 @@ func (o *MyPermissionsVM) HasFiles() bool {
 	return false
 }
 
-// SetFiles gets a reference to the given FilePermission and assigns it to the Files field.
-func (o *MyPermissionsVM) SetFiles(v FilePermission) {
+// SetFiles gets a reference to the given FilePermissionCRUDVM and assigns it to the Files field.
+func (o *MyPermissionsVM) SetFiles(v FilePermissionCRUDVM) {
 	o.Files = &v
 }
 
 // GetDatasources returns the Datasources field value if set, zero value otherwise.
-func (o *MyPermissionsVM) GetDatasources() DataSourcePermission {
+func (o *MyPermissionsVM) GetDatasources() DataSourcePermissionCRUDVM {
 	if o == nil || IsNil(o.Datasources) {
-		var ret DataSourcePermission
+		var ret DataSourcePermissionCRUDVM
 		return ret
 	}
 	return *o.Datasources
@@ -118,7 +125,7 @@ func (o *MyPermissionsVM) GetDatasources() DataSourcePermission {
 
 // GetDatasourcesOk returns a tuple with the Datasources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyPermissionsVM) GetDatasourcesOk() (*DataSourcePermission, bool) {
+func (o *MyPermissionsVM) GetDatasourcesOk() (*DataSourcePermissionCRUDVM, bool) {
 	if o == nil || IsNil(o.Datasources) {
 		return nil, false
 	}
@@ -134,15 +141,15 @@ func (o *MyPermissionsVM) HasDatasources() bool {
 	return false
 }
 
-// SetDatasources gets a reference to the given DataSourcePermission and assigns it to the Datasources field.
-func (o *MyPermissionsVM) SetDatasources(v DataSourcePermission) {
+// SetDatasources gets a reference to the given DataSourcePermissionCRUDVM and assigns it to the Datasources field.
+func (o *MyPermissionsVM) SetDatasources(v DataSourcePermissionCRUDVM) {
 	o.Datasources = &v
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *MyPermissionsVM) GetGroups() GroupPermission {
+func (o *MyPermissionsVM) GetGroups() GroupPermissionCRUDVM {
 	if o == nil || IsNil(o.Groups) {
-		var ret GroupPermission
+		var ret GroupPermissionCRUDVM
 		return ret
 	}
 	return *o.Groups
@@ -150,7 +157,7 @@ func (o *MyPermissionsVM) GetGroups() GroupPermission {
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyPermissionsVM) GetGroupsOk() (*GroupPermission, bool) {
+func (o *MyPermissionsVM) GetGroupsOk() (*GroupPermissionCRUDVM, bool) {
 	if o == nil || IsNil(o.Groups) {
 		return nil, false
 	}
@@ -166,15 +173,15 @@ func (o *MyPermissionsVM) HasGroups() bool {
 	return false
 }
 
-// SetGroups gets a reference to the given GroupPermission and assigns it to the Groups field.
-func (o *MyPermissionsVM) SetGroups(v GroupPermission) {
+// SetGroups gets a reference to the given GroupPermissionCRUDVM and assigns it to the Groups field.
+func (o *MyPermissionsVM) SetGroups(v GroupPermissionCRUDVM) {
 	o.Groups = &v
 }
 
 // GetTasks returns the Tasks field value if set, zero value otherwise.
-func (o *MyPermissionsVM) GetTasks() TaskPermission {
+func (o *MyPermissionsVM) GetTasks() TaskPermissionCRUDVM {
 	if o == nil || IsNil(o.Tasks) {
-		var ret TaskPermission
+		var ret TaskPermissionCRUDVM
 		return ret
 	}
 	return *o.Tasks
@@ -182,7 +189,7 @@ func (o *MyPermissionsVM) GetTasks() TaskPermission {
 
 // GetTasksOk returns a tuple with the Tasks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MyPermissionsVM) GetTasksOk() (*TaskPermission, bool) {
+func (o *MyPermissionsVM) GetTasksOk() (*TaskPermissionCRUDVM, bool) {
 	if o == nil || IsNil(o.Tasks) {
 		return nil, false
 	}
@@ -198,9 +205,33 @@ func (o *MyPermissionsVM) HasTasks() bool {
 	return false
 }
 
-// SetTasks gets a reference to the given TaskPermission and assigns it to the Tasks field.
-func (o *MyPermissionsVM) SetTasks(v TaskPermission) {
+// SetTasks gets a reference to the given TaskPermissionCRUDVM and assigns it to the Tasks field.
+func (o *MyPermissionsVM) SetTasks(v TaskPermissionCRUDVM) {
 	o.Tasks = &v
+}
+
+// GetT returns the T field value
+func (o *MyPermissionsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *MyPermissionsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *MyPermissionsVM) SetT(v string) {
+	o.T = v
 }
 
 func (o MyPermissionsVM) MarshalJSON() ([]byte, error) {
@@ -213,6 +244,14 @@ func (o MyPermissionsVM) MarshalJSON() ([]byte, error) {
 
 func (o MyPermissionsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription
 	}
@@ -228,7 +267,45 @@ func (o MyPermissionsVM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tasks) {
 		toSerialize["tasks"] = o.Tasks
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *MyPermissionsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMyPermissionsVM := _MyPermissionsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMyPermissionsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MyPermissionsVM(varMyPermissionsVM)
+
+	return err
 }
 
 type NullableMyPermissionsVM struct {

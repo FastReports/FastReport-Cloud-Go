@@ -21,12 +21,12 @@ import (
 )
 
 
-// DownloadApiService DownloadApi service
-type DownloadApiService service
+// DownloadAPIService DownloadAPI service
+type DownloadAPIService service
 
 type ApiDownloadGetExportRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	id string
 	preview *bool
 }
@@ -48,7 +48,7 @@ DownloadGetExport Returns a export file with specified id
  @param id 
  @return ApiDownloadGetExportRequest
 */
-func (a *DownloadApiService) DownloadGetExport(ctx context.Context, id string) ApiDownloadGetExportRequest {
+func (a *DownloadAPIService) DownloadGetExport(ctx context.Context, id string) ApiDownloadGetExportRequest {
 	return ApiDownloadGetExportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -58,7 +58,7 @@ func (a *DownloadApiService) DownloadGetExport(ctx context.Context, id string) A
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetExportExecute(r ApiDownloadGetExportRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -66,7 +66,7 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetExport")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetExport")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -80,6 +80,9 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 
 	if r.preview != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "preview", r.preview, "")
+	} else {
+		var defaultValue bool = false
+		r.preview = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -120,17 +123,6 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -162,6 +154,18 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -180,7 +184,7 @@ func (a *DownloadApiService) DownloadGetExportExecute(r ApiDownloadGetExportRequ
 
 type ApiDownloadGetExportThumbnailRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	id string
 }
 
@@ -195,7 +199,7 @@ DownloadGetExportThumbnail Returns export's thumbnail
  @param id 
  @return ApiDownloadGetExportThumbnailRequest
 */
-func (a *DownloadApiService) DownloadGetExportThumbnail(ctx context.Context, id string) ApiDownloadGetExportThumbnailRequest {
+func (a *DownloadAPIService) DownloadGetExportThumbnail(ctx context.Context, id string) ApiDownloadGetExportThumbnailRequest {
 	return ApiDownloadGetExportThumbnailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -205,7 +209,7 @@ func (a *DownloadApiService) DownloadGetExportThumbnail(ctx context.Context, id 
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetExportThumbnailRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetExportThumbnailExecute(r ApiDownloadGetExportThumbnailRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -213,7 +217,7 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetExportThumbnail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetExportThumbnail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -264,17 +268,6 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -306,6 +299,17 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -324,7 +328,7 @@ func (a *DownloadApiService) DownloadGetExportThumbnailExecute(r ApiDownloadGetE
 
 type ApiDownloadGetExportsRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	archiveName string
 	fileIds *string
 	folderIds *string
@@ -353,7 +357,7 @@ DownloadGetExports Returns a zip archive with selected ids
  @param archiveName name of the created archive
  @return ApiDownloadGetExportsRequest
 */
-func (a *DownloadApiService) DownloadGetExports(ctx context.Context, archiveName string) ApiDownloadGetExportsRequest {
+func (a *DownloadAPIService) DownloadGetExports(ctx context.Context, archiveName string) ApiDownloadGetExportsRequest {
 	return ApiDownloadGetExportsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -363,7 +367,7 @@ func (a *DownloadApiService) DownloadGetExports(ctx context.Context, archiveName
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetExportsExecute(r ApiDownloadGetExportsRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetExportsExecute(r ApiDownloadGetExportsRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -371,7 +375,7 @@ func (a *DownloadApiService) DownloadGetExportsExecute(r ApiDownloadGetExportsRe
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetExports")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetExports")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -488,7 +492,7 @@ func (a *DownloadApiService) DownloadGetExportsExecute(r ApiDownloadGetExportsRe
 
 type ApiDownloadGetLastSVGExportRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	reportId string
 }
 
@@ -503,7 +507,7 @@ DownloadGetLastSVGExport returns export, that was created from report with speci
  @param reportId 
  @return ApiDownloadGetLastSVGExportRequest
 */
-func (a *DownloadApiService) DownloadGetLastSVGExport(ctx context.Context, reportId string) ApiDownloadGetLastSVGExportRequest {
+func (a *DownloadAPIService) DownloadGetLastSVGExport(ctx context.Context, reportId string) ApiDownloadGetLastSVGExportRequest {
 	return ApiDownloadGetLastSVGExportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -513,7 +517,7 @@ func (a *DownloadApiService) DownloadGetLastSVGExport(ctx context.Context, repor
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetLastSVGExportExecute(r ApiDownloadGetLastSVGExportRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetLastSVGExportExecute(r ApiDownloadGetLastSVGExportRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -521,7 +525,7 @@ func (a *DownloadApiService) DownloadGetLastSVGExportExecute(r ApiDownloadGetLas
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetLastSVGExport")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetLastSVGExport")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -572,17 +576,6 @@ func (a *DownloadApiService) DownloadGetLastSVGExportExecute(r ApiDownloadGetLas
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -614,6 +607,17 @@ func (a *DownloadApiService) DownloadGetLastSVGExportExecute(r ApiDownloadGetLas
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -632,7 +636,7 @@ func (a *DownloadApiService) DownloadGetLastSVGExportExecute(r ApiDownloadGetLas
 
 type ApiDownloadGetReportRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	id string
 }
 
@@ -647,7 +651,7 @@ DownloadGetReport Returns a prepared file with specified id
  @param id 
  @return ApiDownloadGetReportRequest
 */
-func (a *DownloadApiService) DownloadGetReport(ctx context.Context, id string) ApiDownloadGetReportRequest {
+func (a *DownloadAPIService) DownloadGetReport(ctx context.Context, id string) ApiDownloadGetReportRequest {
 	return ApiDownloadGetReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -657,7 +661,7 @@ func (a *DownloadApiService) DownloadGetReport(ctx context.Context, id string) A
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetReportExecute(r ApiDownloadGetReportRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -665,7 +669,7 @@ func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequ
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetReport")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetReport")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -716,17 +720,6 @@ func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -758,6 +751,17 @@ func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequ
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -776,7 +780,7 @@ func (a *DownloadApiService) DownloadGetReportExecute(r ApiDownloadGetReportRequ
 
 type ApiDownloadGetReportThumbnailRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	id string
 }
 
@@ -791,7 +795,7 @@ DownloadGetReportThumbnail Returns report's thumbnail
  @param id 
  @return ApiDownloadGetReportThumbnailRequest
 */
-func (a *DownloadApiService) DownloadGetReportThumbnail(ctx context.Context, id string) ApiDownloadGetReportThumbnailRequest {
+func (a *DownloadAPIService) DownloadGetReportThumbnail(ctx context.Context, id string) ApiDownloadGetReportThumbnailRequest {
 	return ApiDownloadGetReportThumbnailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -801,7 +805,7 @@ func (a *DownloadApiService) DownloadGetReportThumbnail(ctx context.Context, id 
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetReportThumbnailRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetReportThumbnailExecute(r ApiDownloadGetReportThumbnailRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -809,7 +813,7 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetReportThumbnail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetReportThumbnail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -860,17 +864,6 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -902,6 +895,17 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -920,7 +924,7 @@ func (a *DownloadApiService) DownloadGetReportThumbnailExecute(r ApiDownloadGetR
 
 type ApiDownloadGetReportsRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	archiveName string
 	fileIds *string
 	folderIds *string
@@ -949,7 +953,7 @@ DownloadGetReports Returns a zip archive with selected files
  @param archiveName name of the created archive
  @return ApiDownloadGetReportsRequest
 */
-func (a *DownloadApiService) DownloadGetReports(ctx context.Context, archiveName string) ApiDownloadGetReportsRequest {
+func (a *DownloadAPIService) DownloadGetReports(ctx context.Context, archiveName string) ApiDownloadGetReportsRequest {
 	return ApiDownloadGetReportsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -959,7 +963,7 @@ func (a *DownloadApiService) DownloadGetReports(ctx context.Context, archiveName
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetReportsExecute(r ApiDownloadGetReportsRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -967,7 +971,7 @@ func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRe
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetReports")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetReports")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1024,17 +1028,6 @@ func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1066,6 +1059,17 @@ func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRe
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1084,7 +1088,7 @@ func (a *DownloadApiService) DownloadGetReportsExecute(r ApiDownloadGetReportsRe
 
 type ApiDownloadGetTemplateRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	id string
 }
 
@@ -1099,7 +1103,7 @@ DownloadGetTemplate Returns a Template file with specified id
  @param id template id
  @return ApiDownloadGetTemplateRequest
 */
-func (a *DownloadApiService) DownloadGetTemplate(ctx context.Context, id string) ApiDownloadGetTemplateRequest {
+func (a *DownloadAPIService) DownloadGetTemplate(ctx context.Context, id string) ApiDownloadGetTemplateRequest {
 	return ApiDownloadGetTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1109,7 +1113,7 @@ func (a *DownloadApiService) DownloadGetTemplate(ctx context.Context, id string)
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplateRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetTemplateExecute(r ApiDownloadGetTemplateRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1117,7 +1121,7 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetTemplate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetTemplate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1168,17 +1172,6 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1210,6 +1203,17 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1228,7 +1232,7 @@ func (a *DownloadApiService) DownloadGetTemplateExecute(r ApiDownloadGetTemplate
 
 type ApiDownloadGetTemplateThumbnailRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	id string
 }
 
@@ -1243,7 +1247,7 @@ DownloadGetTemplateThumbnail Returns template's thumbnail
  @param id 
  @return ApiDownloadGetTemplateThumbnailRequest
 */
-func (a *DownloadApiService) DownloadGetTemplateThumbnail(ctx context.Context, id string) ApiDownloadGetTemplateThumbnailRequest {
+func (a *DownloadAPIService) DownloadGetTemplateThumbnail(ctx context.Context, id string) ApiDownloadGetTemplateThumbnailRequest {
 	return ApiDownloadGetTemplateThumbnailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1253,7 +1257,7 @@ func (a *DownloadApiService) DownloadGetTemplateThumbnail(ctx context.Context, i
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetTemplateThumbnailExecute(r ApiDownloadGetTemplateThumbnailRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetTemplateThumbnailExecute(r ApiDownloadGetTemplateThumbnailRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1261,7 +1265,7 @@ func (a *DownloadApiService) DownloadGetTemplateThumbnailExecute(r ApiDownloadGe
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetTemplateThumbnail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetTemplateThumbnail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1312,17 +1316,6 @@ func (a *DownloadApiService) DownloadGetTemplateThumbnailExecute(r ApiDownloadGe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1354,6 +1347,17 @@ func (a *DownloadApiService) DownloadGetTemplateThumbnailExecute(r ApiDownloadGe
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1372,7 +1376,7 @@ func (a *DownloadApiService) DownloadGetTemplateThumbnailExecute(r ApiDownloadGe
 
 type ApiDownloadGetTemplatesRequest struct {
 	ctx context.Context
-	ApiService *DownloadApiService
+	ApiService *DownloadAPIService
 	archiveName string
 	fileIds *string
 	folderIds *string
@@ -1401,7 +1405,7 @@ DownloadGetTemplates Returns a zip archive with selected files
  @param archiveName name of the created archive
  @return ApiDownloadGetTemplatesRequest
 */
-func (a *DownloadApiService) DownloadGetTemplates(ctx context.Context, archiveName string) ApiDownloadGetTemplatesRequest {
+func (a *DownloadAPIService) DownloadGetTemplates(ctx context.Context, archiveName string) ApiDownloadGetTemplatesRequest {
 	return ApiDownloadGetTemplatesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1411,7 +1415,7 @@ func (a *DownloadApiService) DownloadGetTemplates(ctx context.Context, archiveNa
 
 // Execute executes the request
 //  @return *os.File
-func (a *DownloadApiService) DownloadGetTemplatesExecute(r ApiDownloadGetTemplatesRequest) (*os.File, *http.Response, error) {
+func (a *DownloadAPIService) DownloadGetTemplatesExecute(r ApiDownloadGetTemplatesRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1419,7 +1423,7 @@ func (a *DownloadApiService) DownloadGetTemplatesExecute(r ApiDownloadGetTemplat
 		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadApiService.DownloadGetTemplates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DownloadAPIService.DownloadGetTemplates")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

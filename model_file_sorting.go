@@ -20,7 +20,6 @@ type FileSorting string
 
 // List of FileSorting
 const (
-	NONE FileSorting = "None"
 	CREATED_TIME FileSorting = "CreatedTime"
 	EDITED_TIME FileSorting = "EditedTime"
 	SIZE FileSorting = "Size"
@@ -29,7 +28,6 @@ const (
 
 // All allowed values of FileSorting enum
 var AllowedFileSortingEnumValues = []FileSorting{
-	"None",
 	"CreatedTime",
 	"EditedTime",
 	"Size",

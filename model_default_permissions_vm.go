@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the DefaultPermissionsVM type satisfies the MappedNullable interface at compile time
@@ -19,18 +21,23 @@ var _ MappedNullable = &DefaultPermissionsVM{}
 
 // DefaultPermissionsVM struct for DefaultPermissionsVM
 type DefaultPermissionsVM struct {
-	FilePermissions *FilePermissions `json:"filePermissions,omitempty"`
-	DataSourcePermissions *DataSourcePermissions `json:"dataSourcePermissions,omitempty"`
-	GroupPermissions *GroupPermissions `json:"groupPermissions,omitempty"`
-	TaskPermissions *TaskPermissions `json:"taskPermissions,omitempty"`
+	CloudBaseVM
+	FilePermissions *FilePermissionsCRUDVM `json:"filePermissions,omitempty"`
+	DataSourcePermissions *DataSourcePermissionsCRUDVM `json:"dataSourcePermissions,omitempty"`
+	GroupPermissions *GroupPermissionsCRUDVM `json:"groupPermissions,omitempty"`
+	TaskPermissions *TaskPermissionsCRUDVM `json:"taskPermissions,omitempty"`
+	T string `json:"$t"`
 }
+
+type _DefaultPermissionsVM DefaultPermissionsVM
 
 // NewDefaultPermissionsVM instantiates a new DefaultPermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDefaultPermissionsVM() *DefaultPermissionsVM {
+func NewDefaultPermissionsVM(t string) *DefaultPermissionsVM {
 	this := DefaultPermissionsVM{}
+	this.T = t
 	return &this
 }
 
@@ -43,9 +50,9 @@ func NewDefaultPermissionsVMWithDefaults() *DefaultPermissionsVM {
 }
 
 // GetFilePermissions returns the FilePermissions field value if set, zero value otherwise.
-func (o *DefaultPermissionsVM) GetFilePermissions() FilePermissions {
+func (o *DefaultPermissionsVM) GetFilePermissions() FilePermissionsCRUDVM {
 	if o == nil || IsNil(o.FilePermissions) {
-		var ret FilePermissions
+		var ret FilePermissionsCRUDVM
 		return ret
 	}
 	return *o.FilePermissions
@@ -53,7 +60,7 @@ func (o *DefaultPermissionsVM) GetFilePermissions() FilePermissions {
 
 // GetFilePermissionsOk returns a tuple with the FilePermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DefaultPermissionsVM) GetFilePermissionsOk() (*FilePermissions, bool) {
+func (o *DefaultPermissionsVM) GetFilePermissionsOk() (*FilePermissionsCRUDVM, bool) {
 	if o == nil || IsNil(o.FilePermissions) {
 		return nil, false
 	}
@@ -69,15 +76,15 @@ func (o *DefaultPermissionsVM) HasFilePermissions() bool {
 	return false
 }
 
-// SetFilePermissions gets a reference to the given FilePermissions and assigns it to the FilePermissions field.
-func (o *DefaultPermissionsVM) SetFilePermissions(v FilePermissions) {
+// SetFilePermissions gets a reference to the given FilePermissionsCRUDVM and assigns it to the FilePermissions field.
+func (o *DefaultPermissionsVM) SetFilePermissions(v FilePermissionsCRUDVM) {
 	o.FilePermissions = &v
 }
 
 // GetDataSourcePermissions returns the DataSourcePermissions field value if set, zero value otherwise.
-func (o *DefaultPermissionsVM) GetDataSourcePermissions() DataSourcePermissions {
+func (o *DefaultPermissionsVM) GetDataSourcePermissions() DataSourcePermissionsCRUDVM {
 	if o == nil || IsNil(o.DataSourcePermissions) {
-		var ret DataSourcePermissions
+		var ret DataSourcePermissionsCRUDVM
 		return ret
 	}
 	return *o.DataSourcePermissions
@@ -85,7 +92,7 @@ func (o *DefaultPermissionsVM) GetDataSourcePermissions() DataSourcePermissions 
 
 // GetDataSourcePermissionsOk returns a tuple with the DataSourcePermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DefaultPermissionsVM) GetDataSourcePermissionsOk() (*DataSourcePermissions, bool) {
+func (o *DefaultPermissionsVM) GetDataSourcePermissionsOk() (*DataSourcePermissionsCRUDVM, bool) {
 	if o == nil || IsNil(o.DataSourcePermissions) {
 		return nil, false
 	}
@@ -101,15 +108,15 @@ func (o *DefaultPermissionsVM) HasDataSourcePermissions() bool {
 	return false
 }
 
-// SetDataSourcePermissions gets a reference to the given DataSourcePermissions and assigns it to the DataSourcePermissions field.
-func (o *DefaultPermissionsVM) SetDataSourcePermissions(v DataSourcePermissions) {
+// SetDataSourcePermissions gets a reference to the given DataSourcePermissionsCRUDVM and assigns it to the DataSourcePermissions field.
+func (o *DefaultPermissionsVM) SetDataSourcePermissions(v DataSourcePermissionsCRUDVM) {
 	o.DataSourcePermissions = &v
 }
 
 // GetGroupPermissions returns the GroupPermissions field value if set, zero value otherwise.
-func (o *DefaultPermissionsVM) GetGroupPermissions() GroupPermissions {
+func (o *DefaultPermissionsVM) GetGroupPermissions() GroupPermissionsCRUDVM {
 	if o == nil || IsNil(o.GroupPermissions) {
-		var ret GroupPermissions
+		var ret GroupPermissionsCRUDVM
 		return ret
 	}
 	return *o.GroupPermissions
@@ -117,7 +124,7 @@ func (o *DefaultPermissionsVM) GetGroupPermissions() GroupPermissions {
 
 // GetGroupPermissionsOk returns a tuple with the GroupPermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DefaultPermissionsVM) GetGroupPermissionsOk() (*GroupPermissions, bool) {
+func (o *DefaultPermissionsVM) GetGroupPermissionsOk() (*GroupPermissionsCRUDVM, bool) {
 	if o == nil || IsNil(o.GroupPermissions) {
 		return nil, false
 	}
@@ -133,15 +140,15 @@ func (o *DefaultPermissionsVM) HasGroupPermissions() bool {
 	return false
 }
 
-// SetGroupPermissions gets a reference to the given GroupPermissions and assigns it to the GroupPermissions field.
-func (o *DefaultPermissionsVM) SetGroupPermissions(v GroupPermissions) {
+// SetGroupPermissions gets a reference to the given GroupPermissionsCRUDVM and assigns it to the GroupPermissions field.
+func (o *DefaultPermissionsVM) SetGroupPermissions(v GroupPermissionsCRUDVM) {
 	o.GroupPermissions = &v
 }
 
 // GetTaskPermissions returns the TaskPermissions field value if set, zero value otherwise.
-func (o *DefaultPermissionsVM) GetTaskPermissions() TaskPermissions {
+func (o *DefaultPermissionsVM) GetTaskPermissions() TaskPermissionsCRUDVM {
 	if o == nil || IsNil(o.TaskPermissions) {
-		var ret TaskPermissions
+		var ret TaskPermissionsCRUDVM
 		return ret
 	}
 	return *o.TaskPermissions
@@ -149,7 +156,7 @@ func (o *DefaultPermissionsVM) GetTaskPermissions() TaskPermissions {
 
 // GetTaskPermissionsOk returns a tuple with the TaskPermissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DefaultPermissionsVM) GetTaskPermissionsOk() (*TaskPermissions, bool) {
+func (o *DefaultPermissionsVM) GetTaskPermissionsOk() (*TaskPermissionsCRUDVM, bool) {
 	if o == nil || IsNil(o.TaskPermissions) {
 		return nil, false
 	}
@@ -165,9 +172,33 @@ func (o *DefaultPermissionsVM) HasTaskPermissions() bool {
 	return false
 }
 
-// SetTaskPermissions gets a reference to the given TaskPermissions and assigns it to the TaskPermissions field.
-func (o *DefaultPermissionsVM) SetTaskPermissions(v TaskPermissions) {
+// SetTaskPermissions gets a reference to the given TaskPermissionsCRUDVM and assigns it to the TaskPermissions field.
+func (o *DefaultPermissionsVM) SetTaskPermissions(v TaskPermissionsCRUDVM) {
 	o.TaskPermissions = &v
+}
+
+// GetT returns the T field value
+func (o *DefaultPermissionsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *DefaultPermissionsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *DefaultPermissionsVM) SetT(v string) {
+	o.T = v
 }
 
 func (o DefaultPermissionsVM) MarshalJSON() ([]byte, error) {
@@ -180,6 +211,14 @@ func (o DefaultPermissionsVM) MarshalJSON() ([]byte, error) {
 
 func (o DefaultPermissionsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if !IsNil(o.FilePermissions) {
 		toSerialize["filePermissions"] = o.FilePermissions
 	}
@@ -192,7 +231,45 @@ func (o DefaultPermissionsVM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TaskPermissions) {
 		toSerialize["taskPermissions"] = o.TaskPermissions
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *DefaultPermissionsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDefaultPermissionsVM := _DefaultPermissionsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDefaultPermissionsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DefaultPermissionsVM(varDefaultPermissionsVM)
+
+	return err
 }
 
 type NullableDefaultPermissionsVM struct {

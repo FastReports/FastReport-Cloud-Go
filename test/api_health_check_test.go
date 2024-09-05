@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing HealthCheckApiService
+Testing HealthCheckAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_HealthCheckApiService(t *testing.T) {
+func Test_gofrcloud_HealthCheckAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test HealthCheckApiService HealthCheckDataGet", func(t *testing.T) {
+	t.Run("Test HealthCheckAPIService HealthCheckDataGet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.HealthCheckApi.HealthCheckDataGet(context.Background()).Execute()
+		httpRes, err := apiClient.HealthCheckAPI.HealthCheckDataGet(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

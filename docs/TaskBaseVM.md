@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CronExpression** | Pointer to **NullableString** |  | [optional] 
-**DelayedRunTime** | Pointer to **NullableTime** |  | [optional] 
-**DelayedWasRunTime** | Pointer to **NullableTime** |  | [optional] 
+**StartsOn** | Pointer to **NullableTime** |  | [optional] 
+**Ends** | Pointer to [**TaskEnd**](TaskEnd.md) |  | [optional] 
 **Id** | Pointer to **NullableString** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
-**RecurrentRunTime** | Pointer to **NullableTime** |  | [optional] [readonly] 
-**RecurrentWasRunTime** | Pointer to **NullableTime** |  | [optional] [readonly] 
+**RecurrentRunTime** | Pointer to **NullableTime** |  | [optional] 
+**RecurrentWasRunTime** | Pointer to **NullableTime** |  | [optional] 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **T** | **string** |  | 
 
@@ -68,76 +68,66 @@ HasCronExpression returns a boolean if a field has been set.
 `func (o *TaskBaseVM) UnsetCronExpression()`
 
 UnsetCronExpression ensures that no value is present for CronExpression, not even an explicit nil
-### GetDelayedRunTime
+### GetStartsOn
 
-`func (o *TaskBaseVM) GetDelayedRunTime() time.Time`
+`func (o *TaskBaseVM) GetStartsOn() time.Time`
 
-GetDelayedRunTime returns the DelayedRunTime field if non-nil, zero value otherwise.
+GetStartsOn returns the StartsOn field if non-nil, zero value otherwise.
 
-### GetDelayedRunTimeOk
+### GetStartsOnOk
 
-`func (o *TaskBaseVM) GetDelayedRunTimeOk() (*time.Time, bool)`
+`func (o *TaskBaseVM) GetStartsOnOk() (*time.Time, bool)`
 
-GetDelayedRunTimeOk returns a tuple with the DelayedRunTime field if it's non-nil, zero value otherwise
+GetStartsOnOk returns a tuple with the StartsOn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDelayedRunTime
+### SetStartsOn
 
-`func (o *TaskBaseVM) SetDelayedRunTime(v time.Time)`
+`func (o *TaskBaseVM) SetStartsOn(v time.Time)`
 
-SetDelayedRunTime sets DelayedRunTime field to given value.
+SetStartsOn sets StartsOn field to given value.
 
-### HasDelayedRunTime
+### HasStartsOn
 
-`func (o *TaskBaseVM) HasDelayedRunTime() bool`
+`func (o *TaskBaseVM) HasStartsOn() bool`
 
-HasDelayedRunTime returns a boolean if a field has been set.
+HasStartsOn returns a boolean if a field has been set.
 
-### SetDelayedRunTimeNil
+### SetStartsOnNil
 
-`func (o *TaskBaseVM) SetDelayedRunTimeNil(b bool)`
+`func (o *TaskBaseVM) SetStartsOnNil(b bool)`
 
- SetDelayedRunTimeNil sets the value for DelayedRunTime to be an explicit nil
+ SetStartsOnNil sets the value for StartsOn to be an explicit nil
 
-### UnsetDelayedRunTime
-`func (o *TaskBaseVM) UnsetDelayedRunTime()`
+### UnsetStartsOn
+`func (o *TaskBaseVM) UnsetStartsOn()`
 
-UnsetDelayedRunTime ensures that no value is present for DelayedRunTime, not even an explicit nil
-### GetDelayedWasRunTime
+UnsetStartsOn ensures that no value is present for StartsOn, not even an explicit nil
+### GetEnds
 
-`func (o *TaskBaseVM) GetDelayedWasRunTime() time.Time`
+`func (o *TaskBaseVM) GetEnds() TaskEnd`
 
-GetDelayedWasRunTime returns the DelayedWasRunTime field if non-nil, zero value otherwise.
+GetEnds returns the Ends field if non-nil, zero value otherwise.
 
-### GetDelayedWasRunTimeOk
+### GetEndsOk
 
-`func (o *TaskBaseVM) GetDelayedWasRunTimeOk() (*time.Time, bool)`
+`func (o *TaskBaseVM) GetEndsOk() (*TaskEnd, bool)`
 
-GetDelayedWasRunTimeOk returns a tuple with the DelayedWasRunTime field if it's non-nil, zero value otherwise
+GetEndsOk returns a tuple with the Ends field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDelayedWasRunTime
+### SetEnds
 
-`func (o *TaskBaseVM) SetDelayedWasRunTime(v time.Time)`
+`func (o *TaskBaseVM) SetEnds(v TaskEnd)`
 
-SetDelayedWasRunTime sets DelayedWasRunTime field to given value.
+SetEnds sets Ends field to given value.
 
-### HasDelayedWasRunTime
+### HasEnds
 
-`func (o *TaskBaseVM) HasDelayedWasRunTime() bool`
+`func (o *TaskBaseVM) HasEnds() bool`
 
-HasDelayedWasRunTime returns a boolean if a field has been set.
+HasEnds returns a boolean if a field has been set.
 
-### SetDelayedWasRunTimeNil
-
-`func (o *TaskBaseVM) SetDelayedWasRunTimeNil(b bool)`
-
- SetDelayedWasRunTimeNil sets the value for DelayedWasRunTime to be an explicit nil
-
-### UnsetDelayedWasRunTime
-`func (o *TaskBaseVM) UnsetDelayedWasRunTime()`
-
-UnsetDelayedWasRunTime ensures that no value is present for DelayedWasRunTime, not even an explicit nil
 ### GetId
 
 `func (o *TaskBaseVM) GetId() string`

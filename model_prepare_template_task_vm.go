@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the PrepareTemplateTaskVM type satisfies the MappedNullable interface at compile time
@@ -19,10 +21,14 @@ var _ MappedNullable = &PrepareTemplateTaskVM{}
 
 // PrepareTemplateTaskVM struct for PrepareTemplateTaskVM
 type PrepareTemplateTaskVM struct {
+	TransformTaskBaseVM
 	ExportIds []string `json:"exportIds,omitempty"`
 	PagesCount *int32 `json:"pagesCount,omitempty"`
 	ReportParameters map[string]string `json:"reportParameters,omitempty"`
+	T string `json:"$t"`
 }
+
+type _PrepareTemplateTaskVM PrepareTemplateTaskVM
 
 // NewPrepareTemplateTaskVM instantiates a new PrepareTemplateTaskVM object
 // This constructor will assign default values to properties that have it defined,
@@ -140,6 +146,30 @@ func (o *PrepareTemplateTaskVM) SetReportParameters(v map[string]string) {
 	o.ReportParameters = v
 }
 
+// GetT returns the T field value
+func (o *PrepareTemplateTaskVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *PrepareTemplateTaskVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *PrepareTemplateTaskVM) SetT(v string) {
+	o.T = v
+}
+
 func (o PrepareTemplateTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -150,6 +180,14 @@ func (o PrepareTemplateTaskVM) MarshalJSON() ([]byte, error) {
 
 func (o PrepareTemplateTaskVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedTransformTaskBaseVM, errTransformTaskBaseVM := json.Marshal(o.TransformTaskBaseVM)
+	if errTransformTaskBaseVM != nil {
+		return map[string]interface{}{}, errTransformTaskBaseVM
+	}
+	errTransformTaskBaseVM = json.Unmarshal([]byte(serializedTransformTaskBaseVM), &toSerialize)
+	if errTransformTaskBaseVM != nil {
+		return map[string]interface{}{}, errTransformTaskBaseVM
+	}
 	if o.ExportIds != nil {
 		toSerialize["exportIds"] = o.ExportIds
 	}
@@ -159,7 +197,45 @@ func (o PrepareTemplateTaskVM) ToMap() (map[string]interface{}, error) {
 	if o.ReportParameters != nil {
 		toSerialize["reportParameters"] = o.ReportParameters
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *PrepareTemplateTaskVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPrepareTemplateTaskVM := _PrepareTemplateTaskVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPrepareTemplateTaskVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PrepareTemplateTaskVM(varPrepareTemplateTaskVM)
+
+	return err
 }
 
 type NullablePrepareTemplateTaskVM struct {

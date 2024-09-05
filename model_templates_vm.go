@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TemplatesVM type satisfies the MappedNullable interface at compile time
@@ -19,14 +21,20 @@ var _ MappedNullable = &TemplatesVM{}
 
 // TemplatesVM struct for TemplatesVM
 type TemplatesVM struct {
+	FilesVMBase
+	Files []TemplateVM `json:"files,omitempty"`
+	T string `json:"$t"`
 }
+
+type _TemplatesVM TemplatesVM
 
 // NewTemplatesVM instantiates a new TemplatesVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplatesVM() *TemplatesVM {
+func NewTemplatesVM(t string) *TemplatesVM {
 	this := TemplatesVM{}
+	this.T = t
 	return &this
 }
 
@@ -36,6 +44,63 @@ func NewTemplatesVM() *TemplatesVM {
 func NewTemplatesVMWithDefaults() *TemplatesVM {
 	this := TemplatesVM{}
 	return &this
+}
+
+// GetFiles returns the Files field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TemplatesVM) GetFiles() []TemplateVM {
+	if o == nil {
+		var ret []TemplateVM
+		return ret
+	}
+	return o.Files
+}
+
+// GetFilesOk returns a tuple with the Files field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TemplatesVM) GetFilesOk() ([]TemplateVM, bool) {
+	if o == nil || IsNil(o.Files) {
+		return nil, false
+	}
+	return o.Files, true
+}
+
+// HasFiles returns a boolean if a field has been set.
+func (o *TemplatesVM) HasFiles() bool {
+	if o != nil && IsNil(o.Files) {
+		return true
+	}
+
+	return false
+}
+
+// SetFiles gets a reference to the given []TemplateVM and assigns it to the Files field.
+func (o *TemplatesVM) SetFiles(v []TemplateVM) {
+	o.Files = v
+}
+
+// GetT returns the T field value
+func (o *TemplatesVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *TemplatesVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *TemplatesVM) SetT(v string) {
+	o.T = v
 }
 
 func (o TemplatesVM) MarshalJSON() ([]byte, error) {
@@ -48,7 +113,56 @@ func (o TemplatesVM) MarshalJSON() ([]byte, error) {
 
 func (o TemplatesVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedFilesVMBase, errFilesVMBase := json.Marshal(o.FilesVMBase)
+	if errFilesVMBase != nil {
+		return map[string]interface{}{}, errFilesVMBase
+	}
+	errFilesVMBase = json.Unmarshal([]byte(serializedFilesVMBase), &toSerialize)
+	if errFilesVMBase != nil {
+		return map[string]interface{}{}, errFilesVMBase
+	}
+	if o.Files != nil {
+		toSerialize["files"] = o.Files
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *TemplatesVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTemplatesVM := _TemplatesVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTemplatesVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TemplatesVM(varTemplatesVM)
+
+	return err
 }
 
 type NullableTemplatesVM struct {

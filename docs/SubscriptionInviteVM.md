@@ -10,12 +10,13 @@ Name | Type | Description | Notes
 **ExpiredDate** | Pointer to **time.Time** |  | [optional] 
 **AddedUsers** | Pointer to [**[]InvitedUser**](InvitedUser.md) |  | [optional] 
 **CreatorUserId** | Pointer to **NullableString** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewSubscriptionInviteVM
 
-`func NewSubscriptionInviteVM() *SubscriptionInviteVM`
+`func NewSubscriptionInviteVM(t string, ) *SubscriptionInviteVM`
 
 NewSubscriptionInviteVM instantiates a new SubscriptionInviteVM object
 This constructor will assign default values to properties that have it defined,
@@ -210,6 +211,26 @@ HasCreatorUserId returns a boolean if a field has been set.
 `func (o *SubscriptionInviteVM) UnsetCreatorUserId()`
 
 UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+### GetT
+
+`func (o *SubscriptionInviteVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *SubscriptionInviteVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *SubscriptionInviteVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

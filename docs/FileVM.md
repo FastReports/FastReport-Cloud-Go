@@ -4,6 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **NullableString** |  | [optional] 
+**CreatedTime** | Pointer to **time.Time** |  | [optional] 
+**CreatorUserId** | Pointer to **NullableString** |  | [optional] 
+**EditedTime** | Pointer to **time.Time** |  | [optional] 
+**EditorUserId** | Pointer to **NullableString** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **ParentId** | Pointer to **NullableString** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
@@ -15,12 +20,13 @@ Name | Type | Description | Notes
 **StatusReason** | Pointer to [**FileStatusReason**](FileStatusReason.md) |  | [optional] 
 **ErrorMessage** | Pointer to **NullableString** |  | [optional] 
 **IsDeleted** | Pointer to **bool** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewFileVM
 
-`func NewFileVM() *FileVM`
+`func NewFileVM(t string, ) *FileVM`
 
 NewFileVM instantiates a new FileVM object
 This constructor will assign default values to properties that have it defined,
@@ -35,6 +41,161 @@ NewFileVMWithDefaults instantiates a new FileVM object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetId
+
+`func (o *FileVM) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *FileVM) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *FileVM) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *FileVM) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetIdNil
+
+`func (o *FileVM) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *FileVM) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
+### GetCreatedTime
+
+`func (o *FileVM) GetCreatedTime() time.Time`
+
+GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
+
+### GetCreatedTimeOk
+
+`func (o *FileVM) GetCreatedTimeOk() (*time.Time, bool)`
+
+GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedTime
+
+`func (o *FileVM) SetCreatedTime(v time.Time)`
+
+SetCreatedTime sets CreatedTime field to given value.
+
+### HasCreatedTime
+
+`func (o *FileVM) HasCreatedTime() bool`
+
+HasCreatedTime returns a boolean if a field has been set.
+
+### GetCreatorUserId
+
+`func (o *FileVM) GetCreatorUserId() string`
+
+GetCreatorUserId returns the CreatorUserId field if non-nil, zero value otherwise.
+
+### GetCreatorUserIdOk
+
+`func (o *FileVM) GetCreatorUserIdOk() (*string, bool)`
+
+GetCreatorUserIdOk returns a tuple with the CreatorUserId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatorUserId
+
+`func (o *FileVM) SetCreatorUserId(v string)`
+
+SetCreatorUserId sets CreatorUserId field to given value.
+
+### HasCreatorUserId
+
+`func (o *FileVM) HasCreatorUserId() bool`
+
+HasCreatorUserId returns a boolean if a field has been set.
+
+### SetCreatorUserIdNil
+
+`func (o *FileVM) SetCreatorUserIdNil(b bool)`
+
+ SetCreatorUserIdNil sets the value for CreatorUserId to be an explicit nil
+
+### UnsetCreatorUserId
+`func (o *FileVM) UnsetCreatorUserId()`
+
+UnsetCreatorUserId ensures that no value is present for CreatorUserId, not even an explicit nil
+### GetEditedTime
+
+`func (o *FileVM) GetEditedTime() time.Time`
+
+GetEditedTime returns the EditedTime field if non-nil, zero value otherwise.
+
+### GetEditedTimeOk
+
+`func (o *FileVM) GetEditedTimeOk() (*time.Time, bool)`
+
+GetEditedTimeOk returns a tuple with the EditedTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEditedTime
+
+`func (o *FileVM) SetEditedTime(v time.Time)`
+
+SetEditedTime sets EditedTime field to given value.
+
+### HasEditedTime
+
+`func (o *FileVM) HasEditedTime() bool`
+
+HasEditedTime returns a boolean if a field has been set.
+
+### GetEditorUserId
+
+`func (o *FileVM) GetEditorUserId() string`
+
+GetEditorUserId returns the EditorUserId field if non-nil, zero value otherwise.
+
+### GetEditorUserIdOk
+
+`func (o *FileVM) GetEditorUserIdOk() (*string, bool)`
+
+GetEditorUserIdOk returns a tuple with the EditorUserId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEditorUserId
+
+`func (o *FileVM) SetEditorUserId(v string)`
+
+SetEditorUserId sets EditorUserId field to given value.
+
+### HasEditorUserId
+
+`func (o *FileVM) HasEditorUserId() bool`
+
+HasEditorUserId returns a boolean if a field has been set.
+
+### SetEditorUserIdNil
+
+`func (o *FileVM) SetEditorUserIdNil(b bool)`
+
+ SetEditorUserIdNil sets the value for EditorUserId to be an explicit nil
+
+### UnsetEditorUserId
+`func (o *FileVM) UnsetEditorUserId()`
+
+UnsetEditorUserId ensures that no value is present for EditorUserId, not even an explicit nil
 ### GetName
 
 `func (o *FileVM) GetName() string`
@@ -369,6 +530,26 @@ SetIsDeleted sets IsDeleted field to given value.
 `func (o *FileVM) HasIsDeleted() bool`
 
 HasIsDeleted returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *FileVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *FileVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *FileVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

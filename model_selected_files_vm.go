@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SelectedFilesVM type satisfies the MappedNullable interface at compile time
@@ -19,17 +21,27 @@ var _ MappedNullable = &SelectedFilesVM{}
 
 // SelectedFilesVM struct for SelectedFilesVM
 type SelectedFilesVM struct {
+	CloudBaseVM
 	IsAllSelected *bool `json:"isAllSelected,omitempty"`
+	FolderId NullableString `json:"folderId,omitempty"`
+	SearchPattern NullableString `json:"searchPattern,omitempty"`
+	UseRegex *bool `json:"useRegex,omitempty"`
 	Files []string `json:"files,omitempty"`
 	Folders []string `json:"folders,omitempty"`
+	Path NullableString `json:"path,omitempty"`
+	IsBin *bool `json:"isBin,omitempty"`
+	T string `json:"$t"`
 }
+
+type _SelectedFilesVM SelectedFilesVM
 
 // NewSelectedFilesVM instantiates a new SelectedFilesVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSelectedFilesVM() *SelectedFilesVM {
+func NewSelectedFilesVM(t string) *SelectedFilesVM {
 	this := SelectedFilesVM{}
+	this.T = t
 	return &this
 }
 
@@ -71,6 +83,122 @@ func (o *SelectedFilesVM) HasIsAllSelected() bool {
 // SetIsAllSelected gets a reference to the given bool and assigns it to the IsAllSelected field.
 func (o *SelectedFilesVM) SetIsAllSelected(v bool) {
 	o.IsAllSelected = &v
+}
+
+// GetFolderId returns the FolderId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SelectedFilesVM) GetFolderId() string {
+	if o == nil || IsNil(o.FolderId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.FolderId.Get()
+}
+
+// GetFolderIdOk returns a tuple with the FolderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SelectedFilesVM) GetFolderIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FolderId.Get(), o.FolderId.IsSet()
+}
+
+// HasFolderId returns a boolean if a field has been set.
+func (o *SelectedFilesVM) HasFolderId() bool {
+	if o != nil && o.FolderId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFolderId gets a reference to the given NullableString and assigns it to the FolderId field.
+func (o *SelectedFilesVM) SetFolderId(v string) {
+	o.FolderId.Set(&v)
+}
+// SetFolderIdNil sets the value for FolderId to be an explicit nil
+func (o *SelectedFilesVM) SetFolderIdNil() {
+	o.FolderId.Set(nil)
+}
+
+// UnsetFolderId ensures that no value is present for FolderId, not even an explicit nil
+func (o *SelectedFilesVM) UnsetFolderId() {
+	o.FolderId.Unset()
+}
+
+// GetSearchPattern returns the SearchPattern field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SelectedFilesVM) GetSearchPattern() string {
+	if o == nil || IsNil(o.SearchPattern.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SearchPattern.Get()
+}
+
+// GetSearchPatternOk returns a tuple with the SearchPattern field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SelectedFilesVM) GetSearchPatternOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SearchPattern.Get(), o.SearchPattern.IsSet()
+}
+
+// HasSearchPattern returns a boolean if a field has been set.
+func (o *SelectedFilesVM) HasSearchPattern() bool {
+	if o != nil && o.SearchPattern.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSearchPattern gets a reference to the given NullableString and assigns it to the SearchPattern field.
+func (o *SelectedFilesVM) SetSearchPattern(v string) {
+	o.SearchPattern.Set(&v)
+}
+// SetSearchPatternNil sets the value for SearchPattern to be an explicit nil
+func (o *SelectedFilesVM) SetSearchPatternNil() {
+	o.SearchPattern.Set(nil)
+}
+
+// UnsetSearchPattern ensures that no value is present for SearchPattern, not even an explicit nil
+func (o *SelectedFilesVM) UnsetSearchPattern() {
+	o.SearchPattern.Unset()
+}
+
+// GetUseRegex returns the UseRegex field value if set, zero value otherwise.
+func (o *SelectedFilesVM) GetUseRegex() bool {
+	if o == nil || IsNil(o.UseRegex) {
+		var ret bool
+		return ret
+	}
+	return *o.UseRegex
+}
+
+// GetUseRegexOk returns a tuple with the UseRegex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelectedFilesVM) GetUseRegexOk() (*bool, bool) {
+	if o == nil || IsNil(o.UseRegex) {
+		return nil, false
+	}
+	return o.UseRegex, true
+}
+
+// HasUseRegex returns a boolean if a field has been set.
+func (o *SelectedFilesVM) HasUseRegex() bool {
+	if o != nil && !IsNil(o.UseRegex) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseRegex gets a reference to the given bool and assigns it to the UseRegex field.
+func (o *SelectedFilesVM) SetUseRegex(v bool) {
+	o.UseRegex = &v
 }
 
 // GetFiles returns the Files field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -139,6 +267,104 @@ func (o *SelectedFilesVM) SetFolders(v []string) {
 	o.Folders = v
 }
 
+// GetPath returns the Path field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SelectedFilesVM) GetPath() string {
+	if o == nil || IsNil(o.Path.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Path.Get()
+}
+
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SelectedFilesVM) GetPathOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Path.Get(), o.Path.IsSet()
+}
+
+// HasPath returns a boolean if a field has been set.
+func (o *SelectedFilesVM) HasPath() bool {
+	if o != nil && o.Path.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPath gets a reference to the given NullableString and assigns it to the Path field.
+func (o *SelectedFilesVM) SetPath(v string) {
+	o.Path.Set(&v)
+}
+// SetPathNil sets the value for Path to be an explicit nil
+func (o *SelectedFilesVM) SetPathNil() {
+	o.Path.Set(nil)
+}
+
+// UnsetPath ensures that no value is present for Path, not even an explicit nil
+func (o *SelectedFilesVM) UnsetPath() {
+	o.Path.Unset()
+}
+
+// GetIsBin returns the IsBin field value if set, zero value otherwise.
+func (o *SelectedFilesVM) GetIsBin() bool {
+	if o == nil || IsNil(o.IsBin) {
+		var ret bool
+		return ret
+	}
+	return *o.IsBin
+}
+
+// GetIsBinOk returns a tuple with the IsBin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelectedFilesVM) GetIsBinOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsBin) {
+		return nil, false
+	}
+	return o.IsBin, true
+}
+
+// HasIsBin returns a boolean if a field has been set.
+func (o *SelectedFilesVM) HasIsBin() bool {
+	if o != nil && !IsNil(o.IsBin) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsBin gets a reference to the given bool and assigns it to the IsBin field.
+func (o *SelectedFilesVM) SetIsBin(v bool) {
+	o.IsBin = &v
+}
+
+// GetT returns the T field value
+func (o *SelectedFilesVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *SelectedFilesVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *SelectedFilesVM) SetT(v string) {
+	o.T = v
+}
+
 func (o SelectedFilesVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -149,8 +375,25 @@ func (o SelectedFilesVM) MarshalJSON() ([]byte, error) {
 
 func (o SelectedFilesVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if !IsNil(o.IsAllSelected) {
 		toSerialize["isAllSelected"] = o.IsAllSelected
+	}
+	if o.FolderId.IsSet() {
+		toSerialize["folderId"] = o.FolderId.Get()
+	}
+	if o.SearchPattern.IsSet() {
+		toSerialize["searchPattern"] = o.SearchPattern.Get()
+	}
+	if !IsNil(o.UseRegex) {
+		toSerialize["useRegex"] = o.UseRegex
 	}
 	if o.Files != nil {
 		toSerialize["files"] = o.Files
@@ -158,7 +401,51 @@ func (o SelectedFilesVM) ToMap() (map[string]interface{}, error) {
 	if o.Folders != nil {
 		toSerialize["folders"] = o.Folders
 	}
+	if o.Path.IsSet() {
+		toSerialize["path"] = o.Path.Get()
+	}
+	if !IsNil(o.IsBin) {
+		toSerialize["isBin"] = o.IsBin
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *SelectedFilesVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSelectedFilesVM := _SelectedFilesVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSelectedFilesVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SelectedFilesVM(varSelectedFilesVM)
+
+	return err
 }
 
 type NullableSelectedFilesVM struct {

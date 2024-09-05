@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **UseLocal** | Pointer to **bool** |  | [optional] 
 **UseOpenId** | Pointer to **bool** |  | [optional] 
 **Authority** | Pointer to **NullableString** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewAuthConfigVM
 
-`func NewAuthConfigVM() *AuthConfigVM`
+`func NewAuthConfigVM(t string, ) *AuthConfigVM`
 
 NewAuthConfigVM instantiates a new AuthConfigVM object
 This constructor will assign default values to properties that have it defined,
@@ -112,6 +113,26 @@ HasAuthority returns a boolean if a field has been set.
 `func (o *AuthConfigVM) UnsetAuthority()`
 
 UnsetAuthority ensures that no value is present for Authority, not even an explicit nil
+### GetT
+
+`func (o *AuthConfigVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *AuthConfigVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *AuthConfigVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -20,12 +20,12 @@ import (
 )
 
 
-// TasksApiService TasksApi service
-type TasksApiService service
+// TasksAPIService TasksAPI service
+type TasksAPIService service
 
 type ApiTasksCreateTaskRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	createTaskBaseVM *CreateTaskBaseVM
 }
 
@@ -45,7 +45,7 @@ TasksCreateTask Create a new task
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTasksCreateTaskRequest
 */
-func (a *TasksApiService) TasksCreateTask(ctx context.Context) ApiTasksCreateTaskRequest {
+func (a *TasksAPIService) TasksCreateTask(ctx context.Context) ApiTasksCreateTaskRequest {
 	return ApiTasksCreateTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -54,7 +54,7 @@ func (a *TasksApiService) TasksCreateTask(ctx context.Context) ApiTasksCreateTas
 
 // Execute executes the request
 //  @return TaskBaseVM
-func (a *TasksApiService) TasksCreateTaskExecute(r ApiTasksCreateTaskRequest) (*TaskBaseVM, *http.Response, error) {
+func (a *TasksAPIService) TasksCreateTaskExecute(r ApiTasksCreateTaskRequest) (*TaskBaseVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,7 +62,7 @@ func (a *TasksApiService) TasksCreateTaskExecute(r ApiTasksCreateTaskRequest) (*
 		localVarReturnValue  *TaskBaseVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksCreateTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksCreateTask")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -114,18 +114,7 @@ func (a *TasksApiService) TasksCreateTaskExecute(r ApiTasksCreateTaskRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -147,7 +136,18 @@ func (a *TasksApiService) TasksCreateTaskExecute(r ApiTasksCreateTaskRequest) (*
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -175,7 +175,7 @@ func (a *TasksApiService) TasksCreateTaskExecute(r ApiTasksCreateTaskRequest) (*
 
 type ApiTasksDeleteTaskRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	taskId string
 }
 
@@ -190,7 +190,7 @@ TasksDeleteTask Delete a task from a storage
  @param taskId deleting task id
  @return ApiTasksDeleteTaskRequest
 */
-func (a *TasksApiService) TasksDeleteTask(ctx context.Context, taskId string) ApiTasksDeleteTaskRequest {
+func (a *TasksAPIService) TasksDeleteTask(ctx context.Context, taskId string) ApiTasksDeleteTaskRequest {
 	return ApiTasksDeleteTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -199,14 +199,14 @@ func (a *TasksApiService) TasksDeleteTask(ctx context.Context, taskId string) Ap
 }
 
 // Execute executes the request
-func (a *TasksApiService) TasksDeleteTaskExecute(r ApiTasksDeleteTaskRequest) (*http.Response, error) {
+func (a *TasksAPIService) TasksDeleteTaskExecute(r ApiTasksDeleteTaskRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksDeleteTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksDeleteTask")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -257,6 +257,28 @@ func (a *TasksApiService) TasksDeleteTaskExecute(r ApiTasksDeleteTaskRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -279,28 +301,6 @@ func (a *TasksApiService) TasksDeleteTaskExecute(r ApiTasksDeleteTaskRequest) (*
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		return localVarHTTPResponse, newErr
 	}
 
@@ -309,7 +309,7 @@ func (a *TasksApiService) TasksDeleteTaskExecute(r ApiTasksDeleteTaskRequest) (*
 
 type ApiTasksGetRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	taskId string
 }
 
@@ -324,7 +324,7 @@ TasksGet Get a task by a specified id
  @param taskId a task id
  @return ApiTasksGetRequest
 */
-func (a *TasksApiService) TasksGet(ctx context.Context, taskId string) ApiTasksGetRequest {
+func (a *TasksAPIService) TasksGet(ctx context.Context, taskId string) ApiTasksGetRequest {
 	return ApiTasksGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -334,7 +334,7 @@ func (a *TasksApiService) TasksGet(ctx context.Context, taskId string) ApiTasksG
 
 // Execute executes the request
 //  @return TaskBaseVM
-func (a *TasksApiService) TasksGetExecute(r ApiTasksGetRequest) (*TaskBaseVM, *http.Response, error) {
+func (a *TasksAPIService) TasksGetExecute(r ApiTasksGetRequest) (*TaskBaseVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -342,7 +342,7 @@ func (a *TasksApiService) TasksGetExecute(r ApiTasksGetRequest) (*TaskBaseVM, *h
 		localVarReturnValue  *TaskBaseVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -393,18 +393,7 @@ func (a *TasksApiService) TasksGetExecute(r ApiTasksGetRequest) (*TaskBaseVM, *h
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -426,7 +415,18 @@ func (a *TasksApiService) TasksGetExecute(r ApiTasksGetRequest) (*TaskBaseVM, *h
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -454,7 +454,7 @@ func (a *TasksApiService) TasksGetExecute(r ApiTasksGetRequest) (*TaskBaseVM, *h
 
 type ApiTasksGetListRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	skip *int32
 	take *int32
 	subscriptionId *string
@@ -495,7 +495,7 @@ TasksGetList Get tasks list
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTasksGetListRequest
 */
-func (a *TasksApiService) TasksGetList(ctx context.Context) ApiTasksGetListRequest {
+func (a *TasksAPIService) TasksGetList(ctx context.Context) ApiTasksGetListRequest {
 	return ApiTasksGetListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -504,7 +504,7 @@ func (a *TasksApiService) TasksGetList(ctx context.Context) ApiTasksGetListReque
 
 // Execute executes the request
 //  @return TasksVM
-func (a *TasksApiService) TasksGetListExecute(r ApiTasksGetListRequest) (*TasksVM, *http.Response, error) {
+func (a *TasksAPIService) TasksGetListExecute(r ApiTasksGetListRequest) (*TasksVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -512,7 +512,7 @@ func (a *TasksApiService) TasksGetListExecute(r ApiTasksGetListRequest) (*TasksV
 		localVarReturnValue  *TasksVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksGetList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksGetList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -525,15 +525,24 @@ func (a *TasksApiService) TasksGetListExecute(r ApiTasksGetListRequest) (*TasksV
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	if r.subscriptionId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "subscriptionId", r.subscriptionId, "")
 	}
 	if r.searchPattern != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "searchPattern", r.searchPattern, "")
+	} else {
+		var defaultValue string = ""
+		r.searchPattern = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -574,18 +583,7 @@ func (a *TasksApiService) TasksGetListExecute(r ApiTasksGetListRequest) (*TasksV
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -607,7 +605,18 @@ func (a *TasksApiService) TasksGetListExecute(r ApiTasksGetListRequest) (*TasksV
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -635,7 +644,7 @@ func (a *TasksApiService) TasksGetListExecute(r ApiTasksGetListRequest) (*TasksV
 
 type ApiTasksGetPermissionsRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	id string
 }
 
@@ -650,7 +659,7 @@ TasksGetPermissions Get all Task permissions
  @param id task id
  @return ApiTasksGetPermissionsRequest
 */
-func (a *TasksApiService) TasksGetPermissions(ctx context.Context, id string) ApiTasksGetPermissionsRequest {
+func (a *TasksAPIService) TasksGetPermissions(ctx context.Context, id string) ApiTasksGetPermissionsRequest {
 	return ApiTasksGetPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -660,7 +669,7 @@ func (a *TasksApiService) TasksGetPermissions(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return TaskPermissionsVM
-func (a *TasksApiService) TasksGetPermissionsExecute(r ApiTasksGetPermissionsRequest) (*TaskPermissionsVM, *http.Response, error) {
+func (a *TasksAPIService) TasksGetPermissionsExecute(r ApiTasksGetPermissionsRequest) (*TaskPermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -668,7 +677,7 @@ func (a *TasksApiService) TasksGetPermissionsExecute(r ApiTasksGetPermissionsReq
 		localVarReturnValue  *TaskPermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksGetPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksGetPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -780,7 +789,7 @@ func (a *TasksApiService) TasksGetPermissionsExecute(r ApiTasksGetPermissionsReq
 
 type ApiTasksRenameTaskRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	taskId string
 	newName *string
 }
@@ -802,7 +811,7 @@ TasksRenameTask Rename a task
  @param taskId renaming task id
  @return ApiTasksRenameTaskRequest
 */
-func (a *TasksApiService) TasksRenameTask(ctx context.Context, taskId string) ApiTasksRenameTaskRequest {
+func (a *TasksAPIService) TasksRenameTask(ctx context.Context, taskId string) ApiTasksRenameTaskRequest {
 	return ApiTasksRenameTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -812,7 +821,7 @@ func (a *TasksApiService) TasksRenameTask(ctx context.Context, taskId string) Ap
 
 // Execute executes the request
 //  @return TaskBaseVM
-func (a *TasksApiService) TasksRenameTaskExecute(r ApiTasksRenameTaskRequest) (*TaskBaseVM, *http.Response, error) {
+func (a *TasksAPIService) TasksRenameTaskExecute(r ApiTasksRenameTaskRequest) (*TaskBaseVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -820,7 +829,7 @@ func (a *TasksApiService) TasksRenameTaskExecute(r ApiTasksRenameTaskRequest) (*
 		localVarReturnValue  *TaskBaseVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksRenameTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksRenameTask")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -874,18 +883,7 @@ func (a *TasksApiService) TasksRenameTaskExecute(r ApiTasksRenameTaskRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -907,7 +905,18 @@ func (a *TasksApiService) TasksRenameTaskExecute(r ApiTasksRenameTaskRequest) (*
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -935,7 +944,7 @@ func (a *TasksApiService) TasksRenameTaskExecute(r ApiTasksRenameTaskRequest) (*
 
 type ApiTasksRunTaskRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	runTaskBaseVM *RunTaskBaseVM
 }
 
@@ -955,7 +964,7 @@ TasksRunTask Run a task from request body
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiTasksRunTaskRequest
 */
-func (a *TasksApiService) TasksRunTask(ctx context.Context) ApiTasksRunTaskRequest {
+func (a *TasksAPIService) TasksRunTask(ctx context.Context) ApiTasksRunTaskRequest {
 	return ApiTasksRunTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -963,14 +972,14 @@ func (a *TasksApiService) TasksRunTask(ctx context.Context) ApiTasksRunTaskReque
 }
 
 // Execute executes the request
-func (a *TasksApiService) TasksRunTaskExecute(r ApiTasksRunTaskRequest) (*http.Response, error) {
+func (a *TasksAPIService) TasksRunTaskExecute(r ApiTasksRunTaskRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksRunTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksRunTask")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1074,7 +1083,7 @@ func (a *TasksApiService) TasksRunTaskExecute(r ApiTasksRunTaskRequest) (*http.R
 
 type ApiTasksRunTaskByIdRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	taskId string
 }
 
@@ -1089,7 +1098,7 @@ TasksRunTaskById Run a task by id
  @param taskId task id
  @return ApiTasksRunTaskByIdRequest
 */
-func (a *TasksApiService) TasksRunTaskById(ctx context.Context, taskId string) ApiTasksRunTaskByIdRequest {
+func (a *TasksAPIService) TasksRunTaskById(ctx context.Context, taskId string) ApiTasksRunTaskByIdRequest {
 	return ApiTasksRunTaskByIdRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1098,14 +1107,14 @@ func (a *TasksApiService) TasksRunTaskById(ctx context.Context, taskId string) A
 }
 
 // Execute executes the request
-func (a *TasksApiService) TasksRunTaskByIdExecute(r ApiTasksRunTaskByIdRequest) (*http.Response, error) {
+func (a *TasksAPIService) TasksRunTaskByIdExecute(r ApiTasksRunTaskByIdRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksRunTaskById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksRunTaskById")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1156,6 +1165,28 @@ func (a *TasksApiService) TasksRunTaskByIdExecute(r ApiTasksRunTaskByIdRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1178,28 +1209,6 @@ func (a *TasksApiService) TasksRunTaskByIdExecute(r ApiTasksRunTaskByIdRequest) 
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		return localVarHTTPResponse, newErr
 	}
 
@@ -1208,7 +1217,7 @@ func (a *TasksApiService) TasksRunTaskByIdExecute(r ApiTasksRunTaskByIdRequest) 
 
 type ApiTasksUpdatePermissionsRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	id string
 	updateTaskPermissionsVM *UpdateTaskPermissionsVM
 }
@@ -1230,7 +1239,7 @@ TasksUpdatePermissions Update permissions
  @param id task id
  @return ApiTasksUpdatePermissionsRequest
 */
-func (a *TasksApiService) TasksUpdatePermissions(ctx context.Context, id string) ApiTasksUpdatePermissionsRequest {
+func (a *TasksAPIService) TasksUpdatePermissions(ctx context.Context, id string) ApiTasksUpdatePermissionsRequest {
 	return ApiTasksUpdatePermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1239,14 +1248,14 @@ func (a *TasksApiService) TasksUpdatePermissions(ctx context.Context, id string)
 }
 
 // Execute executes the request
-func (a *TasksApiService) TasksUpdatePermissionsExecute(r ApiTasksUpdatePermissionsRequest) (*http.Response, error) {
+func (a *TasksAPIService) TasksUpdatePermissionsExecute(r ApiTasksUpdatePermissionsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksUpdatePermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksUpdatePermissions")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1351,7 +1360,7 @@ func (a *TasksApiService) TasksUpdatePermissionsExecute(r ApiTasksUpdatePermissi
 
 type ApiTasksUpdateTaskRequest struct {
 	ctx context.Context
-	ApiService *TasksApiService
+	ApiService *TasksAPIService
 	taskId string
 	updateTaskBaseVM *UpdateTaskBaseVM
 }
@@ -1373,7 +1382,7 @@ TasksUpdateTask Update a task
  @param taskId updating task id
  @return ApiTasksUpdateTaskRequest
 */
-func (a *TasksApiService) TasksUpdateTask(ctx context.Context, taskId string) ApiTasksUpdateTaskRequest {
+func (a *TasksAPIService) TasksUpdateTask(ctx context.Context, taskId string) ApiTasksUpdateTaskRequest {
 	return ApiTasksUpdateTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1383,7 +1392,7 @@ func (a *TasksApiService) TasksUpdateTask(ctx context.Context, taskId string) Ap
 
 // Execute executes the request
 //  @return TaskBaseVM
-func (a *TasksApiService) TasksUpdateTaskExecute(r ApiTasksUpdateTaskRequest) (*TaskBaseVM, *http.Response, error) {
+func (a *TasksAPIService) TasksUpdateTaskExecute(r ApiTasksUpdateTaskRequest) (*TaskBaseVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1391,7 +1400,7 @@ func (a *TasksApiService) TasksUpdateTaskExecute(r ApiTasksUpdateTaskRequest) (*
 		localVarReturnValue  *TaskBaseVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksApiService.TasksUpdateTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksUpdateTask")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1444,18 +1453,7 @@ func (a *TasksApiService) TasksUpdateTaskExecute(r ApiTasksUpdateTaskRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1477,7 +1475,18 @@ func (a *TasksApiService) TasksUpdateTaskExecute(r ApiTasksUpdateTaskRequest) (*
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -20,12 +20,12 @@ import (
 )
 
 
-// SubscriptionInvitesApiService SubscriptionInvitesApi service
-type SubscriptionInvitesApiService service
+// SubscriptionInvitesAPIService SubscriptionInvitesAPI service
+type SubscriptionInvitesAPIService service
 
 type ApiSubscriptionInvitesAcceptInviteRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionInvitesApiService
+	ApiService *SubscriptionInvitesAPIService
 	subscriptionId string
 	accessToken string
 }
@@ -42,7 +42,7 @@ SubscriptionInvitesAcceptInvite Add a user to the subscription using invite,  th
  @param accessToken access token of the subscription
  @return ApiSubscriptionInvitesAcceptInviteRequest
 */
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesAcceptInvite(ctx context.Context, subscriptionId string, accessToken string) ApiSubscriptionInvitesAcceptInviteRequest {
+func (a *SubscriptionInvitesAPIService) SubscriptionInvitesAcceptInvite(ctx context.Context, subscriptionId string, accessToken string) ApiSubscriptionInvitesAcceptInviteRequest {
 	return ApiSubscriptionInvitesAcceptInviteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -52,14 +52,14 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesAcceptInvite(ctx cont
 }
 
 // Execute executes the request
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesAcceptInviteExecute(r ApiSubscriptionInvitesAcceptInviteRequest) (*http.Response, error) {
+func (a *SubscriptionInvitesAPIService) SubscriptionInvitesAcceptInviteExecute(r ApiSubscriptionInvitesAcceptInviteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesApiService.SubscriptionInvitesAcceptInvite")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesAPIService.SubscriptionInvitesAcceptInvite")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -152,7 +152,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesAcceptInviteExecute(r
 
 type ApiSubscriptionInvitesCreateInviteRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionInvitesApiService
+	ApiService *SubscriptionInvitesAPIService
 	subscriptionId string
 	createSubscriptionInviteVM *CreateSubscriptionInviteVM
 }
@@ -174,7 +174,7 @@ SubscriptionInvitesCreateInvite Create invite to subscription
  @param subscriptionId id
  @return ApiSubscriptionInvitesCreateInviteRequest
 */
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInvite(ctx context.Context, subscriptionId string) ApiSubscriptionInvitesCreateInviteRequest {
+func (a *SubscriptionInvitesAPIService) SubscriptionInvitesCreateInvite(ctx context.Context, subscriptionId string) ApiSubscriptionInvitesCreateInviteRequest {
 	return ApiSubscriptionInvitesCreateInviteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -184,7 +184,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInvite(ctx cont
 
 // Execute executes the request
 //  @return SubscriptionInviteVM
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInviteExecute(r ApiSubscriptionInvitesCreateInviteRequest) (*SubscriptionInviteVM, *http.Response, error) {
+func (a *SubscriptionInvitesAPIService) SubscriptionInvitesCreateInviteExecute(r ApiSubscriptionInvitesCreateInviteRequest) (*SubscriptionInviteVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -192,7 +192,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInviteExecute(r
 		localVarReturnValue  *SubscriptionInviteVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesApiService.SubscriptionInvitesCreateInvite")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesAPIService.SubscriptionInvitesCreateInvite")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -306,7 +306,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesCreateInviteExecute(r
 
 type ApiSubscriptionInvitesDeleteInviteRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionInvitesApiService
+	ApiService *SubscriptionInvitesAPIService
 	subscriptionId string
 	accesstoken string
 }
@@ -316,14 +316,14 @@ func (r ApiSubscriptionInvitesDeleteInviteRequest) Execute() (*http.Response, er
 }
 
 /*
-SubscriptionInvitesDeleteInvite Rename subscription
+SubscriptionInvitesDeleteInvite Delete invite with specified token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionId id
  @param accesstoken invite's token
  @return ApiSubscriptionInvitesDeleteInviteRequest
 */
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesDeleteInvite(ctx context.Context, subscriptionId string, accesstoken string) ApiSubscriptionInvitesDeleteInviteRequest {
+func (a *SubscriptionInvitesAPIService) SubscriptionInvitesDeleteInvite(ctx context.Context, subscriptionId string, accesstoken string) ApiSubscriptionInvitesDeleteInviteRequest {
 	return ApiSubscriptionInvitesDeleteInviteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -333,14 +333,14 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesDeleteInvite(ctx cont
 }
 
 // Execute executes the request
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesDeleteInviteExecute(r ApiSubscriptionInvitesDeleteInviteRequest) (*http.Response, error) {
+func (a *SubscriptionInvitesAPIService) SubscriptionInvitesDeleteInviteExecute(r ApiSubscriptionInvitesDeleteInviteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesApiService.SubscriptionInvitesDeleteInvite")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesAPIService.SubscriptionInvitesDeleteInvite")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -444,7 +444,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesDeleteInviteExecute(r
 
 type ApiSubscriptionInvitesGetInvitesRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionInvitesApiService
+	ApiService *SubscriptionInvitesAPIService
 	subscriptionId string
 }
 
@@ -459,7 +459,7 @@ SubscriptionInvitesGetInvites Get list of invites in a subscription,  the added 
  @param subscriptionId Idenitifier of subscription
  @return ApiSubscriptionInvitesGetInvitesRequest
 */
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesGetInvites(ctx context.Context, subscriptionId string) ApiSubscriptionInvitesGetInvitesRequest {
+func (a *SubscriptionInvitesAPIService) SubscriptionInvitesGetInvites(ctx context.Context, subscriptionId string) ApiSubscriptionInvitesGetInvitesRequest {
 	return ApiSubscriptionInvitesGetInvitesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -469,7 +469,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesGetInvites(ctx contex
 
 // Execute executes the request
 //  @return SubscriptionInvitesVM
-func (a *SubscriptionInvitesApiService) SubscriptionInvitesGetInvitesExecute(r ApiSubscriptionInvitesGetInvitesRequest) (*SubscriptionInvitesVM, *http.Response, error) {
+func (a *SubscriptionInvitesAPIService) SubscriptionInvitesGetInvitesExecute(r ApiSubscriptionInvitesGetInvitesRequest) (*SubscriptionInvitesVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -477,7 +477,7 @@ func (a *SubscriptionInvitesApiService) SubscriptionInvitesGetInvitesExecute(r A
 		localVarReturnValue  *SubscriptionInvitesVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesApiService.SubscriptionInvitesGetInvites")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionInvitesAPIService.SubscriptionInvitesGetInvites")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

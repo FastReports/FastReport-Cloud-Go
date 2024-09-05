@@ -20,12 +20,12 @@ import (
 )
 
 
-// ExportsApiService ExportsApi service
-type ExportsApiService service
+// ExportsAPIService ExportsAPI service
+type ExportsAPIService service
 
 type ApiExportFolderAndFileClearRecycleBinRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	subscriptionId string
 }
 
@@ -42,7 +42,7 @@ User with a Delete RecycleBin permission can access this method.
  @param subscriptionId subscription id
  @return ApiExportFolderAndFileClearRecycleBinRequest
 */
-func (a *ExportsApiService) ExportFolderAndFileClearRecycleBin(ctx context.Context, subscriptionId string) ApiExportFolderAndFileClearRecycleBinRequest {
+func (a *ExportsAPIService) ExportFolderAndFileClearRecycleBin(ctx context.Context, subscriptionId string) ApiExportFolderAndFileClearRecycleBinRequest {
 	return ApiExportFolderAndFileClearRecycleBinRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -51,14 +51,14 @@ func (a *ExportsApiService) ExportFolderAndFileClearRecycleBin(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportFolderAndFileClearRecycleBinExecute(r ApiExportFolderAndFileClearRecycleBinRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportFolderAndFileClearRecycleBinExecute(r ApiExportFolderAndFileClearRecycleBinRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFolderAndFileClearRecycleBin")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileClearRecycleBin")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -120,6 +120,17 @@ func (a *ExportsApiService) ExportFolderAndFileClearRecycleBinExecute(r ApiExpor
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -147,34 +158,34 @@ func (a *ExportsApiService) ExportFolderAndFileClearRecycleBinExecute(r ApiExpor
 	return localVarHTTPResponse, nil
 }
 
-type ApiExportFolderAndFileDeleteFilesRequest struct {
+type ApiExportFolderAndFileCopyFilesRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	subscriptionId string
-	selectedFilesForDeletingVM *SelectedFilesForDeletingVM
+	selectedFilesVM *SelectedFilesVM
 }
 
 // VM with files&#39; ids and params of their destination
-func (r ApiExportFolderAndFileDeleteFilesRequest) SelectedFilesForDeletingVM(selectedFilesForDeletingVM SelectedFilesForDeletingVM) ApiExportFolderAndFileDeleteFilesRequest {
-	r.selectedFilesForDeletingVM = &selectedFilesForDeletingVM
+func (r ApiExportFolderAndFileCopyFilesRequest) SelectedFilesVM(selectedFilesVM SelectedFilesVM) ApiExportFolderAndFileCopyFilesRequest {
+	r.selectedFilesVM = &selectedFilesVM
 	return r
 }
 
-func (r ApiExportFolderAndFileDeleteFilesRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ExportFolderAndFileDeleteFilesExecute(r)
+func (r ApiExportFolderAndFileCopyFilesRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ExportFolderAndFileCopyFilesExecute(r)
 }
 
 /*
-ExportFolderAndFileDeleteFiles Delete folders and files
+ExportFolderAndFileCopyFiles Copy folders and files to a specified folder
 
-User with a Delete permission can access this method.
+User with a Get permission for a files and Create permission for a destination folder can access this method.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionId id of current subscription
- @return ApiExportFolderAndFileDeleteFilesRequest
+ @return ApiExportFolderAndFileCopyFilesRequest
 */
-func (a *ExportsApiService) ExportFolderAndFileDeleteFiles(ctx context.Context, subscriptionId string) ApiExportFolderAndFileDeleteFilesRequest {
-	return ApiExportFolderAndFileDeleteFilesRequest{
+func (a *ExportsAPIService) ExportFolderAndFileCopyFiles(ctx context.Context, subscriptionId string) ApiExportFolderAndFileCopyFilesRequest {
+	return ApiExportFolderAndFileCopyFilesRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionId: subscriptionId,
@@ -182,19 +193,19 @@ func (a *ExportsApiService) ExportFolderAndFileDeleteFiles(ctx context.Context, 
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportFolderAndFileDeleteFilesExecute(r ApiExportFolderAndFileDeleteFilesRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportFolderAndFileCopyFilesExecute(r ApiExportFolderAndFileCopyFilesRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFolderAndFileDeleteFiles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileCopyFiles")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/rp/v1/Exports/{subscriptionId}/DeleteFiles"
+	localVarPath := localBasePath + "/api/rp/v1/Exports/{subscriptionId}/CopyFiles"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -219,7 +230,7 @@ func (a *ExportsApiService) ExportFolderAndFileDeleteFilesExecute(r ApiExportFol
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.selectedFilesForDeletingVM
+	localVarPostBody = r.selectedFilesVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -253,6 +264,17 @@ func (a *ExportsApiService) ExportFolderAndFileDeleteFilesExecute(r ApiExportFol
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -273,6 +295,7 @@ func (a *ExportsApiService) ExportFolderAndFileDeleteFilesExecute(r ApiExportFol
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -280,50 +303,50 @@ func (a *ExportsApiService) ExportFolderAndFileDeleteFilesExecute(r ApiExportFol
 	return localVarHTTPResponse, nil
 }
 
-type ApiExportFolderAndFileGetCountRequest struct {
+type ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
-	id string
+	ApiService *ExportsAPIService
+	subscriptionId string
 	searchPattern *string
 	useRegex *bool
 }
 
-// string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders)
-func (r ApiExportFolderAndFileGetCountRequest) SearchPattern(searchPattern string) ApiExportFolderAndFileGetCountRequest {
+// 
+func (r ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest) SearchPattern(searchPattern string) ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest {
 	r.searchPattern = &searchPattern
 	return r
 }
 
-// set this to true if you want to use regular expression to search
-func (r ApiExportFolderAndFileGetCountRequest) UseRegex(useRegex bool) ApiExportFolderAndFileGetCountRequest {
+// 
+func (r ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest) UseRegex(useRegex bool) ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest {
 	r.useRegex = &useRegex
 	return r
 }
 
-func (r ApiExportFolderAndFileGetCountRequest) Execute() (*CountVM, *http.Response, error) {
-	return r.ApiService.ExportFolderAndFileGetCountExecute(r)
+func (r ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest) Execute() (*CountVM, *http.Response, error) {
+	return r.ApiService.ExportFolderAndFileCountRecycleBinFoldersAndFilesExecute(r)
 }
 
 /*
-ExportFolderAndFileGetCount Get count of files and folders what contains in a specified folder
+ExportFolderAndFileCountRecycleBinFoldersAndFiles Count all folders and files from recycle bin
 
-User with a Get Count permission can access this method.
+User with a Get DeletedFiles permission can access this method.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id folder id
- @return ApiExportFolderAndFileGetCountRequest
+ @param subscriptionId subscription id
+ @return ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest
 */
-func (a *ExportsApiService) ExportFolderAndFileGetCount(ctx context.Context, id string) ApiExportFolderAndFileGetCountRequest {
-	return ApiExportFolderAndFileGetCountRequest{
+func (a *ExportsAPIService) ExportFolderAndFileCountRecycleBinFoldersAndFiles(ctx context.Context, subscriptionId string) ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest {
+	return ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		subscriptionId: subscriptionId,
 	}
 }
 
 // Execute executes the request
 //  @return CountVM
-func (a *ExportsApiService) ExportFolderAndFileGetCountExecute(r ApiExportFolderAndFileGetCountRequest) (*CountVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFolderAndFileCountRecycleBinFoldersAndFilesExecute(r ApiExportFolderAndFileCountRecycleBinFoldersAndFilesRequest) (*CountVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -331,13 +354,13 @@ func (a *ExportsApiService) ExportFolderAndFileGetCountExecute(r ApiExportFolder
 		localVarReturnValue  *CountVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFolderAndFileGetCount")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileCountRecycleBinFoldersAndFiles")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/api/rp/v1/Exports/{subscriptionId}/CountRecycleBinFolderAndFiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -345,9 +368,15 @@ func (a *ExportsApiService) ExportFolderAndFileGetCountExecute(r ApiExportFolder
 
 	if r.searchPattern != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "searchPattern", r.searchPattern, "")
+	} else {
+		var defaultValue string = ""
+		r.searchPattern = &defaultValue
 	}
 	if r.useRegex != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "useRegex", r.useRegex, "")
+	} else {
+		var defaultValue bool = false
+		r.useRegex = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -399,6 +428,17 @@ func (a *ExportsApiService) ExportFolderAndFileGetCountExecute(r ApiExportFolder
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -435,9 +475,323 @@ func (a *ExportsApiService) ExportFolderAndFileGetCountExecute(r ApiExportFolder
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiExportFolderAndFileDeleteFilesRequest struct {
+	ctx context.Context
+	ApiService *ExportsAPIService
+	subscriptionId string
+	selectedFilesVM *SelectedFilesVM
+}
+
+// VM with files&#39; ids and params of their destination
+func (r ApiExportFolderAndFileDeleteFilesRequest) SelectedFilesVM(selectedFilesVM SelectedFilesVM) ApiExportFolderAndFileDeleteFilesRequest {
+	r.selectedFilesVM = &selectedFilesVM
+	return r
+}
+
+func (r ApiExportFolderAndFileDeleteFilesRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ExportFolderAndFileDeleteFilesExecute(r)
+}
+
+/*
+ExportFolderAndFileDeleteFiles Delete folders and files
+
+User with a Delete permission can access this method.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionId id of current subscription
+ @return ApiExportFolderAndFileDeleteFilesRequest
+*/
+func (a *ExportsAPIService) ExportFolderAndFileDeleteFiles(ctx context.Context, subscriptionId string) ApiExportFolderAndFileDeleteFilesRequest {
+	return ApiExportFolderAndFileDeleteFilesRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionId: subscriptionId,
+	}
+}
+
+// Execute executes the request
+func (a *ExportsAPIService) ExportFolderAndFileDeleteFilesExecute(r ApiExportFolderAndFileDeleteFilesRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileDeleteFiles")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/rp/v1/Exports/{subscriptionId}/DeleteFiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.selectedFilesVM
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiExportFolderAndFileGetCountRequest struct {
+	ctx context.Context
+	ApiService *ExportsAPIService
+	id string
+	searchPattern *string
+	useRegex *bool
+}
+
+// string, that must be incuded in file or folder name to be counted &lt;br /&gt;              (leave undefined to count all files and folders)
+func (r ApiExportFolderAndFileGetCountRequest) SearchPattern(searchPattern string) ApiExportFolderAndFileGetCountRequest {
+	r.searchPattern = &searchPattern
+	return r
+}
+
+// set this to true if you want to use regular expression to search
+func (r ApiExportFolderAndFileGetCountRequest) UseRegex(useRegex bool) ApiExportFolderAndFileGetCountRequest {
+	r.useRegex = &useRegex
+	return r
+}
+
+func (r ApiExportFolderAndFileGetCountRequest) Execute() (*CountVM, *http.Response, error) {
+	return r.ApiService.ExportFolderAndFileGetCountExecute(r)
+}
+
+/*
+ExportFolderAndFileGetCount Get count of files and folders what contains in a specified folder
+
+User with a Get Count permission can access this method.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id folder id
+ @return ApiExportFolderAndFileGetCountRequest
+*/
+func (a *ExportsAPIService) ExportFolderAndFileGetCount(ctx context.Context, id string) ApiExportFolderAndFileGetCountRequest {
+	return ApiExportFolderAndFileGetCountRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return CountVM
+func (a *ExportsAPIService) ExportFolderAndFileGetCountExecute(r ApiExportFolderAndFileGetCountRequest) (*CountVM, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CountVM
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileGetCount")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/rp/v1/Exports/Folder/{id}/CountFolderAndFiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.searchPattern != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "searchPattern", r.searchPattern, "")
+	}
+	if r.useRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "useRegex", r.useRegex, "")
+	} else {
+		var defaultValue bool = false
+		r.useRegex = &defaultValue
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiExportFolderAndFileGetFoldersAndFilesRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	skip *int32
 	take *int32
@@ -496,7 +850,7 @@ User with a Get Entity permission can access this method.
  @param id folder id
  @return ApiExportFolderAndFileGetFoldersAndFilesRequest
 */
-func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFiles(ctx context.Context, id string) ApiExportFolderAndFileGetFoldersAndFilesRequest {
+func (a *ExportsAPIService) ExportFolderAndFileGetFoldersAndFiles(ctx context.Context, id string) ApiExportFolderAndFileGetFoldersAndFilesRequest {
 	return ApiExportFolderAndFileGetFoldersAndFilesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -506,7 +860,7 @@ func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFiles(ctx context.Co
 
 // Execute executes the request
 //  @return FilesVM
-func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFilesExecute(r ApiExportFolderAndFileGetFoldersAndFilesRequest) (*FilesVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFolderAndFileGetFoldersAndFilesExecute(r ApiExportFolderAndFileGetFoldersAndFilesRequest) (*FilesVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -514,7 +868,7 @@ func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFilesExecute(r ApiEx
 		localVarReturnValue  *FilesVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFolderAndFileGetFoldersAndFiles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileGetFoldersAndFiles")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -528,21 +882,36 @@ func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFilesExecute(r ApiEx
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	if r.orderBy != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
 	}
 	if r.desc != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "")
+	} else {
+		var defaultValue bool = false
+		r.desc = &defaultValue
 	}
 	if r.searchPattern != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "searchPattern", r.searchPattern, "")
+	} else {
+		var defaultValue string = ""
+		r.searchPattern = &defaultValue
 	}
 	if r.useRegex != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "useRegex", r.useRegex, "")
+	} else {
+		var defaultValue bool = false
+		r.useRegex = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -594,6 +963,17 @@ func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFilesExecute(r ApiEx
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -632,7 +1012,7 @@ func (a *ExportsApiService) ExportFolderAndFileGetFoldersAndFilesExecute(r ApiEx
 
 type ApiExportFolderAndFileGetRecycleBinFoldersAndFilesRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	subscriptionId string
 	skip *int32
 	take *int32
@@ -691,7 +1071,7 @@ User with a Get DeletedFiles permission can access this method.
  @param subscriptionId subscription id
  @return ApiExportFolderAndFileGetRecycleBinFoldersAndFilesRequest
 */
-func (a *ExportsApiService) ExportFolderAndFileGetRecycleBinFoldersAndFiles(ctx context.Context, subscriptionId string) ApiExportFolderAndFileGetRecycleBinFoldersAndFilesRequest {
+func (a *ExportsAPIService) ExportFolderAndFileGetRecycleBinFoldersAndFiles(ctx context.Context, subscriptionId string) ApiExportFolderAndFileGetRecycleBinFoldersAndFilesRequest {
 	return ApiExportFolderAndFileGetRecycleBinFoldersAndFilesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -701,7 +1081,7 @@ func (a *ExportsApiService) ExportFolderAndFileGetRecycleBinFoldersAndFiles(ctx 
 
 // Execute executes the request
 //  @return FilesVM
-func (a *ExportsApiService) ExportFolderAndFileGetRecycleBinFoldersAndFilesExecute(r ApiExportFolderAndFileGetRecycleBinFoldersAndFilesRequest) (*FilesVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFolderAndFileGetRecycleBinFoldersAndFilesExecute(r ApiExportFolderAndFileGetRecycleBinFoldersAndFilesRequest) (*FilesVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -709,7 +1089,7 @@ func (a *ExportsApiService) ExportFolderAndFileGetRecycleBinFoldersAndFilesExecu
 		localVarReturnValue  *FilesVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFolderAndFileGetRecycleBinFoldersAndFiles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileGetRecycleBinFoldersAndFiles")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -723,21 +1103,36 @@ func (a *ExportsApiService) ExportFolderAndFileGetRecycleBinFoldersAndFilesExecu
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	if r.orderBy != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
 	}
 	if r.desc != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "")
+	} else {
+		var defaultValue bool = false
+		r.desc = &defaultValue
 	}
 	if r.searchPattern != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "searchPattern", r.searchPattern, "")
+	} else {
+		var defaultValue string = ""
+		r.searchPattern = &defaultValue
 	}
 	if r.useRegex != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "useRegex", r.useRegex, "")
+	} else {
+		var defaultValue bool = false
+		r.useRegex = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -789,6 +1184,17 @@ func (a *ExportsApiService) ExportFolderAndFileGetRecycleBinFoldersAndFilesExecu
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -825,9 +1231,298 @@ func (a *ExportsApiService) ExportFolderAndFileGetRecycleBinFoldersAndFilesExecu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiExportFolderAndFileMoveFilesRequest struct {
+	ctx context.Context
+	ApiService *ExportsAPIService
+	subscriptionId string
+	selectedFilesVM *SelectedFilesVM
+}
+
+// VM with files&#39; ids and params of their destination
+func (r ApiExportFolderAndFileMoveFilesRequest) SelectedFilesVM(selectedFilesVM SelectedFilesVM) ApiExportFolderAndFileMoveFilesRequest {
+	r.selectedFilesVM = &selectedFilesVM
+	return r
+}
+
+func (r ApiExportFolderAndFileMoveFilesRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ExportFolderAndFileMoveFilesExecute(r)
+}
+
+/*
+ExportFolderAndFileMoveFiles Move folders and files to a specified folder
+
+User with a Update Place permission for a files and Create permission for a destination folder can access this method.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionId id of current subscription
+ @return ApiExportFolderAndFileMoveFilesRequest
+*/
+func (a *ExportsAPIService) ExportFolderAndFileMoveFiles(ctx context.Context, subscriptionId string) ApiExportFolderAndFileMoveFilesRequest {
+	return ApiExportFolderAndFileMoveFilesRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionId: subscriptionId,
+	}
+}
+
+// Execute executes the request
+func (a *ExportsAPIService) ExportFolderAndFileMoveFilesExecute(r ApiExportFolderAndFileMoveFilesRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileMoveFiles")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/rp/v1/Exports/{subscriptionId}/MoveFiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.selectedFilesVM
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiExportFolderAndFileMoveFilesToBinRequest struct {
+	ctx context.Context
+	ApiService *ExportsAPIService
+	subscriptionId string
+	selectedFilesVM *SelectedFilesVM
+}
+
+// VM with files&#39; ids and params of their destination
+func (r ApiExportFolderAndFileMoveFilesToBinRequest) SelectedFilesVM(selectedFilesVM SelectedFilesVM) ApiExportFolderAndFileMoveFilesToBinRequest {
+	r.selectedFilesVM = &selectedFilesVM
+	return r
+}
+
+func (r ApiExportFolderAndFileMoveFilesToBinRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ExportFolderAndFileMoveFilesToBinExecute(r)
+}
+
+/*
+ExportFolderAndFileMoveFilesToBin Move folders and files to bin
+
+User with a Delete permission can access this method.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionId id of current subscription
+ @return ApiExportFolderAndFileMoveFilesToBinRequest
+*/
+func (a *ExportsAPIService) ExportFolderAndFileMoveFilesToBin(ctx context.Context, subscriptionId string) ApiExportFolderAndFileMoveFilesToBinRequest {
+	return ApiExportFolderAndFileMoveFilesToBinRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionId: subscriptionId,
+	}
+}
+
+// Execute executes the request
+func (a *ExportsAPIService) ExportFolderAndFileMoveFilesToBinExecute(r ApiExportFolderAndFileMoveFilesToBinRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileMoveFilesToBin")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/rp/v1/Exports/{subscriptionId}/ToBin"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.selectedFilesVM
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiExportFolderAndFileRecoverAllFromRecycleBinRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	subscriptionId string
 }
 
@@ -844,7 +1539,7 @@ User with a Create RecycleBin permission can access this method.
  @param subscriptionId subscription id
  @return ApiExportFolderAndFileRecoverAllFromRecycleBinRequest
 */
-func (a *ExportsApiService) ExportFolderAndFileRecoverAllFromRecycleBin(ctx context.Context, subscriptionId string) ApiExportFolderAndFileRecoverAllFromRecycleBinRequest {
+func (a *ExportsAPIService) ExportFolderAndFileRecoverAllFromRecycleBin(ctx context.Context, subscriptionId string) ApiExportFolderAndFileRecoverAllFromRecycleBinRequest {
 	return ApiExportFolderAndFileRecoverAllFromRecycleBinRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -853,14 +1548,14 @@ func (a *ExportsApiService) ExportFolderAndFileRecoverAllFromRecycleBin(ctx cont
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportFolderAndFileRecoverAllFromRecycleBinExecute(r ApiExportFolderAndFileRecoverAllFromRecycleBinRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportFolderAndFileRecoverAllFromRecycleBinExecute(r ApiExportFolderAndFileRecoverAllFromRecycleBinRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFolderAndFileRecoverAllFromRecycleBin")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileRecoverAllFromRecycleBin")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -922,6 +1617,161 @@ func (a *ExportsApiService) ExportFolderAndFileRecoverAllFromRecycleBinExecute(r
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiExportFolderAndFileRecoverFilesRequest struct {
+	ctx context.Context
+	ApiService *ExportsAPIService
+	subscriptionId string
+	selectedFilesVM *SelectedFilesVM
+}
+
+// VM with files&#39; ids and params of their destination
+func (r ApiExportFolderAndFileRecoverFilesRequest) SelectedFilesVM(selectedFilesVM SelectedFilesVM) ApiExportFolderAndFileRecoverFilesRequest {
+	r.selectedFilesVM = &selectedFilesVM
+	return r
+}
+
+func (r ApiExportFolderAndFileRecoverFilesRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ExportFolderAndFileRecoverFilesExecute(r)
+}
+
+/*
+ExportFolderAndFileRecoverFiles Recover folders and files from bin
+
+User with a SubscriptionCreate permission can access this method.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionId id of current subscription
+ @return ApiExportFolderAndFileRecoverFilesRequest
+*/
+func (a *ExportsAPIService) ExportFolderAndFileRecoverFiles(ctx context.Context, subscriptionId string) ApiExportFolderAndFileRecoverFilesRequest {
+	return ApiExportFolderAndFileRecoverFilesRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionId: subscriptionId,
+	}
+}
+
+// Execute executes the request
+func (a *ExportsAPIService) ExportFolderAndFileRecoverFilesExecute(r ApiExportFolderAndFileRecoverFilesRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFolderAndFileRecoverFiles")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/rp/v1/Exports/{subscriptionId}/RecoverFiles"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.selectedFilesVM
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -951,7 +1801,7 @@ func (a *ExportsApiService) ExportFolderAndFileRecoverAllFromRecycleBinExecute(r
 
 type ApiExportFoldersCalculateFolderSizeRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -968,7 +1818,7 @@ User with a Get Entity permission can access this method.
  @param id folder id
  @return ApiExportFoldersCalculateFolderSizeRequest
 */
-func (a *ExportsApiService) ExportFoldersCalculateFolderSize(ctx context.Context, id string) ApiExportFoldersCalculateFolderSizeRequest {
+func (a *ExportsAPIService) ExportFoldersCalculateFolderSize(ctx context.Context, id string) ApiExportFoldersCalculateFolderSizeRequest {
 	return ApiExportFoldersCalculateFolderSizeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -978,7 +1828,7 @@ func (a *ExportsApiService) ExportFoldersCalculateFolderSize(ctx context.Context
 
 // Execute executes the request
 //  @return FolderSizeVM
-func (a *ExportsApiService) ExportFoldersCalculateFolderSizeExecute(r ApiExportFoldersCalculateFolderSizeRequest) (*FolderSizeVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersCalculateFolderSizeExecute(r ApiExportFoldersCalculateFolderSizeRequest) (*FolderSizeVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -986,7 +1836,7 @@ func (a *ExportsApiService) ExportFoldersCalculateFolderSizeExecute(r ApiExportF
 		localVarReturnValue  *FolderSizeVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersCalculateFolderSize")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersCalculateFolderSize")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1048,6 +1898,17 @@ func (a *ExportsApiService) ExportFoldersCalculateFolderSizeExecute(r ApiExportF
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1068,6 +1929,7 @@ func (a *ExportsApiService) ExportFoldersCalculateFolderSizeExecute(r ApiExportF
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1086,7 +1948,7 @@ func (a *ExportsApiService) ExportFoldersCalculateFolderSizeExecute(r ApiExportF
 
 type ApiExportFoldersCopyFolderRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	folderId string
 }
@@ -1106,7 +1968,7 @@ for a Parent Folder can access this method.
  @param folderId destination folder id
  @return ApiExportFoldersCopyFolderRequest
 */
-func (a *ExportsApiService) ExportFoldersCopyFolder(ctx context.Context, id string, folderId string) ApiExportFoldersCopyFolderRequest {
+func (a *ExportsAPIService) ExportFoldersCopyFolder(ctx context.Context, id string, folderId string) ApiExportFoldersCopyFolderRequest {
 	return ApiExportFoldersCopyFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1117,7 +1979,7 @@ func (a *ExportsApiService) ExportFoldersCopyFolder(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCopyFolderRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCopyFolderRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1125,7 +1987,7 @@ func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCop
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersCopyFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersCopyFolder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1188,7 +2050,7 @@ func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCop
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1199,7 +2061,7 @@ func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCop
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1219,6 +2081,7 @@ func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCop
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1237,7 +2100,7 @@ func (a *ExportsApiService) ExportFoldersCopyFolderExecute(r ApiExportFoldersCop
 
 type ApiExportFoldersDeleteFolderRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -1254,7 +2117,7 @@ User with a Delete Entity permission can access this method.
  @param id folder id
  @return ApiExportFoldersDeleteFolderRequest
 */
-func (a *ExportsApiService) ExportFoldersDeleteFolder(ctx context.Context, id string) ApiExportFoldersDeleteFolderRequest {
+func (a *ExportsAPIService) ExportFoldersDeleteFolder(ctx context.Context, id string) ApiExportFoldersDeleteFolderRequest {
 	return ApiExportFoldersDeleteFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1263,14 +2126,14 @@ func (a *ExportsApiService) ExportFoldersDeleteFolder(ctx context.Context, id st
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersDeleteFolderRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersDeleteFolderRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersDeleteFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersDeleteFolder")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1332,7 +2195,7 @@ func (a *ExportsApiService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersD
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1343,7 +2206,7 @@ func (a *ExportsApiService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersD
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1363,6 +2226,7 @@ func (a *ExportsApiService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersD
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1372,7 +2236,7 @@ func (a *ExportsApiService) ExportFoldersDeleteFolderExecute(r ApiExportFoldersD
 
 type ApiExportFoldersGetBreadcrumbsRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -1389,7 +2253,7 @@ User with a Get Entity permission can access this method.
  @param id folder id
  @return ApiExportFoldersGetBreadcrumbsRequest
 */
-func (a *ExportsApiService) ExportFoldersGetBreadcrumbs(ctx context.Context, id string) ApiExportFoldersGetBreadcrumbsRequest {
+func (a *ExportsAPIService) ExportFoldersGetBreadcrumbs(ctx context.Context, id string) ApiExportFoldersGetBreadcrumbsRequest {
 	return ApiExportFoldersGetBreadcrumbsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1399,7 +2263,7 @@ func (a *ExportsApiService) ExportFoldersGetBreadcrumbs(ctx context.Context, id 
 
 // Execute executes the request
 //  @return BreadcrumbsVM
-func (a *ExportsApiService) ExportFoldersGetBreadcrumbsExecute(r ApiExportFoldersGetBreadcrumbsRequest) (*BreadcrumbsVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersGetBreadcrumbsExecute(r ApiExportFoldersGetBreadcrumbsRequest) (*BreadcrumbsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1407,7 +2271,7 @@ func (a *ExportsApiService) ExportFoldersGetBreadcrumbsExecute(r ApiExportFolder
 		localVarReturnValue  *BreadcrumbsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersGetBreadcrumbs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersGetBreadcrumbs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1469,6 +2333,17 @@ func (a *ExportsApiService) ExportFoldersGetBreadcrumbsExecute(r ApiExportFolder
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1489,6 +2364,7 @@ func (a *ExportsApiService) ExportFoldersGetBreadcrumbsExecute(r ApiExportFolder
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1507,7 +2383,7 @@ func (a *ExportsApiService) ExportFoldersGetBreadcrumbsExecute(r ApiExportFolder
 
 type ApiExportFoldersGetFolderRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -1524,7 +2400,7 @@ User with a Get Entity permission can access this method.
  @param id folder id
  @return ApiExportFoldersGetFolderRequest
 */
-func (a *ExportsApiService) ExportFoldersGetFolder(ctx context.Context, id string) ApiExportFoldersGetFolderRequest {
+func (a *ExportsAPIService) ExportFoldersGetFolder(ctx context.Context, id string) ApiExportFoldersGetFolderRequest {
 	return ApiExportFoldersGetFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1534,7 +2410,7 @@ func (a *ExportsApiService) ExportFoldersGetFolder(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersGetFolderExecute(r ApiExportFoldersGetFolderRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersGetFolderExecute(r ApiExportFoldersGetFolderRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1542,7 +2418,7 @@ func (a *ExportsApiService) ExportFoldersGetFolderExecute(r ApiExportFoldersGetF
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersGetFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersGetFolder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1604,6 +2480,17 @@ func (a *ExportsApiService) ExportFoldersGetFolderExecute(r ApiExportFoldersGetF
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1624,6 +2511,7 @@ func (a *ExportsApiService) ExportFoldersGetFolderExecute(r ApiExportFoldersGetF
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1642,7 +2530,7 @@ func (a *ExportsApiService) ExportFoldersGetFolderExecute(r ApiExportFoldersGetF
 
 type ApiExportFoldersGetFoldersRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	skip *int32
 	take *int32
@@ -1701,7 +2589,7 @@ User with a Get Entity permission can access this method.
  @param id folder id
  @return ApiExportFoldersGetFoldersRequest
 */
-func (a *ExportsApiService) ExportFoldersGetFolders(ctx context.Context, id string) ApiExportFoldersGetFoldersRequest {
+func (a *ExportsAPIService) ExportFoldersGetFolders(ctx context.Context, id string) ApiExportFoldersGetFoldersRequest {
 	return ApiExportFoldersGetFoldersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1711,7 +2599,7 @@ func (a *ExportsApiService) ExportFoldersGetFolders(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return FilesVM
-func (a *ExportsApiService) ExportFoldersGetFoldersExecute(r ApiExportFoldersGetFoldersRequest) (*FilesVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersGetFoldersExecute(r ApiExportFoldersGetFoldersRequest) (*FilesVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1719,7 +2607,7 @@ func (a *ExportsApiService) ExportFoldersGetFoldersExecute(r ApiExportFoldersGet
 		localVarReturnValue  *FilesVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersGetFolders")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersGetFolders")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1733,21 +2621,36 @@ func (a *ExportsApiService) ExportFoldersGetFoldersExecute(r ApiExportFoldersGet
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	if r.orderBy != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orderBy", r.orderBy, "")
 	}
 	if r.desc != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "")
+	} else {
+		var defaultValue bool = false
+		r.desc = &defaultValue
 	}
 	if r.searchPattern != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "searchPattern", r.searchPattern, "")
+	} else {
+		var defaultValue string = ""
+		r.searchPattern = &defaultValue
 	}
 	if r.useRegex != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "useRegex", r.useRegex, "")
+	} else {
+		var defaultValue bool = false
+		r.useRegex = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1799,6 +2702,17 @@ func (a *ExportsApiService) ExportFoldersGetFoldersExecute(r ApiExportFoldersGet
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1819,6 +2733,7 @@ func (a *ExportsApiService) ExportFoldersGetFoldersExecute(r ApiExportFoldersGet
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1837,7 +2752,7 @@ func (a *ExportsApiService) ExportFoldersGetFoldersExecute(r ApiExportFoldersGet
 
 type ApiExportFoldersGetFoldersCountRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -1854,7 +2769,7 @@ User with a Get Count permission can access this method.
  @param id folder id
  @return ApiExportFoldersGetFoldersCountRequest
 */
-func (a *ExportsApiService) ExportFoldersGetFoldersCount(ctx context.Context, id string) ApiExportFoldersGetFoldersCountRequest {
+func (a *ExportsAPIService) ExportFoldersGetFoldersCount(ctx context.Context, id string) ApiExportFoldersGetFoldersCountRequest {
 	return ApiExportFoldersGetFoldersCountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1864,7 +2779,7 @@ func (a *ExportsApiService) ExportFoldersGetFoldersCount(ctx context.Context, id
 
 // Execute executes the request
 //  @return CountVM
-func (a *ExportsApiService) ExportFoldersGetFoldersCountExecute(r ApiExportFoldersGetFoldersCountRequest) (*CountVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersGetFoldersCountExecute(r ApiExportFoldersGetFoldersCountRequest) (*CountVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1872,7 +2787,7 @@ func (a *ExportsApiService) ExportFoldersGetFoldersCountExecute(r ApiExportFolde
 		localVarReturnValue  *CountVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersGetFoldersCount")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersGetFoldersCount")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1934,6 +2849,17 @@ func (a *ExportsApiService) ExportFoldersGetFoldersCountExecute(r ApiExportFolde
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1954,6 +2880,7 @@ func (a *ExportsApiService) ExportFoldersGetFoldersCountExecute(r ApiExportFolde
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1972,7 +2899,7 @@ func (a *ExportsApiService) ExportFoldersGetFoldersCountExecute(r ApiExportFolde
 
 type ApiExportFoldersGetOrCreateRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	name *string
 	subscriptionId *string
 	parentId *string
@@ -2008,7 +2935,7 @@ User with a Get Entity permission can access this method.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiExportFoldersGetOrCreateRequest
 */
-func (a *ExportsApiService) ExportFoldersGetOrCreate(ctx context.Context) ApiExportFoldersGetOrCreateRequest {
+func (a *ExportsAPIService) ExportFoldersGetOrCreate(ctx context.Context) ApiExportFoldersGetOrCreateRequest {
 	return ApiExportFoldersGetOrCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2017,7 +2944,7 @@ func (a *ExportsApiService) ExportFoldersGetOrCreate(ctx context.Context) ApiExp
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersGetOrCreateExecute(r ApiExportFoldersGetOrCreateRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersGetOrCreateExecute(r ApiExportFoldersGetOrCreateRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2025,7 +2952,7 @@ func (a *ExportsApiService) ExportFoldersGetOrCreateExecute(r ApiExportFoldersGe
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersGetOrCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersGetOrCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2095,6 +3022,17 @@ func (a *ExportsApiService) ExportFoldersGetOrCreateExecute(r ApiExportFoldersGe
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2115,6 +3053,7 @@ func (a *ExportsApiService) ExportFoldersGetOrCreateExecute(r ApiExportFoldersGe
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2133,7 +3072,7 @@ func (a *ExportsApiService) ExportFoldersGetOrCreateExecute(r ApiExportFoldersGe
 
 type ApiExportFoldersGetPermissionsRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -2148,7 +3087,7 @@ ExportFoldersGetPermissions Get all folder permissions
  @param id 
  @return ApiExportFoldersGetPermissionsRequest
 */
-func (a *ExportsApiService) ExportFoldersGetPermissions(ctx context.Context, id string) ApiExportFoldersGetPermissionsRequest {
+func (a *ExportsAPIService) ExportFoldersGetPermissions(ctx context.Context, id string) ApiExportFoldersGetPermissionsRequest {
 	return ApiExportFoldersGetPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2158,7 +3097,7 @@ func (a *ExportsApiService) ExportFoldersGetPermissions(ctx context.Context, id 
 
 // Execute executes the request
 //  @return FilePermissionsVM
-func (a *ExportsApiService) ExportFoldersGetPermissionsExecute(r ApiExportFoldersGetPermissionsRequest) (*FilePermissionsVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersGetPermissionsExecute(r ApiExportFoldersGetPermissionsRequest) (*FilePermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2166,7 +3105,7 @@ func (a *ExportsApiService) ExportFoldersGetPermissionsExecute(r ApiExportFolder
 		localVarReturnValue  *FilePermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersGetPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersGetPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2228,6 +3167,17 @@ func (a *ExportsApiService) ExportFoldersGetPermissionsExecute(r ApiExportFolder
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2266,7 +3216,7 @@ func (a *ExportsApiService) ExportFoldersGetPermissionsExecute(r ApiExportFolder
 
 type ApiExportFoldersGetRootFolderRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	subscriptionId *string
 }
 
@@ -2288,7 +3238,7 @@ This method can return error 400 and 404 when subscription is not found.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiExportFoldersGetRootFolderRequest
 */
-func (a *ExportsApiService) ExportFoldersGetRootFolder(ctx context.Context) ApiExportFoldersGetRootFolderRequest {
+func (a *ExportsAPIService) ExportFoldersGetRootFolder(ctx context.Context) ApiExportFoldersGetRootFolderRequest {
 	return ApiExportFoldersGetRootFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2297,7 +3247,7 @@ func (a *ExportsApiService) ExportFoldersGetRootFolder(ctx context.Context) ApiE
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersGetRootFolderExecute(r ApiExportFoldersGetRootFolderRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersGetRootFolderExecute(r ApiExportFoldersGetRootFolderRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2305,7 +3255,7 @@ func (a *ExportsApiService) ExportFoldersGetRootFolderExecute(r ApiExportFolders
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersGetRootFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersGetRootFolder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2375,7 +3325,7 @@ func (a *ExportsApiService) ExportFoldersGetRootFolderExecute(r ApiExportFolders
 
 type ApiExportFoldersMoveFolderRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	folderId string
 }
@@ -2395,7 +3345,7 @@ for a Parent Folder can access this method.
  @param folderId destination folder id
  @return ApiExportFoldersMoveFolderRequest
 */
-func (a *ExportsApiService) ExportFoldersMoveFolder(ctx context.Context, id string, folderId string) ApiExportFoldersMoveFolderRequest {
+func (a *ExportsAPIService) ExportFoldersMoveFolder(ctx context.Context, id string, folderId string) ApiExportFoldersMoveFolderRequest {
 	return ApiExportFoldersMoveFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2406,7 +3356,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolder(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMoveFolderRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMoveFolderRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -2414,7 +3364,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMov
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersMoveFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersMoveFolder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2477,7 +3427,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMov
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2488,7 +3438,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMov
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2508,6 +3458,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMov
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2526,7 +3477,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderExecute(r ApiExportFoldersMov
 
 type ApiExportFoldersMoveFolderToBinRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -2543,7 +3494,7 @@ User with a Delete Entity permission can access this method.
  @param id folder id
  @return ApiExportFoldersMoveFolderToBinRequest
 */
-func (a *ExportsApiService) ExportFoldersMoveFolderToBin(ctx context.Context, id string) ApiExportFoldersMoveFolderToBinRequest {
+func (a *ExportsAPIService) ExportFoldersMoveFolderToBin(ctx context.Context, id string) ApiExportFoldersMoveFolderToBinRequest {
 	return ApiExportFoldersMoveFolderToBinRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2552,14 +3503,14 @@ func (a *ExportsApiService) ExportFoldersMoveFolderToBin(ctx context.Context, id
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportFoldersMoveFolderToBinExecute(r ApiExportFoldersMoveFolderToBinRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersMoveFolderToBinExecute(r ApiExportFoldersMoveFolderToBinRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersMoveFolderToBin")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersMoveFolderToBin")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2621,7 +3572,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderToBinExecute(r ApiExportFolde
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2632,7 +3583,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderToBinExecute(r ApiExportFolde
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2652,6 +3603,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderToBinExecute(r ApiExportFolde
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -2661,7 +3613,7 @@ func (a *ExportsApiService) ExportFoldersMoveFolderToBinExecute(r ApiExportFolde
 
 type ApiExportFoldersPostFolderRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	exportFolderCreateVM *ExportFolderCreateVM
 }
@@ -2685,7 +3637,7 @@ User with a Create Entity permisison can access this method.
  @param id Identifier of parent folder id
  @return ApiExportFoldersPostFolderRequest
 */
-func (a *ExportsApiService) ExportFoldersPostFolder(ctx context.Context, id string) ApiExportFoldersPostFolderRequest {
+func (a *ExportsAPIService) ExportFoldersPostFolder(ctx context.Context, id string) ApiExportFoldersPostFolderRequest {
 	return ApiExportFoldersPostFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2695,7 +3647,7 @@ func (a *ExportsApiService) ExportFoldersPostFolder(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPostFolderRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersPostFolderExecute(r ApiExportFoldersPostFolderRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -2703,7 +3655,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersPostFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersPostFolder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2767,7 +3719,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2778,7 +3730,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2816,7 +3768,7 @@ func (a *ExportsApiService) ExportFoldersPostFolderExecute(r ApiExportFoldersPos
 
 type ApiExportFoldersRecoverFolderRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	recoveryPath *string
 }
@@ -2840,7 +3792,7 @@ User with a Delete Entity permission can access this method.
  @param id folder id
  @return ApiExportFoldersRecoverFolderRequest
 */
-func (a *ExportsApiService) ExportFoldersRecoverFolder(ctx context.Context, id string) ApiExportFoldersRecoverFolderRequest {
+func (a *ExportsAPIService) ExportFoldersRecoverFolder(ctx context.Context, id string) ApiExportFoldersRecoverFolderRequest {
 	return ApiExportFoldersRecoverFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2849,14 +3801,14 @@ func (a *ExportsApiService) ExportFoldersRecoverFolder(ctx context.Context, id s
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportFoldersRecoverFolderExecute(r ApiExportFoldersRecoverFolderRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersRecoverFolderExecute(r ApiExportFoldersRecoverFolderRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersRecoverFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersRecoverFolder")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2921,7 +3873,7 @@ func (a *ExportsApiService) ExportFoldersRecoverFolderExecute(r ApiExportFolders
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2932,7 +3884,7 @@ func (a *ExportsApiService) ExportFoldersRecoverFolderExecute(r ApiExportFolders
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2952,6 +3904,7 @@ func (a *ExportsApiService) ExportFoldersRecoverFolderExecute(r ApiExportFolders
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -2961,7 +3914,7 @@ func (a *ExportsApiService) ExportFoldersRecoverFolderExecute(r ApiExportFolders
 
 type ApiExportFoldersRenameFolderRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	folderRenameVM *FolderRenameVM
 }
@@ -2984,7 +3937,7 @@ User with a Update Name permision can access this method.
  @param id
  @return ApiExportFoldersRenameFolderRequest
 */
-func (a *ExportsApiService) ExportFoldersRenameFolder(ctx context.Context, id string) ApiExportFoldersRenameFolderRequest {
+func (a *ExportsAPIService) ExportFoldersRenameFolder(ctx context.Context, id string) ApiExportFoldersRenameFolderRequest {
 	return ApiExportFoldersRenameFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2994,7 +3947,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolder(ctx context.Context, id st
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersRenameFolderRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersRenameFolderExecute(r ApiExportFoldersRenameFolderRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -3002,7 +3955,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersRenameFolder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersRenameFolder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3066,7 +4019,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3077,7 +4030,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3097,6 +4050,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3115,7 +4069,7 @@ func (a *ExportsApiService) ExportFoldersRenameFolderExecute(r ApiExportFoldersR
 
 type ApiExportFoldersUpdateIconRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	folderIconVM *FolderIconVM
 }
@@ -3139,7 +4093,7 @@ User with a Update Icon permission can access this method.
  @param id Identifier of folder
  @return ApiExportFoldersUpdateIconRequest
 */
-func (a *ExportsApiService) ExportFoldersUpdateIcon(ctx context.Context, id string) ApiExportFoldersUpdateIconRequest {
+func (a *ExportsAPIService) ExportFoldersUpdateIcon(ctx context.Context, id string) ApiExportFoldersUpdateIconRequest {
 	return ApiExportFoldersUpdateIconRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3149,7 +4103,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIcon(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpdateIconRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpdateIconRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -3157,7 +4111,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersUpdateIcon")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersUpdateIcon")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3221,7 +4175,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3232,7 +4186,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3252,6 +4206,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3270,7 +4225,7 @@ func (a *ExportsApiService) ExportFoldersUpdateIconExecute(r ApiExportFoldersUpd
 
 type ApiExportFoldersUpdatePermissionsRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	updateFilePermissionsVM *UpdateFilePermissionsVM
 }
@@ -3292,7 +4247,7 @@ ExportFoldersUpdatePermissions Update permissions
  @param id 
  @return ApiExportFoldersUpdatePermissionsRequest
 */
-func (a *ExportsApiService) ExportFoldersUpdatePermissions(ctx context.Context, id string) ApiExportFoldersUpdatePermissionsRequest {
+func (a *ExportsAPIService) ExportFoldersUpdatePermissions(ctx context.Context, id string) ApiExportFoldersUpdatePermissionsRequest {
 	return ApiExportFoldersUpdatePermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3301,14 +4256,14 @@ func (a *ExportsApiService) ExportFoldersUpdatePermissions(ctx context.Context, 
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportFoldersUpdatePermissionsExecute(r ApiExportFoldersUpdatePermissionsRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersUpdatePermissionsExecute(r ApiExportFoldersUpdatePermissionsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersUpdatePermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersUpdatePermissions")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3413,7 +4368,7 @@ func (a *ExportsApiService) ExportFoldersUpdatePermissionsExecute(r ApiExportFol
 
 type ApiExportFoldersUpdateTagsRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	folderTagsUpdateVM *FolderTagsUpdateVM
 }
@@ -3436,7 +4391,7 @@ User with a Update Tags permission can access this method.
  @param id
  @return ApiExportFoldersUpdateTagsRequest
 */
-func (a *ExportsApiService) ExportFoldersUpdateTags(ctx context.Context, id string) ApiExportFoldersUpdateTagsRequest {
+func (a *ExportsAPIService) ExportFoldersUpdateTags(ctx context.Context, id string) ApiExportFoldersUpdateTagsRequest {
 	return ApiExportFoldersUpdateTagsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3446,7 +4401,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTags(ctx context.Context, id stri
 
 // Execute executes the request
 //  @return FileVM
-func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpdateTagsRequest) (*FileVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpdateTagsRequest) (*FileVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -3454,7 +4409,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpd
 		localVarReturnValue  *FileVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportFoldersUpdateTags")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportFoldersUpdateTags")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3549,6 +4504,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpd
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3567,7 +4523,7 @@ func (a *ExportsApiService) ExportFoldersUpdateTagsExecute(r ApiExportFoldersUpd
 
 type ApiExportsCopyFileRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	folderId string
 }
@@ -3584,7 +4540,7 @@ ExportsCopyFile Copy file to a specified folder
  @param folderId folder id
  @return ApiExportsCopyFileRequest
 */
-func (a *ExportsApiService) ExportsCopyFile(ctx context.Context, id string, folderId string) ApiExportsCopyFileRequest {
+func (a *ExportsAPIService) ExportsCopyFile(ctx context.Context, id string, folderId string) ApiExportsCopyFileRequest {
 	return ApiExportsCopyFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3595,7 +4551,7 @@ func (a *ExportsApiService) ExportsCopyFile(ctx context.Context, id string, fold
 
 // Execute executes the request
 //  @return ExportVM
-func (a *ExportsApiService) ExportsCopyFileExecute(r ApiExportsCopyFileRequest) (*ExportVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsCopyFileExecute(r ApiExportsCopyFileRequest) (*ExportVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -3603,7 +4559,7 @@ func (a *ExportsApiService) ExportsCopyFileExecute(r ApiExportsCopyFileRequest) 
 		localVarReturnValue  *ExportVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsCopyFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsCopyFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3633,6 +4589,160 @@ func (a *ExportsApiService) ExportsCopyFileExecute(r ApiExportsCopyFileRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiExportsCreateSharingKeyRequest struct {
+	ctx context.Context
+	ApiService *ExportsAPIService
+	id string
+	createFileShareVM *CreateFileShareVM
+}
+
+// parameters for sharing key creation
+func (r ApiExportsCreateSharingKeyRequest) CreateFileShareVM(createFileShareVM CreateFileShareVM) ApiExportsCreateSharingKeyRequest {
+	r.createFileShareVM = &createFileShareVM
+	return r
+}
+
+func (r ApiExportsCreateSharingKeyRequest) Execute() (*FileSharingKeysVM, *http.Response, error) {
+	return r.ApiService.ExportsCreateSharingKeyExecute(r)
+}
+
+/*
+ExportsCreateSharingKey Create a new key, that can be used to share access to a file  (You need Administrate.Anon permission to create a new key)
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id file id
+ @return ApiExportsCreateSharingKeyRequest
+*/
+func (a *ExportsAPIService) ExportsCreateSharingKey(ctx context.Context, id string) ApiExportsCreateSharingKeyRequest {
+	return ApiExportsCreateSharingKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return FileSharingKeysVM
+func (a *ExportsAPIService) ExportsCreateSharingKeyExecute(r ApiExportsCreateSharingKeyRequest) (*FileSharingKeysVM, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FileSharingKeysVM
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsCreateSharingKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/rp/v1/Exports/File/{id}/sharingKey"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "text/json", "application/*+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createFileShareVM
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3716,7 +4826,7 @@ func (a *ExportsApiService) ExportsCopyFileExecute(r ApiExportsCopyFileRequest) 
 
 type ApiExportsDeleteFileRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -3733,7 +4843,7 @@ User with Delete permission can access the method.
  @param id file id
  @return ApiExportsDeleteFileRequest
 */
-func (a *ExportsApiService) ExportsDeleteFile(ctx context.Context, id string) ApiExportsDeleteFileRequest {
+func (a *ExportsAPIService) ExportsDeleteFile(ctx context.Context, id string) ApiExportsDeleteFileRequest {
 	return ApiExportsDeleteFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3742,20 +4852,158 @@ func (a *ExportsApiService) ExportsDeleteFile(ctx context.Context, id string) Ap
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportsDeleteFileExecute(r ApiExportsDeleteFileRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportsDeleteFileExecute(r ApiExportsDeleteFileRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsDeleteFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsDeleteFile")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/rp/v1/Exports/File/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiExportsDeleteSharingKeyRequest struct {
+	ctx context.Context
+	ApiService *ExportsAPIService
+	id string
+	key string
+}
+
+func (r ApiExportsDeleteSharingKeyRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ExportsDeleteSharingKeyExecute(r)
+}
+
+/*
+ExportsDeleteSharingKey Deletes a sharing key, making links, that utilizing it no longer work
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id file id
+ @param key key to delete
+ @return ApiExportsDeleteSharingKeyRequest
+*/
+func (a *ExportsAPIService) ExportsDeleteSharingKey(ctx context.Context, id string, key string) ApiExportsDeleteSharingKeyRequest {
+	return ApiExportsDeleteSharingKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+		key: key,
+	}
+}
+
+// Execute executes the request
+func (a *ExportsAPIService) ExportsDeleteSharingKeyExecute(r ApiExportsDeleteSharingKeyRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsDeleteSharingKey")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/rp/v1/Exports/File/{id}/sharingKey"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"key"+"}", url.PathEscape(parameterValueToString(r.key, "key")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3852,7 +5100,7 @@ func (a *ExportsApiService) ExportsDeleteFileExecute(r ApiExportsDeleteFileReque
 
 type ApiExportsGetFileRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -3861,15 +5109,13 @@ func (r ApiExportsGetFileRequest) Execute() (*ExportVM, *http.Response, error) {
 }
 
 /*
-ExportsGetFile Get specified file
-
-User with Get Entity permission can access this method.
+ExportsGetFile Get export by specified id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id file id
+ @param id id of export
  @return ApiExportsGetFileRequest
 */
-func (a *ExportsApiService) ExportsGetFile(ctx context.Context, id string) ApiExportsGetFileRequest {
+func (a *ExportsAPIService) ExportsGetFile(ctx context.Context, id string) ApiExportsGetFileRequest {
 	return ApiExportsGetFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3879,7 +5125,7 @@ func (a *ExportsApiService) ExportsGetFile(ctx context.Context, id string) ApiEx
 
 // Execute executes the request
 //  @return ExportVM
-func (a *ExportsApiService) ExportsGetFileExecute(r ApiExportsGetFileRequest) (*ExportVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsGetFileExecute(r ApiExportsGetFileRequest) (*ExportVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -3887,7 +5133,7 @@ func (a *ExportsApiService) ExportsGetFileExecute(r ApiExportsGetFileRequest) (*
 		localVarReturnValue  *ExportVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsGetFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsGetFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3949,6 +5195,17 @@ func (a *ExportsApiService) ExportsGetFileExecute(r ApiExportsGetFileRequest) (*
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3988,7 +5245,7 @@ func (a *ExportsApiService) ExportsGetFileExecute(r ApiExportsGetFileRequest) (*
 
 type ApiExportsGetFileHistoryRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	skip *int32
 	take *int32
@@ -4017,7 +5274,7 @@ ExportsGetFileHistory Returns list of actions, performed on this file
  @param id 
  @return ApiExportsGetFileHistoryRequest
 */
-func (a *ExportsApiService) ExportsGetFileHistory(ctx context.Context, id string) ApiExportsGetFileHistoryRequest {
+func (a *ExportsAPIService) ExportsGetFileHistory(ctx context.Context, id string) ApiExportsGetFileHistoryRequest {
 	return ApiExportsGetFileHistoryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4027,7 +5284,7 @@ func (a *ExportsApiService) ExportsGetFileHistory(ctx context.Context, id string
 
 // Execute executes the request
 //  @return AuditActionsVM
-func (a *ExportsApiService) ExportsGetFileHistoryExecute(r ApiExportsGetFileHistoryRequest) (*AuditActionsVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsGetFileHistoryExecute(r ApiExportsGetFileHistoryRequest) (*AuditActionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4035,7 +5292,7 @@ func (a *ExportsApiService) ExportsGetFileHistoryExecute(r ApiExportsGetFileHist
 		localVarReturnValue  *AuditActionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsGetFileHistory")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsGetFileHistory")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4049,9 +5306,15 @@ func (a *ExportsApiService) ExportsGetFileHistoryExecute(r ApiExportsGetFileHist
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4103,6 +5366,17 @@ func (a *ExportsApiService) ExportsGetFileHistoryExecute(r ApiExportsGetFileHist
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4141,7 +5415,7 @@ func (a *ExportsApiService) ExportsGetFileHistoryExecute(r ApiExportsGetFileHist
 
 type ApiExportsGetFilesCountRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -4158,7 +5432,7 @@ User with Get Count permission can access this method.
  @param id folder id
  @return ApiExportsGetFilesCountRequest
 */
-func (a *ExportsApiService) ExportsGetFilesCount(ctx context.Context, id string) ApiExportsGetFilesCountRequest {
+func (a *ExportsAPIService) ExportsGetFilesCount(ctx context.Context, id string) ApiExportsGetFilesCountRequest {
 	return ApiExportsGetFilesCountRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4168,7 +5442,7 @@ func (a *ExportsApiService) ExportsGetFilesCount(ctx context.Context, id string)
 
 // Execute executes the request
 //  @return CountVM
-func (a *ExportsApiService) ExportsGetFilesCountExecute(r ApiExportsGetFilesCountRequest) (*CountVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsGetFilesCountExecute(r ApiExportsGetFilesCountRequest) (*CountVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4176,7 +5450,7 @@ func (a *ExportsApiService) ExportsGetFilesCountExecute(r ApiExportsGetFilesCoun
 		localVarReturnValue  *CountVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsGetFilesCount")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsGetFilesCount")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4238,6 +5512,17 @@ func (a *ExportsApiService) ExportsGetFilesCountExecute(r ApiExportsGetFilesCoun
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4277,7 +5562,7 @@ func (a *ExportsApiService) ExportsGetFilesCountExecute(r ApiExportsGetFilesCoun
 
 type ApiExportsGetFilesListRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	skip *int32
 	take *int32
@@ -4334,7 +5619,7 @@ ExportsGetFilesList Get all files from specified folder. <br />  User with Get E
  @param id folder id
  @return ApiExportsGetFilesListRequest
 */
-func (a *ExportsApiService) ExportsGetFilesList(ctx context.Context, id string) ApiExportsGetFilesListRequest {
+func (a *ExportsAPIService) ExportsGetFilesList(ctx context.Context, id string) ApiExportsGetFilesListRequest {
 	return ApiExportsGetFilesListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4344,7 +5629,7 @@ func (a *ExportsApiService) ExportsGetFilesList(ctx context.Context, id string) 
 
 // Execute executes the request
 //  @return ExportsVM
-func (a *ExportsApiService) ExportsGetFilesListExecute(r ApiExportsGetFilesListRequest) (*ExportsVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsGetFilesListExecute(r ApiExportsGetFilesListRequest) (*ExportsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4352,7 +5637,7 @@ func (a *ExportsApiService) ExportsGetFilesListExecute(r ApiExportsGetFilesListR
 		localVarReturnValue  *ExportsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsGetFilesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsGetFilesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4366,9 +5651,15 @@ func (a *ExportsApiService) ExportsGetFilesListExecute(r ApiExportsGetFilesListR
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	if r.searchPattern != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "searchPattern", r.searchPattern, "")
@@ -4378,9 +5669,15 @@ func (a *ExportsApiService) ExportsGetFilesListExecute(r ApiExportsGetFilesListR
 	}
 	if r.desc != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "desc", r.desc, "")
+	} else {
+		var defaultValue bool = false
+		r.desc = &defaultValue
 	}
 	if r.useRegex != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "useRegex", r.useRegex, "")
+	} else {
+		var defaultValue bool = false
+		r.useRegex = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4432,6 +5729,17 @@ func (a *ExportsApiService) ExportsGetFilesListExecute(r ApiExportsGetFilesListR
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4471,7 +5779,7 @@ func (a *ExportsApiService) ExportsGetFilesListExecute(r ApiExportsGetFilesListR
 
 type ApiExportsGetPermissionsRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -4480,13 +5788,13 @@ func (r ApiExportsGetPermissionsRequest) Execute() (*FilePermissionsVM, *http.Re
 }
 
 /*
-ExportsGetPermissions Get all file permissions
+ExportsGetPermissions Method for ExportsGetPermissions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id 
+ @param id
  @return ApiExportsGetPermissionsRequest
 */
-func (a *ExportsApiService) ExportsGetPermissions(ctx context.Context, id string) ApiExportsGetPermissionsRequest {
+func (a *ExportsAPIService) ExportsGetPermissions(ctx context.Context, id string) ApiExportsGetPermissionsRequest {
 	return ApiExportsGetPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4496,7 +5804,7 @@ func (a *ExportsApiService) ExportsGetPermissions(ctx context.Context, id string
 
 // Execute executes the request
 //  @return FilePermissionsVM
-func (a *ExportsApiService) ExportsGetPermissionsExecute(r ApiExportsGetPermissionsRequest) (*FilePermissionsVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsGetPermissionsExecute(r ApiExportsGetPermissionsRequest) (*FilePermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -4504,7 +5812,7 @@ func (a *ExportsApiService) ExportsGetPermissionsExecute(r ApiExportsGetPermissi
 		localVarReturnValue  *FilePermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsGetPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsGetPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4566,6 +5874,17 @@ func (a *ExportsApiService) ExportsGetPermissionsExecute(r ApiExportsGetPermissi
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4602,9 +5921,154 @@ func (a *ExportsApiService) ExportsGetPermissionsExecute(r ApiExportsGetPermissi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiExportsGetSharingKeysRequest struct {
+	ctx context.Context
+	ApiService *ExportsAPIService
+	id string
+}
+
+func (r ApiExportsGetSharingKeysRequest) Execute() (*FileSharingKeysVM, *http.Response, error) {
+	return r.ApiService.ExportsGetSharingKeysExecute(r)
+}
+
+/*
+ExportsGetSharingKeys Returns all sharing keys, associated with the file
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id file id
+ @return ApiExportsGetSharingKeysRequest
+*/
+func (a *ExportsAPIService) ExportsGetSharingKeys(ctx context.Context, id string) ApiExportsGetSharingKeysRequest {
+	return ApiExportsGetSharingKeysRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return FileSharingKeysVM
+func (a *ExportsAPIService) ExportsGetSharingKeysExecute(r ApiExportsGetSharingKeysRequest) (*FileSharingKeysVM, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FileSharingKeysVM
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsGetSharingKeys")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/rp/v1/Exports/File/{id}/sharingKeys"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiExportsMoveFileRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	folderId string
 }
@@ -4616,14 +6080,15 @@ func (r ApiExportsMoveFileRequest) Execute() (*ExportVM, *http.Response, error) 
 /*
 ExportsMoveFile Move file to a specified folder
 
-User with Update Place permission can access this method.
+User with a Update Place permission for a folder and Create Entity
+for a Parent Folder can access this method.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id file id
  @param folderId folder id
  @return ApiExportsMoveFileRequest
 */
-func (a *ExportsApiService) ExportsMoveFile(ctx context.Context, id string, folderId string) ApiExportsMoveFileRequest {
+func (a *ExportsAPIService) ExportsMoveFile(ctx context.Context, id string, folderId string) ApiExportsMoveFileRequest {
 	return ApiExportsMoveFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4634,7 +6099,7 @@ func (a *ExportsApiService) ExportsMoveFile(ctx context.Context, id string, fold
 
 // Execute executes the request
 //  @return ExportVM
-func (a *ExportsApiService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) (*ExportVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) (*ExportVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -4642,7 +6107,7 @@ func (a *ExportsApiService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) 
 		localVarReturnValue  *ExportVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsMoveFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsMoveFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4705,7 +6170,7 @@ func (a *ExportsApiService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) 
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4716,7 +6181,7 @@ func (a *ExportsApiService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) 
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4755,7 +6220,7 @@ func (a *ExportsApiService) ExportsMoveFileExecute(r ApiExportsMoveFileRequest) 
 
 type ApiExportsMoveFileToBinRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 }
 
@@ -4772,7 +6237,7 @@ User with Delete permission can access the method.
  @param id file id
  @return ApiExportsMoveFileToBinRequest
 */
-func (a *ExportsApiService) ExportsMoveFileToBin(ctx context.Context, id string) ApiExportsMoveFileToBinRequest {
+func (a *ExportsAPIService) ExportsMoveFileToBin(ctx context.Context, id string) ApiExportsMoveFileToBinRequest {
 	return ApiExportsMoveFileToBinRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4781,14 +6246,14 @@ func (a *ExportsApiService) ExportsMoveFileToBin(ctx context.Context, id string)
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportsMoveFileToBinExecute(r ApiExportsMoveFileToBinRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportsMoveFileToBinExecute(r ApiExportsMoveFileToBinRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsMoveFileToBin")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsMoveFileToBin")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4850,7 +6315,7 @@ func (a *ExportsApiService) ExportsMoveFileToBinExecute(r ApiExportsMoveFileToBi
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4861,7 +6326,7 @@ func (a *ExportsApiService) ExportsMoveFileToBinExecute(r ApiExportsMoveFileToBi
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4891,7 +6356,7 @@ func (a *ExportsApiService) ExportsMoveFileToBinExecute(r ApiExportsMoveFileToBi
 
 type ApiExportsRecoverFileRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	recoveryPath *string
 }
@@ -4915,7 +6380,7 @@ User with Delete permission can access the method.
  @param id file id
  @return ApiExportsRecoverFileRequest
 */
-func (a *ExportsApiService) ExportsRecoverFile(ctx context.Context, id string) ApiExportsRecoverFileRequest {
+func (a *ExportsAPIService) ExportsRecoverFile(ctx context.Context, id string) ApiExportsRecoverFileRequest {
 	return ApiExportsRecoverFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4924,14 +6389,14 @@ func (a *ExportsApiService) ExportsRecoverFile(ctx context.Context, id string) A
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportsRecoverFileExecute(r ApiExportsRecoverFileRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportsRecoverFileExecute(r ApiExportsRecoverFileRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsRecoverFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsRecoverFile")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4996,7 +6461,7 @@ func (a *ExportsApiService) ExportsRecoverFileExecute(r ApiExportsRecoverFileReq
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5007,7 +6472,7 @@ func (a *ExportsApiService) ExportsRecoverFileExecute(r ApiExportsRecoverFileReq
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5037,7 +6502,7 @@ func (a *ExportsApiService) ExportsRecoverFileExecute(r ApiExportsRecoverFileReq
 
 type ApiExportsRenameFileRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	fileRenameVM *FileRenameVM
 }
@@ -5060,7 +6525,7 @@ User with Update Name permission can access this method.
  @param id
  @return ApiExportsRenameFileRequest
 */
-func (a *ExportsApiService) ExportsRenameFile(ctx context.Context, id string) ApiExportsRenameFileRequest {
+func (a *ExportsAPIService) ExportsRenameFile(ctx context.Context, id string) ApiExportsRenameFileRequest {
 	return ApiExportsRenameFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5070,7 +6535,7 @@ func (a *ExportsApiService) ExportsRenameFile(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return ExportVM
-func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileRequest) (*ExportVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsRenameFileExecute(r ApiExportsRenameFileRequest) (*ExportVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -5078,7 +6543,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 		localVarReturnValue  *ExportVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsRenameFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsRenameFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5142,7 +6607,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5153,7 +6618,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5192,7 +6657,7 @@ func (a *ExportsApiService) ExportsRenameFileExecute(r ApiExportsRenameFileReque
 
 type ApiExportsUpdateIconRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	fileIconVM *FileIconVM
 }
@@ -5215,7 +6680,7 @@ User with Update Icon permission can access this method.
  @param id
  @return ApiExportsUpdateIconRequest
 */
-func (a *ExportsApiService) ExportsUpdateIcon(ctx context.Context, id string) ApiExportsUpdateIconRequest {
+func (a *ExportsAPIService) ExportsUpdateIcon(ctx context.Context, id string) ApiExportsUpdateIconRequest {
 	return ApiExportsUpdateIconRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5225,7 +6690,7 @@ func (a *ExportsApiService) ExportsUpdateIcon(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return ExportVM
-func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconRequest) (*ExportVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsUpdateIconExecute(r ApiExportsUpdateIconRequest) (*ExportVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -5233,7 +6698,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 		localVarReturnValue  *ExportVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsUpdateIcon")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsUpdateIcon")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5297,7 +6762,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5308,7 +6773,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5347,7 +6812,7 @@ func (a *ExportsApiService) ExportsUpdateIconExecute(r ApiExportsUpdateIconReque
 
 type ApiExportsUpdatePermissionsRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	updateFilePermissionsVM *UpdateFilePermissionsVM
 }
@@ -5369,7 +6834,7 @@ ExportsUpdatePermissions Update permissions
  @param id 
  @return ApiExportsUpdatePermissionsRequest
 */
-func (a *ExportsApiService) ExportsUpdatePermissions(ctx context.Context, id string) ApiExportsUpdatePermissionsRequest {
+func (a *ExportsAPIService) ExportsUpdatePermissions(ctx context.Context, id string) ApiExportsUpdatePermissionsRequest {
 	return ApiExportsUpdatePermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5378,14 +6843,14 @@ func (a *ExportsApiService) ExportsUpdatePermissions(ctx context.Context, id str
 }
 
 // Execute executes the request
-func (a *ExportsApiService) ExportsUpdatePermissionsExecute(r ApiExportsUpdatePermissionsRequest) (*http.Response, error) {
+func (a *ExportsAPIService) ExportsUpdatePermissionsExecute(r ApiExportsUpdatePermissionsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsUpdatePermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsUpdatePermissions")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5490,7 +6955,7 @@ func (a *ExportsApiService) ExportsUpdatePermissionsExecute(r ApiExportsUpdatePe
 
 type ApiExportsUpdateTagsRequest struct {
 	ctx context.Context
-	ApiService *ExportsApiService
+	ApiService *ExportsAPIService
 	id string
 	fileTagsUpdateVM *FileTagsUpdateVM
 }
@@ -5513,7 +6978,7 @@ User with Update Tags permission can access this method.
  @param id
  @return ApiExportsUpdateTagsRequest
 */
-func (a *ExportsApiService) ExportsUpdateTags(ctx context.Context, id string) ApiExportsUpdateTagsRequest {
+func (a *ExportsAPIService) ExportsUpdateTags(ctx context.Context, id string) ApiExportsUpdateTagsRequest {
 	return ApiExportsUpdateTagsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5523,7 +6988,7 @@ func (a *ExportsApiService) ExportsUpdateTags(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return ExportVM
-func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsRequest) (*ExportVM, *http.Response, error) {
+func (a *ExportsAPIService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsRequest) (*ExportVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -5531,7 +6996,7 @@ func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsReque
 		localVarReturnValue  *ExportVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsApiService.ExportsUpdateTags")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportsAPIService.ExportsUpdateTags")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5595,7 +7060,7 @@ func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -5606,7 +7071,7 @@ func (a *ExportsApiService) ExportsUpdateTagsExecute(r ApiExportsUpdateTagsReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing ReportsApiService
+Testing ReportsAPIService
 
 */
 
@@ -17,44 +17,71 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_ReportsApiService(t *testing.T) {
+func Test_gofrcloud_ReportsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ReportsApiService ReportFolderAndFileClearRecycleBin", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFolderAndFileClearRecycleBin", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		httpRes, err := apiClient.ReportsApi.ReportFolderAndFileClearRecycleBin(context.Background(), subscriptionId).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileClearRecycleBin(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ReportsApiService ReportFolderAndFileDeleteFiles", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFolderAndFileCopyFiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		httpRes, err := apiClient.ReportsApi.ReportFolderAndFileDeleteFiles(context.Background(), subscriptionId).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileCopyFiles(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ReportsApiService ReportFolderAndFileGetCount", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFolderAndFileCountRecycleBinFoldersAndFiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileCountRecycleBinFoldersAndFiles(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportFolderAndFileDeleteFiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileDeleteFiles(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportFolderAndFileGetCount", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFolderAndFileGetCount(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileGetCount(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -62,13 +89,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFolderAndFileGetFoldersAndFiles", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFolderAndFileGetFoldersAndFiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFolderAndFileGetFoldersAndFiles(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileGetFoldersAndFiles(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -76,13 +103,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFolderAndFileGetRecycleBinFoldersAndFiles", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFolderAndFileGetRecycleBinFoldersAndFiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFolderAndFileGetRecycleBinFoldersAndFiles(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileGetRecycleBinFoldersAndFiles(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -90,26 +117,65 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFolderAndFileRecoverAllFromRecycleBin", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFolderAndFileMoveFiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		httpRes, err := apiClient.ReportsApi.ReportFolderAndFileRecoverAllFromRecycleBin(context.Background(), subscriptionId).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileMoveFiles(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersCalculateFolderSize", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFolderAndFileMoveFilesToBin", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileMoveFilesToBin(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportFolderAndFileRecoverAllFromRecycleBin", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileRecoverAllFromRecycleBin(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportFolderAndFileRecoverFiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		httpRes, err := apiClient.ReportsAPI.ReportFolderAndFileRecoverFiles(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportFoldersCalculateFolderSize", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersCalculateFolderSize(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersCalculateFolderSize(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -117,14 +183,14 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersCopyFolder", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersCopyFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 		var folderId string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersCopyFolder(context.Background(), id, folderId).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersCopyFolder(context.Background(), id, folderId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -132,26 +198,26 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersDeleteFolder", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersDeleteFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.ReportsApi.ReportFoldersDeleteFolder(context.Background(), id).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportFoldersDeleteFolder(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersExport", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersExport", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersExport(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersExport(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -159,13 +225,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersGetBreadcrumbs", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersGetBreadcrumbs", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersGetBreadcrumbs(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersGetBreadcrumbs(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -173,13 +239,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersGetFolder", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersGetFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersGetFolder(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersGetFolder(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -187,13 +253,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersGetFolders", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersGetFolders", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersGetFolders(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersGetFolders(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -201,13 +267,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersGetFoldersCount", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersGetFoldersCount", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersGetFoldersCount(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersGetFoldersCount(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -215,11 +281,11 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersGetOrCreate", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersGetOrCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersGetOrCreate(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersGetOrCreate(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -227,13 +293,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersGetPermissions", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersGetPermissions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersGetPermissions(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersGetPermissions(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -241,11 +307,11 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersGetRootFolder", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersGetRootFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersGetRootFolder(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersGetRootFolder(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -253,14 +319,14 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersMoveFolder", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersMoveFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 		var folderId string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersMoveFolder(context.Background(), id, folderId).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersMoveFolder(context.Background(), id, folderId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -268,53 +334,26 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersMoveFolderToBin", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersMoveFolderToBin", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.ReportsApi.ReportFoldersMoveFolderToBin(context.Background(), id).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportFoldersMoveFolderToBin(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersPostFolder", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersPostFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersPostFolder(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ReportsApiService ReportFoldersRecoverFolder", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		httpRes, err := apiClient.ReportsApi.ReportFoldersRecoverFolder(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ReportsApiService ReportFoldersRenameFolder", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersRenameFolder(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersPostFolder(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -322,13 +361,26 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersUpdateIcon", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersRecoverFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersUpdateIcon(context.Background(), id).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportFoldersRecoverFolder(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportFoldersRenameFolder", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersRenameFolder(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -336,26 +388,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportFoldersUpdatePermissions", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersUpdateIcon", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.ReportsApi.ReportFoldersUpdatePermissions(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ReportsApiService ReportFoldersUpdateTags", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ReportsApi.ReportFoldersUpdateTags(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersUpdateIcon(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -363,14 +402,41 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsCopyFile", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportFoldersUpdatePermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		httpRes, err := apiClient.ReportsAPI.ReportFoldersUpdatePermissions(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportFoldersUpdateTags", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportFoldersUpdateTags(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportsCopyFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 		var folderId string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsCopyFile(context.Background(), id, folderId).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsCopyFile(context.Background(), id, folderId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -378,26 +444,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsDeleteFile", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsCreateSharingKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.ReportsApi.ReportsDeleteFile(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ReportsApiService ReportsExport", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ReportsApi.ReportsExport(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsCreateSharingKey(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -405,13 +458,40 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsGetFile", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsDeleteFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsGetFile(context.Background(), id).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportsDeleteFile(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportsDeleteSharingKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+		var key string
+
+		httpRes, err := apiClient.ReportsAPI.ReportsDeleteSharingKey(context.Background(), id, key).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportsExport", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsExport(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -419,13 +499,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsGetFileHistory", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsGetFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsGetFileHistory(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsGetFile(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -433,13 +513,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsGetFilesCount", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsGetFileHistory", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsGetFilesCount(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsGetFileHistory(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -447,13 +527,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsGetFilesList", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsGetFilesCount", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsGetFilesList(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsGetFilesCount(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -461,13 +541,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsGetPermissions", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsGetFilesList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsGetPermissions(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsGetFilesList(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -475,14 +555,42 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsMoveFile", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsGetPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsGetPermissions(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportsGetSharingKeys", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsGetSharingKeys(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportsMoveFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 		var folderId string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsMoveFile(context.Background(), id, folderId).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsMoveFile(context.Background(), id, folderId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -490,53 +598,39 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsMoveFileToBin", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsMoveFileToBin", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.ReportsApi.ReportsMoveFileToBin(context.Background(), id).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportsMoveFileToBin(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ReportsApiService ReportsRecoverFile", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsRecoverFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.ReportsApi.ReportsRecoverFile(context.Background(), id).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportsRecoverFile(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ReportsApiService ReportsRenameFile", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsRenameFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsRenameFile(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ReportsApiService ReportsStaticPreview", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ReportsApi.ReportsStaticPreview(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsRenameFile(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -544,13 +638,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsUpdateIcon", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsStaticPreview", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsUpdateIcon(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsStaticPreview(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -558,26 +652,13 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsUpdatePermissions", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsUpdateIcon", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.ReportsApi.ReportsUpdatePermissions(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ReportsApiService ReportsUpdateTags", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.ReportsApi.ReportsUpdateTags(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsUpdateIcon(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -585,13 +666,54 @@ func Test_gofrcloud_ReportsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ReportsApiService ReportsUploadFile", func(t *testing.T) {
+	t.Run("Test ReportsAPIService ReportsUpdatePermissions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.ReportsApi.ReportsUploadFile(context.Background(), id).Execute()
+		httpRes, err := apiClient.ReportsAPI.ReportsUpdatePermissions(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportsUpdateTags", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsUpdateTags(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportsUploadFile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsUploadFile(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ReportsAPIService ReportsUploadFileV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.ReportsAPI.ReportsUploadFileV2(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

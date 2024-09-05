@@ -13,6 +13,8 @@ package gofrcloud
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TaskBaseVM type satisfies the MappedNullable interface at compile time
@@ -20,9 +22,10 @@ var _ MappedNullable = &TaskBaseVM{}
 
 // TaskBaseVM struct for TaskBaseVM
 type TaskBaseVM struct {
+	CloudBaseVM
 	CronExpression NullableString `json:"cronExpression,omitempty"`
-	DelayedRunTime NullableTime `json:"delayedRunTime,omitempty"`
-	DelayedWasRunTime NullableTime `json:"delayedWasRunTime,omitempty"`
+	StartsOn NullableTime `json:"startsOn,omitempty"`
+	Ends *TaskEnd `json:"ends,omitempty"`
 	Id NullableString `json:"id,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	RecurrentRunTime NullableTime `json:"recurrentRunTime,omitempty"`
@@ -30,6 +33,8 @@ type TaskBaseVM struct {
 	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
 	T string `json:"$t"`
 }
+
+type _TaskBaseVM TaskBaseVM
 
 // NewTaskBaseVM instantiates a new TaskBaseVM object
 // This constructor will assign default values to properties that have it defined,
@@ -91,88 +96,78 @@ func (o *TaskBaseVM) UnsetCronExpression() {
 	o.CronExpression.Unset()
 }
 
-// GetDelayedRunTime returns the DelayedRunTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TaskBaseVM) GetDelayedRunTime() time.Time {
-	if o == nil || IsNil(o.DelayedRunTime.Get()) {
+// GetStartsOn returns the StartsOn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TaskBaseVM) GetStartsOn() time.Time {
+	if o == nil || IsNil(o.StartsOn.Get()) {
 		var ret time.Time
 		return ret
 	}
-	return *o.DelayedRunTime.Get()
+	return *o.StartsOn.Get()
 }
 
-// GetDelayedRunTimeOk returns a tuple with the DelayedRunTime field value if set, nil otherwise
+// GetStartsOnOk returns a tuple with the StartsOn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TaskBaseVM) GetDelayedRunTimeOk() (*time.Time, bool) {
+func (o *TaskBaseVM) GetStartsOnOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DelayedRunTime.Get(), o.DelayedRunTime.IsSet()
+	return o.StartsOn.Get(), o.StartsOn.IsSet()
 }
 
-// HasDelayedRunTime returns a boolean if a field has been set.
-func (o *TaskBaseVM) HasDelayedRunTime() bool {
-	if o != nil && o.DelayedRunTime.IsSet() {
+// HasStartsOn returns a boolean if a field has been set.
+func (o *TaskBaseVM) HasStartsOn() bool {
+	if o != nil && o.StartsOn.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDelayedRunTime gets a reference to the given NullableTime and assigns it to the DelayedRunTime field.
-func (o *TaskBaseVM) SetDelayedRunTime(v time.Time) {
-	o.DelayedRunTime.Set(&v)
+// SetStartsOn gets a reference to the given NullableTime and assigns it to the StartsOn field.
+func (o *TaskBaseVM) SetStartsOn(v time.Time) {
+	o.StartsOn.Set(&v)
 }
-// SetDelayedRunTimeNil sets the value for DelayedRunTime to be an explicit nil
-func (o *TaskBaseVM) SetDelayedRunTimeNil() {
-	o.DelayedRunTime.Set(nil)
-}
-
-// UnsetDelayedRunTime ensures that no value is present for DelayedRunTime, not even an explicit nil
-func (o *TaskBaseVM) UnsetDelayedRunTime() {
-	o.DelayedRunTime.Unset()
+// SetStartsOnNil sets the value for StartsOn to be an explicit nil
+func (o *TaskBaseVM) SetStartsOnNil() {
+	o.StartsOn.Set(nil)
 }
 
-// GetDelayedWasRunTime returns the DelayedWasRunTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TaskBaseVM) GetDelayedWasRunTime() time.Time {
-	if o == nil || IsNil(o.DelayedWasRunTime.Get()) {
-		var ret time.Time
+// UnsetStartsOn ensures that no value is present for StartsOn, not even an explicit nil
+func (o *TaskBaseVM) UnsetStartsOn() {
+	o.StartsOn.Unset()
+}
+
+// GetEnds returns the Ends field value if set, zero value otherwise.
+func (o *TaskBaseVM) GetEnds() TaskEnd {
+	if o == nil || IsNil(o.Ends) {
+		var ret TaskEnd
 		return ret
 	}
-	return *o.DelayedWasRunTime.Get()
+	return *o.Ends
 }
 
-// GetDelayedWasRunTimeOk returns a tuple with the DelayedWasRunTime field value if set, nil otherwise
+// GetEndsOk returns a tuple with the Ends field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TaskBaseVM) GetDelayedWasRunTimeOk() (*time.Time, bool) {
-	if o == nil {
+func (o *TaskBaseVM) GetEndsOk() (*TaskEnd, bool) {
+	if o == nil || IsNil(o.Ends) {
 		return nil, false
 	}
-	return o.DelayedWasRunTime.Get(), o.DelayedWasRunTime.IsSet()
+	return o.Ends, true
 }
 
-// HasDelayedWasRunTime returns a boolean if a field has been set.
-func (o *TaskBaseVM) HasDelayedWasRunTime() bool {
-	if o != nil && o.DelayedWasRunTime.IsSet() {
+// HasEnds returns a boolean if a field has been set.
+func (o *TaskBaseVM) HasEnds() bool {
+	if o != nil && !IsNil(o.Ends) {
 		return true
 	}
 
 	return false
 }
 
-// SetDelayedWasRunTime gets a reference to the given NullableTime and assigns it to the DelayedWasRunTime field.
-func (o *TaskBaseVM) SetDelayedWasRunTime(v time.Time) {
-	o.DelayedWasRunTime.Set(&v)
-}
-// SetDelayedWasRunTimeNil sets the value for DelayedWasRunTime to be an explicit nil
-func (o *TaskBaseVM) SetDelayedWasRunTimeNil() {
-	o.DelayedWasRunTime.Set(nil)
-}
-
-// UnsetDelayedWasRunTime ensures that no value is present for DelayedWasRunTime, not even an explicit nil
-func (o *TaskBaseVM) UnsetDelayedWasRunTime() {
-	o.DelayedWasRunTime.Unset()
+// SetEnds gets a reference to the given TaskEnd and assigns it to the Ends field.
+func (o *TaskBaseVM) SetEnds(v TaskEnd) {
+	o.Ends = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -419,14 +414,22 @@ func (o TaskBaseVM) MarshalJSON() ([]byte, error) {
 
 func (o TaskBaseVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.CronExpression.IsSet() {
 		toSerialize["cronExpression"] = o.CronExpression.Get()
 	}
-	if o.DelayedRunTime.IsSet() {
-		toSerialize["delayedRunTime"] = o.DelayedRunTime.Get()
+	if o.StartsOn.IsSet() {
+		toSerialize["startsOn"] = o.StartsOn.Get()
 	}
-	if o.DelayedWasRunTime.IsSet() {
-		toSerialize["delayedWasRunTime"] = o.DelayedWasRunTime.Get()
+	if !IsNil(o.Ends) {
+		toSerialize["ends"] = o.Ends
 	}
 	if o.Id.IsSet() {
 		toSerialize["id"] = o.Id.Get()
@@ -445,6 +448,43 @@ func (o TaskBaseVM) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *TaskBaseVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTaskBaseVM := _TaskBaseVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTaskBaseVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TaskBaseVM(varTaskBaseVM)
+
+	return err
 }
 
 type NullableTaskBaseVM struct {

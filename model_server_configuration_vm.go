@@ -13,6 +13,8 @@ package gofrcloud
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ServerConfigurationVM type satisfies the MappedNullable interface at compile time
@@ -20,13 +22,14 @@ var _ MappedNullable = &ServerConfigurationVM{}
 
 // ServerConfigurationVM struct for ServerConfigurationVM
 type ServerConfigurationVM struct {
+	CloudBaseVM
 	Title NullableString `json:"title,omitempty"`
 	LogoLink NullableString `json:"logoLink,omitempty"`
 	Copyright NullableString `json:"copyright,omitempty"`
 	CorporateServerMode *bool `json:"corporateServerMode,omitempty"`
 	LastSLAVersion NullableTime `json:"lastSLAVersion,omitempty"`
 	IsDisabled *bool `json:"isDisabled,omitempty"`
-	Frontend *FrontendApp `json:"frontend,omitempty"`
+	Frontend *FrontendAppVM `json:"frontend,omitempty"`
 	InvariantLocale NullableString `json:"invariantLocale,omitempty"`
 	Auth *AuthConfigVM `json:"auth,omitempty"`
 	DesignerForAnons *bool `json:"designerForAnons,omitempty"`
@@ -36,14 +39,19 @@ type ServerConfigurationVM struct {
 	HomePageLink NullableString `json:"homePageLink,omitempty"`
 	AuthServerName NullableString `json:"authServerName,omitempty"`
 	UpdateWorkspaceLink NullableString `json:"updateWorkspaceLink,omitempty"`
+	SharingEnabled *bool `json:"sharingEnabled,omitempty"`
+	T string `json:"$t"`
 }
+
+type _ServerConfigurationVM ServerConfigurationVM
 
 // NewServerConfigurationVM instantiates a new ServerConfigurationVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerConfigurationVM() *ServerConfigurationVM {
+func NewServerConfigurationVM(t string) *ServerConfigurationVM {
 	this := ServerConfigurationVM{}
+	this.T = t
 	return &this
 }
 
@@ -288,9 +296,9 @@ func (o *ServerConfigurationVM) SetIsDisabled(v bool) {
 }
 
 // GetFrontend returns the Frontend field value if set, zero value otherwise.
-func (o *ServerConfigurationVM) GetFrontend() FrontendApp {
+func (o *ServerConfigurationVM) GetFrontend() FrontendAppVM {
 	if o == nil || IsNil(o.Frontend) {
-		var ret FrontendApp
+		var ret FrontendAppVM
 		return ret
 	}
 	return *o.Frontend
@@ -298,7 +306,7 @@ func (o *ServerConfigurationVM) GetFrontend() FrontendApp {
 
 // GetFrontendOk returns a tuple with the Frontend field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServerConfigurationVM) GetFrontendOk() (*FrontendApp, bool) {
+func (o *ServerConfigurationVM) GetFrontendOk() (*FrontendAppVM, bool) {
 	if o == nil || IsNil(o.Frontend) {
 		return nil, false
 	}
@@ -314,8 +322,8 @@ func (o *ServerConfigurationVM) HasFrontend() bool {
 	return false
 }
 
-// SetFrontend gets a reference to the given FrontendApp and assigns it to the Frontend field.
-func (o *ServerConfigurationVM) SetFrontend(v FrontendApp) {
+// SetFrontend gets a reference to the given FrontendAppVM and assigns it to the Frontend field.
+func (o *ServerConfigurationVM) SetFrontend(v FrontendAppVM) {
 	o.Frontend = &v
 }
 
@@ -677,6 +685,62 @@ func (o *ServerConfigurationVM) UnsetUpdateWorkspaceLink() {
 	o.UpdateWorkspaceLink.Unset()
 }
 
+// GetSharingEnabled returns the SharingEnabled field value if set, zero value otherwise.
+func (o *ServerConfigurationVM) GetSharingEnabled() bool {
+	if o == nil || IsNil(o.SharingEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.SharingEnabled
+}
+
+// GetSharingEnabledOk returns a tuple with the SharingEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServerConfigurationVM) GetSharingEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.SharingEnabled) {
+		return nil, false
+	}
+	return o.SharingEnabled, true
+}
+
+// HasSharingEnabled returns a boolean if a field has been set.
+func (o *ServerConfigurationVM) HasSharingEnabled() bool {
+	if o != nil && !IsNil(o.SharingEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetSharingEnabled gets a reference to the given bool and assigns it to the SharingEnabled field.
+func (o *ServerConfigurationVM) SetSharingEnabled(v bool) {
+	o.SharingEnabled = &v
+}
+
+// GetT returns the T field value
+func (o *ServerConfigurationVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *ServerConfigurationVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *ServerConfigurationVM) SetT(v string) {
+	o.T = v
+}
+
 func (o ServerConfigurationVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -687,6 +751,14 @@ func (o ServerConfigurationVM) MarshalJSON() ([]byte, error) {
 
 func (o ServerConfigurationVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
@@ -735,7 +807,48 @@ func (o ServerConfigurationVM) ToMap() (map[string]interface{}, error) {
 	if o.UpdateWorkspaceLink.IsSet() {
 		toSerialize["updateWorkspaceLink"] = o.UpdateWorkspaceLink.Get()
 	}
+	if !IsNil(o.SharingEnabled) {
+		toSerialize["sharingEnabled"] = o.SharingEnabled
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *ServerConfigurationVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varServerConfigurationVM := _ServerConfigurationVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varServerConfigurationVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ServerConfigurationVM(varServerConfigurationVM)
+
+	return err
 }
 
 type NullableServerConfigurationVM struct {

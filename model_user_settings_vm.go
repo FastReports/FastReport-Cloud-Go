@@ -13,6 +13,8 @@ package gofrcloud
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UserSettingsVM type satisfies the MappedNullable interface at compile time
@@ -20,19 +22,24 @@ var _ MappedNullable = &UserSettingsVM{}
 
 // UserSettingsVM struct for UserSettingsVM
 type UserSettingsVM struct {
+	CloudBaseVM
 	ProfileVisibility *ProfileVisibility `json:"profileVisibility,omitempty"`
 	DefaultSubscription NullableString `json:"defaultSubscription,omitempty"`
 	ShowHiddenFilesAndFolders *bool `json:"showHiddenFilesAndFolders,omitempty"`
 	SlaAcceptedDateTime NullableTime `json:"slaAcceptedDateTime,omitempty"`
 	SubscribedNotifications []AuditType `json:"subscribedNotifications,omitempty"`
+	T string `json:"$t"`
 }
+
+type _UserSettingsVM UserSettingsVM
 
 // NewUserSettingsVM instantiates a new UserSettingsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserSettingsVM() *UserSettingsVM {
+func NewUserSettingsVM(t string) *UserSettingsVM {
 	this := UserSettingsVM{}
+	this.T = t
 	return &this
 }
 
@@ -225,6 +232,30 @@ func (o *UserSettingsVM) SetSubscribedNotifications(v []AuditType) {
 	o.SubscribedNotifications = v
 }
 
+// GetT returns the T field value
+func (o *UserSettingsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *UserSettingsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *UserSettingsVM) SetT(v string) {
+	o.T = v
+}
+
 func (o UserSettingsVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -235,6 +266,14 @@ func (o UserSettingsVM) MarshalJSON() ([]byte, error) {
 
 func (o UserSettingsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if !IsNil(o.ProfileVisibility) {
 		toSerialize["profileVisibility"] = o.ProfileVisibility
 	}
@@ -250,7 +289,45 @@ func (o UserSettingsVM) ToMap() (map[string]interface{}, error) {
 	if o.SubscribedNotifications != nil {
 		toSerialize["subscribedNotifications"] = o.SubscribedNotifications
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *UserSettingsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUserSettingsVM := _UserSettingsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUserSettingsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UserSettingsVM(varUserSettingsVM)
+
+	return err
 }
 
 type NullableUserSettingsVM struct {

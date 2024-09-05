@@ -35,8 +35,8 @@ import (
 )
 
 var (
-	jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
-	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
+	JsonCheck       = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?json)`)
+	XmlCheck        = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?xml)`)
 	queryParamSplit = regexp.MustCompile(`(^|&)([^&]+)`)
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
@@ -49,47 +49,47 @@ type APIClient struct {
 
 	// API Services
 
-	ApiKeysApi *ApiKeysApiService
+	ApiKeysAPI *ApiKeysAPIService
 
-	ConfigurationApi *ConfigurationApiService
+	ConfigurationAPI *ConfigurationAPIService
 
-	ContactGroupsApi *ContactGroupsApiService
+	ContactGroupsAPI *ContactGroupsAPIService
 
-	ContactsApi *ContactsApiService
+	ContactsAPI *ContactsAPIService
 
-	DataSourcesApi *DataSourcesApiService
+	DataSourcesAPI *DataSourcesAPIService
 
-	DownloadApi *DownloadApiService
+	DownloadAPI *DownloadAPIService
 
-	ExportsApi *ExportsApiService
+	ExportsAPI *ExportsAPIService
 
-	GroupUsersApi *GroupUsersApiService
+	GroupUsersAPI *GroupUsersAPIService
 
-	GroupsApi *GroupsApiService
+	GroupsAPI *GroupsAPIService
 
-	HealthCheckApi *HealthCheckApiService
+	HealthCheckAPI *HealthCheckAPIService
 
-	ReportsApi *ReportsApiService
+	ReportsAPI *ReportsAPIService
 
-	SubscriptionGroupsApi *SubscriptionGroupsApiService
+	SubscriptionGroupsAPI *SubscriptionGroupsAPIService
 
-	SubscriptionInvitesApi *SubscriptionInvitesApiService
+	SubscriptionInvitesAPI *SubscriptionInvitesAPIService
 
-	SubscriptionPlansApi *SubscriptionPlansApiService
+	SubscriptionPlansAPI *SubscriptionPlansAPIService
 
-	SubscriptionUsersApi *SubscriptionUsersApiService
+	SubscriptionUsersAPI *SubscriptionUsersAPIService
 
-	SubscriptionsApi *SubscriptionsApiService
+	SubscriptionsAPI *SubscriptionsAPIService
 
-	TasksApi *TasksApiService
+	TasksAPI *TasksAPIService
 
-	TemplatesApi *TemplatesApiService
+	TemplatesAPI *TemplatesAPIService
 
-	UserNotificationsApi *UserNotificationsApiService
+	UserNotificationsAPI *UserNotificationsAPIService
 
-	UserProfileApi *UserProfileApiService
+	UserProfileAPI *UserProfileAPIService
 
-	UserSettingsApi *UserSettingsApiService
+	UserSettingsAPI *UserSettingsAPIService
 }
 
 type service struct {
@@ -108,27 +108,27 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.ApiKeysApi = (*ApiKeysApiService)(&c.common)
-	c.ConfigurationApi = (*ConfigurationApiService)(&c.common)
-	c.ContactGroupsApi = (*ContactGroupsApiService)(&c.common)
-	c.ContactsApi = (*ContactsApiService)(&c.common)
-	c.DataSourcesApi = (*DataSourcesApiService)(&c.common)
-	c.DownloadApi = (*DownloadApiService)(&c.common)
-	c.ExportsApi = (*ExportsApiService)(&c.common)
-	c.GroupUsersApi = (*GroupUsersApiService)(&c.common)
-	c.GroupsApi = (*GroupsApiService)(&c.common)
-	c.HealthCheckApi = (*HealthCheckApiService)(&c.common)
-	c.ReportsApi = (*ReportsApiService)(&c.common)
-	c.SubscriptionGroupsApi = (*SubscriptionGroupsApiService)(&c.common)
-	c.SubscriptionInvitesApi = (*SubscriptionInvitesApiService)(&c.common)
-	c.SubscriptionPlansApi = (*SubscriptionPlansApiService)(&c.common)
-	c.SubscriptionUsersApi = (*SubscriptionUsersApiService)(&c.common)
-	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
-	c.TasksApi = (*TasksApiService)(&c.common)
-	c.TemplatesApi = (*TemplatesApiService)(&c.common)
-	c.UserNotificationsApi = (*UserNotificationsApiService)(&c.common)
-	c.UserProfileApi = (*UserProfileApiService)(&c.common)
-	c.UserSettingsApi = (*UserSettingsApiService)(&c.common)
+	c.ApiKeysAPI = (*ApiKeysAPIService)(&c.common)
+	c.ConfigurationAPI = (*ConfigurationAPIService)(&c.common)
+	c.ContactGroupsAPI = (*ContactGroupsAPIService)(&c.common)
+	c.ContactsAPI = (*ContactsAPIService)(&c.common)
+	c.DataSourcesAPI = (*DataSourcesAPIService)(&c.common)
+	c.DownloadAPI = (*DownloadAPIService)(&c.common)
+	c.ExportsAPI = (*ExportsAPIService)(&c.common)
+	c.GroupUsersAPI = (*GroupUsersAPIService)(&c.common)
+	c.GroupsAPI = (*GroupsAPIService)(&c.common)
+	c.HealthCheckAPI = (*HealthCheckAPIService)(&c.common)
+	c.ReportsAPI = (*ReportsAPIService)(&c.common)
+	c.SubscriptionGroupsAPI = (*SubscriptionGroupsAPIService)(&c.common)
+	c.SubscriptionInvitesAPI = (*SubscriptionInvitesAPIService)(&c.common)
+	c.SubscriptionPlansAPI = (*SubscriptionPlansAPIService)(&c.common)
+	c.SubscriptionUsersAPI = (*SubscriptionUsersAPIService)(&c.common)
+	c.SubscriptionsAPI = (*SubscriptionsAPIService)(&c.common)
+	c.TasksAPI = (*TasksAPIService)(&c.common)
+	c.TemplatesAPI = (*TemplatesAPIService)(&c.common)
+	c.UserNotificationsAPI = (*UserNotificationsAPIService)(&c.common)
+	c.UserProfileAPI = (*UserProfileAPIService)(&c.common)
+	c.UserSettingsAPI = (*UserSettingsAPIService)(&c.common)
 
 	return c
 }
@@ -520,13 +520,13 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 		_, err = (*f).Seek(0, io.SeekStart)
 		return
 	}
-	if xmlCheck.MatchString(contentType) {
+	if XmlCheck.MatchString(contentType) {
 		if err = xml.Unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
 	}
-	if jsonCheck.MatchString(contentType) {
+	if JsonCheck.MatchString(contentType) {
 		if actualObj, ok := v.(interface{ GetActualInstance() interface{} }); ok { // oneOf, anyOf schemas
 			if unmarshalObj, ok := actualObj.(interface{ UnmarshalJSON([]byte) error }); ok { // make sure it has UnmarshalJSON defined
 				if err = unmarshalObj.UnmarshalJSON(b); err != nil {
@@ -591,10 +591,14 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 		_, err = bodyBuf.WriteString(s)
 	} else if s, ok := body.(*string); ok {
 		_, err = bodyBuf.WriteString(*s)
-	} else if jsonCheck.MatchString(contentType) {
+	} else if JsonCheck.MatchString(contentType) {
 		err = json.NewEncoder(bodyBuf).Encode(body)
-	} else if xmlCheck.MatchString(contentType) {
-		err = xml.NewEncoder(bodyBuf).Encode(body)
+	} else if XmlCheck.MatchString(contentType) {
+		var bs []byte
+		bs, err = xml.Marshal(body)
+		if err == nil {
+			bodyBuf.Write(bs)
+		}
 	}
 
 	if err != nil {
@@ -710,16 +714,17 @@ func formatErrorMessage(status string, v interface{}) string {
 	str := ""
 	metaValue := reflect.ValueOf(v).Elem()
 
-	field := metaValue.FieldByName("Title")
-	if field != (reflect.Value{}) {
-		str = fmt.Sprintf("%s", field.Interface())
+	if metaValue.Kind() == reflect.Struct {
+		field := metaValue.FieldByName("Title")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s", field.Interface())
+		}
+
+		field = metaValue.FieldByName("Detail")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s (%s)", str, field.Interface())
+		}
 	}
 
-	field = metaValue.FieldByName("Detail")
-	if field != (reflect.Value{}) {
-		str = fmt.Sprintf("%s (%s)", str, field.Interface())
-	}
-
-	// status title (detail)
 	return strings.TrimSpace(fmt.Sprintf("%s %s", status, str))
 }

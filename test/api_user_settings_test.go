@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing UserSettingsApiService
+Testing UserSettingsAPIService
 
 */
 
@@ -17,27 +17,27 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_UserSettingsApiService(t *testing.T) {
+func Test_gofrcloud_UserSettingsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UserSettingsApiService UserSettingsAcceptAgreements", func(t *testing.T) {
+	t.Run("Test UserSettingsAPIService UserSettingsAcceptAgreements", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.UserSettingsApi.UserSettingsAcceptAgreements(context.Background()).Execute()
+		httpRes, err := apiClient.UserSettingsAPI.UserSettingsAcceptAgreements(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test UserSettingsApiService UserSettingsGetCurrentUserSettings", func(t *testing.T) {
+	t.Run("Test UserSettingsAPIService UserSettingsGetCurrentUserSettings", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserSettingsApi.UserSettingsGetCurrentUserSettings(context.Background()).Execute()
+		resp, httpRes, err := apiClient.UserSettingsAPI.UserSettingsGetCurrentUserSettings(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -45,11 +45,11 @@ func Test_gofrcloud_UserSettingsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test UserSettingsApiService UserSettingsUpdateMySettings", func(t *testing.T) {
+	t.Run("Test UserSettingsAPIService UserSettingsUpdateMySettings", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserSettingsApi.UserSettingsUpdateMySettings(context.Background()).Execute()
+		resp, httpRes, err := apiClient.UserSettingsAPI.UserSettingsUpdateMySettings(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

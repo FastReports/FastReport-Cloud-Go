@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewRenameDataSourceVM
 
-`func NewRenameDataSourceVM(name string, ) *RenameDataSourceVM`
+`func NewRenameDataSourceVM(name string, t string, ) *RenameDataSourceVM`
 
 NewRenameDataSourceVM instantiates a new RenameDataSourceVM object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *RenameDataSourceVM) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetT
+
+`func (o *RenameDataSourceVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *RenameDataSourceVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *RenameDataSourceVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

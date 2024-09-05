@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **ExportIds** | Pointer to **[]string** |  | [optional] 
 **PagesCount** | Pointer to **NullableInt32** |  | [optional] 
 **ReportParameters** | Pointer to **map[string]string** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewUpdatePrepareTemplateTaskVM
 
-`func NewUpdatePrepareTemplateTaskVM() *UpdatePrepareTemplateTaskVM`
+`func NewUpdatePrepareTemplateTaskVM(t string, ) *UpdatePrepareTemplateTaskVM`
 
 NewUpdatePrepareTemplateTaskVM instantiates a new UpdatePrepareTemplateTaskVM object
 This constructor will assign default values to properties that have it defined,
@@ -132,6 +133,26 @@ HasReportParameters returns a boolean if a field has been set.
 `func (o *UpdatePrepareTemplateTaskVM) UnsetReportParameters()`
 
 UnsetReportParameters ensures that no value is present for ReportParameters, not even an explicit nil
+### GetT
+
+`func (o *UpdatePrepareTemplateTaskVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *UpdatePrepareTemplateTaskVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *UpdatePrepareTemplateTaskVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TemplateCreateAdminVM type satisfies the MappedNullable interface at compile time
@@ -19,16 +21,21 @@ var _ MappedNullable = &TemplateCreateAdminVM{}
 
 // TemplateCreateAdminVM struct for TemplateCreateAdminVM
 type TemplateCreateAdminVM struct {
+	TemplateCreateVM
 	OwnerId string `json:"ownerId"`
 	ParentId string `json:"parentId"`
+	T string `json:"$t"`
 }
+
+type _TemplateCreateAdminVM TemplateCreateAdminVM
 
 // NewTemplateCreateAdminVM instantiates a new TemplateCreateAdminVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplateCreateAdminVM(ownerId string, parentId string) *TemplateCreateAdminVM {
+func NewTemplateCreateAdminVM(ownerId string, parentId string, t string) *TemplateCreateAdminVM {
 	this := TemplateCreateAdminVM{}
+	this.T = t
 	return &this
 }
 
@@ -88,6 +95,30 @@ func (o *TemplateCreateAdminVM) SetParentId(v string) {
 	o.ParentId = v
 }
 
+// GetT returns the T field value
+func (o *TemplateCreateAdminVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *TemplateCreateAdminVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *TemplateCreateAdminVM) SetT(v string) {
+	o.T = v
+}
+
 func (o TemplateCreateAdminVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -98,9 +129,57 @@ func (o TemplateCreateAdminVM) MarshalJSON() ([]byte, error) {
 
 func (o TemplateCreateAdminVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedTemplateCreateVM, errTemplateCreateVM := json.Marshal(o.TemplateCreateVM)
+	if errTemplateCreateVM != nil {
+		return map[string]interface{}{}, errTemplateCreateVM
+	}
+	errTemplateCreateVM = json.Unmarshal([]byte(serializedTemplateCreateVM), &toSerialize)
+	if errTemplateCreateVM != nil {
+		return map[string]interface{}{}, errTemplateCreateVM
+	}
 	toSerialize["ownerId"] = o.OwnerId
 	toSerialize["parentId"] = o.ParentId
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *TemplateCreateAdminVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"ownerId",
+		"parentId",
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTemplateCreateAdminVM := _TemplateCreateAdminVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTemplateCreateAdminVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TemplateCreateAdminVM(varTemplateCreateAdminVM)
+
+	return err
 }
 
 type NullableTemplateCreateAdminVM struct {

@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Locale** | Pointer to **NullableString** |  | [optional] 
 **CacheTolerance** | Pointer to **float64** |  | [optional] [default to 300]
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewPreviewReportVM
 
-`func NewPreviewReportVM() *PreviewReportVM`
+`func NewPreviewReportVM(t string, ) *PreviewReportVM`
 
 NewPreviewReportVM instantiates a new PreviewReportVM object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ SetCacheTolerance sets CacheTolerance field to given value.
 `func (o *PreviewReportVM) HasCacheTolerance() bool`
 
 HasCacheTolerance returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *PreviewReportVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *PreviewReportVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *PreviewReportVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

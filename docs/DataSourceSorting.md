@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `NONE` (value: `"None"`)
-
 * `CREATED_TIME` (value: `"CreatedTime"`)
 
 * `EDITED_TIME` (value: `"EditedTime"`)

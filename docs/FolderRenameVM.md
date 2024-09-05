@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewFolderRenameVM
 
-`func NewFolderRenameVM(name string, ) *FolderRenameVM`
+`func NewFolderRenameVM(name string, t string, ) *FolderRenameVM`
 
 NewFolderRenameVM instantiates a new FolderRenameVM object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *FolderRenameVM) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetT
+
+`func (o *FolderRenameVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *FolderRenameVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *FolderRenameVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

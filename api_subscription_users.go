@@ -20,12 +20,12 @@ import (
 )
 
 
-// SubscriptionUsersApiService SubscriptionUsersApi service
-type SubscriptionUsersApiService service
+// SubscriptionUsersAPIService SubscriptionUsersAPI service
+type SubscriptionUsersAPIService service
 
 type ApiSubscriptionUsersAddUserRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionUsersApiService
+	ApiService *SubscriptionUsersAPIService
 	subscriptionId string
 	userId string
 }
@@ -42,7 +42,7 @@ SubscriptionUsersAddUser Add a user to the subscription,  the added users will b
  @param userId Idenitifier of user
  @return ApiSubscriptionUsersAddUserRequest
 */
-func (a *SubscriptionUsersApiService) SubscriptionUsersAddUser(ctx context.Context, subscriptionId string, userId string) ApiSubscriptionUsersAddUserRequest {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersAddUser(ctx context.Context, subscriptionId string, userId string) ApiSubscriptionUsersAddUserRequest {
 	return ApiSubscriptionUsersAddUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -52,14 +52,14 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersAddUser(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *SubscriptionUsersApiService) SubscriptionUsersAddUserExecute(r ApiSubscriptionUsersAddUserRequest) (*http.Response, error) {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersAddUserExecute(r ApiSubscriptionUsersAddUserRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersApiService.SubscriptionUsersAddUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersAPIService.SubscriptionUsersAddUser")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -122,7 +122,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersAddUserExecute(r ApiSubsc
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -133,7 +133,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersAddUserExecute(r ApiSubsc
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -163,7 +163,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersAddUserExecute(r ApiSubsc
 
 type ApiSubscriptionUsersCountUsersAsyncRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionUsersApiService
+	ApiService *SubscriptionUsersAPIService
 	subscriptionId string
 }
 
@@ -178,7 +178,7 @@ SubscriptionUsersCountUsersAsync Returns a number of users in subscription
  @param subscriptionId 
  @return ApiSubscriptionUsersCountUsersAsyncRequest
 */
-func (a *SubscriptionUsersApiService) SubscriptionUsersCountUsersAsync(ctx context.Context, subscriptionId string) ApiSubscriptionUsersCountUsersAsyncRequest {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersCountUsersAsync(ctx context.Context, subscriptionId string) ApiSubscriptionUsersCountUsersAsyncRequest {
 	return ApiSubscriptionUsersCountUsersAsyncRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -188,7 +188,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersCountUsersAsync(ctx conte
 
 // Execute executes the request
 //  @return int64
-func (a *SubscriptionUsersApiService) SubscriptionUsersCountUsersAsyncExecute(r ApiSubscriptionUsersCountUsersAsyncRequest) (int64, *http.Response, error) {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersCountUsersAsyncExecute(r ApiSubscriptionUsersCountUsersAsyncRequest) (int64, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -196,7 +196,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersCountUsersAsyncExecute(r 
 		localVarReturnValue  int64
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersApiService.SubscriptionUsersCountUsersAsync")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersAPIService.SubscriptionUsersCountUsersAsync")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -258,6 +258,17 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersCountUsersAsyncExecute(r 
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -297,7 +308,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersCountUsersAsyncExecute(r 
 
 type ApiSubscriptionUsersGetUsersRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionUsersApiService
+	ApiService *SubscriptionUsersAPIService
 	subscriptionId string
 	skip *int32
 	take *int32
@@ -326,7 +337,7 @@ SubscriptionUsersGetUsers Returns all users of subscription
  @param subscriptionId Idenitifier of subscription
  @return ApiSubscriptionUsersGetUsersRequest
 */
-func (a *SubscriptionUsersApiService) SubscriptionUsersGetUsers(ctx context.Context, subscriptionId string) ApiSubscriptionUsersGetUsersRequest {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersGetUsers(ctx context.Context, subscriptionId string) ApiSubscriptionUsersGetUsersRequest {
 	return ApiSubscriptionUsersGetUsersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -336,7 +347,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersGetUsers(ctx context.Cont
 
 // Execute executes the request
 //  @return SubscriptionUsersVM
-func (a *SubscriptionUsersApiService) SubscriptionUsersGetUsersExecute(r ApiSubscriptionUsersGetUsersRequest) (*SubscriptionUsersVM, *http.Response, error) {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersGetUsersExecute(r ApiSubscriptionUsersGetUsersRequest) (*SubscriptionUsersVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -344,7 +355,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersGetUsersExecute(r ApiSubs
 		localVarReturnValue  *SubscriptionUsersVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersApiService.SubscriptionUsersGetUsers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersAPIService.SubscriptionUsersGetUsers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -358,9 +369,15 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersGetUsersExecute(r ApiSubs
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -412,6 +429,17 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersGetUsersExecute(r ApiSubs
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -451,7 +479,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersGetUsersExecute(r ApiSubs
 
 type ApiSubscriptionUsersLeaveSubscripitonRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionUsersApiService
+	ApiService *SubscriptionUsersAPIService
 	subscriptionId string
 }
 
@@ -466,7 +494,7 @@ SubscriptionUsersLeaveSubscripiton Allows user to leave subscription,.
  @param subscriptionId Idenitifier of subscription
  @return ApiSubscriptionUsersLeaveSubscripitonRequest
 */
-func (a *SubscriptionUsersApiService) SubscriptionUsersLeaveSubscripiton(ctx context.Context, subscriptionId string) ApiSubscriptionUsersLeaveSubscripitonRequest {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersLeaveSubscripiton(ctx context.Context, subscriptionId string) ApiSubscriptionUsersLeaveSubscripitonRequest {
 	return ApiSubscriptionUsersLeaveSubscripitonRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -475,14 +503,14 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersLeaveSubscripiton(ctx con
 }
 
 // Execute executes the request
-func (a *SubscriptionUsersApiService) SubscriptionUsersLeaveSubscripitonExecute(r ApiSubscriptionUsersLeaveSubscripitonRequest) (*http.Response, error) {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersLeaveSubscripitonExecute(r ApiSubscriptionUsersLeaveSubscripitonRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersApiService.SubscriptionUsersLeaveSubscripiton")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersAPIService.SubscriptionUsersLeaveSubscripiton")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -544,6 +572,17 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersLeaveSubscripitonExecute(
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -574,7 +613,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersLeaveSubscripitonExecute(
 
 type ApiSubscriptionUsersRemoveUserRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionUsersApiService
+	ApiService *SubscriptionUsersAPIService
 	subscriptionId string
 	userId string
 }
@@ -591,7 +630,7 @@ SubscriptionUsersRemoveUser Delete a user from the subscription,  the added user
  @param userId Idenitifier of user
  @return ApiSubscriptionUsersRemoveUserRequest
 */
-func (a *SubscriptionUsersApiService) SubscriptionUsersRemoveUser(ctx context.Context, subscriptionId string, userId string) ApiSubscriptionUsersRemoveUserRequest {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersRemoveUser(ctx context.Context, subscriptionId string, userId string) ApiSubscriptionUsersRemoveUserRequest {
 	return ApiSubscriptionUsersRemoveUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -601,14 +640,14 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersRemoveUser(ctx context.Co
 }
 
 // Execute executes the request
-func (a *SubscriptionUsersApiService) SubscriptionUsersRemoveUserExecute(r ApiSubscriptionUsersRemoveUserRequest) (*http.Response, error) {
+func (a *SubscriptionUsersAPIService) SubscriptionUsersRemoveUserExecute(r ApiSubscriptionUsersRemoveUserRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersApiService.SubscriptionUsersRemoveUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionUsersAPIService.SubscriptionUsersRemoveUser")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -671,7 +710,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersRemoveUserExecute(r ApiSu
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -682,7 +721,7 @@ func (a *SubscriptionUsersApiService) SubscriptionUsersRemoveUserExecute(r ApiSu
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

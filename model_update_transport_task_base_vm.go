@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UpdateTransportTaskBaseVM type satisfies the MappedNullable interface at compile time
@@ -19,9 +21,12 @@ var _ MappedNullable = &UpdateTransportTaskBaseVM{}
 
 // UpdateTransportTaskBaseVM struct for UpdateTransportTaskBaseVM
 type UpdateTransportTaskBaseVM struct {
+	UpdateTaskBaseVM
 	InputFile *InputFileVM `json:"inputFile,omitempty"`
 	T string `json:"$t"`
 }
+
+type _UpdateTransportTaskBaseVM UpdateTransportTaskBaseVM
 
 // NewUpdateTransportTaskBaseVM instantiates a new UpdateTransportTaskBaseVM object
 // This constructor will assign default values to properties that have it defined,
@@ -107,11 +112,56 @@ func (o UpdateTransportTaskBaseVM) MarshalJSON() ([]byte, error) {
 
 func (o UpdateTransportTaskBaseVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedUpdateTaskBaseVM, errUpdateTaskBaseVM := json.Marshal(o.UpdateTaskBaseVM)
+	if errUpdateTaskBaseVM != nil {
+		return map[string]interface{}{}, errUpdateTaskBaseVM
+	}
+	errUpdateTaskBaseVM = json.Unmarshal([]byte(serializedUpdateTaskBaseVM), &toSerialize)
+	if errUpdateTaskBaseVM != nil {
+		return map[string]interface{}{}, errUpdateTaskBaseVM
+	}
 	if !IsNil(o.InputFile) {
 		toSerialize["inputFile"] = o.InputFile
 	}
 	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *UpdateTransportTaskBaseVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateTransportTaskBaseVM := _UpdateTransportTaskBaseVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateTransportTaskBaseVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateTransportTaskBaseVM(varUpdateTransportTaskBaseVM)
+
+	return err
 }
 
 type NullableUpdateTransportTaskBaseVM struct {

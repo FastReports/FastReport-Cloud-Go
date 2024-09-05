@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FileCreateVM type satisfies the MappedNullable interface at compile time
@@ -19,18 +21,23 @@ var _ MappedNullable = &FileCreateVM{}
 
 // FileCreateVM struct for FileCreateVM
 type FileCreateVM struct {
+	CloudBaseVM
 	Name NullableString `json:"name,omitempty"`
 	Tags []string `json:"tags,omitempty"`
 	Icon NullableString `json:"icon,omitempty"`
 	Content NullableString `json:"content,omitempty"`
+	T string `json:"$t"`
 }
+
+type _FileCreateVM FileCreateVM
 
 // NewFileCreateVM instantiates a new FileCreateVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFileCreateVM() *FileCreateVM {
+func NewFileCreateVM(t string) *FileCreateVM {
 	this := FileCreateVM{}
+	this.T = t
 	return &this
 }
 
@@ -201,6 +208,30 @@ func (o *FileCreateVM) UnsetContent() {
 	o.Content.Unset()
 }
 
+// GetT returns the T field value
+func (o *FileCreateVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *FileCreateVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *FileCreateVM) SetT(v string) {
+	o.T = v
+}
+
 func (o FileCreateVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -211,6 +242,14 @@ func (o FileCreateVM) MarshalJSON() ([]byte, error) {
 
 func (o FileCreateVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
@@ -223,7 +262,45 @@ func (o FileCreateVM) ToMap() (map[string]interface{}, error) {
 	if o.Content.IsSet() {
 		toSerialize["content"] = o.Content.Get()
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *FileCreateVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFileCreateVM := _FileCreateVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFileCreateVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FileCreateVM(varFileCreateVM)
+
+	return err
 }
 
 type NullableFileCreateVM struct {

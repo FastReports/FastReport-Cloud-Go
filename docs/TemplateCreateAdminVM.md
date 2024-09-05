@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **OwnerId** | **string** |  | 
 **ParentId** | **string** |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewTemplateCreateAdminVM
 
-`func NewTemplateCreateAdminVM(ownerId string, parentId string, ) *TemplateCreateAdminVM`
+`func NewTemplateCreateAdminVM(ownerId string, parentId string, t string, ) *TemplateCreateAdminVM`
 
 NewTemplateCreateAdminVM instantiates a new TemplateCreateAdminVM object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *TemplateCreateAdminVM) SetParentId(v string)`
 
 SetParentId sets ParentId field to given value.
+
+
+### GetT
+
+`func (o *TemplateCreateAdminVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *TemplateCreateAdminVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *TemplateCreateAdminVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

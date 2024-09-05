@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Errors** | Pointer to **map[string][]string** |  | [optional] [readonly] 
+**Errors** | Pointer to **map[string][]string** |  | [optional] 
 **Type** | Pointer to **NullableString** |  | [optional] 
 **Title** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to **NullableInt32** |  | [optional] 

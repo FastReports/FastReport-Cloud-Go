@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FolderTagsUpdateVM type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,20 @@ var _ MappedNullable = &FolderTagsUpdateVM{}
 
 // FolderTagsUpdateVM struct for FolderTagsUpdateVM
 type FolderTagsUpdateVM struct {
+	CloudBaseVM
 	Tags []string `json:"tags,omitempty"`
+	T string `json:"$t"`
 }
+
+type _FolderTagsUpdateVM FolderTagsUpdateVM
 
 // NewFolderTagsUpdateVM instantiates a new FolderTagsUpdateVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFolderTagsUpdateVM() *FolderTagsUpdateVM {
+func NewFolderTagsUpdateVM(t string) *FolderTagsUpdateVM {
 	this := FolderTagsUpdateVM{}
+	this.T = t
 	return &this
 }
 
@@ -72,6 +79,30 @@ func (o *FolderTagsUpdateVM) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetT returns the T field value
+func (o *FolderTagsUpdateVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *FolderTagsUpdateVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *FolderTagsUpdateVM) SetT(v string) {
+	o.T = v
+}
+
 func (o FolderTagsUpdateVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -82,10 +113,56 @@ func (o FolderTagsUpdateVM) MarshalJSON() ([]byte, error) {
 
 func (o FolderTagsUpdateVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *FolderTagsUpdateVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFolderTagsUpdateVM := _FolderTagsUpdateVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFolderTagsUpdateVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FolderTagsUpdateVM(varFolderTagsUpdateVM)
+
+	return err
 }
 
 type NullableFolderTagsUpdateVM struct {

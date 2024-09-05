@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TemplateId** | Pointer to **NullableString** |  | [optional] 
 **ReportInfo** | Pointer to [**ReportInfo**](ReportInfo.md) |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewReportVM
 
-`func NewReportVM() *ReportVM`
+`func NewReportVM(t string, ) *ReportVM`
 
 NewReportVM instantiates a new ReportVM object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ SetReportInfo sets ReportInfo field to given value.
 `func (o *ReportVM) HasReportInfo() bool`
 
 HasReportInfo returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *ReportVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *ReportVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *ReportVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

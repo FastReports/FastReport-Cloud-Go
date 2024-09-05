@@ -23,6 +23,9 @@ const (
 	_0 DataSourceGet = 0
 	_1 DataSourceGet = 1
 	_2 DataSourceGet = 2
+	_4 DataSourceGet = 4
+	_8 DataSourceGet = 8
+	_16 DataSourceGet = 16
 	_MINUS_1 DataSourceGet = -1
 )
 
@@ -31,6 +34,9 @@ var AllowedDataSourceGetEnumValues = []DataSourceGet{
 	0,
 	1,
 	2,
+	4,
+	8,
+	16,
 	-1,
 }
 

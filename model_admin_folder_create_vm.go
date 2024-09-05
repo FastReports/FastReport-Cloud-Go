@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AdminFolderCreateVM type satisfies the MappedNullable interface at compile time
@@ -19,17 +21,22 @@ var _ MappedNullable = &AdminFolderCreateVM{}
 
 // AdminFolderCreateVM struct for AdminFolderCreateVM
 type AdminFolderCreateVM struct {
+	FolderCreateVM
 	ParentId string `json:"parentId"`
 	OwnerId string `json:"ownerId"`
 	Force *bool `json:"force,omitempty"`
+	T string `json:"$t"`
 }
+
+type _AdminFolderCreateVM AdminFolderCreateVM
 
 // NewAdminFolderCreateVM instantiates a new AdminFolderCreateVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAdminFolderCreateVM(parentId string, ownerId string) *AdminFolderCreateVM {
+func NewAdminFolderCreateVM(parentId string, ownerId string, t string) *AdminFolderCreateVM {
 	this := AdminFolderCreateVM{}
+	this.T = t
 	return &this
 }
 
@@ -121,6 +128,30 @@ func (o *AdminFolderCreateVM) SetForce(v bool) {
 	o.Force = &v
 }
 
+// GetT returns the T field value
+func (o *AdminFolderCreateVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *AdminFolderCreateVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *AdminFolderCreateVM) SetT(v string) {
+	o.T = v
+}
+
 func (o AdminFolderCreateVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -131,12 +162,60 @@ func (o AdminFolderCreateVM) MarshalJSON() ([]byte, error) {
 
 func (o AdminFolderCreateVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedFolderCreateVM, errFolderCreateVM := json.Marshal(o.FolderCreateVM)
+	if errFolderCreateVM != nil {
+		return map[string]interface{}{}, errFolderCreateVM
+	}
+	errFolderCreateVM = json.Unmarshal([]byte(serializedFolderCreateVM), &toSerialize)
+	if errFolderCreateVM != nil {
+		return map[string]interface{}{}, errFolderCreateVM
+	}
 	toSerialize["parentId"] = o.ParentId
 	toSerialize["ownerId"] = o.OwnerId
 	if !IsNil(o.Force) {
 		toSerialize["force"] = o.Force
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *AdminFolderCreateVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"parentId",
+		"ownerId",
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAdminFolderCreateVM := _AdminFolderCreateVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAdminFolderCreateVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AdminFolderCreateVM(varAdminFolderCreateVM)
+
+	return err
 }
 
 type NullableAdminFolderCreateVM struct {

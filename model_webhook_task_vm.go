@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the WebhookTaskVM type satisfies the MappedNullable interface at compile time
@@ -19,9 +21,13 @@ var _ MappedNullable = &WebhookTaskVM{}
 
 // WebhookTaskVM struct for WebhookTaskVM
 type WebhookTaskVM struct {
+	TransportTaskBaseVM
 	Headers map[string]string `json:"headers,omitempty"`
 	Url NullableString `json:"url,omitempty"`
+	T string `json:"$t"`
 }
+
+type _WebhookTaskVM WebhookTaskVM
 
 // NewWebhookTaskVM instantiates a new WebhookTaskVM object
 // This constructor will assign default values to properties that have it defined,
@@ -116,6 +122,30 @@ func (o *WebhookTaskVM) UnsetUrl() {
 	o.Url.Unset()
 }
 
+// GetT returns the T field value
+func (o *WebhookTaskVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *WebhookTaskVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *WebhookTaskVM) SetT(v string) {
+	o.T = v
+}
+
 func (o WebhookTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -126,13 +156,59 @@ func (o WebhookTaskVM) MarshalJSON() ([]byte, error) {
 
 func (o WebhookTaskVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedTransportTaskBaseVM, errTransportTaskBaseVM := json.Marshal(o.TransportTaskBaseVM)
+	if errTransportTaskBaseVM != nil {
+		return map[string]interface{}{}, errTransportTaskBaseVM
+	}
+	errTransportTaskBaseVM = json.Unmarshal([]byte(serializedTransportTaskBaseVM), &toSerialize)
+	if errTransportTaskBaseVM != nil {
+		return map[string]interface{}{}, errTransportTaskBaseVM
+	}
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
 	}
 	if o.Url.IsSet() {
 		toSerialize["url"] = o.Url.Get()
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *WebhookTaskVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varWebhookTaskVM := _WebhookTaskVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varWebhookTaskVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WebhookTaskVM(varWebhookTaskVM)
+
+	return err
 }
 
 type NullableWebhookTaskVM struct {

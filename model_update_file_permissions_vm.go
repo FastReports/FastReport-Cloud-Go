@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UpdateFilePermissionsVM type satisfies the MappedNullable interface at compile time
@@ -19,18 +21,21 @@ var _ MappedNullable = &UpdateFilePermissionsVM{}
 
 // UpdateFilePermissionsVM struct for UpdateFilePermissionsVM
 type UpdateFilePermissionsVM struct {
-	NewPermissions FilePermissions `json:"newPermissions"`
+	CloudBaseVM
+	NewPermissions FilePermissionsCRUDVM `json:"newPermissions"`
 	Administrate FileAdministrate `json:"administrate"`
+	T string `json:"$t"`
 }
+
+type _UpdateFilePermissionsVM UpdateFilePermissionsVM
 
 // NewUpdateFilePermissionsVM instantiates a new UpdateFilePermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateFilePermissionsVM(newPermissions FilePermissions, administrate FileAdministrate) *UpdateFilePermissionsVM {
+func NewUpdateFilePermissionsVM(newPermissions FilePermissionsCRUDVM, administrate FileAdministrate, t string) *UpdateFilePermissionsVM {
 	this := UpdateFilePermissionsVM{}
-	this.NewPermissions = newPermissions
-	this.Administrate = administrate
+	this.T = t
 	return &this
 }
 
@@ -43,9 +48,9 @@ func NewUpdateFilePermissionsVMWithDefaults() *UpdateFilePermissionsVM {
 }
 
 // GetNewPermissions returns the NewPermissions field value
-func (o *UpdateFilePermissionsVM) GetNewPermissions() FilePermissions {
+func (o *UpdateFilePermissionsVM) GetNewPermissions() FilePermissionsCRUDVM {
 	if o == nil {
-		var ret FilePermissions
+		var ret FilePermissionsCRUDVM
 		return ret
 	}
 
@@ -54,7 +59,7 @@ func (o *UpdateFilePermissionsVM) GetNewPermissions() FilePermissions {
 
 // GetNewPermissionsOk returns a tuple with the NewPermissions field value
 // and a boolean to check if the value has been set.
-func (o *UpdateFilePermissionsVM) GetNewPermissionsOk() (*FilePermissions, bool) {
+func (o *UpdateFilePermissionsVM) GetNewPermissionsOk() (*FilePermissionsCRUDVM, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,7 +67,7 @@ func (o *UpdateFilePermissionsVM) GetNewPermissionsOk() (*FilePermissions, bool)
 }
 
 // SetNewPermissions sets field value
-func (o *UpdateFilePermissionsVM) SetNewPermissions(v FilePermissions) {
+func (o *UpdateFilePermissionsVM) SetNewPermissions(v FilePermissionsCRUDVM) {
 	o.NewPermissions = v
 }
 
@@ -90,6 +95,30 @@ func (o *UpdateFilePermissionsVM) SetAdministrate(v FileAdministrate) {
 	o.Administrate = v
 }
 
+// GetT returns the T field value
+func (o *UpdateFilePermissionsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *UpdateFilePermissionsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *UpdateFilePermissionsVM) SetT(v string) {
+	o.T = v
+}
+
 func (o UpdateFilePermissionsVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -100,9 +129,57 @@ func (o UpdateFilePermissionsVM) MarshalJSON() ([]byte, error) {
 
 func (o UpdateFilePermissionsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	toSerialize["newPermissions"] = o.NewPermissions
 	toSerialize["administrate"] = o.Administrate
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *UpdateFilePermissionsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"newPermissions",
+		"administrate",
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateFilePermissionsVM := _UpdateFilePermissionsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateFilePermissionsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateFilePermissionsVM(varUpdateFilePermissionsVM)
+
+	return err
 }
 
 type NullableUpdateFilePermissionsVM struct {

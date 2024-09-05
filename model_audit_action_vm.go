@@ -13,6 +13,8 @@ package gofrcloud
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AuditActionVM type satisfies the MappedNullable interface at compile time
@@ -20,6 +22,7 @@ var _ MappedNullable = &AuditActionVM{}
 
 // AuditActionVM struct for AuditActionVM
 type AuditActionVM struct {
+	CloudBaseVM
 	UserId NullableString `json:"userId,omitempty"`
 	EntityId NullableString `json:"entityId,omitempty"`
 	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
@@ -31,6 +34,8 @@ type AuditActionVM struct {
 	AdminAction *bool `json:"adminAction,omitempty"`
 	T string `json:"$t"`
 }
+
+type _AuditActionVM AuditActionVM
 
 // NewAuditActionVM instantiates a new AuditActionVM object
 // This constructor will assign default values to properties that have it defined,
@@ -432,6 +437,14 @@ func (o AuditActionVM) MarshalJSON() ([]byte, error) {
 
 func (o AuditActionVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.UserId.IsSet() {
 		toSerialize["userId"] = o.UserId.Get()
 	}
@@ -461,6 +474,43 @@ func (o AuditActionVM) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *AuditActionVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAuditActionVM := _AuditActionVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAuditActionVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AuditActionVM(varAuditActionVM)
+
+	return err
 }
 
 type NullableAuditActionVM struct {

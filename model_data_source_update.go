@@ -25,6 +25,7 @@ const (
 	_2 DataSourceUpdate = 2
 	_4 DataSourceUpdate = 4
 	_8 DataSourceUpdate = 8
+	_16 DataSourceUpdate = 16
 	_MINUS_1 DataSourceUpdate = -1
 )
 
@@ -35,6 +36,7 @@ var AllowedDataSourceUpdateEnumValues = []DataSourceUpdate{
 	2,
 	4,
 	8,
+	16,
 	-1,
 }
 

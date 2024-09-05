@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SubscriptionPermissionsVM type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,20 @@ var _ MappedNullable = &SubscriptionPermissionsVM{}
 
 // SubscriptionPermissionsVM struct for SubscriptionPermissionsVM
 type SubscriptionPermissionsVM struct {
-	Permissions *SubscriptionPermissions `json:"permissions,omitempty"`
+	CloudBaseVM
+	Permissions *SubscriptionPermissionsCRUDVM `json:"permissions,omitempty"`
+	T string `json:"$t"`
 }
+
+type _SubscriptionPermissionsVM SubscriptionPermissionsVM
 
 // NewSubscriptionPermissionsVM instantiates a new SubscriptionPermissionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionPermissionsVM() *SubscriptionPermissionsVM {
+func NewSubscriptionPermissionsVM(t string) *SubscriptionPermissionsVM {
 	this := SubscriptionPermissionsVM{}
+	this.T = t
 	return &this
 }
 
@@ -40,9 +47,9 @@ func NewSubscriptionPermissionsVMWithDefaults() *SubscriptionPermissionsVM {
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise.
-func (o *SubscriptionPermissionsVM) GetPermissions() SubscriptionPermissions {
+func (o *SubscriptionPermissionsVM) GetPermissions() SubscriptionPermissionsCRUDVM {
 	if o == nil || IsNil(o.Permissions) {
-		var ret SubscriptionPermissions
+		var ret SubscriptionPermissionsCRUDVM
 		return ret
 	}
 	return *o.Permissions
@@ -50,7 +57,7 @@ func (o *SubscriptionPermissionsVM) GetPermissions() SubscriptionPermissions {
 
 // GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubscriptionPermissionsVM) GetPermissionsOk() (*SubscriptionPermissions, bool) {
+func (o *SubscriptionPermissionsVM) GetPermissionsOk() (*SubscriptionPermissionsCRUDVM, bool) {
 	if o == nil || IsNil(o.Permissions) {
 		return nil, false
 	}
@@ -66,9 +73,33 @@ func (o *SubscriptionPermissionsVM) HasPermissions() bool {
 	return false
 }
 
-// SetPermissions gets a reference to the given SubscriptionPermissions and assigns it to the Permissions field.
-func (o *SubscriptionPermissionsVM) SetPermissions(v SubscriptionPermissions) {
+// SetPermissions gets a reference to the given SubscriptionPermissionsCRUDVM and assigns it to the Permissions field.
+func (o *SubscriptionPermissionsVM) SetPermissions(v SubscriptionPermissionsCRUDVM) {
 	o.Permissions = &v
+}
+
+// GetT returns the T field value
+func (o *SubscriptionPermissionsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *SubscriptionPermissionsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *SubscriptionPermissionsVM) SetT(v string) {
+	o.T = v
 }
 
 func (o SubscriptionPermissionsVM) MarshalJSON() ([]byte, error) {
@@ -81,10 +112,56 @@ func (o SubscriptionPermissionsVM) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionPermissionsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if !IsNil(o.Permissions) {
 		toSerialize["permissions"] = o.Permissions
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *SubscriptionPermissionsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubscriptionPermissionsVM := _SubscriptionPermissionsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSubscriptionPermissionsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionPermissionsVM(varSubscriptionPermissionsVM)
+
+	return err
 }
 
 type NullableSubscriptionPermissionsVM struct {

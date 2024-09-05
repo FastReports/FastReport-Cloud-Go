@@ -19,12 +19,12 @@ import (
 )
 
 
-// UserSettingsApiService UserSettingsApi service
-type UserSettingsApiService service
+// UserSettingsAPIService UserSettingsAPI service
+type UserSettingsAPIService service
 
 type ApiUserSettingsAcceptAgreementsRequest struct {
 	ctx context.Context
-	ApiService *UserSettingsApiService
+	ApiService *UserSettingsAPIService
 	acceptAgreementsVM *AcceptAgreementsVM
 }
 
@@ -44,7 +44,7 @@ UserSettingsAcceptAgreements Use this endpoint to accept current version of serv
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUserSettingsAcceptAgreementsRequest
 */
-func (a *UserSettingsApiService) UserSettingsAcceptAgreements(ctx context.Context) ApiUserSettingsAcceptAgreementsRequest {
+func (a *UserSettingsAPIService) UserSettingsAcceptAgreements(ctx context.Context) ApiUserSettingsAcceptAgreementsRequest {
 	return ApiUserSettingsAcceptAgreementsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -52,14 +52,14 @@ func (a *UserSettingsApiService) UserSettingsAcceptAgreements(ctx context.Contex
 }
 
 // Execute executes the request
-func (a *UserSettingsApiService) UserSettingsAcceptAgreementsExecute(r ApiUserSettingsAcceptAgreementsRequest) (*http.Response, error) {
+func (a *UserSettingsAPIService) UserSettingsAcceptAgreementsExecute(r ApiUserSettingsAcceptAgreementsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserSettingsApiService.UserSettingsAcceptAgreements")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserSettingsAPIService.UserSettingsAcceptAgreements")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -119,7 +119,7 @@ func (a *UserSettingsApiService) UserSettingsAcceptAgreementsExecute(r ApiUserSe
 
 type ApiUserSettingsGetCurrentUserSettingsRequest struct {
 	ctx context.Context
-	ApiService *UserSettingsApiService
+	ApiService *UserSettingsAPIService
 }
 
 func (r ApiUserSettingsGetCurrentUserSettingsRequest) Execute() (*UserSettingsVM, *http.Response, error) {
@@ -132,7 +132,7 @@ UserSettingsGetCurrentUserSettings Return current user settings.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUserSettingsGetCurrentUserSettingsRequest
 */
-func (a *UserSettingsApiService) UserSettingsGetCurrentUserSettings(ctx context.Context) ApiUserSettingsGetCurrentUserSettingsRequest {
+func (a *UserSettingsAPIService) UserSettingsGetCurrentUserSettings(ctx context.Context) ApiUserSettingsGetCurrentUserSettingsRequest {
 	return ApiUserSettingsGetCurrentUserSettingsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -141,7 +141,7 @@ func (a *UserSettingsApiService) UserSettingsGetCurrentUserSettings(ctx context.
 
 // Execute executes the request
 //  @return UserSettingsVM
-func (a *UserSettingsApiService) UserSettingsGetCurrentUserSettingsExecute(r ApiUserSettingsGetCurrentUserSettingsRequest) (*UserSettingsVM, *http.Response, error) {
+func (a *UserSettingsAPIService) UserSettingsGetCurrentUserSettingsExecute(r ApiUserSettingsGetCurrentUserSettingsRequest) (*UserSettingsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -149,7 +149,7 @@ func (a *UserSettingsApiService) UserSettingsGetCurrentUserSettingsExecute(r Api
 		localVarReturnValue  *UserSettingsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserSettingsApiService.UserSettingsGetCurrentUserSettings")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserSettingsAPIService.UserSettingsGetCurrentUserSettings")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -199,6 +199,17 @@ func (a *UserSettingsApiService) UserSettingsGetCurrentUserSettingsExecute(r Api
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -226,7 +237,7 @@ func (a *UserSettingsApiService) UserSettingsGetCurrentUserSettingsExecute(r Api
 
 type ApiUserSettingsUpdateMySettingsRequest struct {
 	ctx context.Context
-	ApiService *UserSettingsApiService
+	ApiService *UserSettingsAPIService
 	updateUserSettingsVM *UpdateUserSettingsVM
 }
 
@@ -246,7 +257,7 @@ UserSettingsUpdateMySettings Update settings of the current user
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUserSettingsUpdateMySettingsRequest
 */
-func (a *UserSettingsApiService) UserSettingsUpdateMySettings(ctx context.Context) ApiUserSettingsUpdateMySettingsRequest {
+func (a *UserSettingsAPIService) UserSettingsUpdateMySettings(ctx context.Context) ApiUserSettingsUpdateMySettingsRequest {
 	return ApiUserSettingsUpdateMySettingsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -255,7 +266,7 @@ func (a *UserSettingsApiService) UserSettingsUpdateMySettings(ctx context.Contex
 
 // Execute executes the request
 //  @return UserSettingsVM
-func (a *UserSettingsApiService) UserSettingsUpdateMySettingsExecute(r ApiUserSettingsUpdateMySettingsRequest) (*UserSettingsVM, *http.Response, error) {
+func (a *UserSettingsAPIService) UserSettingsUpdateMySettingsExecute(r ApiUserSettingsUpdateMySettingsRequest) (*UserSettingsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -263,7 +274,7 @@ func (a *UserSettingsApiService) UserSettingsUpdateMySettingsExecute(r ApiUserSe
 		localVarReturnValue  *UserSettingsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserSettingsApiService.UserSettingsUpdateMySettings")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserSettingsAPIService.UserSettingsUpdateMySettings")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

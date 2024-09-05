@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FolderSizeVM type satisfies the MappedNullable interface at compile time
@@ -19,17 +21,22 @@ var _ MappedNullable = &FolderSizeVM{}
 
 // FolderSizeVM struct for FolderSizeVM
 type FolderSizeVM struct {
+	CloudBaseVM
 	Size *int64 `json:"size,omitempty"`
 	RealSize *int64 `json:"realSize,omitempty"`
 	DocumentsCount *int64 `json:"documentsCount,omitempty"`
+	T string `json:"$t"`
 }
+
+type _FolderSizeVM FolderSizeVM
 
 // NewFolderSizeVM instantiates a new FolderSizeVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFolderSizeVM() *FolderSizeVM {
+func NewFolderSizeVM(t string) *FolderSizeVM {
 	this := FolderSizeVM{}
+	this.T = t
 	return &this
 }
 
@@ -137,6 +144,30 @@ func (o *FolderSizeVM) SetDocumentsCount(v int64) {
 	o.DocumentsCount = &v
 }
 
+// GetT returns the T field value
+func (o *FolderSizeVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *FolderSizeVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *FolderSizeVM) SetT(v string) {
+	o.T = v
+}
+
 func (o FolderSizeVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -147,6 +178,14 @@ func (o FolderSizeVM) MarshalJSON() ([]byte, error) {
 
 func (o FolderSizeVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
@@ -156,7 +195,45 @@ func (o FolderSizeVM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DocumentsCount) {
 		toSerialize["documentsCount"] = o.DocumentsCount
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *FolderSizeVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFolderSizeVM := _FolderSizeVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFolderSizeVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FolderSizeVM(varFolderSizeVM)
+
+	return err
 }
 
 type NullableFolderSizeVM struct {

@@ -25,7 +25,10 @@ type HttpValidationProblemDetails struct {
 	Status NullableInt32 `json:"status,omitempty"`
 	Detail NullableString `json:"detail,omitempty"`
 	Instance NullableString `json:"instance,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HttpValidationProblemDetails HttpValidationProblemDetails
 
 // NewHttpValidationProblemDetails instantiates a new HttpValidationProblemDetails object
 // This constructor will assign default values to properties that have it defined,
@@ -296,7 +299,9 @@ func (o HttpValidationProblemDetails) MarshalJSON() ([]byte, error) {
 
 func (o HttpValidationProblemDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: errors is readOnly
+	if !IsNil(o.Errors) {
+		toSerialize["errors"] = o.Errors
+	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
 	}
@@ -312,7 +317,38 @@ func (o HttpValidationProblemDetails) ToMap() (map[string]interface{}, error) {
 	if o.Instance.IsSet() {
 		toSerialize["instance"] = o.Instance.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HttpValidationProblemDetails) UnmarshalJSON(data []byte) (err error) {
+	varHttpValidationProblemDetails := _HttpValidationProblemDetails{}
+
+	err = json.Unmarshal(data, &varHttpValidationProblemDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HttpValidationProblemDetails(varHttpValidationProblemDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "detail")
+		delete(additionalProperties, "instance")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHttpValidationProblemDetails struct {

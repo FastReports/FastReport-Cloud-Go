@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing SubscriptionUsersApiService
+Testing SubscriptionUsersAPIService
 
 */
 
@@ -17,32 +17,32 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_SubscriptionUsersApiService(t *testing.T) {
+func Test_gofrcloud_SubscriptionUsersAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SubscriptionUsersApiService SubscriptionUsersAddUser", func(t *testing.T) {
+	t.Run("Test SubscriptionUsersAPIService SubscriptionUsersAddUser", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 		var userId string
 
-		httpRes, err := apiClient.SubscriptionUsersApi.SubscriptionUsersAddUser(context.Background(), subscriptionId, userId).Execute()
+		httpRes, err := apiClient.SubscriptionUsersAPI.SubscriptionUsersAddUser(context.Background(), subscriptionId, userId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SubscriptionUsersApiService SubscriptionUsersCountUsersAsync", func(t *testing.T) {
+	t.Run("Test SubscriptionUsersAPIService SubscriptionUsersCountUsersAsync", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.SubscriptionUsersApi.SubscriptionUsersCountUsersAsync(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.SubscriptionUsersAPI.SubscriptionUsersCountUsersAsync(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,13 +50,13 @@ func Test_gofrcloud_SubscriptionUsersApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionUsersApiService SubscriptionUsersGetUsers", func(t *testing.T) {
+	t.Run("Test SubscriptionUsersAPIService SubscriptionUsersGetUsers", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.SubscriptionUsersApi.SubscriptionUsersGetUsers(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.SubscriptionUsersAPI.SubscriptionUsersGetUsers(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,27 +64,27 @@ func Test_gofrcloud_SubscriptionUsersApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionUsersApiService SubscriptionUsersLeaveSubscripiton", func(t *testing.T) {
+	t.Run("Test SubscriptionUsersAPIService SubscriptionUsersLeaveSubscripiton", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		httpRes, err := apiClient.SubscriptionUsersApi.SubscriptionUsersLeaveSubscripiton(context.Background(), subscriptionId).Execute()
+		httpRes, err := apiClient.SubscriptionUsersAPI.SubscriptionUsersLeaveSubscripiton(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SubscriptionUsersApiService SubscriptionUsersRemoveUser", func(t *testing.T) {
+	t.Run("Test SubscriptionUsersAPIService SubscriptionUsersRemoveUser", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 		var userId string
 
-		httpRes, err := apiClient.SubscriptionUsersApi.SubscriptionUsersRemoveUser(context.Background(), subscriptionId, userId).Execute()
+		httpRes, err := apiClient.SubscriptionUsersAPI.SubscriptionUsersRemoveUser(context.Background(), subscriptionId, userId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

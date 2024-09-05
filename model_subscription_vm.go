@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SubscriptionVM type satisfies the MappedNullable interface at compile time
@@ -19,6 +21,7 @@ var _ MappedNullable = &SubscriptionVM{}
 
 // SubscriptionVM struct for SubscriptionVM
 type SubscriptionVM struct {
+	CloudBaseVM
 	Id NullableString `json:"id,omitempty"`
 	Name NullableString `json:"name,omitempty"`
 	Locale NullableString `json:"locale,omitempty"`
@@ -27,14 +30,19 @@ type SubscriptionVM struct {
 	TemplatesFolder *SubscriptionFolder `json:"templatesFolder,omitempty"`
 	ReportsFolder *SubscriptionFolder `json:"reportsFolder,omitempty"`
 	ExportsFolder *SubscriptionFolder `json:"exportsFolder,omitempty"`
+	Tags []string `json:"tags,omitempty"`
+	T string `json:"$t"`
 }
+
+type _SubscriptionVM SubscriptionVM
 
 // NewSubscriptionVM instantiates a new SubscriptionVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionVM() *SubscriptionVM {
+func NewSubscriptionVM(t string) *SubscriptionVM {
 	this := SubscriptionVM{}
+	this.T = t
 	return &this
 }
 
@@ -333,6 +341,63 @@ func (o *SubscriptionVM) SetExportsFolder(v SubscriptionFolder) {
 	o.ExportsFolder = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SubscriptionVM) GetTags() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SubscriptionVM) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *SubscriptionVM) HasTags() bool {
+	if o != nil && IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *SubscriptionVM) SetTags(v []string) {
+	o.Tags = v
+}
+
+// GetT returns the T field value
+func (o *SubscriptionVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *SubscriptionVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *SubscriptionVM) SetT(v string) {
+	o.T = v
+}
+
 func (o SubscriptionVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -343,6 +408,14 @@ func (o SubscriptionVM) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.Id.IsSet() {
 		toSerialize["id"] = o.Id.Get()
 	}
@@ -367,7 +440,48 @@ func (o SubscriptionVM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExportsFolder) {
 		toSerialize["exportsFolder"] = o.ExportsFolder
 	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *SubscriptionVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubscriptionVM := _SubscriptionVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSubscriptionVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionVM(varSubscriptionVM)
+
+	return err
 }
 
 type NullableSubscriptionVM struct {

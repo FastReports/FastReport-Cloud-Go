@@ -20,12 +20,12 @@ import (
 )
 
 
-// SubscriptionsApiService SubscriptionsApi service
-type SubscriptionsApiService service
+// SubscriptionsAPIService SubscriptionsAPI service
+type SubscriptionsAPIService service
 
 type ApiSubscriptionsGetDefaultPermissionsRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	subscriptionId string
 }
 
@@ -40,7 +40,7 @@ SubscriptionsGetDefaultPermissions Get subscription's default permissions for ne
  @param subscriptionId id
  @return ApiSubscriptionsGetDefaultPermissionsRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsGetDefaultPermissions(ctx context.Context, subscriptionId string) ApiSubscriptionsGetDefaultPermissionsRequest {
+func (a *SubscriptionsAPIService) SubscriptionsGetDefaultPermissions(ctx context.Context, subscriptionId string) ApiSubscriptionsGetDefaultPermissionsRequest {
 	return ApiSubscriptionsGetDefaultPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -50,7 +50,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetDefaultPermissions(ctx context
 
 // Execute executes the request
 //  @return DefaultPermissionsVM
-func (a *SubscriptionsApiService) SubscriptionsGetDefaultPermissionsExecute(r ApiSubscriptionsGetDefaultPermissionsRequest) (*DefaultPermissionsVM, *http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsGetDefaultPermissionsExecute(r ApiSubscriptionsGetDefaultPermissionsRequest) (*DefaultPermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -58,7 +58,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetDefaultPermissionsExecute(r Ap
 		localVarReturnValue  *DefaultPermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsGetDefaultPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsGetDefaultPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -169,7 +169,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetDefaultPermissionsExecute(r Ap
 
 type ApiSubscriptionsGetMyPermissionsRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	subId string
 }
 
@@ -184,7 +184,7 @@ SubscriptionsGetMyPermissions Get user's permissions for a subscription by id
  @param subId subscription id
  @return ApiSubscriptionsGetMyPermissionsRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsGetMyPermissions(ctx context.Context, subId string) ApiSubscriptionsGetMyPermissionsRequest {
+func (a *SubscriptionsAPIService) SubscriptionsGetMyPermissions(ctx context.Context, subId string) ApiSubscriptionsGetMyPermissionsRequest {
 	return ApiSubscriptionsGetMyPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -194,7 +194,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetMyPermissions(ctx context.Cont
 
 // Execute executes the request
 //  @return MyPermissionsVM
-func (a *SubscriptionsApiService) SubscriptionsGetMyPermissionsExecute(r ApiSubscriptionsGetMyPermissionsRequest) (*MyPermissionsVM, *http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsGetMyPermissionsExecute(r ApiSubscriptionsGetMyPermissionsRequest) (*MyPermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -202,7 +202,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetMyPermissionsExecute(r ApiSubs
 		localVarReturnValue  *MyPermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsGetMyPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsGetMyPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -270,7 +270,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetMyPermissionsExecute(r ApiSubs
 
 type ApiSubscriptionsGetPermissionsRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	id string
 }
 
@@ -285,7 +285,7 @@ SubscriptionsGetPermissions Get permissions for a subscription by id
  @param id 
  @return ApiSubscriptionsGetPermissionsRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsGetPermissions(ctx context.Context, id string) ApiSubscriptionsGetPermissionsRequest {
+func (a *SubscriptionsAPIService) SubscriptionsGetPermissions(ctx context.Context, id string) ApiSubscriptionsGetPermissionsRequest {
 	return ApiSubscriptionsGetPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -295,7 +295,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetPermissions(ctx context.Contex
 
 // Execute executes the request
 //  @return SubscriptionPermissionsVM
-func (a *SubscriptionsApiService) SubscriptionsGetPermissionsExecute(r ApiSubscriptionsGetPermissionsRequest) (*SubscriptionPermissionsVM, *http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsGetPermissionsExecute(r ApiSubscriptionsGetPermissionsRequest) (*SubscriptionPermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -303,7 +303,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetPermissionsExecute(r ApiSubscr
 		localVarReturnValue  *SubscriptionPermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsGetPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsGetPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -354,6 +354,28 @@ func (a *SubscriptionsApiService) SubscriptionsGetPermissionsExecute(r ApiSubscr
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -363,6 +385,18 @@ func (a *SubscriptionsApiService) SubscriptionsGetPermissionsExecute(r ApiSubscr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -381,7 +415,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetPermissionsExecute(r ApiSubscr
 
 type ApiSubscriptionsGetSubscriptionRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	id string
 }
 
@@ -396,7 +430,7 @@ SubscriptionsGetSubscription Returns the subscription by id
  @param id Identifier of subscription
  @return ApiSubscriptionsGetSubscriptionRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsGetSubscription(ctx context.Context, id string) ApiSubscriptionsGetSubscriptionRequest {
+func (a *SubscriptionsAPIService) SubscriptionsGetSubscription(ctx context.Context, id string) ApiSubscriptionsGetSubscriptionRequest {
 	return ApiSubscriptionsGetSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -406,7 +440,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscription(ctx context.Conte
 
 // Execute executes the request
 //  @return SubscriptionVM
-func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionExecute(r ApiSubscriptionsGetSubscriptionRequest) (*SubscriptionVM, *http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsGetSubscriptionExecute(r ApiSubscriptionsGetSubscriptionRequest) (*SubscriptionVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -414,7 +448,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionExecute(r ApiSubsc
 		localVarReturnValue  *SubscriptionVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsGetSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsGetSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -496,6 +530,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionExecute(r ApiSubsc
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -514,7 +549,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionExecute(r ApiSubsc
 
 type ApiSubscriptionsGetSubscriptionsRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	skip *int32
 	take *int32
 }
@@ -541,7 +576,7 @@ SubscriptionsGetSubscriptions Returns a list of all subscriptions of current use
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSubscriptionsGetSubscriptionsRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsGetSubscriptions(ctx context.Context) ApiSubscriptionsGetSubscriptionsRequest {
+func (a *SubscriptionsAPIService) SubscriptionsGetSubscriptions(ctx context.Context) ApiSubscriptionsGetSubscriptionsRequest {
 	return ApiSubscriptionsGetSubscriptionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -550,7 +585,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptions(ctx context.Cont
 
 // Execute executes the request
 //  @return SubscriptionsVM
-func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionsExecute(r ApiSubscriptionsGetSubscriptionsRequest) (*SubscriptionsVM, *http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsGetSubscriptionsExecute(r ApiSubscriptionsGetSubscriptionsRequest) (*SubscriptionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -558,7 +593,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionsExecute(r ApiSubs
 		localVarReturnValue  *SubscriptionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsGetSubscriptions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsGetSubscriptions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -571,9 +606,15 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionsExecute(r ApiSubs
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -641,7 +682,7 @@ func (a *SubscriptionsApiService) SubscriptionsGetSubscriptionsExecute(r ApiSubs
 
 type ApiSubscriptionsRenameSubscriptionRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	subscriptionId string
 	renameSubscriptionVM *RenameSubscriptionVM
 }
@@ -663,7 +704,7 @@ SubscriptionsRenameSubscription Rename subscription
  @param subscriptionId id
  @return ApiSubscriptionsRenameSubscriptionRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsRenameSubscription(ctx context.Context, subscriptionId string) ApiSubscriptionsRenameSubscriptionRequest {
+func (a *SubscriptionsAPIService) SubscriptionsRenameSubscription(ctx context.Context, subscriptionId string) ApiSubscriptionsRenameSubscriptionRequest {
 	return ApiSubscriptionsRenameSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -673,7 +714,7 @@ func (a *SubscriptionsApiService) SubscriptionsRenameSubscription(ctx context.Co
 
 // Execute executes the request
 //  @return SubscriptionVM
-func (a *SubscriptionsApiService) SubscriptionsRenameSubscriptionExecute(r ApiSubscriptionsRenameSubscriptionRequest) (*SubscriptionVM, *http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsRenameSubscriptionExecute(r ApiSubscriptionsRenameSubscriptionRequest) (*SubscriptionVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -681,7 +722,7 @@ func (a *SubscriptionsApiService) SubscriptionsRenameSubscriptionExecute(r ApiSu
 		localVarReturnValue  *SubscriptionVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsRenameSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsRenameSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -797,7 +838,7 @@ func (a *SubscriptionsApiService) SubscriptionsRenameSubscriptionExecute(r ApiSu
 
 type ApiSubscriptionsUpdateDefaultPermissionsRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	subscriptionId string
 	updateDefaultPermissionsVM *UpdateDefaultPermissionsVM
 }
@@ -819,7 +860,7 @@ SubscriptionsUpdateDefaultPermissions Change subscription's default permissions 
  @param subscriptionId id
  @return ApiSubscriptionsUpdateDefaultPermissionsRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissions(ctx context.Context, subscriptionId string) ApiSubscriptionsUpdateDefaultPermissionsRequest {
+func (a *SubscriptionsAPIService) SubscriptionsUpdateDefaultPermissions(ctx context.Context, subscriptionId string) ApiSubscriptionsUpdateDefaultPermissionsRequest {
 	return ApiSubscriptionsUpdateDefaultPermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -829,7 +870,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissions(ctx cont
 
 // Execute executes the request
 //  @return DefaultPermissionsVM
-func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissionsExecute(r ApiSubscriptionsUpdateDefaultPermissionsRequest) (*DefaultPermissionsVM, *http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsUpdateDefaultPermissionsExecute(r ApiSubscriptionsUpdateDefaultPermissionsRequest) (*DefaultPermissionsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -837,7 +878,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissionsExecute(r
 		localVarReturnValue  *DefaultPermissionsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsUpdateDefaultPermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsUpdateDefaultPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -953,7 +994,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateDefaultPermissionsExecute(r
 
 type ApiSubscriptionsUpdateLocaleRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	subscriptionId string
 	updateSubscriptionLocaleVM *UpdateSubscriptionLocaleVM
 }
@@ -975,7 +1016,7 @@ SubscriptionsUpdateLocale Update subscription's default locale
  @param subscriptionId id
  @return ApiSubscriptionsUpdateLocaleRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsUpdateLocale(ctx context.Context, subscriptionId string) ApiSubscriptionsUpdateLocaleRequest {
+func (a *SubscriptionsAPIService) SubscriptionsUpdateLocale(ctx context.Context, subscriptionId string) ApiSubscriptionsUpdateLocaleRequest {
 	return ApiSubscriptionsUpdateLocaleRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -985,7 +1026,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateLocale(ctx context.Context,
 
 // Execute executes the request
 //  @return SubscriptionVM
-func (a *SubscriptionsApiService) SubscriptionsUpdateLocaleExecute(r ApiSubscriptionsUpdateLocaleRequest) (*SubscriptionVM, *http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsUpdateLocaleExecute(r ApiSubscriptionsUpdateLocaleRequest) (*SubscriptionVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -993,7 +1034,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateLocaleExecute(r ApiSubscrip
 		localVarReturnValue  *SubscriptionVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsUpdateLocale")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsUpdateLocale")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1109,7 +1150,7 @@ func (a *SubscriptionsApiService) SubscriptionsUpdateLocaleExecute(r ApiSubscrip
 
 type ApiSubscriptionsUpdatePermissionsRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionsApiService
+	ApiService *SubscriptionsAPIService
 	id string
 	updateSubscriptionPermissionsVM *UpdateSubscriptionPermissionsVM
 }
@@ -1131,7 +1172,7 @@ SubscriptionsUpdatePermissions Update permissions
  @param id 
  @return ApiSubscriptionsUpdatePermissionsRequest
 */
-func (a *SubscriptionsApiService) SubscriptionsUpdatePermissions(ctx context.Context, id string) ApiSubscriptionsUpdatePermissionsRequest {
+func (a *SubscriptionsAPIService) SubscriptionsUpdatePermissions(ctx context.Context, id string) ApiSubscriptionsUpdatePermissionsRequest {
 	return ApiSubscriptionsUpdatePermissionsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1140,14 +1181,14 @@ func (a *SubscriptionsApiService) SubscriptionsUpdatePermissions(ctx context.Con
 }
 
 // Execute executes the request
-func (a *SubscriptionsApiService) SubscriptionsUpdatePermissionsExecute(r ApiSubscriptionsUpdatePermissionsRequest) (*http.Response, error) {
+func (a *SubscriptionsAPIService) SubscriptionsUpdatePermissionsExecute(r ApiSubscriptionsUpdatePermissionsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.SubscriptionsUpdatePermissions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsUpdatePermissions")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

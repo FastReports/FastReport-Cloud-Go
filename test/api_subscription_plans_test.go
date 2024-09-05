@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing SubscriptionPlansApiService
+Testing SubscriptionPlansAPIService
 
 */
 
@@ -17,18 +17,18 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_SubscriptionPlansApiService(t *testing.T) {
+func Test_gofrcloud_SubscriptionPlansAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SubscriptionPlansApiService SubscriptionPlansGetSubscriptionPlan", func(t *testing.T) {
+	t.Run("Test SubscriptionPlansAPIService SubscriptionPlansGetSubscriptionPlan", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.SubscriptionPlansApi.SubscriptionPlansGetSubscriptionPlan(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.SubscriptionPlansAPI.SubscriptionPlansGetSubscriptionPlan(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,11 +36,11 @@ func Test_gofrcloud_SubscriptionPlansApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionPlansApiService SubscriptionPlansGetSubscriptionPlans", func(t *testing.T) {
+	t.Run("Test SubscriptionPlansAPIService SubscriptionPlansGetSubscriptionPlans", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SubscriptionPlansApi.SubscriptionPlansGetSubscriptionPlans(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SubscriptionPlansAPI.SubscriptionPlansGetSubscriptionPlans(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

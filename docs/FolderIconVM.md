@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Icon** | **string** |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewFolderIconVM
 
-`func NewFolderIconVM(icon string, ) *FolderIconVM`
+`func NewFolderIconVM(icon string, t string, ) *FolderIconVM`
 
 NewFolderIconVM instantiates a new FolderIconVM object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *FolderIconVM) SetIcon(v string)`
 
 SetIcon sets Icon field to given value.
+
+
+### GetT
+
+`func (o *FolderIconVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *FolderIconVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *FolderIconVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

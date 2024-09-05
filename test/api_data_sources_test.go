@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing DataSourcesApiService
+Testing DataSourcesAPIService
 
 */
 
@@ -17,18 +17,18 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_DataSourcesApiService(t *testing.T) {
+func Test_gofrcloud_DataSourcesAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test DataSourcesApiService DataSourcesCountDataSourcesAsync", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesCountDataSourcesAsync", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.DataSourcesApi.DataSourcesCountDataSourcesAsync(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesCountDataSourcesAsync(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,11 +36,11 @@ func Test_gofrcloud_DataSourcesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesCreateDataSource", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesCreateDataSource", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DataSourcesApi.DataSourcesCreateDataSource(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesCreateDataSource(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,51 +48,37 @@ func Test_gofrcloud_DataSourcesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesDeleteDataSource", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesDeleteDataSource", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.DataSourcesApi.DataSourcesDeleteDataSource(context.Background(), id).Execute()
+		httpRes, err := apiClient.DataSourcesAPI.DataSourcesDeleteDataSource(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesFetchData", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesFetchData", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.DataSourcesApi.DataSourcesFetchData(context.Background(), id).Execute()
+		httpRes, err := apiClient.DataSourcesAPI.DataSourcesFetchData(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesGetAvailableDataSources", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesGetAvailableDataSources", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.DataSourcesApi.DataSourcesGetAvailableDataSources(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test DataSourcesApiService DataSourcesGetDataSource", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.DataSourcesApi.DataSourcesGetDataSource(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesGetAvailableDataSources(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -100,13 +86,13 @@ func Test_gofrcloud_DataSourcesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesGetPermissions", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesGetDataSource", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.DataSourcesApi.DataSourcesGetPermissions(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesGetDataSource(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -114,13 +100,13 @@ func Test_gofrcloud_DataSourcesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesRenameDataSource", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesGetParameterTypes", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var dataSourceType DataSourceConnectionType
 
-		resp, httpRes, err := apiClient.DataSourcesApi.DataSourcesRenameDataSource(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesGetParameterTypes(context.Background(), dataSourceType).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -128,13 +114,13 @@ func Test_gofrcloud_DataSourcesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesUpdateConnectionString", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesGetPermissions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.DataSourcesApi.DataSourcesUpdateConnectionString(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesGetPermissions(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -142,26 +128,68 @@ func Test_gofrcloud_DataSourcesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesUpdatePermissions", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesRenameDataSource", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.DataSourcesApi.DataSourcesUpdatePermissions(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesRenameDataSource(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DataSourcesAPIService DataSourcesUpdateConnectionString", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesUpdateConnectionString(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DataSourcesAPIService DataSourcesUpdatePermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		httpRes, err := apiClient.DataSourcesAPI.DataSourcesUpdatePermissions(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test DataSourcesApiService DataSourcesUpdateSubscriptionDataSource", func(t *testing.T) {
+	t.Run("Test DataSourcesAPIService DataSourcesUpdateSelectCommands", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.DataSourcesApi.DataSourcesUpdateSubscriptionDataSource(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DataSourcesAPI.DataSourcesUpdateSelectCommands(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DataSourcesAPIService DataSourcesUpdateSubscriptionDataSource", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		httpRes, err := apiClient.DataSourcesAPI.DataSourcesUpdateSubscriptionDataSource(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

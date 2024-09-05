@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UpdateTransformTaskBaseVM type satisfies the MappedNullable interface at compile time
@@ -19,12 +21,15 @@ var _ MappedNullable = &UpdateTransformTaskBaseVM{}
 
 // UpdateTransformTaskBaseVM struct for UpdateTransformTaskBaseVM
 type UpdateTransformTaskBaseVM struct {
+	UpdateTaskBaseVM
 	InputFile *InputFileVM `json:"inputFile,omitempty"`
 	Locale NullableString `json:"locale,omitempty"`
 	OutputFile *OutputFileVM `json:"outputFile,omitempty"`
 	TransportIds []string `json:"transportIds,omitempty"`
 	T string `json:"$t"`
 }
+
+type _UpdateTransformTaskBaseVM UpdateTransformTaskBaseVM
 
 // NewUpdateTransformTaskBaseVM instantiates a new UpdateTransformTaskBaseVM object
 // This constructor will assign default values to properties that have it defined,
@@ -217,6 +222,14 @@ func (o UpdateTransformTaskBaseVM) MarshalJSON() ([]byte, error) {
 
 func (o UpdateTransformTaskBaseVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedUpdateTaskBaseVM, errUpdateTaskBaseVM := json.Marshal(o.UpdateTaskBaseVM)
+	if errUpdateTaskBaseVM != nil {
+		return map[string]interface{}{}, errUpdateTaskBaseVM
+	}
+	errUpdateTaskBaseVM = json.Unmarshal([]byte(serializedUpdateTaskBaseVM), &toSerialize)
+	if errUpdateTaskBaseVM != nil {
+		return map[string]interface{}{}, errUpdateTaskBaseVM
+	}
 	if !IsNil(o.InputFile) {
 		toSerialize["inputFile"] = o.InputFile
 	}
@@ -231,6 +244,43 @@ func (o UpdateTransformTaskBaseVM) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *UpdateTransformTaskBaseVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateTransformTaskBaseVM := _UpdateTransformTaskBaseVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateTransformTaskBaseVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateTransformTaskBaseVM(varUpdateTransformTaskBaseVM)
+
+	return err
 }
 
 type NullableUpdateTransformTaskBaseVM struct {

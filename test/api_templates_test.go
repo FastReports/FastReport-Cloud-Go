@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing TemplatesApiService
+Testing TemplatesAPIService
 
 */
 
@@ -17,44 +17,71 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_TemplatesApiService(t *testing.T) {
+func Test_gofrcloud_TemplatesAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test TemplatesApiService TemplateFolderAndFileClearRecycleBin", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileClearRecycleBin", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		httpRes, err := apiClient.TemplatesApi.TemplateFolderAndFileClearRecycleBin(context.Background(), subscriptionId).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileClearRecycleBin(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFolderAndFileDeleteFiles", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileCopyFiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		httpRes, err := apiClient.TemplatesApi.TemplateFolderAndFileDeleteFiles(context.Background(), subscriptionId).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileCopyFiles(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFolderAndFileGetCount", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileCountRecycleBinFoldersAndFiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileCountRecycleBinFoldersAndFiles(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileDeleteFiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileDeleteFiles(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileGetCount", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFolderAndFileGetCount(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileGetCount(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -62,13 +89,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFolderAndFileGetFoldersAndFiles", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileGetFoldersAndFiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFolderAndFileGetFoldersAndFiles(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileGetFoldersAndFiles(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -76,13 +103,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFolderAndFileGetRecycleBinFoldersAndFiles", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileGetRecycleBinFoldersAndFiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFolderAndFileGetRecycleBinFoldersAndFiles(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileGetRecycleBinFoldersAndFiles(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -90,26 +117,65 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFolderAndFileRecoverAllFromRecycleBin", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileMoveFiles", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		httpRes, err := apiClient.TemplatesApi.TemplateFolderAndFileRecoverAllFromRecycleBin(context.Background(), subscriptionId).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileMoveFiles(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersCalculateFolderSize", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileMoveFilesToBin", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileMoveFilesToBin(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileRecoverAllFromRecycleBin", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileRecoverAllFromRecycleBin(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplateFolderAndFileRecoverFiles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		httpRes, err := apiClient.TemplatesAPI.TemplateFolderAndFileRecoverFiles(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplateFoldersCalculateFolderSize", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersCalculateFolderSize(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersCalculateFolderSize(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -117,14 +183,14 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersCopyFolder", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersCopyFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 		var folderId string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersCopyFolder(context.Background(), id, folderId).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersCopyFolder(context.Background(), id, folderId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -132,26 +198,26 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersDeleteFolder", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersDeleteFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.TemplatesApi.TemplateFoldersDeleteFolder(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplateFoldersDeleteFolder(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersExport", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersExport", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersExport(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersExport(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -159,13 +225,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersGetBreadcrumbs", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersGetBreadcrumbs", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersGetBreadcrumbs(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersGetBreadcrumbs(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -173,13 +239,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersGetFolder", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersGetFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersGetFolder(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersGetFolder(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -187,13 +253,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersGetFolders", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersGetFolders", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersGetFolders(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersGetFolders(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -201,13 +267,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersGetFoldersCount", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersGetFoldersCount", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersGetFoldersCount(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersGetFoldersCount(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -215,11 +281,11 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersGetOrCreate", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersGetOrCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersGetOrCreate(context.Background()).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersGetOrCreate(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -227,13 +293,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersGetPermissions", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersGetPermissions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersGetPermissions(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersGetPermissions(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -241,11 +307,11 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersGetRootFolder", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersGetRootFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersGetRootFolder(context.Background()).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersGetRootFolder(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -253,14 +319,14 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersMoveFolder", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersMoveFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 		var folderId string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersMoveFolder(context.Background(), id, folderId).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersMoveFolder(context.Background(), id, folderId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -268,40 +334,26 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersMoveFolderToBin", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersMoveFolderToBin", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.TemplatesApi.TemplateFoldersMoveFolderToBin(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplateFoldersMoveFolderToBin(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersPostFolder", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersPostFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersPostFolder(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TemplatesApiService TemplateFoldersPrepare", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersPrepare(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersPostFolder(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -309,26 +361,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersRecoverFolder", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersPrepare", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.TemplatesApi.TemplateFoldersRecoverFolder(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TemplatesApiService TemplateFoldersRenameFolder", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersRenameFolder(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersPrepare(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -336,13 +375,26 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersUpdateIcon", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersRecoverFolder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersUpdateIcon(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplateFoldersRecoverFolder(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplateFoldersRenameFolder", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersRenameFolder(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -350,26 +402,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplateFoldersUpdatePermissions", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersUpdateIcon", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.TemplatesApi.TemplateFoldersUpdatePermissions(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TemplatesApiService TemplateFoldersUpdateTags", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.TemplatesApi.TemplateFoldersUpdateTags(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersUpdateIcon(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -377,14 +416,41 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesCopyFile", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplateFoldersUpdatePermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		httpRes, err := apiClient.TemplatesAPI.TemplateFoldersUpdatePermissions(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplateFoldersUpdateTags", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplateFoldersUpdateTags(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesCopyFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 		var folderId string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesCopyFile(context.Background(), id, folderId).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesCopyFile(context.Background(), id, folderId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -392,26 +458,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesDeleteFile", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesCreateSharingKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.TemplatesApi.TemplatesDeleteFile(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TemplatesApiService TemplatesExport", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesExport(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesCreateSharingKey(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -419,13 +472,40 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesGetFile", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesDeleteFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesGetFile(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplatesDeleteFile(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesDeleteSharingKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+		var key string
+
+		httpRes, err := apiClient.TemplatesAPI.TemplatesDeleteSharingKey(context.Background(), id, key).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesExport", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesExport(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -433,13 +513,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesGetFileHistory", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesGetFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesGetFileHistory(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesGetFile(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -447,13 +527,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesGetFilesCount", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesGetFileHistory", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesGetFilesCount(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesGetFileHistory(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -461,13 +541,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesGetFilesList", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesGetFilesCount", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesGetFilesList(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesGetFilesCount(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -475,13 +555,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesGetPermissions", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesGetFilesList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesGetPermissions(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesGetFilesList(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -489,14 +569,42 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesMoveFile", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesGetPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesGetPermissions(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesGetSharingKeys", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesGetSharingKeys(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesMoveFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 		var folderId string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesMoveFile(context.Background(), id, folderId).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesMoveFile(context.Background(), id, folderId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -504,53 +612,26 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesMoveFileToBin", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesMoveFileToBin", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.TemplatesApi.TemplatesMoveFileToBin(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplatesMoveFileToBin(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesPrepare", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesPrepare", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesPrepare(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TemplatesApiService TemplatesRecoverFile", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		httpRes, err := apiClient.TemplatesApi.TemplatesRecoverFile(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TemplatesApiService TemplatesRenameFile", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesRenameFile(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesPrepare(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -558,13 +639,26 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesStaticPreview", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesRecoverFile", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesStaticPreview(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplatesRecoverFile(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesRenameFile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesRenameFile(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -572,26 +666,13 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesUpdateContent", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesStaticPreview", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.TemplatesApi.TemplatesUpdateContent(context.Background(), id).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TemplatesApiService TemplatesUpdateIcon", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var id string
-
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesUpdateIcon(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesStaticPreview(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -599,26 +680,39 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesUpdatePermissions", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesUpdateContent", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		httpRes, err := apiClient.TemplatesApi.TemplatesUpdatePermissions(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplatesUpdateContent(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesUpdateTags", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesUpdateContentV2", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesUpdateTags(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplatesUpdateContentV2(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesUpdateIcon", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesUpdateIcon(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -626,13 +720,54 @@ func Test_gofrcloud_TemplatesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TemplatesApiService TemplatesUploadFile", func(t *testing.T) {
+	t.Run("Test TemplatesAPIService TemplatesUpdatePermissions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.TemplatesApi.TemplatesUploadFile(context.Background(), id).Execute()
+		httpRes, err := apiClient.TemplatesAPI.TemplatesUpdatePermissions(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesUpdateTags", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesUpdateTags(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesUploadFile", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesUploadFile(context.Background(), id).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TemplatesAPIService TemplatesUploadFileV2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var id string
+
+		resp, httpRes, err := apiClient.TemplatesAPI.TemplatesUploadFileV2(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

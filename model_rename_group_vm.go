@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the RenameGroupVM type satisfies the MappedNullable interface at compile time
@@ -19,16 +21,20 @@ var _ MappedNullable = &RenameGroupVM{}
 
 // RenameGroupVM struct for RenameGroupVM
 type RenameGroupVM struct {
+	CloudBaseVM
 	Name string `json:"name"`
+	T string `json:"$t"`
 }
+
+type _RenameGroupVM RenameGroupVM
 
 // NewRenameGroupVM instantiates a new RenameGroupVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRenameGroupVM(name string) *RenameGroupVM {
+func NewRenameGroupVM(name string, t string) *RenameGroupVM {
 	this := RenameGroupVM{}
-	this.Name = name
+	this.T = t
 	return &this
 }
 
@@ -64,6 +70,30 @@ func (o *RenameGroupVM) SetName(v string) {
 	o.Name = v
 }
 
+// GetT returns the T field value
+func (o *RenameGroupVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *RenameGroupVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *RenameGroupVM) SetT(v string) {
+	o.T = v
+}
+
 func (o RenameGroupVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -74,8 +104,55 @@ func (o RenameGroupVM) MarshalJSON() ([]byte, error) {
 
 func (o RenameGroupVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	toSerialize["name"] = o.Name
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *RenameGroupVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRenameGroupVM := _RenameGroupVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRenameGroupVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RenameGroupVM(varRenameGroupVM)
+
+	return err
 }
 
 type NullableRenameGroupVM struct {

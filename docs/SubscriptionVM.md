@@ -12,12 +12,14 @@ Name | Type | Description | Notes
 **TemplatesFolder** | Pointer to [**SubscriptionFolder**](SubscriptionFolder.md) |  | [optional] 
 **ReportsFolder** | Pointer to [**SubscriptionFolder**](SubscriptionFolder.md) |  | [optional] 
 **ExportsFolder** | Pointer to [**SubscriptionFolder**](SubscriptionFolder.md) |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewSubscriptionVM
 
-`func NewSubscriptionVM() *SubscriptionVM`
+`func NewSubscriptionVM(t string, ) *SubscriptionVM`
 
 NewSubscriptionVM instantiates a new SubscriptionVM object
 This constructor will assign default values to properties that have it defined,
@@ -271,6 +273,61 @@ SetExportsFolder sets ExportsFolder field to given value.
 `func (o *SubscriptionVM) HasExportsFolder() bool`
 
 HasExportsFolder returns a boolean if a field has been set.
+
+### GetTags
+
+`func (o *SubscriptionVM) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *SubscriptionVM) GetTagsOk() (*[]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *SubscriptionVM) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *SubscriptionVM) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### SetTagsNil
+
+`func (o *SubscriptionVM) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *SubscriptionVM) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
+### GetT
+
+`func (o *SubscriptionVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *SubscriptionVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *SubscriptionVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

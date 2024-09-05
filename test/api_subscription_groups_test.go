@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing SubscriptionGroupsApiService
+Testing SubscriptionGroupsAPIService
 
 */
 
@@ -17,18 +17,18 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_SubscriptionGroupsApiService(t *testing.T) {
+func Test_gofrcloud_SubscriptionGroupsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SubscriptionGroupsApiService SubscriptionGroupsCountGroupsAsync", func(t *testing.T) {
+	t.Run("Test SubscriptionGroupsAPIService SubscriptionGroupsCountGroupsAsync", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.SubscriptionGroupsApi.SubscriptionGroupsCountGroupsAsync(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.SubscriptionGroupsAPI.SubscriptionGroupsCountGroupsAsync(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,13 +36,13 @@ func Test_gofrcloud_SubscriptionGroupsApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionGroupsApiService SubscriptionGroupsGetGroupsList", func(t *testing.T) {
+	t.Run("Test SubscriptionGroupsAPIService SubscriptionGroupsGetGroupsList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.SubscriptionGroupsApi.SubscriptionGroupsGetGroupsList(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.SubscriptionGroupsAPI.SubscriptionGroupsGetGroupsList(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

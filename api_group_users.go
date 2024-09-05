@@ -20,12 +20,12 @@ import (
 )
 
 
-// GroupUsersApiService GroupUsersApi service
-type GroupUsersApiService service
+// GroupUsersAPIService GroupUsersAPI service
+type GroupUsersAPIService service
 
 type ApiGroupUsersAddUserToGroupRequest struct {
 	ctx context.Context
-	ApiService *GroupUsersApiService
+	ApiService *GroupUsersAPIService
 	id string
 	userId string
 }
@@ -42,7 +42,7 @@ GroupUsersAddUserToGroup Add user to the group by identifier
  @param userId Identifier of user
  @return ApiGroupUsersAddUserToGroupRequest
 */
-func (a *GroupUsersApiService) GroupUsersAddUserToGroup(ctx context.Context, id string, userId string) ApiGroupUsersAddUserToGroupRequest {
+func (a *GroupUsersAPIService) GroupUsersAddUserToGroup(ctx context.Context, id string, userId string) ApiGroupUsersAddUserToGroupRequest {
 	return ApiGroupUsersAddUserToGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -52,14 +52,14 @@ func (a *GroupUsersApiService) GroupUsersAddUserToGroup(ctx context.Context, id 
 }
 
 // Execute executes the request
-func (a *GroupUsersApiService) GroupUsersAddUserToGroupExecute(r ApiGroupUsersAddUserToGroupRequest) (*http.Response, error) {
+func (a *GroupUsersAPIService) GroupUsersAddUserToGroupExecute(r ApiGroupUsersAddUserToGroupRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupUsersApiService.GroupUsersAddUserToGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupUsersAPIService.GroupUsersAddUserToGroup")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -122,7 +122,7 @@ func (a *GroupUsersApiService) GroupUsersAddUserToGroupExecute(r ApiGroupUsersAd
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -133,7 +133,7 @@ func (a *GroupUsersApiService) GroupUsersAddUserToGroupExecute(r ApiGroupUsersAd
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -163,7 +163,7 @@ func (a *GroupUsersApiService) GroupUsersAddUserToGroupExecute(r ApiGroupUsersAd
 
 type ApiGroupUsersGetUsersInGroupRequest struct {
 	ctx context.Context
-	ApiService *GroupUsersApiService
+	ApiService *GroupUsersAPIService
 	id string
 	skip *int32
 	take *int32
@@ -192,7 +192,7 @@ GroupUsersGetUsersInGroup Returns users in the group by identifier
  @param id Identifier of group
  @return ApiGroupUsersGetUsersInGroupRequest
 */
-func (a *GroupUsersApiService) GroupUsersGetUsersInGroup(ctx context.Context, id string) ApiGroupUsersGetUsersInGroupRequest {
+func (a *GroupUsersAPIService) GroupUsersGetUsersInGroup(ctx context.Context, id string) ApiGroupUsersGetUsersInGroupRequest {
 	return ApiGroupUsersGetUsersInGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -202,7 +202,7 @@ func (a *GroupUsersApiService) GroupUsersGetUsersInGroup(ctx context.Context, id
 
 // Execute executes the request
 //  @return GroupUsersVM
-func (a *GroupUsersApiService) GroupUsersGetUsersInGroupExecute(r ApiGroupUsersGetUsersInGroupRequest) (*GroupUsersVM, *http.Response, error) {
+func (a *GroupUsersAPIService) GroupUsersGetUsersInGroupExecute(r ApiGroupUsersGetUsersInGroupRequest) (*GroupUsersVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -210,7 +210,7 @@ func (a *GroupUsersApiService) GroupUsersGetUsersInGroupExecute(r ApiGroupUsersG
 		localVarReturnValue  *GroupUsersVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupUsersApiService.GroupUsersGetUsersInGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupUsersAPIService.GroupUsersGetUsersInGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -224,9 +224,15 @@ func (a *GroupUsersApiService) GroupUsersGetUsersInGroupExecute(r ApiGroupUsersG
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -278,6 +284,17 @@ func (a *GroupUsersApiService) GroupUsersGetUsersInGroupExecute(r ApiGroupUsersG
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -317,7 +334,7 @@ func (a *GroupUsersApiService) GroupUsersGetUsersInGroupExecute(r ApiGroupUsersG
 
 type ApiGroupUsersLeaveFromGroupRequest struct {
 	ctx context.Context
-	ApiService *GroupUsersApiService
+	ApiService *GroupUsersAPIService
 	id string
 }
 
@@ -332,7 +349,7 @@ GroupUsersLeaveFromGroup Leave from the group
  @param id Identifier of group
  @return ApiGroupUsersLeaveFromGroupRequest
 */
-func (a *GroupUsersApiService) GroupUsersLeaveFromGroup(ctx context.Context, id string) ApiGroupUsersLeaveFromGroupRequest {
+func (a *GroupUsersAPIService) GroupUsersLeaveFromGroup(ctx context.Context, id string) ApiGroupUsersLeaveFromGroupRequest {
 	return ApiGroupUsersLeaveFromGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -341,14 +358,14 @@ func (a *GroupUsersApiService) GroupUsersLeaveFromGroup(ctx context.Context, id 
 }
 
 // Execute executes the request
-func (a *GroupUsersApiService) GroupUsersLeaveFromGroupExecute(r ApiGroupUsersLeaveFromGroupRequest) (*http.Response, error) {
+func (a *GroupUsersAPIService) GroupUsersLeaveFromGroupExecute(r ApiGroupUsersLeaveFromGroupRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupUsersApiService.GroupUsersLeaveFromGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupUsersAPIService.GroupUsersLeaveFromGroup")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -440,7 +457,7 @@ func (a *GroupUsersApiService) GroupUsersLeaveFromGroupExecute(r ApiGroupUsersLe
 
 type ApiGroupUsersRemoveFromGroupRequest struct {
 	ctx context.Context
-	ApiService *GroupUsersApiService
+	ApiService *GroupUsersAPIService
 	id string
 	userId string
 }
@@ -457,7 +474,7 @@ GroupUsersRemoveFromGroup Remove user from the group by identifier
  @param userId Identifier of user
  @return ApiGroupUsersRemoveFromGroupRequest
 */
-func (a *GroupUsersApiService) GroupUsersRemoveFromGroup(ctx context.Context, id string, userId string) ApiGroupUsersRemoveFromGroupRequest {
+func (a *GroupUsersAPIService) GroupUsersRemoveFromGroup(ctx context.Context, id string, userId string) ApiGroupUsersRemoveFromGroupRequest {
 	return ApiGroupUsersRemoveFromGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -467,14 +484,14 @@ func (a *GroupUsersApiService) GroupUsersRemoveFromGroup(ctx context.Context, id
 }
 
 // Execute executes the request
-func (a *GroupUsersApiService) GroupUsersRemoveFromGroupExecute(r ApiGroupUsersRemoveFromGroupRequest) (*http.Response, error) {
+func (a *GroupUsersAPIService) GroupUsersRemoveFromGroupExecute(r ApiGroupUsersRemoveFromGroupRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupUsersApiService.GroupUsersRemoveFromGroup")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupUsersAPIService.GroupUsersRemoveFromGroup")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -537,7 +554,7 @@ func (a *GroupUsersApiService) GroupUsersRemoveFromGroupExecute(r ApiGroupUsersR
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 402 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -548,7 +565,7 @@ func (a *GroupUsersApiService) GroupUsersRemoveFromGroupExecute(r ApiGroupUsersR
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing UserNotificationsApiService
+Testing UserNotificationsAPIService
 
 */
 
@@ -17,27 +17,27 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_UserNotificationsApiService(t *testing.T) {
+func Test_gofrcloud_UserNotificationsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test UserNotificationsApiService UserNotificationsClearNotifications", func(t *testing.T) {
+	t.Run("Test UserNotificationsAPIService UserNotificationsClearNotifications", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.UserNotificationsApi.UserNotificationsClearNotifications(context.Background()).Execute()
+		httpRes, err := apiClient.UserNotificationsAPI.UserNotificationsClearNotifications(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test UserNotificationsApiService UserNotificationsGetNotifications", func(t *testing.T) {
+	t.Run("Test UserNotificationsAPIService UserNotificationsGetNotifications", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.UserNotificationsApi.UserNotificationsGetNotifications(context.Background()).Execute()
+		resp, httpRes, err := apiClient.UserNotificationsAPI.UserNotificationsGetNotifications(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

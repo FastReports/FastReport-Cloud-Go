@@ -9,12 +9,13 @@ Name | Type | Description | Notes
 **Username** | Pointer to **NullableString** |  | [optional] 
 **Email** | Pointer to **NullableString** |  | [optional] 
 **IsReadOnly** | Pointer to **bool** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewUserProfileVM
 
-`func NewUserProfileVM() *UserProfileVM`
+`func NewUserProfileVM(t string, ) *UserProfileVM`
 
 NewUserProfileVM instantiates a new UserProfileVM object
 This constructor will assign default values to properties that have it defined,
@@ -193,6 +194,26 @@ SetIsReadOnly sets IsReadOnly field to given value.
 `func (o *UserProfileVM) HasIsReadOnly() bool`
 
 HasIsReadOnly returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *UserProfileVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *UserProfileVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *UserProfileVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

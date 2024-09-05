@@ -13,12 +13,13 @@ Name | Type | Description | Notes
 **FetchData** | Pointer to **NullableBool** |  | [optional] 
 **ThumbnailReport** | Pointer to **NullableBool** |  | [optional] 
 **ThumbnailTemplate** | Pointer to **NullableBool** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewTaskSettingsVM
 
-`func NewTaskSettingsVM() *TaskSettingsVM`
+`func NewTaskSettingsVM(t string, ) *TaskSettingsVM`
 
 NewTaskSettingsVM instantiates a new TaskSettingsVM object
 This constructor will assign default values to properties that have it defined,
@@ -348,6 +349,26 @@ HasThumbnailTemplate returns a boolean if a field has been set.
 `func (o *TaskSettingsVM) UnsetThumbnailTemplate()`
 
 UnsetThumbnailTemplate ensures that no value is present for ThumbnailTemplate, not even an explicit nil
+### GetT
+
+`func (o *TaskSettingsVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *TaskSettingsVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *TaskSettingsVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -21,12 +21,14 @@ type DataSourceExecute int32
 // List of DataSourceExecute
 const (
 	_0 DataSourceExecute = 0
+	_1 DataSourceExecute = 1
 	_MINUS_1 DataSourceExecute = -1
 )
 
 // All allowed values of DataSourceExecute enum
 var AllowedDataSourceExecuteEnumValues = []DataSourceExecute{
 	0,
+	1,
 	-1,
 }
 

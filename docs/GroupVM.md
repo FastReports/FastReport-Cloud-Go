@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Id** | Pointer to **NullableString** |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewGroupVM
 
-`func NewGroupVM() *GroupVM`
+`func NewGroupVM(t string, ) *GroupVM`
 
 NewGroupVM instantiates a new GroupVM object
 This constructor will assign default values to properties that have it defined,
@@ -132,6 +133,26 @@ HasSubscriptionId returns a boolean if a field has been set.
 `func (o *GroupVM) UnsetSubscriptionId()`
 
 UnsetSubscriptionId ensures that no value is present for SubscriptionId, not even an explicit nil
+### GetT
+
+`func (o *GroupVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *GroupVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *GroupVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

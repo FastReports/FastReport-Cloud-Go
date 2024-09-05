@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AdminExportFolderCreateVM type satisfies the MappedNullable interface at compile time
@@ -19,14 +21,21 @@ var _ MappedNullable = &AdminExportFolderCreateVM{}
 
 // AdminExportFolderCreateVM struct for AdminExportFolderCreateVM
 type AdminExportFolderCreateVM struct {
+	AdminFolderCreateVM
+	T string `json:"$t"`
 }
+
+type _AdminExportFolderCreateVM AdminExportFolderCreateVM
 
 // NewAdminExportFolderCreateVM instantiates a new AdminExportFolderCreateVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAdminExportFolderCreateVM() *AdminExportFolderCreateVM {
+func NewAdminExportFolderCreateVM(t string, parentId string, ownerId string) *AdminExportFolderCreateVM {
 	this := AdminExportFolderCreateVM{}
+	this.ParentId = parentId
+	this.OwnerId = ownerId
+	this.T = t
 	return &this
 }
 
@@ -36,6 +45,30 @@ func NewAdminExportFolderCreateVM() *AdminExportFolderCreateVM {
 func NewAdminExportFolderCreateVMWithDefaults() *AdminExportFolderCreateVM {
 	this := AdminExportFolderCreateVM{}
 	return &this
+}
+
+// GetT returns the T field value
+func (o *AdminExportFolderCreateVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *AdminExportFolderCreateVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *AdminExportFolderCreateVM) SetT(v string) {
+	o.T = v
 }
 
 func (o AdminExportFolderCreateVM) MarshalJSON() ([]byte, error) {
@@ -48,7 +81,55 @@ func (o AdminExportFolderCreateVM) MarshalJSON() ([]byte, error) {
 
 func (o AdminExportFolderCreateVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedAdminFolderCreateVM, errAdminFolderCreateVM := json.Marshal(o.AdminFolderCreateVM)
+	if errAdminFolderCreateVM != nil {
+		return map[string]interface{}{}, errAdminFolderCreateVM
+	}
+	errAdminFolderCreateVM = json.Unmarshal([]byte(serializedAdminFolderCreateVM), &toSerialize)
+	if errAdminFolderCreateVM != nil {
+		return map[string]interface{}{}, errAdminFolderCreateVM
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *AdminExportFolderCreateVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+		"parentId",
+		"ownerId",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAdminExportFolderCreateVM := _AdminExportFolderCreateVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAdminExportFolderCreateVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AdminExportFolderCreateVM(varAdminExportFolderCreateVM)
+
+	return err
 }
 
 type NullableAdminExportFolderCreateVM struct {

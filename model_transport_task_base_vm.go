@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TransportTaskBaseVM type satisfies the MappedNullable interface at compile time
@@ -19,9 +21,12 @@ var _ MappedNullable = &TransportTaskBaseVM{}
 
 // TransportTaskBaseVM struct for TransportTaskBaseVM
 type TransportTaskBaseVM struct {
+	TaskBaseVM
 	InputFile *InputFileVM `json:"inputFile,omitempty"`
 	T string `json:"$t"`
 }
+
+type _TransportTaskBaseVM TransportTaskBaseVM
 
 // NewTransportTaskBaseVM instantiates a new TransportTaskBaseVM object
 // This constructor will assign default values to properties that have it defined,
@@ -107,11 +112,56 @@ func (o TransportTaskBaseVM) MarshalJSON() ([]byte, error) {
 
 func (o TransportTaskBaseVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedTaskBaseVM, errTaskBaseVM := json.Marshal(o.TaskBaseVM)
+	if errTaskBaseVM != nil {
+		return map[string]interface{}{}, errTaskBaseVM
+	}
+	errTaskBaseVM = json.Unmarshal([]byte(serializedTaskBaseVM), &toSerialize)
+	if errTaskBaseVM != nil {
+		return map[string]interface{}{}, errTaskBaseVM
+	}
 	if !IsNil(o.InputFile) {
 		toSerialize["inputFile"] = o.InputFile
 	}
 	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *TransportTaskBaseVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTransportTaskBaseVM := _TransportTaskBaseVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTransportTaskBaseVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TransportTaskBaseVM(varTransportTaskBaseVM)
+
+	return err
 }
 
 type NullableTransportTaskBaseVM struct {

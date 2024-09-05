@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing SubscriptionInvitesApiService
+Testing SubscriptionInvitesAPIService
 
 */
 
@@ -17,32 +17,32 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_SubscriptionInvitesApiService(t *testing.T) {
+func Test_gofrcloud_SubscriptionInvitesAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SubscriptionInvitesApiService SubscriptionInvitesAcceptInvite", func(t *testing.T) {
+	t.Run("Test SubscriptionInvitesAPIService SubscriptionInvitesAcceptInvite", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 		var accessToken string
 
-		httpRes, err := apiClient.SubscriptionInvitesApi.SubscriptionInvitesAcceptInvite(context.Background(), subscriptionId, accessToken).Execute()
+		httpRes, err := apiClient.SubscriptionInvitesAPI.SubscriptionInvitesAcceptInvite(context.Background(), subscriptionId, accessToken).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SubscriptionInvitesApiService SubscriptionInvitesCreateInvite", func(t *testing.T) {
+	t.Run("Test SubscriptionInvitesAPIService SubscriptionInvitesCreateInvite", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.SubscriptionInvitesApi.SubscriptionInvitesCreateInvite(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.SubscriptionInvitesAPI.SubscriptionInvitesCreateInvite(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,27 +50,27 @@ func Test_gofrcloud_SubscriptionInvitesApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SubscriptionInvitesApiService SubscriptionInvitesDeleteInvite", func(t *testing.T) {
+	t.Run("Test SubscriptionInvitesAPIService SubscriptionInvitesDeleteInvite", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 		var accesstoken string
 
-		httpRes, err := apiClient.SubscriptionInvitesApi.SubscriptionInvitesDeleteInvite(context.Background(), subscriptionId, accesstoken).Execute()
+		httpRes, err := apiClient.SubscriptionInvitesAPI.SubscriptionInvitesDeleteInvite(context.Background(), subscriptionId, accesstoken).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SubscriptionInvitesApiService SubscriptionInvitesGetInvites", func(t *testing.T) {
+	t.Run("Test SubscriptionInvitesAPIService SubscriptionInvitesGetInvites", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 
-		resp, httpRes, err := apiClient.SubscriptionInvitesApi.SubscriptionInvitesGetInvites(context.Background(), subscriptionId).Execute()
+		resp, httpRes, err := apiClient.SubscriptionInvitesAPI.SubscriptionInvitesGetInvites(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

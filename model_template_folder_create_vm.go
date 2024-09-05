@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TemplateFolderCreateVM type satisfies the MappedNullable interface at compile time
@@ -19,14 +21,19 @@ var _ MappedNullable = &TemplateFolderCreateVM{}
 
 // TemplateFolderCreateVM struct for TemplateFolderCreateVM
 type TemplateFolderCreateVM struct {
+	FolderCreateVM
+	T string `json:"$t"`
 }
+
+type _TemplateFolderCreateVM TemplateFolderCreateVM
 
 // NewTemplateFolderCreateVM instantiates a new TemplateFolderCreateVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplateFolderCreateVM() *TemplateFolderCreateVM {
+func NewTemplateFolderCreateVM(t string) *TemplateFolderCreateVM {
 	this := TemplateFolderCreateVM{}
+	this.T = t
 	return &this
 }
 
@@ -36,6 +43,30 @@ func NewTemplateFolderCreateVM() *TemplateFolderCreateVM {
 func NewTemplateFolderCreateVMWithDefaults() *TemplateFolderCreateVM {
 	this := TemplateFolderCreateVM{}
 	return &this
+}
+
+// GetT returns the T field value
+func (o *TemplateFolderCreateVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *TemplateFolderCreateVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *TemplateFolderCreateVM) SetT(v string) {
+	o.T = v
 }
 
 func (o TemplateFolderCreateVM) MarshalJSON() ([]byte, error) {
@@ -48,7 +79,53 @@ func (o TemplateFolderCreateVM) MarshalJSON() ([]byte, error) {
 
 func (o TemplateFolderCreateVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedFolderCreateVM, errFolderCreateVM := json.Marshal(o.FolderCreateVM)
+	if errFolderCreateVM != nil {
+		return map[string]interface{}{}, errFolderCreateVM
+	}
+	errFolderCreateVM = json.Unmarshal([]byte(serializedFolderCreateVM), &toSerialize)
+	if errFolderCreateVM != nil {
+		return map[string]interface{}{}, errFolderCreateVM
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *TemplateFolderCreateVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTemplateFolderCreateVM := _TemplateFolderCreateVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTemplateFolderCreateVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TemplateFolderCreateVM(varTemplateFolderCreateVM)
+
+	return err
 }
 
 type NullableTemplateFolderCreateVM struct {

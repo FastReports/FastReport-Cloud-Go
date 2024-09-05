@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UpdateThumbnailTemplateTaskVM type satisfies the MappedNullable interface at compile time
@@ -19,8 +21,12 @@ var _ MappedNullable = &UpdateThumbnailTemplateTaskVM{}
 
 // UpdateThumbnailTemplateTaskVM struct for UpdateThumbnailTemplateTaskVM
 type UpdateThumbnailTemplateTaskVM struct {
+	UpdateTaskBaseVM
 	TemplateId NullableString `json:"templateId,omitempty"`
+	T string `json:"$t"`
 }
+
+type _UpdateThumbnailTemplateTaskVM UpdateThumbnailTemplateTaskVM
 
 // NewUpdateThumbnailTemplateTaskVM instantiates a new UpdateThumbnailTemplateTaskVM object
 // This constructor will assign default values to properties that have it defined,
@@ -82,6 +88,30 @@ func (o *UpdateThumbnailTemplateTaskVM) UnsetTemplateId() {
 	o.TemplateId.Unset()
 }
 
+// GetT returns the T field value
+func (o *UpdateThumbnailTemplateTaskVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *UpdateThumbnailTemplateTaskVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *UpdateThumbnailTemplateTaskVM) SetT(v string) {
+	o.T = v
+}
+
 func (o UpdateThumbnailTemplateTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -92,10 +122,56 @@ func (o UpdateThumbnailTemplateTaskVM) MarshalJSON() ([]byte, error) {
 
 func (o UpdateThumbnailTemplateTaskVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedUpdateTaskBaseVM, errUpdateTaskBaseVM := json.Marshal(o.UpdateTaskBaseVM)
+	if errUpdateTaskBaseVM != nil {
+		return map[string]interface{}{}, errUpdateTaskBaseVM
+	}
+	errUpdateTaskBaseVM = json.Unmarshal([]byte(serializedUpdateTaskBaseVM), &toSerialize)
+	if errUpdateTaskBaseVM != nil {
+		return map[string]interface{}{}, errUpdateTaskBaseVM
+	}
 	if o.TemplateId.IsSet() {
 		toSerialize["templateId"] = o.TemplateId.Get()
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *UpdateThumbnailTemplateTaskVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateThumbnailTemplateTaskVM := _UpdateThumbnailTemplateTaskVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateThumbnailTemplateTaskVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateThumbnailTemplateTaskVM(varUpdateThumbnailTemplateTaskVM)
+
+	return err
 }
 
 type NullableUpdateThumbnailTemplateTaskVM struct {

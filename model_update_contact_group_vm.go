@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the UpdateContactGroupVM type satisfies the MappedNullable interface at compile time
@@ -22,6 +24,8 @@ type UpdateContactGroupVM struct {
 	Name string `json:"name"`
 	SubscriptionId NullableString `json:"subscriptionId,omitempty"`
 }
+
+type _UpdateContactGroupVM UpdateContactGroupVM
 
 // NewUpdateContactGroupVM instantiates a new UpdateContactGroupVM object
 // This constructor will assign default values to properties that have it defined,
@@ -122,6 +126,43 @@ func (o UpdateContactGroupVM) ToMap() (map[string]interface{}, error) {
 		toSerialize["subscriptionId"] = o.SubscriptionId.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *UpdateContactGroupVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateContactGroupVM := _UpdateContactGroupVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateContactGroupVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateContactGroupVM(varUpdateContactGroupVM)
+
+	return err
 }
 
 type NullableUpdateContactGroupVM struct {

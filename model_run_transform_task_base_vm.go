@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the RunTransformTaskBaseVM type satisfies the MappedNullable interface at compile time
@@ -19,12 +21,15 @@ var _ MappedNullable = &RunTransformTaskBaseVM{}
 
 // RunTransformTaskBaseVM struct for RunTransformTaskBaseVM
 type RunTransformTaskBaseVM struct {
+	RunTaskBaseVM
 	InputFile *RunInputFileVM `json:"inputFile,omitempty"`
 	Locale NullableString `json:"locale,omitempty"`
 	OutputFile *OutputFileVM `json:"outputFile,omitempty"`
 	Transports []RunTransportTaskBaseVM `json:"transports,omitempty"`
 	T string `json:"$t"`
 }
+
+type _RunTransformTaskBaseVM RunTransformTaskBaseVM
 
 // NewRunTransformTaskBaseVM instantiates a new RunTransformTaskBaseVM object
 // This constructor will assign default values to properties that have it defined,
@@ -217,6 +222,14 @@ func (o RunTransformTaskBaseVM) MarshalJSON() ([]byte, error) {
 
 func (o RunTransformTaskBaseVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedRunTaskBaseVM, errRunTaskBaseVM := json.Marshal(o.RunTaskBaseVM)
+	if errRunTaskBaseVM != nil {
+		return map[string]interface{}{}, errRunTaskBaseVM
+	}
+	errRunTaskBaseVM = json.Unmarshal([]byte(serializedRunTaskBaseVM), &toSerialize)
+	if errRunTaskBaseVM != nil {
+		return map[string]interface{}{}, errRunTaskBaseVM
+	}
 	if !IsNil(o.InputFile) {
 		toSerialize["inputFile"] = o.InputFile
 	}
@@ -231,6 +244,43 @@ func (o RunTransformTaskBaseVM) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *RunTransformTaskBaseVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRunTransformTaskBaseVM := _RunTransformTaskBaseVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRunTransformTaskBaseVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RunTransformTaskBaseVM(varRunTransformTaskBaseVM)
+
+	return err
 }
 
 type NullableRunTransformTaskBaseVM struct {

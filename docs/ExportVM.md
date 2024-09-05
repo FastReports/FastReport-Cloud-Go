@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Format** | Pointer to [**ExportFormat**](ExportFormat.md) |  | [optional] 
 **ReportId** | Pointer to **NullableString** |  | [optional] 
 **TemplateId** | Pointer to **NullableString** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewExportVM
 
-`func NewExportVM() *ExportVM`
+`func NewExportVM(t string, ) *ExportVM`
 
 NewExportVM instantiates a new ExportVM object
 This constructor will assign default values to properties that have it defined,
@@ -122,6 +123,26 @@ HasTemplateId returns a boolean if a field has been set.
 `func (o *ExportVM) UnsetTemplateId()`
 
 UnsetTemplateId ensures that no value is present for TemplateId, not even an explicit nil
+### GetT
+
+`func (o *ExportVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *ExportVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *ExportVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

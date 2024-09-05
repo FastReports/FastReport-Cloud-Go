@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SubscriptionUserVM type satisfies the MappedNullable interface at compile time
@@ -19,16 +21,21 @@ var _ MappedNullable = &SubscriptionUserVM{}
 
 // SubscriptionUserVM struct for SubscriptionUserVM
 type SubscriptionUserVM struct {
+	CloudBaseVM
 	UserId NullableString `json:"userId,omitempty"`
 	Groups []GroupVM `json:"groups,omitempty"`
+	T string `json:"$t"`
 }
+
+type _SubscriptionUserVM SubscriptionUserVM
 
 // NewSubscriptionUserVM instantiates a new SubscriptionUserVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionUserVM() *SubscriptionUserVM {
+func NewSubscriptionUserVM(t string) *SubscriptionUserVM {
 	this := SubscriptionUserVM{}
+	this.T = t
 	return &this
 }
 
@@ -115,6 +122,30 @@ func (o *SubscriptionUserVM) SetGroups(v []GroupVM) {
 	o.Groups = v
 }
 
+// GetT returns the T field value
+func (o *SubscriptionUserVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *SubscriptionUserVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *SubscriptionUserVM) SetT(v string) {
+	o.T = v
+}
+
 func (o SubscriptionUserVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -125,13 +156,59 @@ func (o SubscriptionUserVM) MarshalJSON() ([]byte, error) {
 
 func (o SubscriptionUserVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.UserId.IsSet() {
 		toSerialize["userId"] = o.UserId.Get()
 	}
 	if o.Groups != nil {
 		toSerialize["groups"] = o.Groups
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *SubscriptionUserVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubscriptionUserVM := _SubscriptionUserVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSubscriptionUserVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionUserVM(varSubscriptionUserVM)
+
+	return err
 }
 
 type NullableSubscriptionUserVM struct {

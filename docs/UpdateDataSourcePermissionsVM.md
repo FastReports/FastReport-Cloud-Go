@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NewPermissions** | [**DataSourcePermissions**](DataSourcePermissions.md) |  | 
+**NewPermissions** | [**DataSourcePermissionsCRUDVM**](DataSourcePermissionsCRUDVM.md) |  | 
 **Administrate** | [**DataSourceAdministrate**](DataSourceAdministrate.md) |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewUpdateDataSourcePermissionsVM
 
-`func NewUpdateDataSourcePermissionsVM(newPermissions DataSourcePermissions, administrate DataSourceAdministrate, ) *UpdateDataSourcePermissionsVM`
+`func NewUpdateDataSourcePermissionsVM(newPermissions DataSourcePermissionsCRUDVM, administrate DataSourceAdministrate, t string, ) *UpdateDataSourcePermissionsVM`
 
 NewUpdateDataSourcePermissionsVM instantiates a new UpdateDataSourcePermissionsVM object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetNewPermissions
 
-`func (o *UpdateDataSourcePermissionsVM) GetNewPermissions() DataSourcePermissions`
+`func (o *UpdateDataSourcePermissionsVM) GetNewPermissions() DataSourcePermissionsCRUDVM`
 
 GetNewPermissions returns the NewPermissions field if non-nil, zero value otherwise.
 
 ### GetNewPermissionsOk
 
-`func (o *UpdateDataSourcePermissionsVM) GetNewPermissionsOk() (*DataSourcePermissions, bool)`
+`func (o *UpdateDataSourcePermissionsVM) GetNewPermissionsOk() (*DataSourcePermissionsCRUDVM, bool)`
 
 GetNewPermissionsOk returns a tuple with the NewPermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewPermissions
 
-`func (o *UpdateDataSourcePermissionsVM) SetNewPermissions(v DataSourcePermissions)`
+`func (o *UpdateDataSourcePermissionsVM) SetNewPermissions(v DataSourcePermissionsCRUDVM)`
 
 SetNewPermissions sets NewPermissions field to given value.
 
@@ -64,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *UpdateDataSourcePermissionsVM) SetAdministrate(v DataSourceAdministrate)`
 
 SetAdministrate sets Administrate field to given value.
+
+
+### GetT
+
+`func (o *UpdateDataSourcePermissionsVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *UpdateDataSourcePermissionsVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *UpdateDataSourcePermissionsVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

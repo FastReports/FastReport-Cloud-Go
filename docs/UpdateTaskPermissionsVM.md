@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Administrate** | [**TaskAdministrate**](TaskAdministrate.md) |  | 
-**NewPermissions** | [**TaskPermissions**](TaskPermissions.md) |  | 
+**NewPermissions** | [**TaskPermissionsCRUDVM**](TaskPermissionsCRUDVM.md) |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewUpdateTaskPermissionsVM
 
-`func NewUpdateTaskPermissionsVM(administrate TaskAdministrate, newPermissions TaskPermissions, ) *UpdateTaskPermissionsVM`
+`func NewUpdateTaskPermissionsVM(administrate TaskAdministrate, newPermissions TaskPermissionsCRUDVM, t string, ) *UpdateTaskPermissionsVM`
 
 NewUpdateTaskPermissionsVM instantiates a new UpdateTaskPermissionsVM object
 This constructor will assign default values to properties that have it defined,
@@ -48,22 +49,42 @@ SetAdministrate sets Administrate field to given value.
 
 ### GetNewPermissions
 
-`func (o *UpdateTaskPermissionsVM) GetNewPermissions() TaskPermissions`
+`func (o *UpdateTaskPermissionsVM) GetNewPermissions() TaskPermissionsCRUDVM`
 
 GetNewPermissions returns the NewPermissions field if non-nil, zero value otherwise.
 
 ### GetNewPermissionsOk
 
-`func (o *UpdateTaskPermissionsVM) GetNewPermissionsOk() (*TaskPermissions, bool)`
+`func (o *UpdateTaskPermissionsVM) GetNewPermissionsOk() (*TaskPermissionsCRUDVM, bool)`
 
 GetNewPermissionsOk returns a tuple with the NewPermissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewPermissions
 
-`func (o *UpdateTaskPermissionsVM) SetNewPermissions(v TaskPermissions)`
+`func (o *UpdateTaskPermissionsVM) SetNewPermissions(v TaskPermissionsCRUDVM)`
 
 SetNewPermissions sets NewPermissions field to given value.
+
+
+### GetT
+
+`func (o *UpdateTaskPermissionsVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *UpdateTaskPermissionsVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *UpdateTaskPermissionsVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

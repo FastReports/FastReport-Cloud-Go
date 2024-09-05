@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AuditActionsVM type satisfies the MappedNullable interface at compile time
@@ -19,18 +21,23 @@ var _ MappedNullable = &AuditActionsVM{}
 
 // AuditActionsVM struct for AuditActionsVM
 type AuditActionsVM struct {
+	CloudBaseVM
 	Items []AuditActionVM `json:"items,omitempty"`
-	Count *int64 `json:"count,omitempty"`
+	HasMore *bool `json:"hasMore,omitempty"`
 	Skip *int32 `json:"skip,omitempty"`
 	Take *int32 `json:"take,omitempty"`
+	T string `json:"$t"`
 }
+
+type _AuditActionsVM AuditActionsVM
 
 // NewAuditActionsVM instantiates a new AuditActionsVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAuditActionsVM() *AuditActionsVM {
+func NewAuditActionsVM(t string) *AuditActionsVM {
 	this := AuditActionsVM{}
+	this.T = t
 	return &this
 }
 
@@ -75,36 +82,36 @@ func (o *AuditActionsVM) SetItems(v []AuditActionVM) {
 	o.Items = v
 }
 
-// GetCount returns the Count field value if set, zero value otherwise.
-func (o *AuditActionsVM) GetCount() int64 {
-	if o == nil || IsNil(o.Count) {
-		var ret int64
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
+func (o *AuditActionsVM) GetHasMore() bool {
+	if o == nil || IsNil(o.HasMore) {
+		var ret bool
 		return ret
 	}
-	return *o.Count
+	return *o.HasMore
 }
 
-// GetCountOk returns a tuple with the Count field value if set, nil otherwise
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuditActionsVM) GetCountOk() (*int64, bool) {
-	if o == nil || IsNil(o.Count) {
+func (o *AuditActionsVM) GetHasMoreOk() (*bool, bool) {
+	if o == nil || IsNil(o.HasMore) {
 		return nil, false
 	}
-	return o.Count, true
+	return o.HasMore, true
 }
 
-// HasCount returns a boolean if a field has been set.
-func (o *AuditActionsVM) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
+// HasHasMore returns a boolean if a field has been set.
+func (o *AuditActionsVM) HasHasMore() bool {
+	if o != nil && !IsNil(o.HasMore) {
 		return true
 	}
 
 	return false
 }
 
-// SetCount gets a reference to the given int64 and assigns it to the Count field.
-func (o *AuditActionsVM) SetCount(v int64) {
-	o.Count = &v
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+func (o *AuditActionsVM) SetHasMore(v bool) {
+	o.HasMore = &v
 }
 
 // GetSkip returns the Skip field value if set, zero value otherwise.
@@ -171,6 +178,30 @@ func (o *AuditActionsVM) SetTake(v int32) {
 	o.Take = &v
 }
 
+// GetT returns the T field value
+func (o *AuditActionsVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *AuditActionsVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *AuditActionsVM) SetT(v string) {
+	o.T = v
+}
+
 func (o AuditActionsVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -181,11 +212,19 @@ func (o AuditActionsVM) MarshalJSON() ([]byte, error) {
 
 func (o AuditActionsVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedCloudBaseVM, errCloudBaseVM := json.Marshal(o.CloudBaseVM)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
+	errCloudBaseVM = json.Unmarshal([]byte(serializedCloudBaseVM), &toSerialize)
+	if errCloudBaseVM != nil {
+		return map[string]interface{}{}, errCloudBaseVM
+	}
 	if o.Items != nil {
 		toSerialize["items"] = o.Items
 	}
-	if !IsNil(o.Count) {
-		toSerialize["count"] = o.Count
+	if !IsNil(o.HasMore) {
+		toSerialize["hasMore"] = o.HasMore
 	}
 	if !IsNil(o.Skip) {
 		toSerialize["skip"] = o.Skip
@@ -193,7 +232,45 @@ func (o AuditActionsVM) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Take) {
 		toSerialize["take"] = o.Take
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *AuditActionsVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAuditActionsVM := _AuditActionsVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAuditActionsVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AuditActionsVM(varAuditActionsVM)
+
+	return err
 }
 
 type NullableAuditActionsVM struct {

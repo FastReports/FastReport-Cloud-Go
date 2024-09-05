@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Value** | Pointer to **NullableString** |  | [optional] 
 **Description** | Pointer to **NullableString** |  | [optional] 
 **Expired** | Pointer to **time.Time** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewApiKeyVM
 
-`func NewApiKeyVM() *ApiKeyVM`
+`func NewApiKeyVM(t string, ) *ApiKeyVM`
 
 NewApiKeyVM instantiates a new ApiKeyVM object
 This constructor will assign default values to properties that have it defined,
@@ -121,6 +122,26 @@ SetExpired sets Expired field to given value.
 `func (o *ApiKeyVM) HasExpired() bool`
 
 HasExpired returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *ApiKeyVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *ApiKeyVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *ApiKeyVM) SetT(v string)`
+
+SetT sets T field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FilesVM type satisfies the MappedNullable interface at compile time
@@ -19,14 +21,19 @@ var _ MappedNullable = &FilesVM{}
 
 // FilesVM struct for FilesVM
 type FilesVM struct {
+	FilesVMBase
+	T string `json:"$t"`
 }
+
+type _FilesVM FilesVM
 
 // NewFilesVM instantiates a new FilesVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFilesVM() *FilesVM {
+func NewFilesVM(t string) *FilesVM {
 	this := FilesVM{}
+	this.T = t
 	return &this
 }
 
@@ -36,6 +43,30 @@ func NewFilesVM() *FilesVM {
 func NewFilesVMWithDefaults() *FilesVM {
 	this := FilesVM{}
 	return &this
+}
+
+// GetT returns the T field value
+func (o *FilesVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *FilesVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *FilesVM) SetT(v string) {
+	o.T = v
 }
 
 func (o FilesVM) MarshalJSON() ([]byte, error) {
@@ -48,7 +79,53 @@ func (o FilesVM) MarshalJSON() ([]byte, error) {
 
 func (o FilesVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedFilesVMBase, errFilesVMBase := json.Marshal(o.FilesVMBase)
+	if errFilesVMBase != nil {
+		return map[string]interface{}{}, errFilesVMBase
+	}
+	errFilesVMBase = json.Unmarshal([]byte(serializedFilesVMBase), &toSerialize)
+	if errFilesVMBase != nil {
+		return map[string]interface{}{}, errFilesVMBase
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *FilesVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFilesVM := _FilesVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFilesVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FilesVM(varFilesVM)
+
+	return err
 }
 
 type NullableFilesVM struct {

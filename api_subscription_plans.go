@@ -20,12 +20,12 @@ import (
 )
 
 
-// SubscriptionPlansApiService SubscriptionPlansApi service
-type SubscriptionPlansApiService service
+// SubscriptionPlansAPIService SubscriptionPlansAPI service
+type SubscriptionPlansAPIService service
 
 type ApiSubscriptionPlansGetSubscriptionPlanRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionPlansApiService
+	ApiService *SubscriptionPlansAPIService
 	id string
 }
 
@@ -40,7 +40,7 @@ SubscriptionPlansGetSubscriptionPlan Returns a subscription plan. Not all subscr
  @param id Identifier of subsctiption plan
  @return ApiSubscriptionPlansGetSubscriptionPlanRequest
 */
-func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlan(ctx context.Context, id string) ApiSubscriptionPlansGetSubscriptionPlanRequest {
+func (a *SubscriptionPlansAPIService) SubscriptionPlansGetSubscriptionPlan(ctx context.Context, id string) ApiSubscriptionPlansGetSubscriptionPlanRequest {
 	return ApiSubscriptionPlansGetSubscriptionPlanRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -50,7 +50,7 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlan(ctx c
 
 // Execute executes the request
 //  @return SubscriptionPlanVM
-func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlanExecute(r ApiSubscriptionPlansGetSubscriptionPlanRequest) (*SubscriptionPlanVM, *http.Response, error) {
+func (a *SubscriptionPlansAPIService) SubscriptionPlansGetSubscriptionPlanExecute(r ApiSubscriptionPlansGetSubscriptionPlanRequest) (*SubscriptionPlanVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -58,7 +58,7 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlanExecut
 		localVarReturnValue  *SubscriptionPlanVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionPlansApiService.SubscriptionPlansGetSubscriptionPlan")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionPlansAPIService.SubscriptionPlansGetSubscriptionPlan")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -148,7 +148,7 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlanExecut
 
 type ApiSubscriptionPlansGetSubscriptionPlansRequest struct {
 	ctx context.Context
-	ApiService *SubscriptionPlansApiService
+	ApiService *SubscriptionPlansAPIService
 	skip *int32
 	take *int32
 }
@@ -177,7 +177,7 @@ If no active subscription plans, then the endpoint will return empty list
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSubscriptionPlansGetSubscriptionPlansRequest
 */
-func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlans(ctx context.Context) ApiSubscriptionPlansGetSubscriptionPlansRequest {
+func (a *SubscriptionPlansAPIService) SubscriptionPlansGetSubscriptionPlans(ctx context.Context) ApiSubscriptionPlansGetSubscriptionPlansRequest {
 	return ApiSubscriptionPlansGetSubscriptionPlansRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -186,7 +186,7 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlans(ctx 
 
 // Execute executes the request
 //  @return SubscriptionPlansVM
-func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlansExecute(r ApiSubscriptionPlansGetSubscriptionPlansRequest) (*SubscriptionPlansVM, *http.Response, error) {
+func (a *SubscriptionPlansAPIService) SubscriptionPlansGetSubscriptionPlansExecute(r ApiSubscriptionPlansGetSubscriptionPlansRequest) (*SubscriptionPlansVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -194,7 +194,7 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlansExecu
 		localVarReturnValue  *SubscriptionPlansVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionPlansApiService.SubscriptionPlansGetSubscriptionPlans")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionPlansAPIService.SubscriptionPlansGetSubscriptionPlans")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -207,9 +207,15 @@ func (a *SubscriptionPlansApiService) SubscriptionPlansGetSubscriptionPlansExecu
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

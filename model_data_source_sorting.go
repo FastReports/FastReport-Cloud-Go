@@ -20,7 +20,6 @@ type DataSourceSorting string
 
 // List of DataSourceSorting
 const (
-	NONE DataSourceSorting = "None"
 	CREATED_TIME DataSourceSorting = "CreatedTime"
 	EDITED_TIME DataSourceSorting = "EditedTime"
 	NAME DataSourceSorting = "Name"
@@ -28,7 +27,6 @@ const (
 
 // All allowed values of DataSourceSorting enum
 var AllowedDataSourceSortingEnumValues = []DataSourceSorting{
-	"None",
 	"CreatedTime",
 	"EditedTime",
 	"Name",

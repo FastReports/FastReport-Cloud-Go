@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CorporateServerMode** | Pointer to **bool** |  | [optional] 
 **LastSLAVersion** | Pointer to **NullableTime** |  | [optional] 
 **IsDisabled** | Pointer to **bool** |  | [optional] 
-**Frontend** | Pointer to [**FrontendApp**](FrontendApp.md) |  | [optional] 
+**Frontend** | Pointer to [**FrontendAppVM**](FrontendAppVM.md) |  | [optional] 
 **InvariantLocale** | Pointer to **NullableString** |  | [optional] 
 **Auth** | Pointer to [**AuthConfigVM**](AuthConfigVM.md) |  | [optional] 
 **DesignerForAnons** | Pointer to **bool** |  | [optional] 
@@ -20,12 +20,14 @@ Name | Type | Description | Notes
 **HomePageLink** | Pointer to **NullableString** |  | [optional] 
 **AuthServerName** | Pointer to **NullableString** |  | [optional] 
 **UpdateWorkspaceLink** | Pointer to **NullableString** |  | [optional] 
+**SharingEnabled** | Pointer to **bool** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewServerConfigurationVM
 
-`func NewServerConfigurationVM() *ServerConfigurationVM`
+`func NewServerConfigurationVM(t string, ) *ServerConfigurationVM`
 
 NewServerConfigurationVM instantiates a new ServerConfigurationVM object
 This constructor will assign default values to properties that have it defined,
@@ -232,20 +234,20 @@ HasIsDisabled returns a boolean if a field has been set.
 
 ### GetFrontend
 
-`func (o *ServerConfigurationVM) GetFrontend() FrontendApp`
+`func (o *ServerConfigurationVM) GetFrontend() FrontendAppVM`
 
 GetFrontend returns the Frontend field if non-nil, zero value otherwise.
 
 ### GetFrontendOk
 
-`func (o *ServerConfigurationVM) GetFrontendOk() (*FrontendApp, bool)`
+`func (o *ServerConfigurationVM) GetFrontendOk() (*FrontendAppVM, bool)`
 
 GetFrontendOk returns a tuple with the Frontend field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrontend
 
-`func (o *ServerConfigurationVM) SetFrontend(v FrontendApp)`
+`func (o *ServerConfigurationVM) SetFrontend(v FrontendAppVM)`
 
 SetFrontend sets Frontend field to given value.
 
@@ -550,6 +552,51 @@ HasUpdateWorkspaceLink returns a boolean if a field has been set.
 `func (o *ServerConfigurationVM) UnsetUpdateWorkspaceLink()`
 
 UnsetUpdateWorkspaceLink ensures that no value is present for UpdateWorkspaceLink, not even an explicit nil
+### GetSharingEnabled
+
+`func (o *ServerConfigurationVM) GetSharingEnabled() bool`
+
+GetSharingEnabled returns the SharingEnabled field if non-nil, zero value otherwise.
+
+### GetSharingEnabledOk
+
+`func (o *ServerConfigurationVM) GetSharingEnabledOk() (*bool, bool)`
+
+GetSharingEnabledOk returns a tuple with the SharingEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSharingEnabled
+
+`func (o *ServerConfigurationVM) SetSharingEnabled(v bool)`
+
+SetSharingEnabled sets SharingEnabled field to given value.
+
+### HasSharingEnabled
+
+`func (o *ServerConfigurationVM) HasSharingEnabled() bool`
+
+HasSharingEnabled returns a boolean if a field has been set.
+
+### GetT
+
+`func (o *ServerConfigurationVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *ServerConfigurationVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *ServerConfigurationVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

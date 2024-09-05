@@ -1,7 +1,7 @@
 /*
 FastReport Cloud
 
-Testing DownloadApiService
+Testing DownloadAPIService
 
 */
 
@@ -17,18 +17,18 @@ import (
 	openapiclient "github.com/fastreports/gofrcloud"
 )
 
-func Test_gofrcloud_DownloadApiService(t *testing.T) {
+func Test_gofrcloud_DownloadAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test DownloadApiService DownloadGetExport", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetExport", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetExport(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetExport(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,13 +36,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetExportThumbnail", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetExportThumbnail", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetExportThumbnail(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetExportThumbnail(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -50,13 +50,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetExports", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetExports", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var archiveName string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetExports(context.Background(), archiveName).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetExports(context.Background(), archiveName).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,13 +64,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetLastSVGExport", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetLastSVGExport", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var reportId string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetLastSVGExport(context.Background(), reportId).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetLastSVGExport(context.Background(), reportId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -78,13 +78,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetReport", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetReport", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetReport(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetReport(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -92,13 +92,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetReportThumbnail", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetReportThumbnail", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetReportThumbnail(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetReportThumbnail(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -106,13 +106,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetReports", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetReports", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var archiveName string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetReports(context.Background(), archiveName).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetReports(context.Background(), archiveName).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -120,13 +120,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetTemplate", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetTemplate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetTemplate(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetTemplate(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -134,13 +134,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetTemplateThumbnail", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetTemplateThumbnail", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var id string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetTemplateThumbnail(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetTemplateThumbnail(context.Background(), id).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -148,13 +148,13 @@ func Test_gofrcloud_DownloadApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DownloadApiService DownloadGetTemplates", func(t *testing.T) {
+	t.Run("Test DownloadAPIService DownloadGetTemplates", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var archiveName string
 
-		resp, httpRes, err := apiClient.DownloadApi.DownloadGetTemplates(context.Background(), archiveName).Execute()
+		resp, httpRes, err := apiClient.DownloadAPI.DownloadGetTemplates(context.Background(), archiveName).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

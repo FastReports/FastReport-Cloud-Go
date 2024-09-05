@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CronExpression** | Pointer to **NullableString** |  | [optional] 
-**DelayedRunTime** | Pointer to **NullableTime** |  | [optional] 
+**StartsOn** | Pointer to **NullableTime** |  | [optional] 
+**Ends** | Pointer to [**CreateTaskEndVM**](CreateTaskEndVM.md) |  | [optional] 
 **Name** | Pointer to **NullableString** |  | [optional] 
 **SubscriptionId** | Pointer to **NullableString** |  | [optional] 
 **T** | **string** |  | 
@@ -64,41 +65,66 @@ HasCronExpression returns a boolean if a field has been set.
 `func (o *CreateTaskBaseVM) UnsetCronExpression()`
 
 UnsetCronExpression ensures that no value is present for CronExpression, not even an explicit nil
-### GetDelayedRunTime
+### GetStartsOn
 
-`func (o *CreateTaskBaseVM) GetDelayedRunTime() time.Time`
+`func (o *CreateTaskBaseVM) GetStartsOn() time.Time`
 
-GetDelayedRunTime returns the DelayedRunTime field if non-nil, zero value otherwise.
+GetStartsOn returns the StartsOn field if non-nil, zero value otherwise.
 
-### GetDelayedRunTimeOk
+### GetStartsOnOk
 
-`func (o *CreateTaskBaseVM) GetDelayedRunTimeOk() (*time.Time, bool)`
+`func (o *CreateTaskBaseVM) GetStartsOnOk() (*time.Time, bool)`
 
-GetDelayedRunTimeOk returns a tuple with the DelayedRunTime field if it's non-nil, zero value otherwise
+GetStartsOnOk returns a tuple with the StartsOn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDelayedRunTime
+### SetStartsOn
 
-`func (o *CreateTaskBaseVM) SetDelayedRunTime(v time.Time)`
+`func (o *CreateTaskBaseVM) SetStartsOn(v time.Time)`
 
-SetDelayedRunTime sets DelayedRunTime field to given value.
+SetStartsOn sets StartsOn field to given value.
 
-### HasDelayedRunTime
+### HasStartsOn
 
-`func (o *CreateTaskBaseVM) HasDelayedRunTime() bool`
+`func (o *CreateTaskBaseVM) HasStartsOn() bool`
 
-HasDelayedRunTime returns a boolean if a field has been set.
+HasStartsOn returns a boolean if a field has been set.
 
-### SetDelayedRunTimeNil
+### SetStartsOnNil
 
-`func (o *CreateTaskBaseVM) SetDelayedRunTimeNil(b bool)`
+`func (o *CreateTaskBaseVM) SetStartsOnNil(b bool)`
 
- SetDelayedRunTimeNil sets the value for DelayedRunTime to be an explicit nil
+ SetStartsOnNil sets the value for StartsOn to be an explicit nil
 
-### UnsetDelayedRunTime
-`func (o *CreateTaskBaseVM) UnsetDelayedRunTime()`
+### UnsetStartsOn
+`func (o *CreateTaskBaseVM) UnsetStartsOn()`
 
-UnsetDelayedRunTime ensures that no value is present for DelayedRunTime, not even an explicit nil
+UnsetStartsOn ensures that no value is present for StartsOn, not even an explicit nil
+### GetEnds
+
+`func (o *CreateTaskBaseVM) GetEnds() CreateTaskEndVM`
+
+GetEnds returns the Ends field if non-nil, zero value otherwise.
+
+### GetEndsOk
+
+`func (o *CreateTaskBaseVM) GetEndsOk() (*CreateTaskEndVM, bool)`
+
+GetEndsOk returns a tuple with the Ends field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnds
+
+`func (o *CreateTaskBaseVM) SetEnds(v CreateTaskEndVM)`
+
+SetEnds sets Ends field to given value.
+
+### HasEnds
+
+`func (o *CreateTaskBaseVM) HasEnds() bool`
+
+HasEnds returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *CreateTaskBaseVM) GetName() string`

@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AdminSubscriptionVM type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,21 @@ var _ MappedNullable = &AdminSubscriptionVM{}
 
 // AdminSubscriptionVM struct for AdminSubscriptionVM
 type AdminSubscriptionVM struct {
+	SubscriptionVM
 	DefaultPermissions *DefaultPermissionsVM `json:"defaultPermissions,omitempty"`
+	OwnerId NullableString `json:"ownerId,omitempty"`
+	T string `json:"$t"`
 }
+
+type _AdminSubscriptionVM AdminSubscriptionVM
 
 // NewAdminSubscriptionVM instantiates a new AdminSubscriptionVM object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAdminSubscriptionVM() *AdminSubscriptionVM {
+func NewAdminSubscriptionVM(t string) *AdminSubscriptionVM {
 	this := AdminSubscriptionVM{}
+	this.T = t
 	return &this
 }
 
@@ -71,6 +79,72 @@ func (o *AdminSubscriptionVM) SetDefaultPermissions(v DefaultPermissionsVM) {
 	o.DefaultPermissions = &v
 }
 
+// GetOwnerId returns the OwnerId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AdminSubscriptionVM) GetOwnerId() string {
+	if o == nil || IsNil(o.OwnerId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OwnerId.Get()
+}
+
+// GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AdminSubscriptionVM) GetOwnerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OwnerId.Get(), o.OwnerId.IsSet()
+}
+
+// HasOwnerId returns a boolean if a field has been set.
+func (o *AdminSubscriptionVM) HasOwnerId() bool {
+	if o != nil && o.OwnerId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerId gets a reference to the given NullableString and assigns it to the OwnerId field.
+func (o *AdminSubscriptionVM) SetOwnerId(v string) {
+	o.OwnerId.Set(&v)
+}
+// SetOwnerIdNil sets the value for OwnerId to be an explicit nil
+func (o *AdminSubscriptionVM) SetOwnerIdNil() {
+	o.OwnerId.Set(nil)
+}
+
+// UnsetOwnerId ensures that no value is present for OwnerId, not even an explicit nil
+func (o *AdminSubscriptionVM) UnsetOwnerId() {
+	o.OwnerId.Unset()
+}
+
+// GetT returns the T field value
+func (o *AdminSubscriptionVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *AdminSubscriptionVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *AdminSubscriptionVM) SetT(v string) {
+	o.T = v
+}
+
 func (o AdminSubscriptionVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -81,10 +155,59 @@ func (o AdminSubscriptionVM) MarshalJSON() ([]byte, error) {
 
 func (o AdminSubscriptionVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedSubscriptionVM, errSubscriptionVM := json.Marshal(o.SubscriptionVM)
+	if errSubscriptionVM != nil {
+		return map[string]interface{}{}, errSubscriptionVM
+	}
+	errSubscriptionVM = json.Unmarshal([]byte(serializedSubscriptionVM), &toSerialize)
+	if errSubscriptionVM != nil {
+		return map[string]interface{}{}, errSubscriptionVM
+	}
 	if !IsNil(o.DefaultPermissions) {
 		toSerialize["defaultPermissions"] = o.DefaultPermissions
 	}
+	if o.OwnerId.IsSet() {
+		toSerialize["ownerId"] = o.OwnerId.Get()
+	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *AdminSubscriptionVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAdminSubscriptionVM := _AdminSubscriptionVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAdminSubscriptionVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AdminSubscriptionVM(varAdminSubscriptionVM)
+
+	return err
 }
 
 type NullableAdminSubscriptionVM struct {

@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Icon** | Pointer to **NullableString** |  | [optional] 
 **Content** | Pointer to **NullableString** |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewFileCreateVM
 
-`func NewFileCreateVM() *FileCreateVM`
+`func NewFileCreateVM(t string, ) *FileCreateVM`
 
 NewFileCreateVM instantiates a new FileCreateVM object
 This constructor will assign default values to properties that have it defined,
@@ -168,6 +169,26 @@ HasContent returns a boolean if a field has been set.
 `func (o *FileCreateVM) UnsetContent()`
 
 UnsetContent ensures that no value is present for Content, not even an explicit nil
+### GetT
+
+`func (o *FileCreateVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *FileCreateVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *FileCreateVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

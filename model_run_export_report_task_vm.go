@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the RunExportReportTaskVM type satisfies the MappedNullable interface at compile time
@@ -19,11 +21,14 @@ var _ MappedNullable = &RunExportReportTaskVM{}
 
 // RunExportReportTaskVM struct for RunExportReportTaskVM
 type RunExportReportTaskVM struct {
+	RunTransformTaskBaseVM
 	ExportParameters map[string]string `json:"exportParameters,omitempty"`
 	Format *ExportFormat `json:"format,omitempty"`
 	PagesCount *int32 `json:"pagesCount,omitempty"`
 	T string `json:"$t"`
 }
+
+type _RunExportReportTaskVM RunExportReportTaskVM
 
 // NewRunExportReportTaskVM instantiates a new RunExportReportTaskVM object
 // This constructor will assign default values to properties that have it defined,
@@ -174,6 +179,14 @@ func (o RunExportReportTaskVM) MarshalJSON() ([]byte, error) {
 
 func (o RunExportReportTaskVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedRunTransformTaskBaseVM, errRunTransformTaskBaseVM := json.Marshal(o.RunTransformTaskBaseVM)
+	if errRunTransformTaskBaseVM != nil {
+		return map[string]interface{}{}, errRunTransformTaskBaseVM
+	}
+	errRunTransformTaskBaseVM = json.Unmarshal([]byte(serializedRunTransformTaskBaseVM), &toSerialize)
+	if errRunTransformTaskBaseVM != nil {
+		return map[string]interface{}{}, errRunTransformTaskBaseVM
+	}
 	if o.ExportParameters != nil {
 		toSerialize["exportParameters"] = o.ExportParameters
 	}
@@ -185,6 +198,43 @@ func (o RunExportReportTaskVM) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *RunExportReportTaskVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRunExportReportTaskVM := _RunExportReportTaskVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRunExportReportTaskVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RunExportReportTaskVM(varRunExportReportTaskVM)
+
+	return err
 }
 
 type NullableRunExportReportTaskVM struct {

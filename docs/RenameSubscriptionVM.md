@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewRenameSubscriptionVM
 
-`func NewRenameSubscriptionVM(name string, ) *RenameSubscriptionVM`
+`func NewRenameSubscriptionVM(name string, t string, ) *RenameSubscriptionVM`
 
 NewRenameSubscriptionVM instantiates a new RenameSubscriptionVM object
 This constructor will assign default values to properties that have it defined,
@@ -43,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *RenameSubscriptionVM) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetT
+
+`func (o *RenameSubscriptionVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *RenameSubscriptionVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *RenameSubscriptionVM) SetT(v string)`
+
+SetT sets T field to given value.
 
 
 

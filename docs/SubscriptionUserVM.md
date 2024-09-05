@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserId** | Pointer to **NullableString** |  | [optional] 
 **Groups** | Pointer to [**[]GroupVM**](GroupVM.md) |  | [optional] 
+**T** | **string** |  | 
 
 ## Methods
 
 ### NewSubscriptionUserVM
 
-`func NewSubscriptionUserVM() *SubscriptionUserVM`
+`func NewSubscriptionUserVM(t string, ) *SubscriptionUserVM`
 
 NewSubscriptionUserVM instantiates a new SubscriptionUserVM object
 This constructor will assign default values to properties that have it defined,
@@ -96,6 +97,26 @@ HasGroups returns a boolean if a field has been set.
 `func (o *SubscriptionUserVM) UnsetGroups()`
 
 UnsetGroups ensures that no value is present for Groups, not even an explicit nil
+### GetT
+
+`func (o *SubscriptionUserVM) GetT() string`
+
+GetT returns the T field if non-nil, zero value otherwise.
+
+### GetTOk
+
+`func (o *SubscriptionUserVM) GetTOk() (*string, bool)`
+
+GetTOk returns a tuple with the T field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetT
+
+`func (o *SubscriptionUserVM) SetT(v string)`
+
+SetT sets T field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

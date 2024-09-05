@@ -12,6 +12,8 @@ package gofrcloud
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the RunThumbnailReportTaskVM type satisfies the MappedNullable interface at compile time
@@ -19,8 +21,12 @@ var _ MappedNullable = &RunThumbnailReportTaskVM{}
 
 // RunThumbnailReportTaskVM struct for RunThumbnailReportTaskVM
 type RunThumbnailReportTaskVM struct {
+	RunTaskBaseVM
 	ReportId NullableString `json:"reportId,omitempty"`
+	T string `json:"$t"`
 }
+
+type _RunThumbnailReportTaskVM RunThumbnailReportTaskVM
 
 // NewRunThumbnailReportTaskVM instantiates a new RunThumbnailReportTaskVM object
 // This constructor will assign default values to properties that have it defined,
@@ -82,6 +88,30 @@ func (o *RunThumbnailReportTaskVM) UnsetReportId() {
 	o.ReportId.Unset()
 }
 
+// GetT returns the T field value
+func (o *RunThumbnailReportTaskVM) GetT() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.T
+}
+
+// GetTOk returns a tuple with the T field value
+// and a boolean to check if the value has been set.
+func (o *RunThumbnailReportTaskVM) GetTOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.T, true
+}
+
+// SetT sets field value
+func (o *RunThumbnailReportTaskVM) SetT(v string) {
+	o.T = v
+}
+
 func (o RunThumbnailReportTaskVM) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -92,10 +122,56 @@ func (o RunThumbnailReportTaskVM) MarshalJSON() ([]byte, error) {
 
 func (o RunThumbnailReportTaskVM) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	serializedRunTaskBaseVM, errRunTaskBaseVM := json.Marshal(o.RunTaskBaseVM)
+	if errRunTaskBaseVM != nil {
+		return map[string]interface{}{}, errRunTaskBaseVM
+	}
+	errRunTaskBaseVM = json.Unmarshal([]byte(serializedRunTaskBaseVM), &toSerialize)
+	if errRunTaskBaseVM != nil {
+		return map[string]interface{}{}, errRunTaskBaseVM
+	}
 	if o.ReportId.IsSet() {
 		toSerialize["reportId"] = o.ReportId.Get()
 	}
+	toSerialize["$t"] = o.T
 	return toSerialize, nil
+}
+
+func (o *RunThumbnailReportTaskVM) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"$t",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRunThumbnailReportTaskVM := _RunThumbnailReportTaskVM{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRunThumbnailReportTaskVM)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RunThumbnailReportTaskVM(varRunThumbnailReportTaskVM)
+
+	return err
 }
 
 type NullableRunThumbnailReportTaskVM struct {

@@ -20,12 +20,12 @@ import (
 )
 
 
-// ContactGroupsApiService ContactGroupsApi service
-type ContactGroupsApiService service
+// ContactGroupsAPIService ContactGroupsAPI service
+type ContactGroupsAPIService service
 
 type ApiContactGroupsCreateRequest struct {
 	ctx context.Context
-	ApiService *ContactGroupsApiService
+	ApiService *ContactGroupsAPIService
 	createContactGroupVM *CreateContactGroupVM
 }
 
@@ -45,7 +45,7 @@ ContactGroupsCreate Creates contact group
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiContactGroupsCreateRequest
 */
-func (a *ContactGroupsApiService) ContactGroupsCreate(ctx context.Context) ApiContactGroupsCreateRequest {
+func (a *ContactGroupsAPIService) ContactGroupsCreate(ctx context.Context) ApiContactGroupsCreateRequest {
 	return ApiContactGroupsCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -54,7 +54,7 @@ func (a *ContactGroupsApiService) ContactGroupsCreate(ctx context.Context) ApiCo
 
 // Execute executes the request
 //  @return ContactGroupVM
-func (a *ContactGroupsApiService) ContactGroupsCreateExecute(r ApiContactGroupsCreateRequest) (*ContactGroupVM, *http.Response, error) {
+func (a *ContactGroupsAPIService) ContactGroupsCreateExecute(r ApiContactGroupsCreateRequest) (*ContactGroupVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -62,7 +62,7 @@ func (a *ContactGroupsApiService) ContactGroupsCreateExecute(r ApiContactGroupsC
 		localVarReturnValue  *ContactGroupVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsApiService.ContactGroupsCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsAPIService.ContactGroupsCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -114,18 +114,7 @@ func (a *ContactGroupsApiService) ContactGroupsCreateExecute(r ApiContactGroupsC
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -147,7 +136,18 @@ func (a *ContactGroupsApiService) ContactGroupsCreateExecute(r ApiContactGroupsC
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -175,7 +175,7 @@ func (a *ContactGroupsApiService) ContactGroupsCreateExecute(r ApiContactGroupsC
 
 type ApiContactGroupsDeleteRequest struct {
 	ctx context.Context
-	ApiService *ContactGroupsApiService
+	ApiService *ContactGroupsAPIService
 	id string
 }
 
@@ -190,7 +190,7 @@ ContactGroupsDelete Removes contact by id
  @param id 
  @return ApiContactGroupsDeleteRequest
 */
-func (a *ContactGroupsApiService) ContactGroupsDelete(ctx context.Context, id string) ApiContactGroupsDeleteRequest {
+func (a *ContactGroupsAPIService) ContactGroupsDelete(ctx context.Context, id string) ApiContactGroupsDeleteRequest {
 	return ApiContactGroupsDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -199,14 +199,14 @@ func (a *ContactGroupsApiService) ContactGroupsDelete(ctx context.Context, id st
 }
 
 // Execute executes the request
-func (a *ContactGroupsApiService) ContactGroupsDeleteExecute(r ApiContactGroupsDeleteRequest) (*http.Response, error) {
+func (a *ContactGroupsAPIService) ContactGroupsDeleteExecute(r ApiContactGroupsDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsApiService.ContactGroupsDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsAPIService.ContactGroupsDelete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -257,6 +257,28 @@ func (a *ContactGroupsApiService) ContactGroupsDeleteExecute(r ApiContactGroupsD
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 402 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -279,28 +301,6 @@ func (a *ContactGroupsApiService) ContactGroupsDeleteExecute(r ApiContactGroupsD
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 402 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		return localVarHTTPResponse, newErr
 	}
 
@@ -309,7 +309,7 @@ func (a *ContactGroupsApiService) ContactGroupsDeleteExecute(r ApiContactGroupsD
 
 type ApiContactGroupsGetRequest struct {
 	ctx context.Context
-	ApiService *ContactGroupsApiService
+	ApiService *ContactGroupsAPIService
 	id string
 }
 
@@ -324,7 +324,7 @@ ContactGroupsGet Returns contact group by id
  @param id 
  @return ApiContactGroupsGetRequest
 */
-func (a *ContactGroupsApiService) ContactGroupsGet(ctx context.Context, id string) ApiContactGroupsGetRequest {
+func (a *ContactGroupsAPIService) ContactGroupsGet(ctx context.Context, id string) ApiContactGroupsGetRequest {
 	return ApiContactGroupsGetRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -334,7 +334,7 @@ func (a *ContactGroupsApiService) ContactGroupsGet(ctx context.Context, id strin
 
 // Execute executes the request
 //  @return ContactGroupVM
-func (a *ContactGroupsApiService) ContactGroupsGetExecute(r ApiContactGroupsGetRequest) (*ContactGroupVM, *http.Response, error) {
+func (a *ContactGroupsAPIService) ContactGroupsGetExecute(r ApiContactGroupsGetRequest) (*ContactGroupVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -342,7 +342,7 @@ func (a *ContactGroupsApiService) ContactGroupsGetExecute(r ApiContactGroupsGetR
 		localVarReturnValue  *ContactGroupVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsApiService.ContactGroupsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsAPIService.ContactGroupsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -393,18 +393,7 @@ func (a *ContactGroupsApiService) ContactGroupsGetExecute(r ApiContactGroupsGetR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemDetails
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -426,7 +415,18 @@ func (a *ContactGroupsApiService) ContactGroupsGetExecute(r ApiContactGroupsGetR
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemDetails
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -454,7 +454,7 @@ func (a *ContactGroupsApiService) ContactGroupsGetExecute(r ApiContactGroupsGetR
 
 type ApiContactGroupsGetListRequest struct {
 	ctx context.Context
-	ApiService *ContactGroupsApiService
+	ApiService *ContactGroupsAPIService
 	subscriptionId string
 	skip *int32
 	take *int32
@@ -483,7 +483,7 @@ ContactGroupsGetList Returns contact groups by subscriptionId
  @param subscriptionId 
  @return ApiContactGroupsGetListRequest
 */
-func (a *ContactGroupsApiService) ContactGroupsGetList(ctx context.Context, subscriptionId string) ApiContactGroupsGetListRequest {
+func (a *ContactGroupsAPIService) ContactGroupsGetList(ctx context.Context, subscriptionId string) ApiContactGroupsGetListRequest {
 	return ApiContactGroupsGetListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -493,7 +493,7 @@ func (a *ContactGroupsApiService) ContactGroupsGetList(ctx context.Context, subs
 
 // Execute executes the request
 //  @return ContactGroupsVM
-func (a *ContactGroupsApiService) ContactGroupsGetListExecute(r ApiContactGroupsGetListRequest) (*ContactGroupsVM, *http.Response, error) {
+func (a *ContactGroupsAPIService) ContactGroupsGetListExecute(r ApiContactGroupsGetListRequest) (*ContactGroupsVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -501,7 +501,7 @@ func (a *ContactGroupsApiService) ContactGroupsGetListExecute(r ApiContactGroups
 		localVarReturnValue  *ContactGroupsVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsApiService.ContactGroupsGetList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsAPIService.ContactGroupsGetList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -515,9 +515,15 @@ func (a *ContactGroupsApiService) ContactGroupsGetListExecute(r ApiContactGroups
 
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.take != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "take", r.take, "")
+	} else {
+		var defaultValue int32 = 10
+		r.take = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -619,7 +625,7 @@ func (a *ContactGroupsApiService) ContactGroupsGetListExecute(r ApiContactGroups
 
 type ApiContactGroupsUpdateRequest struct {
 	ctx context.Context
-	ApiService *ContactGroupsApiService
+	ApiService *ContactGroupsAPIService
 	id string
 	updateContactGroupVM *UpdateContactGroupVM
 }
@@ -641,7 +647,7 @@ ContactGroupsUpdate Updates contact group by id
  @param id 
  @return ApiContactGroupsUpdateRequest
 */
-func (a *ContactGroupsApiService) ContactGroupsUpdate(ctx context.Context, id string) ApiContactGroupsUpdateRequest {
+func (a *ContactGroupsAPIService) ContactGroupsUpdate(ctx context.Context, id string) ApiContactGroupsUpdateRequest {
 	return ApiContactGroupsUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -651,7 +657,7 @@ func (a *ContactGroupsApiService) ContactGroupsUpdate(ctx context.Context, id st
 
 // Execute executes the request
 //  @return ContactGroupVM
-func (a *ContactGroupsApiService) ContactGroupsUpdateExecute(r ApiContactGroupsUpdateRequest) (*ContactGroupVM, *http.Response, error) {
+func (a *ContactGroupsAPIService) ContactGroupsUpdateExecute(r ApiContactGroupsUpdateRequest) (*ContactGroupVM, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -659,7 +665,7 @@ func (a *ContactGroupsApiService) ContactGroupsUpdateExecute(r ApiContactGroupsU
 		localVarReturnValue  *ContactGroupVM
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsApiService.ContactGroupsUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContactGroupsAPIService.ContactGroupsUpdate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
